@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { useEffect, Suspense, lazy } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import CustomCursor from './components/CustomCursor';
 import './App.css';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -23,7 +22,6 @@ function ScrollToTop() {
 function App() {
   return (
     <>
-      <CustomCursor />
       <ScrollToTop />
       <Navbar />
       <main className="main-content">
