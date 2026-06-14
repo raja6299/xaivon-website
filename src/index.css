@@ -12,16 +12,16 @@
   --bg-card-hover: rgba(255, 255, 255, 0.035);
 
   /* Text */
-  --text-primary: #F8FAFC;
-  --text-secondary: #A0AAB2;
-  --text-muted: #6B7280;
+  --text-primary: #FFFFFF;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
 
-  /* Brand Accents — Extremely subtle, luxurious */
-  --accent-navy: #162032;
-  --accent-navy-light: #3A4E7A;
-  --accent-violet: #221A36;
-  --accent-violet-light: #5C4A82;
-  --accent-platinum: #E2E8F0;
+  /* Brand Accents — Brighter for contrast */
+  --accent-navy: #1E3A8A;
+  --accent-navy-light: #60A5FA;
+  --accent-violet: #4C1D95;
+  --accent-violet-light: #A78BFA;
+  --accent-platinum: #F1F5F9;
 
   /* Borders */
   --border-subtle: rgba(255, 255, 255, 0.04);
@@ -113,6 +113,7 @@ h4 { font-size: 1.125rem; }
 p {
   color: var(--text-secondary);
   line-height: 1.8;
+  font-weight: 400;
 }
 
 a {
@@ -271,7 +272,7 @@ img {
 }
 
 .btn-primary:hover {
-  box-shadow: 0 8px 30px rgba(30, 58, 138, 0.5), 0 4px 15px rgba(91, 33, 182, 0.3);
+  box-shadow: 0 8px 30px rgba(30, 58, 138, 0.6), 0 4px 15px rgba(91, 33, 182, 0.4);
   transform: translateY(-3px);
 }
 

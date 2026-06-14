@@ -279,13 +279,13 @@
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--text-muted);
-  opacity: 0.4;
+  opacity: 0.7;
   letter-spacing: 1.5px;
   transition: opacity 0.3s ease;
 }
 
 .hero-trust-logos span:hover {
-  opacity: 0.7;
+  opacity: 1;
 }
 
 @keyframes fadeInUp {
