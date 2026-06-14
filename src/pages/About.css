@@ -1,0 +1,214 @@
+/* ============================================
+   About Page
+   ============================================ */
+
+.about-page {
+  padding-top: 72px;
+}
+
+/* --- Hero --- */
+.about-hero {
+  padding: var(--section-padding);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-hero::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 600px;
+  background: radial-gradient(ellipse, rgba(30, 58, 138, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.about-hero .badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.2), rgba(91, 33, 182, 0.2));
+  border: 1px solid rgba(30, 58, 138, 0.3);
+  color: var(--accent-platinum);
+}
+
+.about-hero h1 {
+  max-width: 700px;
+  margin: 0 auto 1.25rem;
+}
+
+.about-hero-desc {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+}
+
+/* --- Our Story --- */
+.about-story {
+  padding: var(--section-padding);
+  display: flex;
+  justify-content: center;
+}
+
+.about-story-card {
+  max-width: 800px;
+  width: 100%;
+}
+
+.about-story-card h2 {
+  margin-bottom: 1.5rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.about-story-card h2 .text-accent {
+  color: var(--accent-platinum);
+}
+
+.about-story-card p {
+  margin-bottom: 1.25rem;
+  font-size: 1.05rem;
+  line-height: 1.85;
+}
+
+.about-story-card p:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Founder --- */
+.about-founder {
+  padding: var(--section-padding);
+  background: var(--bg-secondary);
+}
+
+.about-founder-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.founder-avatar {
+  flex-shrink: 0;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-navy), var(--accent-violet));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  border: 3px solid var(--border-subtle);
+  box-shadow: var(--shadow-glow-navy);
+  position: relative;
+}
+
+.founder-avatar::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid rgba(30, 58, 138, 0.2);
+}
+
+.founder-info h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.25rem;
+}
+
+.founder-title {
+  color: var(--accent-platinum);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 1.25rem;
+  display: block;
+}
+
+.founder-bio {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--text-secondary);
+}
+
+/* --- Mission / Vision / Values --- */
+.about-mvv {
+  padding: var(--section-padding);
+}
+
+.about-mvv-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.about-mvv-header h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+}
+
+.about-mvv-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.mvv-card {
+  text-align: center;
+  padding: 2.5rem 2rem;
+}
+
+.mvv-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1.25rem;
+  display: block;
+}
+
+.mvv-card h3 {
+  color: var(--accent-platinum);
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.mvv-card p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .about-hero,
+  .about-story,
+  .about-founder,
+  .about-mvv {
+    padding: var(--section-padding-mobile);
+  }
+
+  .about-founder-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .founder-avatar {
+    width: 110px;
+    height: 110px;
+    font-size: 2.5rem;
+  }
+
+  .about-mvv-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}

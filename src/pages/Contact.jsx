@@ -1,0 +1,151 @@
+import { useState } from 'react';
+import './Contact.css';
+
+const faqData = [
+  {
+    q: 'How long does it take to set up QuoteFlow AI?',
+    a: 'Typically 2–3 weeks from kickoff to going live. This includes integration with your email, TMS, and rate databases. Week 1 is discovery and setup, Week 2 is testing, and Week 3 is go-live with support.',
+  },
+  {
+    q: 'What does it cost?',
+    a: 'Setup fee starts at $3,000–$5,000 (one-time) with a monthly retainer of $800–$1,500. The exact pricing depends on your daily quote volume and the number of integrations needed. We offer a free discovery call to give you an accurate quote.',
+  },
+  {
+    q: 'Is my data secure?',
+    a: 'Absolutely. All data is encrypted in transit (TLS 1.3) and at rest (AES-256). We follow enterprise-grade security practices, are SOC 2 compliant, and never share your data with third parties. Your rate data and client information stays 100% private.',
+  },
+  {
+    q: 'Will it work with my existing TMS?',
+    a: 'Yes. QuoteFlow AI integrates with most major TMS platforms including Tai TMS, McLeod, TMW, and others. It also works with Gmail, Outlook, and Google Sheets. If you use a custom system, we can build a custom integration.',
+  },
+  {
+    q: 'What if the AI makes a mistake?',
+    a: 'You can set confidence thresholds. Low-confidence quotes are flagged for human review before sending. You always maintain full control. In practice, after the training period, our AI achieves 95%+ accuracy on standard lanes.',
+  },
+];
+
+export default function Contact() {
+  const [form, setForm] = useState({ name: '', email: '', company: '', message: '' });
+  const [submitted, setSubmitted] = useState(false);
+  const [openFaq, setOpenFaq] = useState(null);
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
+  const toggleFaq = (index) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
+
+  return (
+    <div className="contact-page">
+      {/* Hero */}
+      <section className="contact-hero" id="contact-hero">
+        <span className="badge">GET IN TOUCH</span>
+        <h1 className="text-gradient">Let's Talk About Your Operations</h1>
+        <p className="contact-hero-desc">
+          Book a free discovery call or send us a message. We typically respond within 24 hours.
+        </p>
+      </section>
+
+      {/* Two-Column Layout */}
+      <section className="contact-columns" id="contact-form-section">
+        {/* Contact Form */}
+        <div className="glass-card contact-form-card">
+          {!submitted ? (
+            <>
+              <h2>Send Us a Message</h2>
+              <form onSubmit={handleSubmit} id="contact-form">
+                <div className="form-group">
+                  <label htmlFor="contact-name">Full Name</label>
+                  <input type="text" id="contact-name" name="name" placeholder="John Doe" value={form.name} onChange={handleChange} required />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="contact-email">Email</label>
+                  <input type="email" id="contact-email" name="email" placeholder="john@example.com" value={form.email} onChange={handleChange} required />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="contact-company">Company Name</label>
+                  <input type="text" id="contact-company" name="company" placeholder="Acme Logistics" value={form.company} onChange={handleChange} />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="contact-message">Message</label>
+                  <textarea id="contact-message" name="message" placeholder="Tell us about your operations and what you'd like to automate..." value={form.message} onChange={handleChange} required />
+                </div>
+                <button type="submit" className="btn btn-primary form-submit-btn" id="contact-submit">Send Message</button>
+              </form>
+            </>
+          ) : (
+            <div className="form-success">
+              <span className="form-success-icon">✅</span>
+              <h3>Thank you!</h3>
+              <p>We've received your message and will get back to you within 24 hours.</p>
+            </div>
+          )}
+        </div>
+
+        {/* Calendly Placeholder */}
+        <div className="glass-card calendly-card">
+          <h2>Schedule a Discovery Call</h2>
+          <div className="calendly-placeholder">
+            <span className="calendly-placeholder-icon">📅</span>
+            <p>Calendly integration will be embedded here</p>
+            <a href="https://calendly.com" target="_blank" rel="noopener noreferrer">Visit calendly.com →</a>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Info Cards */}
+      <section className="contact-info-section" id="contact-info">
+        <div className="contact-info-grid">
+          <div className="glass-card contact-info-card">
+            <span className="contact-info-icon" role="img" aria-label="Email">📧</span>
+            <p><a href="mailto:raja@xaivon.com">raja@xaivon.com</a></p>
+          </div>
+          <div className="glass-card contact-info-card">
+            <span className="contact-info-icon" role="img" aria-label="Response Time">⏰</span>
+            <p>Within 24 hours</p>
+          </div>
+          <div className="glass-card contact-info-card">
+            <span className="contact-info-icon" role="img" aria-label="Location">🌍</span>
+            <p>Serving clients worldwide</p>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="contact-faq" id="faq">
+        <div className="faq-header">
+          <span className="badge">FAQ</span>
+          <h2>Frequently Asked Questions</h2>
+        </div>
+        <div className="faq-list">
+          {faqData.map((item, index) => (
+            <div className={`faq-item${openFaq === index ? ' faq-open' : ''}`} key={index}>
+              <button
+                className="faq-question"
+                onClick={() => toggleFaq(index)}
+                aria-expanded={openFaq === index}
+                id={`faq-toggle-${index}`}
+                type="button"
+              >
+                <span>{item.q}</span>
+                <span className="faq-chevron">▾</span>
+              </button>
+              <div className="faq-answer-wrapper">
+                <div className="faq-answer">
+                  <p>{item.a}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}

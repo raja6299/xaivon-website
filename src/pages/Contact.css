@@ -1,0 +1,359 @@
+/* ============================================
+   Contact Page
+   ============================================ */
+
+.contact-page {
+  padding-top: 72px;
+}
+
+/* --- Hero --- */
+.contact-hero {
+  padding: var(--section-padding);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-hero::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 600px;
+  background: radial-gradient(ellipse, rgba(30, 58, 138, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.contact-hero .badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.2), rgba(91, 33, 182, 0.2));
+  border: 1px solid rgba(30, 58, 138, 0.3);
+  color: var(--accent-platinum);
+}
+
+.contact-hero h1 {
+  max-width: 650px;
+  margin: 0 auto 1.25rem;
+}
+
+.contact-hero-desc {
+  max-width: 560px;
+  margin: 0 auto;
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+}
+
+/* --- Two-Column Layout --- */
+.contact-columns {
+  padding: 0 5% 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* Form */
+.contact-form-card {
+  padding: 2.5rem;
+}
+
+.contact-form-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.3px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: 0.95rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--accent-navy-light);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-submit-btn {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.form-success {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.form-success-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.form-success h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.form-success p {
+  font-size: 1rem;
+}
+
+/* Calendly Card */
+.calendly-card {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.calendly-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.calendly-placeholder {
+  width: 100%;
+  min-height: 260px;
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--border-subtle);
+  background: rgba(255, 255, 255, 0.015);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.calendly-placeholder-icon {
+  font-size: 2.5rem;
+  opacity: 0.5;
+}
+
+.calendly-placeholder p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.calendly-placeholder a {
+  color: var(--accent-platinum);
+  font-weight: 500;
+  border-bottom: 1px solid rgba(30, 58, 138, 0.3);
+  transition: border-color var(--transition-fast);
+}
+
+.calendly-placeholder a:hover {
+  border-color: var(--accent-platinum);
+}
+
+/* --- Contact Info Cards --- */
+.contact-info-section {
+  padding: var(--section-padding);
+}
+
+.contact-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.contact-info-card {
+  text-align: center;
+  padding: 2rem 1.5rem;
+}
+
+.contact-info-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.contact-info-card p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.contact-info-card a {
+  color: var(--accent-platinum);
+}
+
+/* --- FAQ Section --- */
+.contact-faq {
+  padding: var(--section-padding);
+  background: var(--bg-secondary);
+}
+
+.faq-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+}
+
+.faq-header .badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.2), rgba(91, 33, 182, 0.2));
+  border: 1px solid rgba(30, 58, 138, 0.3);
+  color: var(--accent-platinum);
+}
+
+.faq-list {
+  max-width: 780px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.faq-item {
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  transition: border-color var(--transition-smooth);
+}
+
+.faq-item.faq-open {
+  border-color: var(--border-hover);
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+  border: none;
+  outline: none;
+}
+
+.faq-question:hover {
+  color: var(--accent-platinum);
+}
+
+.faq-chevron {
+  font-size: 1.2rem;
+  transition: transform var(--transition-smooth);
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+
+.faq-item.faq-open .faq-chevron {
+  transform: rotate(180deg);
+  color: var(--accent-platinum);
+}
+
+.faq-answer-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              padding 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-item.faq-open .faq-answer-wrapper {
+  max-height: 500px;
+}
+
+.faq-answer {
+  padding: 0 1.5rem 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
+}
+
+.faq-item.faq-open .faq-answer {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .contact-hero,
+  .contact-info-section,
+  .contact-faq {
+    padding: var(--section-padding-mobile);
+  }
+
+  .contact-columns {
+    grid-template-columns: 1fr;
+    padding: 0 5%;
+  }
+
+  .contact-info-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .contact-form-card,
+  .calendly-card {
+    padding: 1.75rem;
+  }
+
+  .faq-question {
+    font-size: 0.95rem;
+    padding: 1rem 1.25rem;
+  }
+}

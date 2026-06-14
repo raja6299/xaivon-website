@@ -1,0 +1,9 @@
+.how-it-works { padding: var(--section-padding); }
+.steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; position: relative; }
+.steps-grid::before { content: ''; position: absolute; top: 55px; left: 18%; right: 18%; height: 2px; background: linear-gradient(90deg, transparent, var(--accent-navy), var(--accent-violet), var(--accent-navy), transparent); opacity: 0.3; z-index: 0; }
+.step-card { text-align: center; position: relative; z-index: 1; padding: 2.5rem 2rem; }
+.step-number { width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-navy), var(--accent-violet)); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 1.3rem; font-weight: 800; color: #fff; box-shadow: var(--shadow-glow-navy); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.step-card:hover .step-number { transform: scale(1.1); box-shadow: var(--shadow-glow-violet); }
+.step-card h3 { margin-bottom: 0.75rem; color: var(--text-primary); }
+.step-card p { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; }
+@media (max-width: 768px) { .steps-grid { grid-template-columns: 1fr; } .steps-grid::before { display: none; } }
