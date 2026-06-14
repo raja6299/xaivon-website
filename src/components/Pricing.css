@@ -56,17 +56,27 @@
 }
 
 .popular-badge {
-  display: inline-block;
-  background: linear-gradient(135deg, var(--accent-navy), var(--accent-violet));
-  color: #fff;
-  padding: 4px 14px;
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  color: var(--text-primary);
+  padding: 6px 18px;
   border-radius: 100px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 1px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 4px 15px rgba(34, 26, 54, 0.4);
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  animation: badgeGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes badgeGlow {
+  0% { box-shadow: 0 4px 20px rgba(255, 255, 255, 0.02); }
+  100% { box-shadow: 0 4px 25px rgba(255, 255, 255, 0.1); }
 }
 
 .pricing-header {
