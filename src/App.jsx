@@ -1,7 +1,8 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect, Suspense, lazy } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import CustomCursor from './components/CustomCursor';
 import './App.css';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -10,7 +11,6 @@ const Services = lazy(() => import('./pages/Services'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Blog = lazy(() => import('./pages/Blog'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
-import './App.css';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -23,6 +23,7 @@ function ScrollToTop() {
 function App() {
   return (
     <>
+      <CustomCursor />
       <ScrollToTop />
       <Navbar />
       <main className="main-content">

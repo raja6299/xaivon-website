@@ -1,7 +1,35 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Hero.css';
 
 export default function Hero() {
+  const [text, setText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
+  const [typingSpeed, setTypingSpeed] = useState(80);
+  
+  const words = ["Intelligent AI", "Agentic Automation", "Zero Errors", "24/7 Precision"];
+
+  useEffect(() => {
+    const handleTyping = () => {
+      const i = loopNum % words.length;
+      const fullText = words[i];
+
+      setText(isDeleting ? fullText.substring(0, text.length - 1) : fullText.substring(0, text.length + 1));
+      setTypingSpeed(isDeleting ? 40 : 80);
+
+      if (!isDeleting && text === fullText) {
+        setTimeout(() => setIsDeleting(true), 2500);
+      } else if (isDeleting && text === '') {
+        setIsDeleting(false);
+        setLoopNum(loopNum + 1);
+      }
+    };
+
+    const timer = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [text, isDeleting, loopNum, typingSpeed, words]);
+
   return (
     <section className="hero" id="hero">
       {/* Animated background layers */}
@@ -29,8 +57,8 @@ export default function Hero() {
           Logistics Intelligence Platform
         </span>
         <h1>
-          Redefining Global Logistics
-          <span className="highlight">with Intelligent AI</span>
+          Redefining Global Logistics<br />
+          <span className="highlight">with {text}<span className="typing-cursor">|</span></span>
         </h1>
         <p className="hero-desc">
           Optimizing supply chains, mitigating risk, and enhancing operational efficiency with enterprise-grade artificial intelligence.
