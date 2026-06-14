@@ -16,8 +16,12 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    setMenuOpen(false);
-  }, [location]);
+    // Menu closes automatically on mobile when a link is clicked,
+    // so we don't strictly need a location effect, but we can safely sync it here.
+    if (menuOpen) {
+      setTimeout(() => setMenuOpen(false), 0);
+    }
+  }, [location.pathname]);
 
   const isActive = (path) => location.pathname === path ? 'active' : '';
 
@@ -29,13 +33,13 @@ export default function Navbar() {
       </Link>
 
       <ul className={`navbar-links ${menuOpen ? 'open' : ''}`}>
-        <li><Link to="/" className={isActive('/')}>Home</Link></li>
-        <li><Link to="/about" className={isActive('/about')}>About</Link></li>
-        <li><Link to="/services" className={isActive('/services')}>Services</Link></li>
-        <li><Link to="/blog" className={isActive('/blog')}>Insights</Link></li>
-        <li><Link to="/contact" className={isActive('/contact')}>Contact</Link></li>
+        <li><Link to="/" className={isActive('/')} onClick={() => setMenuOpen(false)}>Home</Link></li>
+        <li><Link to="/about" className={isActive('/about')} onClick={() => setMenuOpen(false)}>About</Link></li>
+        <li><Link to="/services" className={isActive('/services')} onClick={() => setMenuOpen(false)}>Services</Link></li>
+        <li><Link to="/blog" className={isActive('/blog')} onClick={() => setMenuOpen(false)}>Insights</Link></li>
+        <li><Link to="/contact" className={isActive('/contact')} onClick={() => setMenuOpen(false)}>Contact</Link></li>
         <li className="mobile-cta">
-          <Link to="/contact" className="btn btn-primary">Book a Call</Link>
+          <Link to="/contact" className="btn btn-primary" onClick={() => setMenuOpen(false)}>Book a Call</Link>
         </li>
       </ul>
 

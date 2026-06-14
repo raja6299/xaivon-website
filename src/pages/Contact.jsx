@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Pricing from '../components/Pricing';
+import { InlineWidget } from 'react-calendly';
 import './Contact.css';
 
 const faqData = [
@@ -134,13 +135,21 @@ export default function Contact() {
           )}
         </div>
 
-        {/* Calendly Placeholder */}
-        <div className="glass-card calendly-card">
-          <h2>Schedule a Discovery Call</h2>
-          <div className="calendly-placeholder">
-            <span className="calendly-placeholder-icon">📅</span>
-            <p>Calendly integration will be embedded here</p>
-            <a href="https://calendly.com" target="_blank" rel="noopener noreferrer">Visit calendly.com →</a>
+        {/* Calendly Widget */}
+        <div className="glass-card calendly-card" style={{ padding: '1rem', height: '100%' }}>
+          <h2 style={{ marginBottom: '1rem' }}>Schedule a Discovery Call</h2>
+          <div style={{ width: '100%', height: '700px', borderRadius: '10px', overflow: 'hidden' }}>
+            <InlineWidget 
+              url="https://calendly.com/raja-xaivon/30min"
+              styles={{ height: '100%', width: '100%' }}
+              pageSettings={{
+                backgroundColor: '0A0D15',
+                hideEventTypeDetails: false,
+                hideLandingPageDetails: false,
+                primaryColor: '60A5FA',
+                textColor: 'FFFFFF'
+              }}
+            />
           </div>
         </div>
       </section>

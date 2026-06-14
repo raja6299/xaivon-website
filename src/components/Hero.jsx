@@ -8,9 +8,9 @@ export default function Hero() {
   const [loopNum, setLoopNum] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(80);
   
-  const words = ["Intelligent AI", "Agentic Automation", "Zero Errors", "24/7 Precision"];
 
   useEffect(() => {
+    const words = ["Intelligent AI", "Agentic Automation", "Zero Errors", "24/7 Precision"];
     const handleTyping = () => {
       const i = loopNum % words.length;
       const fullText = words[i];
@@ -28,7 +28,7 @@ export default function Hero() {
 
     const timer = setTimeout(handleTyping, typingSpeed);
     return () => clearTimeout(timer);
-  }, [text, isDeleting, loopNum, typingSpeed, words]);
+  }, [text, isDeleting, loopNum, typingSpeed]);
 
   return (
     <section className="hero" id="hero">
