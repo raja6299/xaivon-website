@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useStaggerAnimation } from '../hooks/useScrollAnimation';
 import './ProblemSection.css';
 
@@ -18,11 +19,12 @@ export default function ProblemSection() {
       </div>
       <div className="problem-cards" ref={ref}>
         {problems.map((p, i) => (
-          <div className={`glass-card problem-card scroll-fade-in delay-${i + 1}`} key={i}>
+          <Link to="/services" className={`glass-card problem-card scroll-fade-in delay-${i + 1}`} key={i}>
             <div className="icon">{p.icon}</div>
             <h3>{p.title}</h3>
             <p>{p.desc}</p>
-          </div>
+            <div className="card-cta">See how we solve this →</div>
+          </Link>
         ))}
       </div>
     </section>

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Pricing from '../components/Pricing';
 import './Contact.css';
 
 const faqData = [
@@ -25,17 +26,55 @@ const faqData = [
 ];
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', company: '', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', company: '', message: '', website: '' });
   const [submitted, setSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState(null);
+  const [cooldown, setCooldown] = useState(0);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    let timer;
+    if (cooldown > 0) {
+      timer = setTimeout(() => setCooldown(cooldown - 1), 1000);
+    }
+    return () => clearTimeout(timer);
+  }, [cooldown]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    setError('');
+  };
+
+  const validateEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    // Honeypot check for bots
+    if (form.website) {
+      console.warn("Spam detected.");
+      return;
+    }
+
+    if (!validateEmail(form.email)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+
+    if (form.message.length < 10) {
+      setError('Please provide more details in your message.');
+      return;
+    }
+
+    if (cooldown > 0) {
+      setError(`Please wait ${cooldown}s before submitting again.`);
+      return;
+    }
+
     setSubmitted(true);
+    setCooldown(60); // 60 second rate limit
   };
 
   const toggleFaq = (index) => {
@@ -61,9 +100,12 @@ export default function Contact() {
             <>
               <h2>Send Us a Message</h2>
               <form onSubmit={handleSubmit} id="contact-form">
+                {/* Honeypot Field */}
+                <input type="text" name="website" value={form.website} onChange={handleChange} style={{ display: 'none' }} tabIndex="-1" autoComplete="off" />
+                
                 <div className="form-group">
                   <label htmlFor="contact-name">Full Name</label>
-                  <input type="text" id="contact-name" name="name" placeholder="John Doe" value={form.name} onChange={handleChange} required />
+                  <input type="text" id="contact-name" name="name" placeholder="John Doe" value={form.name} onChange={handleChange} required maxLength="50" />
                 </div>
                 <div className="form-group">
                   <label htmlFor="contact-email">Email</label>
@@ -71,13 +113,16 @@ export default function Contact() {
                 </div>
                 <div className="form-group">
                   <label htmlFor="contact-company">Company Name</label>
-                  <input type="text" id="contact-company" name="company" placeholder="Acme Logistics" value={form.company} onChange={handleChange} />
+                  <input type="text" id="contact-company" name="company" placeholder="Acme Logistics" value={form.company} onChange={handleChange} maxLength="50" />
                 </div>
                 <div className="form-group">
                   <label htmlFor="contact-message">Message</label>
-                  <textarea id="contact-message" name="message" placeholder="Tell us about your operations and what you'd like to automate..." value={form.message} onChange={handleChange} required />
+                  <textarea id="contact-message" name="message" placeholder="Tell us about your operations and what you'd like to automate..." value={form.message} onChange={handleChange} required maxLength="500" />
                 </div>
-                <button type="submit" className="btn btn-primary form-submit-btn" id="contact-submit">Send Message</button>
+                {error && <div className="form-error" style={{ color: '#ff4d4f', fontSize: '0.9rem', marginBottom: '1rem' }}>{error}</div>}
+                <button type="submit" className="btn btn-primary form-submit-btn" id="contact-submit" disabled={cooldown > 0}>
+                  {cooldown > 0 ? `Wait ${cooldown}s` : 'Send Message'}
+                </button>
               </form>
             </>
           ) : (
@@ -117,6 +162,11 @@ export default function Contact() {
           </div>
         </div>
       </section>
+
+      {/* Pricing Section Embedded */}
+      <div className="contact-pricing-wrapper">
+        <Pricing />
+      </div>
 
       {/* FAQ */}
       <section className="contact-faq" id="faq">

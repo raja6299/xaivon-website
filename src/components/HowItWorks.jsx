@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useStaggerAnimation } from '../hooks/useScrollAnimation';
 import './HowItWorks.css';
 
@@ -18,11 +19,12 @@ export default function HowItWorks() {
       </div>
       <div className="steps-grid" ref={ref}>
         {steps.map((s, i) => (
-          <div className={`glass-card step-card scroll-fade-in delay-${i + 1}`} key={i}>
+          <Link to="/services" className={`glass-card step-card scroll-fade-in delay-${i + 1}`} key={i}>
             <div className="step-number">{s.num}</div>
             <h3>{s.title}</h3>
             <p>{s.desc}</p>
-          </div>
+            <div className="card-cta">Explore capabilities →</div>
+          </Link>
         ))}
       </div>
     </section>

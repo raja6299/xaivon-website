@@ -26,14 +26,14 @@ export default function Hero() {
       <div className="hero-content">
         <span className="hero-badge">
           <span className="hero-badge-dot"></span>
-          AI-Powered Logistics Automation
+          Logistics Intelligence Platform
         </span>
         <h1>
-          Automate Your Freight Brokerage.
-          <span className="highlight">10x Your Quote Capacity.</span>
+          Redefining Global Logistics
+          <span className="highlight">with Intelligent AI</span>
         </h1>
         <p className="hero-desc">
-          XAIVON builds Agentic AI systems that read emails, benchmark rates, and generate quotes — in under 30 seconds. Scale your logistics operations without adding headcount.
+          Optimizing supply chains, mitigating risk, and enhancing operational efficiency with enterprise-grade artificial intelligence.
         </p>
         <div className="hero-buttons">
           <Link to="/contact" className="btn btn-primary" id="hero-cta-primary">Get Started →</Link>
