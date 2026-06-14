@@ -2,7 +2,7 @@
   padding: var(--section-padding);
   background: var(--bg-secondary);
   position: relative;
-  overflow: hidden;
+  /* Removed overflow hidden to allow cards to shadow out if needed */
 }
 
 .pricing-section::before {
@@ -56,19 +56,36 @@
 }
 
 .popular-badge {
-  position: absolute;
-  top: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(135deg, var(--accent-navy-light), var(--accent-violet-light));
+  display: inline-block;
+  background: linear-gradient(135deg, var(--accent-navy), var(--accent-violet));
   color: #fff;
-  padding: 6px 20px;
+  padding: 4px 14px;
   border-radius: 100px;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  box-shadow: 0 4px 15px rgba(91, 33, 182, 0.4);
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(34, 26, 54, 0.4);
+}
+
+.pricing-header {
+  margin-bottom: 2rem;
+}
+
+.pricing-icon {
+  display: inline-block;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  opacity: 0.8;
+}
+
+.pricing-divider {
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 2.5rem 0;
+  width: 100%;
 }
 
 .pricing-tier {
