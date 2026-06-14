@@ -357,3 +357,34 @@
     padding: 1rem 1.25rem;
   }
 }
+
+
+/* Calendly Skeleton Loader */
+.calendly-skeleton {
+  background: linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.02) 75%);
+  background-size: 400% 100%;
+  animation: skeleton-loading 1.5s infinite ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.calendly-skeleton::after {
+  content: 'Loading Calendar...';
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  position: absolute;
+  z-index: 0;
+}
+
+.calendly-skeleton iframe {
+  z-index: 1;
+  position: relative;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

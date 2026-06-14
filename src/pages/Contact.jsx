@@ -138,7 +138,7 @@ export default function Contact() {
         {/* Calendly Widget */}
         <div className="glass-card calendly-card" style={{ padding: '1rem', height: '100%' }}>
           <h2 style={{ marginBottom: '1rem' }}>Schedule a Discovery Call</h2>
-          <div style={{ width: '100%', height: '700px', borderRadius: '10px', overflow: 'hidden' }}>
+          <div className="calendly-skeleton" style={{ width: '100%', height: '700px', borderRadius: '10px', overflow: 'hidden' }}>
             <InlineWidget 
               url="https://calendly.com/raja-xaivon/30min"
               styles={{ height: '100%', width: '100%' }}
