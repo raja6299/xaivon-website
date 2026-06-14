@@ -31,6 +31,11 @@ export default function Pricing() {
           <div className="pricing-divider"></div>
 
           <ul className="pricing-features">
+            <li><span className="feature-check">✓</span> Up to 100 Quotes/day</li>
+            <li><span className="feature-check">✓</span> Automated Email Parsing</li>
+            <li><span className="feature-check">✓</span> Standard DAT Integration</li>
+            <li><span className="feature-check">✓</span> Standard Support (24h SLA)</li>
+          </ul>
         </div>
 
         {/* Professional Plan (Highlighted) */}
