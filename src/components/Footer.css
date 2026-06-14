@@ -1,7 +1,7 @@
 .footer {
   border-top: 1px solid var(--border-subtle);
   background: var(--bg-secondary);
-  padding: 4rem 5% 2rem;
+  padding: 4rem 3% 2rem;
 }
 
 .footer-grid {
@@ -96,6 +96,10 @@
 }
 
 @media (max-width: 768px) {
+  .footer {
+    padding: 3rem 15px 2rem;
+  }
+
   .footer-grid {
     grid-template-columns: 1fr 1fr;
     gap: 2rem;

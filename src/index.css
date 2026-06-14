@@ -38,8 +38,8 @@
   --font-heading: 'Playfair Display', serif;
 
   /* Spacing */
-  --section-padding: 8rem 5%;
-  --section-padding-mobile: 4rem 5%;
+  --section-padding: 8rem 3%;
+  --section-padding-mobile: 4rem 15px;
 
   /* Transitions */
   --transition-fast: 0.2s ease;
@@ -53,7 +53,7 @@
   --radius-xl: 20px;
 
   /* Container */
-  --max-width: 1240px;
+  --max-width: 1400px;
 }
 
 /* ============================================
@@ -140,7 +140,7 @@ img {
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 5%;
+  padding: 0 3%;
 }
 
 .section {
@@ -370,6 +370,10 @@ img {
   .section,
   .section-alt {
     padding: var(--section-padding-mobile);
+  }
+
+  .container {
+    padding: 0 15px;
   }
 
   .section-header {
