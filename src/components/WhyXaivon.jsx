@@ -23,7 +23,7 @@ const pillars = [
   },
   {
     title: 'AI Infrastructure',
-    description: 'True automation requires robust plumbing. We deploy SOC2-compliant, single-tenant AI environments with integrated vector databases, automated fallback logic, and real-time observability, ensuring 99.99% system uptime.',
+    description: 'True automation requires robust plumbing. We deploy security-first, single-tenant AI environments with integrated vector databases, automated fallback logic, and real-time observability, ensuring 99.99% system uptime.',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <ellipse cx="12" cy="5" rx="9" ry="3"/>
