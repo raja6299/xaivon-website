@@ -91,6 +91,13 @@ export default function TrustBar() {
       <div className="section-divider-accent" />
 
       <div className="trustbar-inner container-wide">
+        <div className="early-partner-banner reveal" style={{ textAlign: 'center', marginBottom: '2rem', paddingTop: '2rem' }}>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', letterSpacing: '0.5px' }}>
+            <span style={{ color: 'var(--color-luxury)', marginRight: '8px' }}>✦</span>
+            Currently onboarding a limited number of businesses seeking AI-powered operational transformation.
+            <span style={{ color: 'var(--color-luxury)', marginLeft: '8px' }}>✦</span>
+          </p>
+        </div>
         <div className="trustbar-track">
           {TRUST_ITEMS.map((item, index) => (
             <div

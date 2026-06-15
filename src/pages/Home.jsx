@@ -14,6 +14,8 @@ import FounderSection from '../components/FounderSection';
 import AIAudit from '../components/AIAudit';
 import FAQ from '../components/FAQ';
 import CTABanner from '../components/CTABanner';
+import LeadMagnet from '../components/LeadMagnet';
+import SchemaMarkup from '../components/SchemaMarkup';
 
 export default function Home() {
   useEffect(() => {
@@ -34,8 +36,10 @@ export default function Home() {
       <CaseStudiesSection />
       <DemoVideoSection />
       <FounderSection />
+      <LeadMagnet />
       <AIAudit />
       <FAQ />
+      <SchemaMarkup type="Organization" />
       <CTABanner />
     </>
   );

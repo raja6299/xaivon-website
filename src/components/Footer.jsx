@@ -43,10 +43,10 @@ export default function Footer() {
             <div className="footer-nav-col">
               <h4 className="footer-heading">Solutions</h4>
               <ul className="footer-links">
-                <li><Link to="/services">All Services</Link></li>
-                <li><Link to="/s/logistics-automation">Logistics Automation</Link></li>
-                <li><Link to="/s/ai-automation">AI Business Automation</Link></li>
-                <li><Link to="/s/ai-chatbots">Voice & Chat Agents</Link></li>
+                <li><Link to="/quoteflow-ai">QuoteFlow AI</Link></li>
+                <li><Link to="/ai-agents">AI Agents</Link></li>
+                <li><Link to="/ai-automation">AI Automation</Link></li>
+                <li><Link to="/ai-chatbots">AI Chatbots</Link></li>
               </ul>
             </div>
 
@@ -55,8 +55,8 @@ export default function Footer() {
               <ul className="footer-links">
                 <li><Link to="/about">About Us</Link></li>
                 <li><Link to="/pricing">Pricing</Link></li>
-                <li><a href="/#case-studies">Case Studies</a></li>
-                <li><Link to="/blog">Blog & Resources</Link></li>
+                <li><Link to="/resources">Resources</Link></li>
+                <li><Link to="/blog">Blog</Link></li>
               </ul>
             </div>
 
@@ -65,6 +65,7 @@ export default function Footer() {
               <ul className="footer-links">
                 <li><Link to="/contact">Schedule a Call</Link></li>
                 <li><a href="mailto:raja@xaivon.com">raja@xaivon.com</a></li>
+                <li><a href="mailto:partnerships@xaivon.com">partnerships@xaivon.com</a></li>
               </ul>
               
               <div className="footer-trust-badge">
@@ -80,9 +81,11 @@ export default function Footer() {
             &copy; {currentYear} XAIVON LLC. All rights reserved.
           </div>
           <div className="footer-legal">
-            <Link to="/privacy">Privacy Policy</Link>
+            <Link to="/privacy-policy">Privacy Policy</Link>
             <span className="footer-separator"></span>
             <Link to="/terms">Terms & Conditions</Link>
+            <span className="footer-separator"></span>
+            <Link to="/cookie-policy">Cookie Policy</Link>
           </div>
         </div>
       </div>

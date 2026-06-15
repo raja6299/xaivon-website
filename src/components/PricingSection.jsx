@@ -4,62 +4,6 @@ import { useScrollReveal } from '../hooks/useScrollReveal';
 import './PricingSection.css';
 
 const PRICING_DATA = {
-  website: [
-    {
-      id: 'web-starter',
-      name: 'Starter Website',
-      price: '$699',
-      description: 'Best for small businesses establishing their digital presence.',
-      isPopular: false,
-      features: [
-        'Up to 5 Pages',
-        'Mobile Responsive Design',
-        'Contact Forms',
-        'Basic SEO Setup',
-        'WhatsApp Integration',
-        'SSL Ready',
-        'Fast Loading Website',
-        '14 Days Support'
-      ]
-    },
-    {
-      id: 'web-growth',
-      name: 'Growth Website',
-      price: '$999',
-      description: 'Ideal for businesses focused on scaling and lead generation.',
-      isPopular: true,
-      features: [
-        'Up to 10 Pages',
-        'Premium UI/UX',
-        'Blog Setup',
-        'Calendly Integration',
-        'Lead Capture Forms',
-        'Conversion Optimization',
-        'Advanced SEO Setup',
-        'AI Chat Assistant',
-        '30 Days Support'
-      ]
-    },
-    {
-      id: 'web-premium',
-      name: 'Premium Business Website',
-      price: '$1499',
-      description: 'High-performance infrastructure for established enterprises.',
-      isPopular: false,
-      features: [
-        'Custom Design',
-        'Unlimited Pages',
-        'Premium Animations',
-        'Advanced Integrations',
-        'CRM Integration',
-        'AI Chatbot Setup',
-        'Advanced SEO Foundation',
-        'Performance Optimization',
-        'Security Hardening',
-        'Priority Support'
-      ]
-    }
-  ],
   logistics: [
     {
       id: 'log-starter',
@@ -79,7 +23,7 @@ const PRICING_DATA = {
     {
       id: 'log-growth',
       name: 'Logistics Growth',
-      price: '$2499',
+      price: '$2999',
       description: 'Complete back-office automation to scale capacity without headcount.',
       isPopular: true,
       features: [
@@ -95,7 +39,7 @@ const PRICING_DATA = {
     {
       id: 'log-enterprise',
       name: 'Logistics Enterprise',
-      price: '$4999+',
+      price: 'Custom',
       description: 'Custom AI infrastructure deeply integrated into your existing TMS.',
       isPopular: false,
       features: [
@@ -105,7 +49,195 @@ const PRICING_DATA = {
         'Advanced Analytics',
         'Multi-Workflow Automation',
         'Dedicated Optimization',
-        'Priority Support'
+        'Priority SLA Support'
+      ]
+    }
+  ],
+  website: [
+    {
+      id: 'web-starter',
+      name: 'Starter Website',
+      price: '$699',
+      description: 'Best for small businesses establishing their digital presence.',
+      isPopular: false,
+      features: [
+        'Up to 5 Pages',
+        'Mobile Responsive Design',
+        'Contact Forms',
+        'Basic SEO Setup',
+        'WhatsApp Integration',
+        'SSL Ready',
+        '14 Days Support'
+      ]
+    },
+    {
+      id: 'web-growth',
+      name: 'Growth Website',
+      price: '$999',
+      description: 'Ideal for businesses focused on scaling and lead generation.',
+      isPopular: true,
+      features: [
+        'Up to 10 Pages',
+        'Premium UI/UX',
+        'Blog Setup',
+        'Calendly Integration',
+        'Lead Capture Forms',
+        'Advanced SEO Setup',
+        '30 Days Support'
+      ]
+    },
+    {
+      id: 'web-premium',
+      name: 'Enterprise Web Application',
+      price: '$2499+',
+      description: 'High-performance infrastructure for established enterprises.',
+      isPopular: false,
+      features: [
+        'Custom Web App',
+        'Unlimited Pages',
+        'Database Integration',
+        'User Authentication',
+        'CRM Integration',
+        'Performance Optimization',
+        'Priority SLA Support'
+      ]
+    }
+  ],
+  chatbots: [
+    {
+      id: 'bot-starter',
+      name: 'Basic Chatbot',
+      price: '$499',
+      description: 'Rule-based chatbot for answering basic customer questions.',
+      isPopular: false,
+      features: [
+        'Website Integration',
+        'FAQ Automation',
+        'Lead Capture',
+        'Business Hours Routing',
+        '14 Days Support'
+      ]
+    },
+    {
+      id: 'bot-growth',
+      name: 'AI Support Assistant',
+      price: '$1299',
+      description: 'LLM-powered assistant trained on your company knowledge base.',
+      isPopular: true,
+      features: [
+        'Custom Knowledge Base',
+        'Contextual Conversations',
+        'CRM Lead Sync',
+        'Live Agent Handoff',
+        'Multi-language Support',
+        '30 Days Optimization'
+      ]
+    },
+    {
+      id: 'bot-enterprise',
+      name: 'Omnichannel Voice AI',
+      price: 'Custom',
+      description: 'Inbound and outbound AI voice agents and omnichannel chatbots.',
+      isPopular: false,
+      features: [
+        'Voice AI Agents',
+        'Phone System Integration',
+        'SMS & WhatsApp Integration',
+        'Custom API Actions',
+        'Sentiment Analysis',
+        'Priority SLA Support'
+      ]
+    }
+  ],
+  automation: [
+    {
+      id: 'auto-starter',
+      name: 'Workflow Starter',
+      price: '$799',
+      description: 'Automate repetitive data entry and basic notifications.',
+      isPopular: false,
+      features: [
+        'Up to 3 Workflows',
+        'Zapier/Make Setup',
+        'Email Notifications',
+        'Basic CRM Sync',
+        '14 Days Support'
+      ]
+    },
+    {
+      id: 'auto-growth',
+      name: 'Business Automation',
+      price: '$1999',
+      description: 'End-to-end automation of your core business processes.',
+      isPopular: true,
+      features: [
+        'Up to 10 Workflows',
+        'Advanced API Integrations',
+        'Automated Invoicing',
+        'Onboarding Automation',
+        'Error Handling',
+        '30 Days Optimization'
+      ]
+    },
+    {
+      id: 'auto-enterprise',
+      name: 'Enterprise Infrastructure',
+      price: 'Custom',
+      description: 'Deep backend automation for complex, multi-system environments.',
+      isPopular: false,
+      features: [
+        'Unlimited Workflows',
+        'Custom Python Scripts',
+        'Database Syncing',
+        'Legacy System Integration',
+        'Dedicated Server Infrastructure',
+        'Priority SLA Support'
+      ]
+    }
+  ],
+  agents: [
+    {
+      id: 'agent-starter',
+      name: 'Single AI Agent',
+      price: '$1499',
+      description: 'One specialized AI agent to handle a specific department task.',
+      isPopular: false,
+      features: [
+        'Specialized System Prompt',
+        'Tool Use (Email, Search)',
+        'Standard LLM Access',
+        'Basic Memory',
+        '14 Days Support'
+      ]
+    },
+    {
+      id: 'agent-growth',
+      name: 'Multi-Agent Team',
+      price: '$3499',
+      description: 'A team of collaborating AI agents executing complex objectives.',
+      isPopular: true,
+      features: [
+        'Multi-Agent Orchestration',
+        'Advanced RAG Integration',
+        'Custom Tool Creation',
+        'Long-term Memory',
+        'Slack/Discord Integration',
+        '30 Days Optimization'
+      ]
+    },
+    {
+      id: 'agent-enterprise',
+      name: 'Autonomous Operations',
+      price: 'Custom',
+      description: 'Fully autonomous AI workforce operating your backend systems.',
+      isPopular: false,
+      features: [
+        'Company-wide Deployment',
+        'Local LLM Options',
+        'Secure Data Enclaves',
+        'Continuous Learning',
+        'Executive Dashboards',
+        'Priority SLA Support'
       ]
     }
   ]
@@ -136,23 +268,14 @@ export default function PricingSection() {
           </p>
 
           {/* Pricing Tabs */}
-          <div className="pricing-tabs" role="tablist">
-            <button
-              className={`pricing-tab ${activeTab === 'logistics' ? 'active' : ''}`}
-              onClick={() => setActiveTab('logistics')}
-              role="tab"
-              aria-selected={activeTab === 'logistics'}
-            >
-              Logistics Automation
-            </button>
-            <button
-              className={`pricing-tab ${activeTab === 'website' ? 'active' : ''}`}
-              onClick={() => setActiveTab('website')}
-              role="tab"
-              aria-selected={activeTab === 'website'}
-            >
-              Website Development
-            </button>
+          <div className="pricing-tabs-scrollable">
+            <div className="pricing-tabs" role="tablist">
+              <button className={`pricing-tab ${activeTab === 'logistics' ? 'active' : ''}`} onClick={() => setActiveTab('logistics')} role="tab" aria-selected={activeTab === 'logistics'}>Logistics Automation</button>
+              <button className={`pricing-tab ${activeTab === 'website' ? 'active' : ''}`} onClick={() => setActiveTab('website')} role="tab" aria-selected={activeTab === 'website'}>Website Development</button>
+              <button className={`pricing-tab ${activeTab === 'chatbots' ? 'active' : ''}`} onClick={() => setActiveTab('chatbots')} role="tab" aria-selected={activeTab === 'chatbots'}>AI Chatbots</button>
+              <button className={`pricing-tab ${activeTab === 'automation' ? 'active' : ''}`} onClick={() => setActiveTab('automation')} role="tab" aria-selected={activeTab === 'automation'}>AI Automation</button>
+              <button className={`pricing-tab ${activeTab === 'agents' ? 'active' : ''}`} onClick={() => setActiveTab('agents')} role="tab" aria-selected={activeTab === 'agents'}>AI Agents</button>
+            </div>
           </div>
         </div>
 
@@ -169,7 +292,7 @@ export default function PricingSection() {
                 <h3>{plan.name}</h3>
                 <p className="pricing-desc">{plan.description}</p>
                 <div className="price-block">
-                  <span className="price-label">Starting at</span>
+                  {plan.price !== 'Custom' && <span className="price-label">Starting at</span>}
                   <span className="price-amount">{plan.price}</span>
                 </div>
               </div>

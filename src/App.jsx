@@ -18,6 +18,16 @@ const Blog = lazy(() => import('./pages/Blog'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
 const Pricing = lazy(() => import('./pages/Pricing'));
 const SeoLandingPage = lazy(() => import('./pages/SeoLandingPage'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const Terms = lazy(() => import('./pages/Terms'));
+const CookiePolicy = lazy(() => import('./pages/CookiePolicy'));
+
+// Dedicated Service Pages
+const QuoteFlowAI = lazy(() => import('./pages/services/QuoteFlowAI'));
+const AIAgents = lazy(() => import('./pages/services/AIAgents'));
+const AIAutomation = lazy(() => import('./pages/services/AIAutomation'));
+const AIChatbots = lazy(() => import('./pages/services/AIChatbots'));
+const Resources = lazy(() => import('./pages/Resources'));
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -40,6 +50,18 @@ function App() {
             <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/s/:slug" element={<SeoLandingPage />} />
+            
+            {/* Dedicated Service Pages */}
+            <Route path="/quoteflow-ai" element={<QuoteFlowAI />} />
+            <Route path="/ai-agents" element={<AIAgents />} />
+            <Route path="/ai-automation" element={<AIAutomation />} />
+            <Route path="/ai-chatbots" element={<AIChatbots />} />
+            
+            <Route path="/resources" element={<Resources />} />
+            
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/cookie-policy" element={<CookiePolicy />} />
           </Routes>
         </Suspense>
       </main>

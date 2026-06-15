@@ -206,9 +206,27 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+  .pricing-tabs-scrollable {
+    overflow-x: auto;
+    padding-bottom: 10px;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
   .pricing-tabs {
-    flex-direction: column;
-    padding: 0 1rem;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    min-width: max-content;
+  }
+}
+
+@media (max-width: 480px) {
+  .pricing-tabs-scrollable {
+    margin: 0 -1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }

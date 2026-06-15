@@ -1,9 +1,9 @@
+# XAIVON Robots.txt
 User-agent: *
 Allow: /
-Disallow: /api/
-Disallow: /admin/
 
+# Sitemap
 Sitemap: https://xaivon.com/sitemap.xml
 
-# XAIVON - AI-Powered Business Infrastructure
-# https://xaivon.com
+# Disallow admin and API routes
+Disallow: /api/

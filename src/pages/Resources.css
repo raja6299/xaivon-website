@@ -1,0 +1,14 @@
+.resources-page {
+  background-color: var(--bg-primary);
+}
+
+.resource-card {
+  padding: 2rem;
+  border-color: var(--border-subtle);
+}
+
+.resource-card:hover {
+  border-color: var(--border-accent);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}

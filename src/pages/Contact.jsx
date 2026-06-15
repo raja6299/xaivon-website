@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { InlineWidget } from 'react-calendly';
+import { PopupButton } from 'react-calendly';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { trackEvent } from '../utils/tracking';
 import './Contact.css';
@@ -165,25 +165,24 @@ export default function Contact() {
         </div>
 
         {/* Calendly Widget */}
-        <div className="glass-card calendly-card" style={{ padding: '1rem', height: '100%' }} ref={calendlyRef}>
-          <h2 style={{ marginBottom: '1rem' }}>Schedule a Discovery Call</h2>
-          <div className="calendly-skeleton" style={{ width: '100%', height: '700px', borderRadius: '10px', overflow: 'hidden', background: 'rgba(255, 255, 255, 0.02)' }}>
+        <div className="glass-card calendly-card" style={{ padding: '3rem 2rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }} ref={calendlyRef}>
+          <h2 style={{ marginBottom: '1rem' }}>Schedule a Strategy Call</h2>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', maxWidth: '400px' }}>
+            Choose a time that works for you. We'll discuss your current operations, identify bottlenecks, and build a custom ROI projection.
+          </p>
+          <div className="calendly-trigger-wrapper">
             {calendlyVisible ? (
-              <InlineWidget 
+              <PopupButton
                 url="https://calendly.com/raja-xaivon/30min"
-                styles={{ height: '100%', width: '100%' }}
-                pageSettings={{
-                  backgroundColor: '0A0D15',
-                  hideEventTypeDetails: false,
-                  hideLandingPageDetails: false,
-                  primaryColor: '60A5FA',
-                  textColor: 'FFFFFF'
-                }}
+                rootElement={document.getElementById('root')}
+                text="Book Your Strategy Call"
+                className="btn btn-primary btn-lg"
+                styles={{ width: '100%', maxWidth: '300px' }}
               />
             ) : (
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--text-muted)' }}>
-                <span className="badge badge-gold"><span className="badge-dot"></span>Loading Scheduler...</span>
-              </div>
+              <button className="btn btn-primary btn-lg" disabled style={{ opacity: 0.7 }}>
+                Loading Scheduler...
+              </button>
             )}
           </div>
         </div>
