@@ -41,12 +41,12 @@
 }
 
 .about-hero h1 {
-  max-width: 700px;
+  max-width: min(1100px, 100%);
   margin: 0 auto 1.25rem;
 }
 
 .about-hero-desc {
-  max-width: 600px;
+  max-width: min(800px, 100%);
   margin: 0 auto;
   font-size: 1.15rem;
   color: var(--text-secondary);
@@ -60,7 +60,7 @@
 }
 
 .about-story-card {
-  max-width: 800px;
+  max-width: min(1100px, 100%);
   width: 100%;
 }
 
@@ -90,7 +90,7 @@
 }
 
 .about-founder-inner {
-  max-width: 900px;
+  max-width: min(1100px, 100%);
   margin: 0 auto;
   display: flex;
   align-items: center;

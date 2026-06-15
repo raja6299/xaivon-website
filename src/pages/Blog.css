@@ -13,7 +13,7 @@
 .blog-hero-desc {
   font-size: 1.1rem;
   color: var(--text-secondary);
-  max-width: 550px;
+  max-width: min(800px, 100%);
   margin: 0 auto;
 }
 
@@ -89,7 +89,7 @@
 /* Newsletter */
 .blog-newsletter {
   padding: 4rem 5%;
-  max-width: 700px;
+  max-width: min(800px, 100%);
   margin: 0 auto 4rem;
   text-align: center;
 }

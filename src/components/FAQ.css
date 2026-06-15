@@ -22,7 +22,7 @@
 
 /* ---- FAQ List ---- */
 .faq-list {
-  max-width: 800px;
+  max-width: min(800px, 100%);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
