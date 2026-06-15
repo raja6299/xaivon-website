@@ -348,10 +348,10 @@ ul, ol {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 50%, #1E40AF 100%);
+  background: linear-gradient(135deg, var(--color-accent) 0%, #6d28d9 100%);
   color: #fff;
   border: none;
-  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.2);
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
 }
 
 .btn-primary::before {
@@ -366,7 +366,7 @@ ul, ol {
 }
 
 .btn-primary:hover {
-  box-shadow: 0 8px 35px rgba(59, 130, 246, 0.35);
+  box-shadow: 0 8px 35px rgba(124, 58, 237, 0.5);
   transform: translateY(-2px);
 }
 
@@ -439,14 +439,14 @@ ul, ol {
    Text Utilities
    ============================================ */
 .text-gradient {
-  background: linear-gradient(135deg, var(--text-primary) 0%, var(--color-secondary) 100%);
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--color-accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .text-gradient-cyan {
-  background: linear-gradient(135deg, var(--text-primary) 0%, var(--color-secondary) 100%);
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--color-accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

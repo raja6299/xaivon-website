@@ -126,19 +126,19 @@ export default function Contact() {
                 
                 <div className="form-group">
                   <label htmlFor="contact-name">Full Name</label>
-                  <input type="text" id="contact-name" name="name" placeholder="John Doe" value={form.name} onChange={handleChange} required maxLength="50" />
+                  <input type="text" id="contact-name" name="name" placeholder="Sarah Smith" value={form.name} onChange={handleChange} required maxLength="50" />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="contact-email">Email</label>
-                  <input type="email" id="contact-email" name="email" placeholder="john@example.com" value={form.email} onChange={handleChange} required />
+                  <label htmlFor="contact-email">Work Email</label>
+                  <input type="email" id="contact-email" name="email" placeholder="sarah@apexlogistics.com" value={form.email} onChange={handleChange} required />
                 </div>
                 <div className="form-group">
                   <label htmlFor="contact-company">Company Name</label>
-                  <input type="text" id="contact-company" name="company" placeholder="Acme Logistics" value={form.company} onChange={handleChange} maxLength="50" />
+                  <input type="text" id="contact-company" name="company" placeholder="Apex Freight Brokerage" value={form.company} onChange={handleChange} maxLength="50" />
                 </div>
                 <div className="form-group">
                   <label htmlFor="contact-message">Message</label>
-                  <textarea id="contact-message" name="message" placeholder="Tell us about your operations and what you'd like to automate..." value={form.message} onChange={handleChange} required maxLength="500" />
+                  <textarea id="contact-message" name="message" placeholder="We process 500+ quotes daily and want to automate our rate extraction..." value={form.message} onChange={handleChange} required maxLength="500" />
                 </div>
                 {error && <div className="form-error" style={{ color: '#ff4d4f', fontSize: '0.9rem', marginBottom: '1rem' }}>{error}</div>}
                 
@@ -147,7 +147,7 @@ export default function Contact() {
                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                   </svg>
-                  <span>Your information is protected by bank-grade security protocols.</span>
+                  <span>Your information is protected by enterprise-grade security protocols.</span>
                 </div>
 
                 <button type="submit" className="btn btn-primary form-submit-btn" id="contact-submit" disabled={cooldown > 0}>
@@ -192,16 +192,20 @@ export default function Contact() {
       <section className="contact-info-section" id="contact-info">
         <div className="contact-info-grid">
           <div className="glass-card contact-info-card">
-            <span className="contact-info-icon" role="img" aria-label="Email">📧</span>
-            <p><a href="mailto:partnerships@xaivon.com">partnerships@xaivon.com</a></p>
+            <span className="contact-info-icon" role="img" aria-label="Response Time">⏱️</span>
+            <p>Response Time &lt; 12 Hours</p>
           </div>
           <div className="glass-card contact-info-card">
-            <span className="contact-info-icon" role="img" aria-label="Response Time">⏰</span>
-            <p>Within 12 hours</p>
+            <span className="contact-info-icon" role="img" aria-label="Strategy">📞</span>
+            <p>Free Strategy Call</p>
           </div>
           <div className="glass-card contact-info-card">
-            <span className="contact-info-icon" role="img" aria-label="Location">🌍</span>
-            <p>Serving clients worldwide</p>
+            <span className="contact-info-icon" role="img" aria-label="Global Support">🌍</span>
+            <p>Global Support</p>
+          </div>
+          <div className="glass-card contact-info-card">
+            <span className="contact-info-icon" role="img" aria-label="Security">🔒</span>
+            <p>Enterprise-Grade Security</p>
           </div>
         </div>
       </section>

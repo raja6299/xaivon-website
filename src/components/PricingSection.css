@@ -43,65 +43,71 @@
 }
 
 .pricing-tab.active {
-  background: var(--accent-cyan);
-  color: #000;
-  border-color: var(--accent-cyan);
+  background: rgba(124, 58, 237, 0.1);
+  color: var(--text-primary);
+  border-color: var(--color-accent);
   font-weight: 600;
-  box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.2), inset 0 0 10px rgba(124, 58, 237, 0.05);
 }
 
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-top: 4rem;
+  gap: 2.5rem;
+  margin-top: 5rem;
   position: relative;
   z-index: 1;
+  padding-top: 1rem;
 }
 
 .pricing-card {
-  padding: 2.5rem 2rem;
+  padding: 3rem 2.5rem;
   display: flex;
   flex-direction: column;
   position: relative;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
-  border-radius: 16px;
-  border: 1px solid var(--border-color);
-  background: rgba(15, 15, 15, 0.6);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.3s ease;
+  border-radius: 20px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
   backdrop-filter: blur(10px);
 }
 
 .pricing-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
   border-color: var(--border-hover);
+  background: var(--bg-card-hover);
 }
 
 .pricing-card.popular {
-  border-color: rgba(0, 210, 255, 0.3);
-  transform: scale(1.05);
-  box-shadow: 0 0 30px rgba(0, 210, 255, 0.05);
+  border-color: rgba(124, 58, 237, 0.4);
+  transform: scale(1.03);
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.1);
+  background: linear-gradient(180deg, rgba(22, 22, 22, 1) 0%, rgba(22, 22, 22, 0.8) 100%);
+  z-index: 2;
 }
 
 .pricing-card.popular:hover {
-  transform: scale(1.05) translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(0, 210, 255, 0.1);
-  border-color: rgba(0, 210, 255, 0.6);
+  transform: scale(1.03) translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(124, 58, 237, 0.15);
+  border-color: var(--color-accent);
 }
 
 .popular-badge {
   position: absolute;
-  top: -12px;
+  top: -14px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--accent-cyan);
-  color: #000;
-  font-size: 0.7rem;
+  background: linear-gradient(135deg, var(--color-accent) 0%, #9f67ff 100%);
+  color: #fff;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
-  padding: 0.3rem 1rem;
+  letter-spacing: 0.15em;
+  padding: 0.4rem 1.2rem;
   border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+  z-index: 10;
+  white-space: nowrap;
 }
 
 .pricing-header {
@@ -169,7 +175,7 @@
 }
 
 .check-icon {
-  color: var(--accent-cyan);
+  color: var(--color-accent);
   flex-shrink: 0;
   margin-top: 2px;
 }

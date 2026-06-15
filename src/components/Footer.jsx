@@ -69,7 +69,7 @@ export default function Footer() {
               </ul>
               
               <div className="footer-trust-badge">
-                <span>✓ SOC 2 Compliant Infrastructure</span>
+                <span>✓ Enterprise-Grade Security Practices</span>
               </div>
             </div>
           </div>

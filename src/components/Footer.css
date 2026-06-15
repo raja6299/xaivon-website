@@ -55,17 +55,17 @@
 }
 
 .social-link:hover {
-  background: var(--accent-cyan);
-  color: #000;
+  background: var(--color-accent);
+  color: #fff;
   transform: translateY(-3px);
 }
 
 .footer-links-wrapper {
   display: flex;
   flex: 2;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 4rem;
 }
 
 .footer-nav-col {
@@ -97,7 +97,7 @@
 }
 
 .footer-links a:hover {
-  color: var(--accent-cyan);
+  color: var(--color-accent);
 }
 
 .footer-trust-badge {
@@ -146,6 +146,12 @@
   background: var(--text-muted);
   border-radius: 50%;
   opacity: 0.5;
+}
+
+@media (max-width: 992px) {
+  .footer-links-wrapper {
+    gap: 2rem;
+  }
 }
 
 @media (max-width: 768px) {
