@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { InlineWidget } from 'react-calendly';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { trackEvent } from '../utils/tracking';
 import './Contact.css';
 
 const faqData = [
@@ -51,7 +52,7 @@ export default function Contact() {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     // Honeypot check for bots
@@ -60,21 +61,12 @@ export default function Contact() {
       return;
     }
 
-    // Basic sanitization (strip HTML tags)
-    const sanitize = (str) => str.replace(/<[^>]*>?/gm, '');
-    const sanitizedForm = {
-      name: sanitize(form.name),
-      email: sanitize(form.email),
-      company: sanitize(form.company),
-      message: sanitize(form.message),
-    };
-
-    if (!validateEmail(sanitizedForm.email)) {
+    if (!validateEmail(form.email)) {
       setError('Please enter a valid email address.');
       return;
     }
 
-    if (sanitizedForm.message.length < 10) {
+    if (form.message.length < 10) {
       setError('Please provide more details in your message.');
       return;
     }
@@ -84,8 +76,26 @@ export default function Contact() {
       return;
     }
 
-    setSubmitted(true);
-    setCooldown(60); // 60 second rate limit
+    try {
+      setError('');
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form)
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to submit message.');
+      }
+
+      setSubmitted(true);
+      setCooldown(60); // 60 second rate limit
+      trackEvent('contact_form_submit', { company: form.company });
+    } catch (err) {
+      setError(err.message || 'Something went wrong. Please try again later.');
+    }
   };
 
   const toggleFaq = (index) => {
@@ -99,7 +109,7 @@ export default function Contact() {
         <span className="badge">GET IN TOUCH</span>
         <h1 className="text-gradient">Let's Talk About Your Operations</h1>
         <p className="contact-hero-desc">
-          Book a free discovery call or send us a message. We typically respond within 24 hours.
+          Book a free discovery call or send us a message. We respond within 12 hours.
         </p>
       </section>
 
@@ -149,7 +159,7 @@ export default function Contact() {
             <div className="form-success">
               <span className="form-success-icon">✅</span>
               <h3>Thank you!</h3>
-              <p>We've received your message and will get back to you within 24 hours.</p>
+              <p>We've received your message and will get back to you within 12 hours.</p>
             </div>
           )}
         </div>
@@ -188,7 +198,7 @@ export default function Contact() {
           </div>
           <div className="glass-card contact-info-card">
             <span className="contact-info-icon" role="img" aria-label="Response Time">⏰</span>
-            <p>Within 24 hours</p>
+            <p>Within 12 hours</p>
           </div>
           <div className="glass-card contact-info-card">
             <span className="contact-info-icon" role="img" aria-label="Location">🌍</span>

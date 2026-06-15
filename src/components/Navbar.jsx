@@ -6,6 +6,7 @@ const NAV_LINKS = [
   { path: '/', label: 'Home' },
   { path: '/services', label: 'Services' },
   { path: '/logistics-solutions', label: 'Logistics Solutions' },
+  { path: '/pricing', label: 'Pricing' },
   { path: '/about', label: 'About' },
   { path: '/contact', label: 'Contact' },
 ];
@@ -88,7 +89,7 @@ export default function Navbar() {
         {/* ── Desktop CTA ── */}
         <div className="navbar__cta">
           <Link to="/contact" className="btn btn-primary btn-sm" id="nav-cta">
-            Book Strategy Call
+            Schedule a Strategy Call
           </Link>
         </div>
 
@@ -134,7 +135,7 @@ export default function Navbar() {
             style={{ transitionDelay: menuOpen ? `${0.08 + NAV_LINKS.length * 0.06}s` : '0s' }}
           >
             <Link to="/contact" className="btn btn-primary" onClick={closeMenu}>
-              Book Strategy Call
+              Schedule a Strategy Call
             </Link>
           </div>
         </nav>

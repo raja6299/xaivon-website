@@ -1,326 +1,145 @@
-/* ============================================
-   HowItWorks — Vertical Alternating Timeline
-   ============================================ */
-
-.hiw-section {
-  background: var(--bg-primary);
+.how-it-works {
   position: relative;
+  background-color: var(--bg-surface);
+  border-top: 1px solid var(--border-color);
+  padding: 6rem 0;
+  overflow: hidden;
 }
 
-/* Subtle background accents */
-.hiw-section::before {
-  content: '';
-  position: absolute;
-  top: 20%;
-  left: -200px;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.04) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.hiw-section::after {
-  content: '';
-  position: absolute;
-  bottom: 10%;
-  right: -200px;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.03) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-/* ---- Timeline Container ---- */
-.hiw-timeline {
+.steps-container {
   position: relative;
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 2rem 0 1rem;
+  max-width: 1000px;
+  margin: 4rem auto 0;
+  padding: 2rem 0;
 }
 
-/* ---- Central Vertical Line ---- */
-.hiw-timeline-line {
+.steps-vertical-line {
   position: absolute;
   top: 0;
+  bottom: 0;
   left: 50%;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, var(--accent-cyan), transparent);
   transform: translateX(-50%);
-  width: 1px;
-  height: 100%;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    var(--color-secondary) 10%,
-    var(--color-accent) 40%,
-    var(--color-luxury) 70%,
-    var(--color-luxury) 90%,
-    transparent 100%
-  );
-  transform-origin: top center;
-  scale: 1 0;
-  transition: scale 1.8s var(--ease-out);
+  opacity: 0.3;
+  z-index: 1;
 }
 
-.hiw-timeline-line.hiw-line-draw {
-  scale: 1 1;
-}
-
-/* ---- Timeline Item ---- */
-.hiw-timeline-item {
-  position: relative;
+.step-row {
   display: flex;
-  align-items: flex-start;
-  width: 100%;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 3rem;
+  position: relative;
+  z-index: 2;
 }
 
-.hiw-timeline-item:last-child {
+.step-row:last-child {
   margin-bottom: 0;
 }
 
-/* Left-aligned items (even index): card on the left */
-.hiw-item-left {
-  justify-content: flex-start;
-  padding-right: calc(50% + 40px);
+.step-content-box {
+  width: calc(50% - 3rem);
 }
 
-/* Right-aligned items (odd index): card on the right */
-.hiw-item-right {
-  justify-content: flex-end;
-  padding-left: calc(50% + 40px);
+.step-box-right {
+  order: 3;
 }
 
-/* ---- Step Circle ---- */
-.hiw-step-circle {
-  position: absolute;
-  left: 50%;
-  top: 1.25rem;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 40px;
+.step-center-node {
+  width: 24px;
+  height: 24px;
+  background: var(--bg-primary);
+  border: 2px solid var(--accent-cyan);
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: var(--z-elevated);
-  opacity: 0;
-  scale: 0.5;
-  transition: opacity var(--duration-slow) var(--ease-out),
-              scale var(--duration-slow) var(--ease-spring),
-              box-shadow var(--duration-slow) var(--ease-out);
-  box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  order: 2;
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+  z-index: 3;
 }
 
-.hiw-step-circle.hiw-circle-visible {
-  opacity: 1;
-  scale: 1;
-  box-shadow: 0 0 20px -4px rgba(59, 130, 246, 0.5),
-              0 0 40px -8px rgba(59, 130, 246, 0.2);
-  animation: hiw-pulse-ring 3s var(--ease-in-out) infinite 0.6s;
+.step-node-inner {
+  width: 8px;
+  height: 8px;
+  background: var(--text-primary);
+  border-radius: 50%;
 }
 
-.hiw-step-num {
-  font-family: var(--font-heading);
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--bg-primary);
+.step-card {
+  padding: 2rem;
+  border-radius: 12px;
+  position: relative;
+  background: rgba(15, 15, 15, 0.6);
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.step-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.step-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.step-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: rgba(0, 210, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-cyan);
+  border: 1px solid rgba(0, 210, 255, 0.1);
+}
+
+.step-number-watermark {
+  font-size: 3rem;
+  font-family: var(--font-primary);
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.03);
   line-height: 1;
 }
 
-@keyframes hiw-pulse-ring {
-  0%, 100% {
-    box-shadow: 0 0 20px -4px rgba(59, 130, 246, 0.5),
-                0 0 40px -8px rgba(59, 130, 246, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 28px -4px rgba(59, 130, 246, 0.7),
-                0 0 56px -8px rgba(59, 130, 246, 0.35);
-  }
-}
-
-/* ---- Connector Dot ---- */
-.hiw-connector-dot {
-  position: absolute;
-  left: 50%;
-  bottom: -1.5rem;
-  transform: translateX(-50%);
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--color-secondary);
-  opacity: 0;
-  transition: opacity var(--duration-slow) var(--ease-out) 0.3s;
-}
-
-.hiw-connector-dot.hiw-dot-visible {
-  opacity: 0.5;
-}
-
-.hiw-timeline-item:last-child .hiw-connector-dot {
-  display: none;
-}
-
-/* ---- Step Card ---- */
-.hiw-step-card {
-  width: 100%;
-  padding: 1.75rem 2rem;
-  cursor: default;
-}
-
-.hiw-step-card:hover {
-  transform: translateY(-4px);
-}
-
-.hiw-card-inner {
-  position: relative;
-}
-
-.hiw-card-number {
-  display: inline-block;
-  font-family: var(--font-heading);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--color-secondary);
-  margin-bottom: 0.75rem;
-  opacity: 0.7;
-}
-
-.hiw-card-title {
+.step-card h3 {
   font-size: 1.25rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-primary);
-  margin-bottom: 0.5rem;
-  letter-spacing: -0.01em;
+  margin-bottom: 0.75rem;
 }
 
-.hiw-card-desc {
-  font-size: 0.95rem;
-  line-height: 1.7;
+.step-card p {
   color: var(--text-secondary);
-  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
-/* Subtle accent line on the timeline-facing side of the card */
-.hiw-item-left .hiw-step-card::after {
-  content: '';
-  position: absolute;
-  top: 1.25rem;
-  right: -20px;
-  width: 20px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border-accent));
-}
-
-.hiw-item-right .hiw-step-card::after {
-  content: '';
-  position: absolute;
-  top: 1.25rem;
-  left: -20px;
-  width: 20px;
-  height: 1px;
-  background: linear-gradient(270deg, transparent, var(--border-accent));
-}
-
-/* ============================================
-   Responsive — Tablet
-   ============================================ */
 @media (max-width: 768px) {
-  .hiw-timeline {
-    padding-left: 28px;
+  .steps-vertical-line {
+    left: 24px;
   }
 
-  .hiw-timeline-line {
-    left: 14px;
-    transform: none;
+  .step-row {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 60px;
   }
 
-  .hiw-timeline-item {
-    padding-left: 48px !important;
-    padding-right: 0 !important;
-    justify-content: flex-start !important;
-    margin-bottom: 2.25rem;
+  .step-content-box {
+    width: 100%;
+    order: 2;
   }
 
-  .hiw-step-circle {
-    left: 14px;
-    transform: translateX(-50%);
-    width: 34px;
-    height: 34px;
-  }
-
-  .hiw-step-num {
-    font-size: 0.75rem;
-  }
-
-  .hiw-connector-dot {
-    left: 14px;
-  }
-
-  .hiw-step-card {
-    padding: 1.5rem;
-  }
-
-  /* Reset the connecting line for mobile */
-  .hiw-item-left .hiw-step-card::after,
-  .hiw-item-right .hiw-step-card::after {
-    display: none;
-  }
-
-  /* All cards use left reveal on mobile */
-  .hiw-timeline-item .hiw-step-card {
-    opacity: 0;
-    transform: translateX(-40px);
-    transition: opacity var(--duration-glacial) var(--ease-out),
-                transform var(--duration-glacial) var(--ease-out);
-  }
-
-  .hiw-timeline-item .hiw-step-card.visible {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* ============================================
-   Responsive — Small Mobile
-   ============================================ */
-@media (max-width: 480px) {
-  .hiw-timeline {
-    padding-left: 20px;
-  }
-
-  .hiw-timeline-line {
-    left: 10px;
-  }
-
-  .hiw-timeline-item {
-    padding-left: 38px !important;
-  }
-
-  .hiw-step-circle {
-    left: 10px;
-    width: 28px;
-    height: 28px;
-  }
-
-  .hiw-step-num {
-    font-size: 0.65rem;
-  }
-
-  .hiw-connector-dot {
-    left: 10px;
-  }
-
-  .hiw-step-card {
-    padding: 1.25rem;
-  }
-
-  .hiw-card-title {
-    font-size: 1.1rem;
-  }
-
-  .hiw-card-desc {
-    font-size: 0.875rem;
+  .step-center-node {
+    position: absolute;
+    left: 12px;
+    top: 30px;
   }
 }

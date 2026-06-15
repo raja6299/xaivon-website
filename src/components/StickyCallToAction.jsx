@@ -30,7 +30,7 @@ export default function StickyCallToAction() {
           <circle cx="9" cy="12" r="1.25" fill="currentColor"/>
         </svg>
       </span>
-      <span className="sticky-cta-label">Strategy Call</span>
+      <span className="sticky-cta-label">Schedule a Strategy Call</span>
       <span className="sticky-cta-pulse" aria-hidden="true"></span>
     </Link>
   );

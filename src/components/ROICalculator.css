@@ -1,0 +1,211 @@
+.roi-calculator-section {
+  position: relative;
+  background-color: var(--bg-primary);
+  border-top: 1px solid var(--border-color);
+  padding: 6rem 0;
+  overflow: hidden;
+}
+
+.roi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.roi-controls {
+  padding: 2.5rem;
+  border-radius: 16px;
+  background: rgba(15, 15, 15, 0.6);
+  border: 1px solid var(--border-color);
+}
+
+.roi-card-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+}
+
+.roi-input-group {
+  margin-bottom: 2rem;
+}
+
+.roi-input-group:last-child {
+  margin-bottom: 0;
+}
+
+.roi-input-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.roi-input-header label {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.roi-value-display {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  font-family: var(--font-primary);
+  font-weight: 600;
+  color: var(--accent-cyan);
+  font-size: 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Custom Range Slider Styling */
+.roi-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  background: var(--border-color);
+  border-radius: 10px;
+  outline: none;
+}
+
+.roi-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+  transition: transform 0.2s ease;
+}
+
+.roi-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.roi-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+  transition: transform 0.2s ease;
+  border: none;
+}
+
+.roi-slider::-moz-range-thumb:hover {
+  transform: scale(1.2);
+}
+
+.roi-results {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.roi-result-card {
+  padding: 2rem;
+  border-radius: 16px;
+  background: rgba(15, 15, 15, 0.6);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.roi-result-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.roi-result-card.highlight-card {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, rgba(15, 15, 15, 0.9) 0%, rgba(20, 25, 35, 0.9) 100%);
+  border: 1px solid rgba(0, 210, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.roi-result-card.highlight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 210, 255, 0.8), transparent);
+}
+
+.roi-result-label {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.roi-result-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.highlight-card .roi-result-value {
+  font-size: 3.5rem;
+}
+
+.roi-result-desc {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.roi-cta-wrap {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.trust-indicators-row {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media (max-width: 1024px) {
+  .roi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .roi-results {
+    grid-template-columns: 1fr;
+  }
+  
+  .roi-controls, .roi-result-card {
+    padding: 1.5rem;
+  }
+  
+  .roi-result-value {
+    font-size: 2rem;
+  }
+  
+  .highlight-card .roi-result-value {
+    font-size: 2.5rem;
+  }
+}

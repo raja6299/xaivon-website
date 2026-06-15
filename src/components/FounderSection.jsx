@@ -34,23 +34,23 @@ export default function FounderSection() {
 
             <div className="founder-bio">
               <div className="founder-block">
-                <h4>The Industry Perspective</h4>
+                <h4>Why XAIVON Exists</h4>
                 <p>
-                  <strong>Operations break at scale.</strong> That is the fundamental problem across the logistics and enterprise sector. As volume increases, companies throw more human capital at data entry, dispatching, and customer tracking. This traditional approach destroys margins, creates bottlenecks, and leads to high error rates.
+                  As companies scale, operations inevitably break. This is the fundamental challenge across the logistics and enterprise sectors. Historically, as transaction volume increases, companies are forced to linearly scale their human capital—throwing more staff at data entry, dispatching, and customer tracking. This traditional approach erodes profit margins, creates critical bottlenecks, and introduces unacceptable error rates. XAIVON exists to decouple your growth from your headcount.
                 </p>
               </div>
 
               <div className="founder-block">
-                <h4>Our Vision</h4>
+                <h4>Our Mission</h4>
                 <p>
-                  I founded XAIVON because I realized that artificial intelligence shouldn&apos;t just be a tool for writing emails — it must be the core operational infrastructure of modern business. We envision a future where businesses scale systematically and securely, without being constrained by human limitations.
+                  We build resilient, deeply integrated AI infrastructure that handles the heavy lifting. By systematically automating complex, repetitive workflows, our mission is to eliminate operational friction and restore your profit margins, allowing your team to focus exclusively on high-value strategic execution.
                 </p>
               </div>
 
               <div className="founder-block">
-                <h4>Our Philosophy</h4>
+                <h4>Long-Term Vision & Philosophy</h4>
                 <p>
-                  At XAIVON, we don&apos;t sell hype. We build resilient, deeply integrated AI systems that do the heavy lifting. By automating complex and repetitive workflows, we help companies remove operational friction and restore their profit margins.
+                  I founded XAIVON with the conviction that artificial intelligence must transition from a novelty to the core operational infrastructure of modern business. We do not sell hype or generic templates. We partner with serious business owners to design secure, scalable solutions tailored to their exact data ecosystem. Our commitment is entirely tied to your long-term operational success.
                 </p>
               </div>
 

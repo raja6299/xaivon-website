@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { trackEvent } from '../utils/tracking';
 import './AIAudit.css';
 
 const INDUSTRIES = [
@@ -82,7 +83,7 @@ export default function AIAudit() {
     }
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     if (formData.website) {
@@ -101,8 +102,26 @@ export default function AIAudit() {
       return;
     }
     
-    setSubmitted(true);
-    setCooldown(60);
+    try {
+      setErrors({});
+      const response = await fetch('/api/audit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to submit assessment request.');
+      }
+
+      setSubmitted(true);
+      setCooldown(60);
+      trackEvent('audit_form_submit', { industry: formData.industry, company: formData.company });
+    } catch (err) {
+      setErrors({ form: err.message || 'Something went wrong. Please try again later.' });
+    }
   }
 
   return (
@@ -266,9 +285,11 @@ export default function AIAudit() {
                   {cooldown > 0 ? `Wait ${cooldown}s` : 'Request Assessment →'}
                 </button>
 
-                <p className="ai-audit-form-disclaimer">
-                  Your information is secure and will never be shared.
-                </p>
+                <div className="ai-audit-trust-indicators" style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', color: 'var(--text-muted)', fontSize: '0.85rem', textAlign: 'center' }}>
+                  <span>✓ Secure & Encrypted</span>
+                  <span>✓ Response Within 12 Hours</span>
+                  <span>✓ Built For Long-Term Growth</span>
+                </div>
               </form>
             )}
           </div>

@@ -3,8 +3,12 @@ import Hero from '../components/Hero';
 import TrustBar from '../components/TrustBar';
 import ServicesSection from '../components/ServicesSection';
 import LogisticsSection from '../components/LogisticsSection';
+import IndustriesSection from '../components/IndustriesSection';
 import WhyXaivon from '../components/WhyXaivon';
 import HowItWorks from '../components/HowItWorks';
+import PricingSection from '../components/PricingSection';
+import ROICalculator from '../components/ROICalculator';
+import CaseStudiesSection from '../components/CaseStudiesSection';
 import DemoVideoSection from '../components/DemoVideoSection';
 import FounderSection from '../components/FounderSection';
 import AIAudit from '../components/AIAudit';
@@ -22,8 +26,12 @@ export default function Home() {
       <TrustBar />
       <ServicesSection />
       <LogisticsSection />
+      <IndustriesSection />
       <WhyXaivon />
       <HowItWorks />
+      <PricingSection />
+      <ROICalculator />
+      <CaseStudiesSection />
       <DemoVideoSection />
       <FounderSection />
       <AIAudit />

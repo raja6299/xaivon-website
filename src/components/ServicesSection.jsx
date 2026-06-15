@@ -3,115 +3,14 @@ import './ServicesSection.css';
 
 const services = [
   {
-    title: 'Reduce Operational Costs',
+    title: 'Logistics & Freight Automation',
     description:
-      'Streamline resource allocation and drastically reduce manual overhead with intelligent systems that run 24/7 without fatigue.',
+      'Scale your brokerage capacity without hiring. We deploy QuoteFlow AI, automated email parsing, and intelligent dispatch workflows that integrate directly with your TMS.',
     features: [
-      'Overhead Reduction',
-      'Resource Optimization',
-      'Margin Expansion',
-      'Predictable Scaling',
-    ],
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Reduce Manual Work',
-    description:
-      'Improve data accuracy and streamline operations by systematically extracting, classifying, and syncing data across your TMS, CRM, and accounting software.',
-    features: [
-      'Automated Extraction',
-      'Data Accuracy',
-      'Cross-Platform Sync',
-      'Process Standardization',
-    ],
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="3" width="18" height="18" rx="2" />
-        <path d="M9 3v18M15 3v18M3 9h18M3 15h18" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Improve Response Times',
-    description:
-      'Provide instant, context-aware responses to customers, carriers, and shippers at any time of day, ensuring you win more freight.',
-    features: [
-      'Instant Quoting',
-      '24/7 Availability',
-      'Automated Updates',
-      'Exception Handling',
-    ],
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <polyline points="12 6 12 12 16 14" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Scale Without Hiring',
-    description:
-      'Handle massive volume spikes in quoting, dispatching, and tracking without the need to linearly increase your back-office headcount.',
-    features: [
-      'Volume Resilience',
-      'Automated Dispatch',
-      'Capacity Sourcing',
-      'Elastic Operations',
-    ],
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
-        <polyline points="17 6 23 6 23 12" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Capture More Leads',
-    description:
-      'Ensure no opportunity slips through the cracks with automated prospect engagement, qualification, and targeted CRM follow-ups.',
-    features: [
-      'Lead Qualification',
-      'Automated Nurture',
-      'Pipeline Velocity',
-      'Conversion Tracking',
-    ],
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-        <polyline points="22 4 12 14.01 9 11.01" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Increase Efficiency',
-    description:
-      'Orchestrate complex, multi-step business logic into seamless, automated pipelines from first touch to final delivery.',
-    features: [
-      'Process Mapping',
-      'Logic Automation',
-      'Bottleneck Removal',
-      'Continuous Uptime',
-    ],
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="3" />
-        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Accelerate Cash Flow',
-    description:
-      'Automate invoicing, rate confirmations, POD processing, and payment reminders to significantly reduce Days Sales Outstanding (DSO).',
-    features: [
-      'Automated Invoicing',
-      'POD Verification',
-      'DSO Reduction',
-      'Payment Reminders',
+      'QuoteFlow AI',
+      'Dispatch Automation',
+      'Email Parsing',
+      'TMS Integrations',
     ],
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -122,20 +21,52 @@ const services = [
     ),
   },
   {
-    title: 'Unify Fragmented Systems',
+    title: 'AI Business Automation',
     description:
-      'Connect siloed software tools (TMS, CRM, ERP) to create a single source of truth and eliminate redundant work.',
+      'Reduce manual work and increase efficiency. We systematically extract, classify, and sync data across your CRM, accounting software, and operational databases.',
     features: [
-      'API Integrations',
-      'System Syncing',
-      'Data Consolidation',
-      'Architecture Design',
+      'Workflow Automation',
+      'CRM Integration',
+      'Data Synchronization',
+      'Process Standardization',
     ],
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <polygon points="12 2 2 7 12 12 22 7 12 2" />
-        <polyline points="2 17 12 22 22 17" />
-        <polyline points="2 12 12 17 22 12" />
+        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+      </svg>
+    ),
+  },
+  {
+    title: '24/7 Lead Capture & Support',
+    description:
+      'Provide instant responses at any time of day. Our AI Chatbots and Voice Agents handle inbound inquiries, qualify leads, and follow up autonomously.',
+    features: [
+      'AI Voice Dispatchers',
+      'Lead Qualification',
+      'Instant Responses',
+      'Automated Nurture',
+    ],
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <polyline points="12 6 12 12 16 14" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Premium Website Development',
+    description:
+      'Your digital infrastructure needs to convert. We build high-performance, SEO-optimized, luxury websites designed to generate and capture high-ticket B2B leads.',
+    features: [
+      'Conversion Optimization',
+      'Premium UI/UX',
+      'Advanced SEO',
+      'High-Speed Architecture',
+    ],
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <path d="M9 3v18M15 3v18M3 9h18M3 15h18" />
       </svg>
     ),
   },
