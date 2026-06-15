@@ -310,7 +310,7 @@ export default function PricingSection() {
               </div>
 
               <div className="pricing-cta-wrap">
-                <Link to="/contact" className={`btn ${plan.isPopular ? 'btn-primary' : 'btn-outline'} full-width`}>
+                <Link to="/contact" className={`btn ${plan.isPopular ? 'btn-primary' : 'btn-white'} full-width`}>
                   Schedule a Strategy Call
                 </Link>
                 <p className="trust-indicator">✓ Response Within 12 Hours</p>

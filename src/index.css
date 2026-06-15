@@ -396,6 +396,22 @@ ul, ol {
   transform: translateY(0);
 }
 
+.btn-white {
+  background: #FFFFFF;
+  color: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btn-white:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
+  background: #f8f8f8;
+}
+
+.btn-white:active {
+  transform: translateY(0);
+}
+
 .btn-gold {
   background: linear-gradient(135deg, var(--color-luxury), #C09B30);
   color: #0A0A0B;
