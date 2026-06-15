@@ -3,36 +3,36 @@ import './LogisticsSection.css';
 
 const services = [
   {
-    title: 'Freight Broker Automation',
-    description: 'Automate quote processing, carrier matching, and load booking with intelligent AI agents that work around the clock.',
+    title: 'Automated Freight Dispatch',
+    description: 'Eliminate manual matching. AI systems execute optimal route planning and zero-error load assignment instantly.',
   },
   {
-    title: 'Dispatch Automation',
-    description: 'AI-powered dispatch systems for optimal route planning, load assignment, and real-time fleet coordination.',
+    title: 'AI Document Processing',
+    description: 'Automate BOL, POD, and invoice extraction. Eradicate manual data entry and drastically reduce Days Sales Outstanding (DSO).',
   },
   {
-    title: 'Driver Communication',
-    description: 'Automated driver updates, check-ins, and status tracking — keeping everyone in sync without manual calls.',
+    title: 'Intelligent Customer Support',
+    description: 'Provide shippers and carriers with 24/7 real-time tracking updates and proactive issue resolution, without increasing headcount.',
   },
   {
-    title: 'Shipment Tracking',
-    description: 'Real-time AI monitoring of shipments and proactive alerts for delays, exceptions, and delivery milestones.',
+    title: 'Sales Pipeline Automation',
+    description: 'Automate prospecting, lead qualification, and CRM workflows to capture and convert high-ticket enterprise shippers.',
   },
   {
-    title: 'Customer Support AI',
-    description: '24/7 AI agents handling customer inquiries, shipment updates, and issue resolution instantly.',
+    title: 'Dynamic Quote Processing',
+    description: 'Instantly analyze market rates and capacity to deliver accurate freight quotes in seconds, winning loads before competitors respond.',
   },
   {
-    title: 'Lead Generation',
-    description: 'Automated prospecting and lead qualification for freight — identify, engage, and convert high-value shippers.',
+    title: 'Proactive Exception Management',
+    description: 'Real-time AI monitoring detects delays and route deviations instantly, alerting dispatchers before customers even notice.',
   },
   {
-    title: 'Document Automation',
-    description: 'BOL, POD, and invoice processing with AI extraction — eliminate manual data entry and reduce errors to zero.',
+    title: 'Carrier Network Optimization',
+    description: 'Automate carrier onboarding, compliance verification, and performance tracking to build a highly reliable, high-margin asset network.',
   },
   {
-    title: 'CRM Workflows',
-    description: 'Automated sales pipelines built for logistics operations — from first touch to closed deal, fully orchestrated.',
+    title: 'Enterprise Operational Analytics',
+    description: 'Transform fragmented TMS and CRM data into unified, actionable insights that drive margin expansion and structural efficiency.',
   },
 ];
 

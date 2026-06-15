@@ -101,39 +101,7 @@
   opacity: 0.3;
 }
 
-/* --- Floating particles ------------------ */
-.hero-particles {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.hero-particle {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  border-radius: 50%;
-  background: rgba(59, 130, 246, 0.35);
-  animation: heroParticleDrift linear infinite;
-}
-
-.hero-particle:nth-child(1) { left: 8%;  animation-duration: 22s; animation-delay: 0s; }
-.hero-particle:nth-child(2) { left: 20%; animation-duration: 27s; animation-delay: 2s; width: 3px; height: 3px; }
-.hero-particle:nth-child(3) { left: 35%; animation-duration: 19s; animation-delay: 4s; }
-.hero-particle:nth-child(4) { left: 50%; animation-duration: 24s; animation-delay: 1s; width: 3px; height: 3px; background: rgba(212, 175, 55, 0.25); }
-.hero-particle:nth-child(5) { left: 65%; animation-duration: 21s; animation-delay: 3s; }
-.hero-particle:nth-child(6) { left: 78%; animation-duration: 26s; animation-delay: 5s; width: 4px; height: 4px; background: rgba(6, 182, 212, 0.2); }
-.hero-particle:nth-child(7) { left: 12%; animation-duration: 23s; animation-delay: 6s; }
-.hero-particle:nth-child(8) { left: 88%; animation-duration: 18s; animation-delay: 7s; width: 3px; height: 3px; background: rgba(212, 175, 55, 0.15); }
-
-@keyframes heroParticleDrift {
-  0%   { transform: translateY(105vh) rotate(0deg); opacity: 0; }
-  8%   { opacity: 1; }
-  92%  { opacity: 1; }
-  100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
-}
+/* --- Floating particles removed for enterprise cleanliness --- */
 
 /* --- Content wrapper --------------------- */
 .hero-content {
@@ -178,38 +146,7 @@
   margin-bottom: 1rem;
 }
 
-/* --- Typewriter row ---------------------- */
-.hero-typewriter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  font-family: var(--font-heading);
-  font-size: clamp(1rem, 2vw, 1.35rem);
-  font-weight: 500;
-  margin-bottom: 1.75rem;
-  min-height: 2rem;
-}
-
-.hero-typewriter-label {
-  color: var(--text-muted);
-}
-
-.hero-typewriter-text {
-  color: var(--color-secondary);
-  position: relative;
-}
-
-.hero-cursor {
-  font-weight: 300;
-  color: var(--color-secondary);
-  animation: heroCursorBlink 1s step-end infinite;
-}
-
-@keyframes heroCursorBlink {
-  0%, 100% { opacity: 1; }
-  50%      { opacity: 0; }
-}
+/* Typewriter removed */
 
 /* --- Subheadline ------------------------- */
 .hero-subheadline {

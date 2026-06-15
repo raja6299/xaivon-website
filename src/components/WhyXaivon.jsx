@@ -12,12 +12,12 @@ const traditionalItems = [
 ];
 
 const aiPoweredItems = [
-  'Instant AI-powered responses (seconds)',
-  'Dramatically reduced operational costs',
-  'Automated processing, zero errors',
-  '24/7 availability, never sleeps',
-  'Infinitely scalable systems',
-  'Proactive AI-driven optimization',
+  'Sub-second automated response times',
+  'Measurable reduction in operational overhead',
+  'Near-zero data entry discrepancies',
+  'Continuous 24/7 system uptime',
+  'Systems built to handle volume spikes',
+  'Predictable, data-driven optimization',
 ];
 
 export default function WhyXaivon() {

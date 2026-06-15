@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import './AIAudit.css';
 
@@ -31,10 +31,20 @@ export default function AIAudit() {
     email: '',
     industry: '',
     challenge: '',
+    website: '', // honeypot
   });
 
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [cooldown, setCooldown] = useState(0);
+
+  useEffect(() => {
+    let timer;
+    if (cooldown > 0) {
+      timer = setTimeout(() => setCooldown(cooldown - 1), 1000);
+    }
+    return () => clearTimeout(timer);
+  }, [cooldown]);
 
   function validate() {
     const newErrors = {};
@@ -74,12 +84,25 @@ export default function AIAudit() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    if (formData.website) {
+      console.warn("Spam detected.");
+      return;
+    }
+
+    if (cooldown > 0) {
+      setErrors({ form: `Please wait ${cooldown}s before submitting again.` });
+      return;
+    }
+
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
+    
     setSubmitted(true);
+    setCooldown(60);
   }
 
   return (
@@ -96,13 +119,13 @@ export default function AIAudit() {
         <div className={`section-header reveal ${sectionVisible ? 'visible' : ''}`}>
           <span className="badge badge-gold">
             <span className="badge-dot"></span>
-            Free Offer
+            Infrastructure Assessment
           </span>
           <h2>
-            Get Your <span className="text-gradient-gold">Free</span> AI Automation Audit
+            Request A <span className="text-gradient-gold">Free</span> AI Infrastructure Assessment
           </h2>
           <p>
-            Discover how AI can transform your business operations. Our team will analyze your workflows and deliver a custom automation roadmap.
+            Discover how custom AI infrastructure can transform your operational margins. Our engineering team will analyze your existing workflows and deliver a comprehensive automation roadmap.
           </p>
         </div>
 
@@ -112,7 +135,7 @@ export default function AIAudit() {
             className={`ai-audit-benefits reveal-left ${leftVisible ? 'visible' : ''}`}
             ref={leftRef}
           >
-            <h3 className="ai-audit-benefits-heading">What You Will Receive:</h3>
+            <h3 className="ai-audit-benefits-heading">Your Assessment Deliverables:</h3>
             <ul className="ai-audit-benefits-list">
               {BENEFITS.map((benefit, i) => (
                 <li key={i} className={`ai-audit-benefit-item delay-${i + 1}`}>
@@ -155,6 +178,10 @@ export default function AIAudit() {
                 noValidate
                 id="ai-audit-form"
               >
+                {/* Honeypot Field */}
+                <input type="text" name="website" value={formData.website} onChange={handleChange} style={{ display: 'none' }} tabIndex="-1" autoComplete="off" />
+                
+                {errors.form && <div className="form-error" style={{ color: '#ff4d4f', fontSize: '0.9rem', marginBottom: '1rem' }}>{errors.form}</div>}
                 <div className="form-group">
                   <label className="form-label" htmlFor="audit-name">Name</label>
                   <input
@@ -236,8 +263,9 @@ export default function AIAudit() {
                   type="submit"
                   className="btn btn-gold btn-lg ai-audit-submit"
                   id="audit-submit-btn"
+                  disabled={cooldown > 0}
                 >
-                  Get My Free Audit →
+                  {cooldown > 0 ? `Wait ${cooldown}s` : 'Request Assessment →'}
                 </button>
 
                 <p className="ai-audit-form-disclaimer">

@@ -3,39 +3,8 @@ import { Link } from 'react-router-dom';
 import { useMouseParallax } from '../hooks/useMouseParallax';
 import './Hero.css';
 
-const ROTATING_WORDS = ['AI Automation', 'AI Agents', 'Voice AI', 'Business Intelligence'];
-
 export default function Hero() {
-  const [text, setText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [loopNum, setLoopNum] = useState(0);
-  const [typingSpeed, setTypingSpeed] = useState(90);
-
-  const parallax = useMouseParallax(0.03);
-
-  useEffect(() => {
-    const handleTyping = () => {
-      const i = loopNum % ROTATING_WORDS.length;
-      const fullText = ROTATING_WORDS[i];
-
-      setText(
-        isDeleting
-          ? fullText.substring(0, text.length - 1)
-          : fullText.substring(0, text.length + 1)
-      );
-      setTypingSpeed(isDeleting ? 45 : 90);
-
-      if (!isDeleting && text === fullText) {
-        setTimeout(() => setIsDeleting(true), 2200);
-      } else if (isDeleting && text === '') {
-        setIsDeleting(false);
-        setLoopNum(loopNum + 1);
-      }
-    };
-
-    const timer = setTimeout(handleTyping, typingSpeed);
-    return () => clearTimeout(timer);
-  }, [text, isDeleting, loopNum, typingSpeed]);
+  const parallax = useMouseParallax(0.02);
 
   return (
     <section className="hero" id="hero">
@@ -79,7 +48,7 @@ export default function Hero() {
         <div className="hero-badge-wrap hero-fade hero-fade-1">
           <span className="badge">
             <span className="badge-dot"></span>
-            AI-Powered Business Infrastructure
+            Enterprise AI Infrastructure
           </span>
         </div>
 
@@ -88,27 +57,16 @@ export default function Hero() {
           Building The{' '}
           <span className="text-gradient-cyan">AI Infrastructure</span>
           <br />
-          Behind Modern Businesses.
+          Behind Modern Logistics.
         </h1>
 
-        {/* Rotating words */}
-        <div className="hero-typewriter hero-fade hero-fade-3">
-          <span className="hero-typewriter-label">Powering</span>
-          <span className="hero-typewriter-text">
-            {text}
-            <span className="hero-cursor" aria-hidden="true">|</span>
-          </span>
-        </div>
-
         {/* Subheadline */}
-        <p className="hero-subheadline hero-fade hero-fade-4">
-          We design AI systems, automations, and business infrastructure that help
-          companies automate operations, reduce costs, and scale — without increasing
-          operational complexity.
+        <p className="hero-subheadline hero-fade hero-fade-3">
+          We design and deploy enterprise-grade AI systems that reduce operational costs, eliminate manual data entry, and scale freight operations without increasing headcount.
         </p>
 
         {/* CTA Buttons */}
-        <div className="hero-cta-row hero-fade hero-fade-5">
+        <div className="hero-cta-row hero-fade hero-fade-4">
           <Link to="/contact" className="btn btn-primary btn-lg" id="hero-cta-book">
             Book Strategy Call
           </Link>
@@ -130,8 +88,8 @@ export default function Hero() {
           </Link>
         </div>
 
-        {/* Trust Indicators — No fake stats */}
-        <div className="hero-trust hero-fade hero-fade-6">
+        {/* Trust Indicators */}
+        <div className="hero-trust hero-fade hero-fade-5">
           <div className="hero-trust-item">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
