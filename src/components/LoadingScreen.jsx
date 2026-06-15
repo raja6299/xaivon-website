@@ -6,14 +6,15 @@ export default function LoadingScreen({ onComplete }) {
   const [isFading, setIsFading] = useState(false);
 
   useEffect(() => {
+    // Dramatically reduced the artificial delay for faster loading
     const fadeTimer = setTimeout(() => {
       setIsFading(true);
-    }, 1500);
+    }, 400);
 
     const removeTimer = setTimeout(() => {
       setIsVisible(false);
       if (onComplete) onComplete();
-    }, 2100);
+    }, 800);
 
     return () => {
       clearTimeout(fadeTimer);
