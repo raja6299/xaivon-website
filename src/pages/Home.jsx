@@ -5,6 +5,7 @@ import ServicesSection from '../components/ServicesSection';
 import LogisticsSection from '../components/LogisticsSection';
 import WhyXaivon from '../components/WhyXaivon';
 import HowItWorks from '../components/HowItWorks';
+import DemoVideoSection from '../components/DemoVideoSection';
 import FounderSection from '../components/FounderSection';
 import AIAudit from '../components/AIAudit';
 import FAQ from '../components/FAQ';
@@ -23,6 +24,7 @@ export default function Home() {
       <LogisticsSection />
       <WhyXaivon />
       <HowItWorks />
+      <DemoVideoSection />
       <FounderSection />
       <AIAudit />
       <FAQ />

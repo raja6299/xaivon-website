@@ -1,0 +1,133 @@
+/* ============================================
+   Demo Video Section
+   ============================================ */
+
+.demo-section {
+  position: relative;
+  background: var(--bg-tertiary);
+  overflow: hidden;
+}
+
+/* ============================================
+   Video Placeholder
+   ============================================ */
+.demo-video-wrapper {
+  max-width: 1000px;
+  margin: 0 auto 3rem;
+}
+
+.demo-video-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.demo-video-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.demo-video-container:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-xl), 0 0 30px rgba(59, 130, 246, 0.15);
+}
+
+.demo-video-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 1;
+}
+
+.demo-play-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--color-secondary);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.demo-play-button svg {
+  margin-left: 6px; /* Offset for optical balance */
+}
+
+.demo-video-container:hover .demo-play-button {
+  background: var(--color-secondary);
+  color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+}
+
+.demo-placeholder-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* ============================================
+   CTAs
+   ============================================ */
+.demo-cta-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 768px) {
+  .demo-cta-wrapper {
+    flex-direction: column;
+  }
+  
+  .demo-cta-wrapper .btn {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .demo-play-button {
+    width: 64px;
+    height: 64px;
+  }
+
+  .demo-play-button svg {
+    width: 20px;
+    height: 20px;
+    margin-left: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .demo-video-wrapper {
+    margin-bottom: 2rem;
+  }
+  
+  .demo-placeholder-text {
+    font-size: 0.95rem;
+  }
+}

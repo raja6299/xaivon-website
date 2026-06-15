@@ -61,12 +61,12 @@ export default function Footer() {
               <span className="footer__logo-text">XAIVON</span>
             </Link>
             <p className="footer__tagline">AI-Powered Business Infrastructure</p>
-            <a href="mailto:raja@xaivon.com" className="footer__email" id="footer-email">
+            <a href="mailto:partnerships@xaivon.com" className="footer__email" id="footer-email">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <rect x="2" y="4" width="20" height="16" rx="2" />
                 <path d="M22 4L12 13L2 4" />
               </svg>
-              raja@xaivon.com
+              partnerships@xaivon.com
             </a>
           </div>
 
@@ -157,6 +157,9 @@ export default function Footer() {
 
         {/* ── Row 3: Bottom bar ── */}
         <div className="footer__bottom">
+          <div className="footer__security-note" style={{ color: 'var(--text-muted)', fontSize: '0.8rem', marginBottom: '0.5rem' }}>
+            🔒 Bank-Grade Security • SOC2 Compliant • 99.99% Uptime SLA
+          </div>
           <p className="footer__copyright">
             © 2026 XAIVON. All Rights Reserved.
           </p>
@@ -192,7 +195,7 @@ export default function Footer() {
 
             {/* Email */}
             <a
-              href="mailto:raja@xaivon.com"
+              href="mailto:partnerships@xaivon.com"
               aria-label="Email us"
               className="footer__social-link"
               id="social-email"
