@@ -286,9 +286,8 @@ export default function PricingSection() {
               key={plan.id} 
               className={`pricing-card glass-card reveal-scale ${isVisible ? 'visible' : ''} ${plan.isPopular ? 'popular' : ''} delay-${index + 1}`}
             >
-              {plan.isPopular && <div className="popular-badge">MOST POPULAR</div>}
-              
               <div className="pricing-header">
+                {plan.isPopular && <div className="popular-badge">MOST POPULAR</div>}
                 <h3>{plan.name}</h3>
                 <p className="pricing-desc">{plan.description}</p>
                 <div className="price-block">
