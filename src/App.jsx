@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect, Suspense, lazy, useState } from 'react';
 import ScrollToTop from './hooks/ScrollToTop';
 import Navbar from './components/Navbar';
@@ -23,7 +23,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <Router>
+    <>
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
       <ScrollToTop />
       <Analytics />
@@ -46,7 +46,7 @@ function App() {
       <Footer />
       <StickyCallToAction />
       <ExitIntentPopup />
-    </Router>
+    </>
   );
 }
 
