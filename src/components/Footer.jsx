@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Footer.css';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const location = useLocation();
 
   return (
     <footer className="footer" id="footer">
@@ -11,7 +12,16 @@ export default function Footer() {
         <div className="footer-top">
           {/* Brand Column */}
           <div className="footer-brand-col">
-            <Link to="/" className="footer-logo">
+            <Link 
+              to="/" 
+              className="footer-logo"
+              onClick={(e) => {
+                if (location.pathname === '/') {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              }}
+            >
               <img src="/xaivon-logo.svg" alt="XAIVON Logo" className="footer-logo-icon" width="28" height="28" />
               <span>XAIVON</span>
             </Link>

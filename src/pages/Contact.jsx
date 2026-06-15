@@ -29,6 +29,7 @@ const faqData = [
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', company: '', message: '', website: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState(null);
   const [cooldown, setCooldown] = useState(0);
@@ -78,6 +79,7 @@ export default function Contact() {
 
     try {
       setError('');
+      setIsSubmitting(true);
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -95,6 +97,8 @@ export default function Contact() {
       trackEvent('contact_form_submit', { company: form.company });
     } catch (err) {
       setError(err.message || 'Something went wrong. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -150,8 +154,8 @@ export default function Contact() {
                   <span>Your information is protected by enterprise-grade security protocols.</span>
                 </div>
 
-                <button type="submit" className="btn btn-primary form-submit-btn" id="contact-submit" disabled={cooldown > 0}>
-                  {cooldown > 0 ? `Wait ${cooldown}s` : 'Send Message'}
+                <button type="submit" className="btn btn-primary form-submit-btn" id="contact-submit" disabled={cooldown > 0 || isSubmitting}>
+                  {isSubmitting ? 'Sending...' : cooldown > 0 ? `Wait ${cooldown}s` : 'Send Message'}
                 </button>
               </form>
             </>

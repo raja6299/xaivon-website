@@ -28,6 +28,7 @@ const AIAgents = lazy(() => import('./pages/services/AIAgents'));
 const AIAutomation = lazy(() => import('./pages/services/AIAutomation'));
 const AIChatbots = lazy(() => import('./pages/services/AIChatbots'));
 const Resources = lazy(() => import('./pages/Resources'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -58,6 +59,9 @@ function App() {
             <Route path="/ai-chatbots" element={<AIChatbots />} />
             
             <Route path="/resources" element={<Resources />} />
+            
+            {/* 404 Page */}
+            <Route path="*" element={<NotFound />} />
             
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />

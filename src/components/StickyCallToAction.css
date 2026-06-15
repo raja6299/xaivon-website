@@ -12,7 +12,7 @@
   gap: 10px;
   padding: 14px 24px;
   border-radius: var(--radius-full);
-  background: linear-gradient(135deg, #00A3CC 0%, #0088AA 50%, #006E8A 100%);
+  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-accent) 100%);
   color: #fff;
   font-family: var(--font-body);
   font-size: 0.9rem;
@@ -21,8 +21,8 @@
   text-decoration: none;
   cursor: pointer;
   box-shadow:
-    0 4px 24px rgba(59, 130, 246, 0.35),
-    0 0 40px -10px rgba(59, 130, 246, 0.25);
+    0 4px 24px rgba(37, 99, 235, 0.35),
+    0 0 40px -10px rgba(37, 99, 235, 0.25);
   transition:
     opacity var(--duration-normal) var(--ease-out),
     transform var(--duration-normal) var(--ease-out),
@@ -43,8 +43,8 @@
 
 .sticky-cta:hover {
   box-shadow:
-    0 8px 36px rgba(59, 130, 246, 0.5),
-    0 0 60px -10px rgba(59, 130, 246, 0.35);
+    0 8px 36px rgba(37, 99, 235, 0.5),
+    0 0 60px -10px rgba(37, 99, 235, 0.35);
   transform: translateY(-2px) scale(1.03);
 }
 
@@ -70,7 +70,7 @@
   position: absolute;
   inset: -4px;
   border-radius: var(--radius-full);
-  border: 2px solid rgba(59, 130, 246, 0.4);
+  border: 2px solid rgba(37, 99, 235, 0.4);
   animation: stickyPulse 2.5s ease-in-out infinite;
   pointer-events: none;
 }
@@ -86,8 +86,8 @@
    ============================================ */
 @media (max-width: 768px) {
   .sticky-cta {
-    bottom: 16px;
-    right: 16px;
+    bottom: 24px;
+    right: 20px;
     padding: 12px 20px;
     font-size: 0.85rem;
     gap: 8px;
@@ -101,8 +101,8 @@
 
 @media (max-width: 480px) {
   .sticky-cta {
-    bottom: 12px;
-    right: 12px;
+    bottom: 20px;
+    right: 16px;
     padding: 11px 18px;
   }
 }
