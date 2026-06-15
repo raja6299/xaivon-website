@@ -2,28 +2,60 @@ import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import './WhyXaivon.css';
 
-const traditionalItems = [
-  'Slow response times (hours or days)',
-  'High operational costs & overhead',
-  'Manual data entry & human errors',
-  'Limited to business hours only',
-  'Difficult to scale efficiently',
-  'Reactive problem solving',
-];
-
-const aiPoweredItems = [
-  'Sub-second automated response times',
-  'Measurable reduction in operational overhead',
-  'Near-zero data entry discrepancies',
-  'Continuous 24/7 system uptime',
-  'Systems built to handle volume spikes',
-  'Predictable, data-driven optimization',
+const pillars = [
+  {
+    title: 'Technical Expertise',
+    description: 'We don\'t just wrap APIs. We architect custom LLM pipelines, fine-tune models on your proprietary data, and build secure, isolated infrastructures that handle high-volume enterprise workloads without rate-limiting bottlenecks.',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="4" y="4" width="16" height="16" rx="2" ry="2"/>
+        <rect x="9" y="9" width="6" height="6"/>
+        <line x1="9" y1="1" x2="9" y2="4"/>
+        <line x1="15" y1="1" x2="15" y2="4"/>
+        <line x1="9" y1="20" x2="9" y2="23"/>
+        <line x1="15" y1="20" x2="15" y2="23"/>
+        <line x1="20" y1="9" x2="23" y2="9"/>
+        <line x1="20" y1="14" x2="23" y2="14"/>
+        <line x1="1" y1="9" x2="4" y2="9"/>
+        <line x1="1" y1="14" x2="4" y2="14"/>
+      </svg>
+    ),
+  },
+  {
+    title: 'AI Infrastructure',
+    description: 'True automation requires robust plumbing. We deploy SOC2-compliant, single-tenant AI environments with integrated vector databases, automated fallback logic, and real-time observability, ensuring 99.99% system uptime.',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <ellipse cx="12" cy="5" rx="9" ry="3"/>
+        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+      </svg>
+    ),
+  },
+  {
+    title: 'Automation Methodology',
+    description: 'We map your entire operational lifecycle before writing a line of code. By identifying manual bottlenecks and legacy system constraints, we build precise, deterministic workflows that augment your human workforce rather than breaking existing processes.',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2v20"/>
+        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+      </svg>
+    ),
+  },
+  {
+    title: 'Long-Term Impact',
+    description: 'We position you to scale revenue without scaling headcount. Our solutions reduce human error to near-zero, cut response times from hours to milliseconds, and transform your cost centers into intelligent, profit-generating engines.',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+      </svg>
+    ),
+  },
 ];
 
 export default function WhyXaivon() {
   const [headerRef, headerVisible] = useScrollReveal();
-  const [leftRef, leftVisible] = useScrollReveal({ threshold: 0.15 });
-  const [rightRef, rightVisible] = useScrollReveal({ threshold: 0.15 });
+  const [gridRef, gridVisible] = useScrollReveal({ threshold: 0.1 });
   const [ctaRef, ctaVisible] = useScrollReveal();
 
   return (
@@ -31,125 +63,45 @@ export default function WhyXaivon() {
       <div className="container">
         <div
           ref={headerRef}
-          className={`section-header reveal ${headerVisible ? 'visible' : ''}`}
+          className={`section-header text-center reveal ${headerVisible ? 'visible' : ''}`}
         >
           <span className="badge">
             <span className="badge-dot" />
-            Why Choose XAIVON
+            The XAIVON Advantage
           </span>
           <h2>
-            Traditional Operations vs{' '}
-            <span className="text-gradient-premium">AI-Powered</span> Operations
+            Building Enterprise-Grade <br/>
+            <span className="text-gradient">AI Systems</span>
           </h2>
+          <p className="why-xaivon-subtitle">
+            We are a technology partner that builds robust AI infrastructure, not a marketing agency selling chatbots. 
+            We solve deep operational friction so you can scale efficiently.
+          </p>
         </div>
 
-        <div className="why-xaivon-comparison">
-          {/* Traditional Column */}
-          <div
-            ref={leftRef}
-            className={`why-xaivon-column why-xaivon-traditional reveal-left ${leftVisible ? 'visible' : ''}`}
-          >
-            <div className="why-xaivon-column-header">
-              <div className="why-xaivon-icon-badge why-xaivon-icon-badge--muted">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+        <div 
+          ref={gridRef}
+          className={`why-xaivon-grid reveal-scale ${gridVisible ? 'visible' : ''}`}
+        >
+          {pillars.map((pillar, idx) => (
+            <div key={idx} className="why-xaivon-card glass-card">
+              <div className="why-xaivon-card-icon">
+                {pillar.icon}
               </div>
-              <h3 className="why-xaivon-column-title">Traditional Operations</h3>
+              <h3 className="why-xaivon-card-title">{pillar.title}</h3>
+              <p className="why-xaivon-card-desc">{pillar.description}</p>
             </div>
-            <ul className="why-xaivon-list">
-              {traditionalItems.map((item, index) => (
-                <li
-                  key={index}
-                  className={`why-xaivon-item why-xaivon-item--negative reveal ${leftVisible ? 'visible' : ''} delay-${index + 1}`}
-                >
-                  <span className="why-xaivon-item-icon why-xaivon-item-icon--muted" aria-hidden="true">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </span>
-                  <span className="why-xaivon-item-text">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* AI-Powered Column */}
-          <div
-            ref={rightRef}
-            className={`why-xaivon-column why-xaivon-ai-powered reveal-right ${rightVisible ? 'visible' : ''}`}
-          >
-            <div className="why-xaivon-column-header">
-              <div className="why-xaivon-icon-badge why-xaivon-icon-badge--primary">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-              <h3 className="why-xaivon-column-title">
-                AI-Powered with{' '}
-                <span className="text-gradient-premium">XAIVON</span>
-              </h3>
-            </div>
-            <ul className="why-xaivon-list">
-              {aiPoweredItems.map((item, index) => (
-                <li
-                  key={index}
-                  className={`why-xaivon-item why-xaivon-item--positive reveal ${rightVisible ? 'visible' : ''} delay-${index + 1}`}
-                >
-                  <span className="why-xaivon-item-icon why-xaivon-item-icon--primary" aria-hidden="true">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M13.333 4L6 11.333 2.667 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </span>
-                  <span className="why-xaivon-item-text">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Trust & Security Layer */}
-        <div className="security-trust-bar reveal-scale">
-          <div className="security-trust-item">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-            <div className="security-trust-text">
-              <h4>Bank-Grade Security</h4>
-              <p>SOC2 Compliant Infrastructure</p>
-            </div>
-          </div>
-          <div className="security-trust-divider"></div>
-          <div className="security-trust-item">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-            </svg>
-            <div className="security-trust-text">
-              <h4>Data Sovereignty</h4>
-              <p>Your Data Never Trains Public Models</p>
-            </div>
-          </div>
-          <div className="security-trust-divider"></div>
-          <div className="security-trust-item">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-              <polyline points="22 4 12 14.01 9 11.01"/>
-            </svg>
-            <div className="security-trust-text">
-              <h4>99.99% Uptime</h4>
-              <p>Enterprise SLA Guarantees</p>
-            </div>
-          </div>
+          ))}
         </div>
 
         {/* CTA */}
         <div
           ref={ctaRef}
-          className={`why-xaivon-cta reveal ${ctaVisible ? 'visible' : ''}`}
+          className={`why-xaivon-cta text-center reveal ${ctaVisible ? 'visible' : ''}`}
         >
           <Link to="/contact" className="btn btn-primary btn-lg" id="why-xaivon-cta-btn">
-            Request Assessment
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            Schedule a Strategy Call
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style={{ marginLeft: '8px' }}>
               <path d="M4.167 10H15.833M15.833 10L10.833 5M15.833 10L10.833 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </Link>

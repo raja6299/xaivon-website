@@ -66,6 +66,7 @@ export default function Navbar() {
       <div className="navbar__inner">
         {/* ── Logo ── */}
         <Link to="/" className="navbar__logo" aria-label="XAIVON Home" onClick={closeMenu}>
+          <img src="/xaivon-logo.svg" alt="XAIVON Logo" className="navbar__logo-icon" width="32" height="32" />
           <span className="navbar__logo-text">XAIVON</span>
         </Link>
 

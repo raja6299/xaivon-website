@@ -40,6 +40,11 @@
   flex-shrink: 0;
 }
 
+.navbar__logo-icon {
+  margin-right: 0.5rem;
+  display: block;
+}
+
 .navbar__logo-text {
   font-family: var(--font-heading);
   font-weight: 800;

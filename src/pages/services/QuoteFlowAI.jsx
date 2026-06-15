@@ -34,12 +34,16 @@ export default function QuoteFlowAI() {
       <section className="service-hero section" style={{ paddingTop: '10rem', textAlign: 'center' }}>
         <div className="container">
           <div ref={heroRef} className={`reveal-scale ${heroVisible ? 'visible' : ''}`}>
-            <span className="badge badge-gold"><span className="badge-dot"></span>FLAGSHIP PRODUCT</span>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem', marginBottom: '1.5rem', opacity: 0.8 }}>
+              <span style={{ fontSize: '0.85rem', fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase' }}>XAIVON Parent Company</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              <span className="badge badge-gold" style={{ margin: 0 }}><span className="badge-dot"></span>FLAGSHIP PRODUCT</span>
+            </div>
             <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '1.5rem' }}>
-              QuoteFlow <span className="text-gradient-premium">AI</span>
+              QuoteFlow <span className="text-gradient">AI</span>
             </h1>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', maxWidth: '700px', margin: '0 auto 2.5rem' }}>
-              The definitive AI infrastructure for freight brokers. Automate quoting, parsing, and dispatching. Scale your capacity without scaling headcount.
+              The definitive AI product for freight brokers. Automate quoting, parsing, and dispatching. Scale your capacity without scaling headcount.
             </p>
             <Link to="/contact" className="btn btn-primary btn-lg">Schedule a Strategy Call</Link>
           </div>
@@ -57,7 +61,7 @@ export default function QuoteFlowAI() {
               </p>
             </div>
             <div ref={solutionRef} className={`glass-card reveal-right ${solutionVisible ? 'visible' : ''}`} style={{ borderColor: 'var(--border-accent)' }}>
-              <h3 style={{ color: 'var(--color-secondary)', marginBottom: '1rem' }}>The XAIVON Solution</h3>
+              <h3 style={{ color: 'var(--color-secondary)', marginBottom: '1rem' }}>The QuoteFlow AI Product</h3>
               <p style={{ color: 'var(--text-secondary)' }}>
                 QuoteFlow AI ingests your inbox in real-time. It reads the email, extracts the lane data, pings your TMS for historical rates, calculates your margin, and drafts the reply. Your broker simply clicks "Approve."
               </p>

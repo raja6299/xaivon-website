@@ -26,8 +26,14 @@
   color: var(--text-primary);
   text-decoration: none;
   letter-spacing: 0.15em;
-  display: inline-block;
+  display: flex;
+  align-items: center;
   margin-bottom: 1.5rem;
+}
+
+.footer-logo-icon {
+  margin-right: 0.5rem;
+  display: block;
 }
 
 .footer-desc {

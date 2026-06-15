@@ -12,7 +12,8 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="footer-brand-col">
             <Link to="/" className="footer-logo">
-              XAIVON
+              <img src="/xaivon-logo.svg" alt="XAIVON Logo" className="footer-logo-icon" width="28" height="28" />
+              <span>XAIVON</span>
             </Link>
             <p className="footer-desc">
               Enterprise AI infrastructure and logistics automation. We build scalable systems that eliminate operational friction and accelerate growth.
