@@ -15,7 +15,7 @@ const faqData = [
   },
   {
     q: 'Is my data secure?',
-    a: 'Absolutely. All data is encrypted in transit (TLS 1.3) and at rest (AES-256). We follow enterprise-grade security practices, are SOC 2 compliant, and never share your data with third parties. Your rate data and client information stays 100% private.',
+    a: 'Absolutely. All data is encrypted in transit (TLS 1.3) and at rest (AES-256). We follow enterprise-grade security practices, and never share your data with third parties. Your rate data and client information stays 100% private.',
   },
   {
     q: 'Will it work with my existing TMS?',
