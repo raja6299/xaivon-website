@@ -1,0 +1,98 @@
+/* ============================================
+   TrustBar — Horizontal Trust Indicators
+   ============================================ */
+
+.trustbar {
+  padding: 2rem 0;
+  position: relative;
+  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+.trustbar-inner {
+  padding: 1.5rem 0;
+}
+
+.trustbar-track {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+}
+
+.trustbar-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.trustbar-card:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+}
+
+.trustbar-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trustbar-label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 1024px) {
+  .trustbar-track {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .trustbar-track {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .trustbar-card {
+    padding: 12px 14px;
+  }
+
+  .trustbar-label {
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .trustbar {
+    padding: 1.5rem 0;
+  }
+
+  .trustbar-track {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 0.75rem;
+    padding: 0 16px;
+  }
+
+  .trustbar-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .trustbar-card {
+    flex: 0 0 auto;
+    min-width: fit-content;
+  }
+}

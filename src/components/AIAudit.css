@@ -1,0 +1,261 @@
+/* ============================================
+   AI Audit — Lead Generation Section
+   ============================================ */
+
+.ai-audit {
+  background: var(--bg-tertiary);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle gold gradient background accents */
+.ai-audit-bg-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ai-audit-bg-glow-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, transparent 70%);
+  top: -10%;
+  right: -5%;
+  animation: floatOrb1 14s ease-in-out infinite;
+}
+
+.ai-audit-bg-glow-2 {
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.04) 0%, transparent 70%);
+  bottom: -8%;
+  left: -5%;
+  animation: floatOrb2 18s ease-in-out infinite;
+}
+
+/* Grid layout */
+.ai-audit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   Left Column — Benefits
+   ============================================ */
+.ai-audit-benefits {
+  padding-top: 1rem;
+}
+
+.ai-audit-benefits-heading {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+}
+
+.ai-audit-benefits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.ai-audit-benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.ai-audit-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: var(--radius-sm);
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.ai-audit-benefit-item:hover .ai-audit-check {
+  background: rgba(59, 130, 246, 0.14);
+  border-color: rgba(59, 130, 246, 0.3);
+  transform: scale(1.08);
+}
+
+.ai-audit-trust-text {
+  font-size: 0.9rem;
+  color: var(--color-luxury-light);
+  letter-spacing: 0.3px;
+  opacity: 0.85;
+}
+
+/* ============================================
+   Right Column — Form Card
+   ============================================ */
+.ai-audit-form-card {
+  position: relative;
+  padding: 2.5rem;
+  border-top: 2px solid transparent;
+  border-image: linear-gradient(90deg, var(--color-luxury), var(--color-luxury-light), var(--color-luxury)) 1;
+}
+
+/* Override glass-card hover so form card doesn't lift */
+.ai-audit-form-card:hover {
+  transform: none;
+  box-shadow: var(--shadow-md), var(--shadow-glow-gold);
+}
+
+.ai-audit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.ai-audit-form .form-group {
+  gap: 6px;
+}
+
+/* Error state */
+.form-input-error {
+  border-color: rgba(239, 68, 68, 0.6) !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+.ai-audit-error {
+  font-size: 0.8rem;
+  color: #ef4444;
+  margin-top: 2px;
+  letter-spacing: 0.2px;
+}
+
+/* Submit button — full width */
+.ai-audit-submit {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+/* Disclaimer text */
+.ai-audit-form-disclaimer {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 0.25rem;
+  line-height: 1.5;
+}
+
+/* ============================================
+   Success State
+   ============================================ */
+.ai-audit-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1rem;
+  min-height: 400px;
+  animation: fadeIn 0.6s var(--ease-out);
+}
+
+.ai-audit-success-icon {
+  margin-bottom: 1.5rem;
+}
+
+/* Animated circle draw */
+.ai-audit-success-circle {
+  stroke-dasharray: 164;
+  stroke-dashoffset: 164;
+  animation: drawCircle 0.8s var(--ease-out) 0.2s forwards;
+}
+
+/* Animated checkmark draw */
+.ai-audit-success-check {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: drawCheck 0.5s var(--ease-out) 0.8s forwards;
+}
+
+@keyframes drawCircle {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drawCheck {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.ai-audit-success-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.ai-audit-success-msg {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 320px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 1024px) {
+  .ai-audit-grid {
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .ai-audit-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .ai-audit-benefits {
+    padding-top: 0;
+  }
+
+  .ai-audit-form-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .ai-audit-benefit-item {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ai-audit-form-card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .ai-audit-benefits-heading {
+    font-size: 1.2rem;
+  }
+}

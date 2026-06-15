@@ -17,7 +17,7 @@ const blogContent = {
         <p>AI doesn't just guess the price. It analyzes historical data, weather patterns, and real-time lane capacity to suggest a rate that maximizes profit while remaining competitive enough to win the load.</p>
         <h3>3. 24/7 Operations</h3>
         <p>Freight doesn't sleep, but your brokers need to. AI agents monitor inboxes on weekends and nights, ensuring no quote request goes unanswered and no business is lost to a competitor who replied faster.</p>
-        <p><strong>Conclusion:</strong> AI won't replace human relationships in freight, but it will handle the repetitive data entry. Brokers who adopt AI will process 10x more volume with the same headcount.</p>
+        <p><strong>Conclusion:</strong> AI won't replace human relationships in freight, but it will handle the repetitive data entry. Brokers who adopt AI will process significantly higher volume without increasing operational complexity or headcount.</p>
       </>
     )
   },

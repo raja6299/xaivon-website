@@ -1,9 +1,9 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /admin/
+
 Sitemap: https://xaivon.com/sitemap.xml
 
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
+# XAIVON - AI-Powered Business Infrastructure
+# https://xaivon.com

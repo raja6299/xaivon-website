@@ -1,0 +1,255 @@
+/* ============================================
+   Logistics Solutions Page
+   ============================================ */
+
+/* ── Hero ── */
+.logistics-hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 140px var(--section-px) 5rem;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 30% 30%, rgba(212, 175, 55, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 70%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+    var(--bg-secondary);
+}
+
+.logistics-hero-orb-1 {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
+  filter: blur(80px);
+  top: -15%;
+  left: -5%;
+  opacity: 0.15;
+  animation: heroOrbFloat1 18s var(--ease-in-out) infinite;
+}
+
+.logistics-hero-orb-2 {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+  filter: blur(80px);
+  bottom: -10%;
+  right: -5%;
+  opacity: 0.12;
+  animation: heroOrbFloat2 22s var(--ease-in-out) infinite;
+}
+
+.logistics-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+
+.logistics-hero-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.logistics-hero-content h1 {
+  margin-bottom: 1.25rem;
+}
+
+.logistics-hero-sub {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 650px;
+  margin: 0 auto 2rem;
+}
+
+.logistics-hero-btns {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ── Solutions Grid ── */
+.logistics-solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.logistics-solution-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--color-luxury);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  transition: all var(--duration-slow) var(--ease-out);
+  position: relative;
+}
+
+.logistics-solution-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+  border-left-color: var(--color-luxury-light);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md), var(--shadow-glow-gold);
+}
+
+.logistics-solution-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-luxury);
+  margin-bottom: 1rem;
+}
+
+.logistics-solution-card h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.logistics-solution-card p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+.logistics-solution-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.logistics-solution-features li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.logistics-feature-bullet {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-luxury);
+  flex-shrink: 0;
+}
+
+/* ── Advantages ── */
+.logistics-advantages {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.logistics-advantage-card {
+  text-align: center;
+  padding: 2.5rem 2rem;
+}
+
+.logistics-advantage-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  margin: 0 auto 1.25rem;
+  color: var(--color-luxury-light);
+}
+
+.logistics-advantage-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.75rem;
+}
+
+.logistics-advantage-card p {
+  font-size: 0.9rem;
+}
+
+/* ── CTA Section ── */
+.logistics-cta-section {
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(212, 175, 55, 0.03) 0%, transparent 60%),
+    var(--bg-primary);
+}
+
+.logistics-cta-inner {
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+
+.logistics-cta-inner.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.logistics-cta-inner h2 {
+  margin-bottom: 1rem;
+}
+
+.logistics-cta-inner p {
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+}
+
+.logistics-cta-trust {
+  display: block;
+  margin-top: 1.25rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .logistics-advantages {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .logistics-hero {
+    min-height: auto;
+    padding: 120px 20px 3rem;
+  }
+
+  .logistics-solutions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .logistics-advantages {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .logistics-solution-features {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .logistics-hero-btns {
+    flex-direction: column;
+  }
+
+  .logistics-hero-btns .btn {
+    width: 100%;
+  }
+}

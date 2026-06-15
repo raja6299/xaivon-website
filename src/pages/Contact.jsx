@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import Pricing from '../components/Pricing';
 import { InlineWidget } from 'react-calendly';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 import './Contact.css';
 
 const faqData = [
@@ -10,7 +10,7 @@ const faqData = [
   },
   {
     q: 'What does it cost?',
-    a: 'Setup fee starts at $3,000–$5,000 (one-time) with a monthly retainer of $800–$1,500. The exact pricing depends on your daily quote volume and the number of integrations needed. We offer a free discovery call to give you an accurate quote.',
+    a: 'Pricing is customized based on the scope of your automation needs. We offer a free discovery call to audit your operations and provide a detailed ROI projection and proposal.',
   },
   {
     q: 'Is my data secure?',
@@ -22,7 +22,7 @@ const faqData = [
   },
   {
     q: 'What if the AI makes a mistake?',
-    a: 'You can set confidence thresholds. Low-confidence quotes are flagged for human review before sending. You always maintain full control. In practice, after the training period, our AI achieves 95%+ accuracy on standard lanes.',
+    a: 'You can set confidence thresholds. Low-confidence quotes are flagged for human review before sending. You always maintain full control. Our AI achieves enterprise-grade accuracy and continuously learns from your operations to adapt to edge cases.',
   },
 ];
 
@@ -32,6 +32,7 @@ export default function Contact() {
   const [openFaq, setOpenFaq] = useState(null);
   const [cooldown, setCooldown] = useState(0);
   const [error, setError] = useState('');
+  const [calendlyRef, calendlyVisible] = useScrollReveal({ threshold: 0.1 });
 
   useEffect(() => {
     let timer;
@@ -59,12 +60,21 @@ export default function Contact() {
       return;
     }
 
-    if (!validateEmail(form.email)) {
+    // Basic sanitization (strip HTML tags)
+    const sanitize = (str) => str.replace(/<[^>]*>?/gm, '');
+    const sanitizedForm = {
+      name: sanitize(form.name),
+      email: sanitize(form.email),
+      company: sanitize(form.company),
+      message: sanitize(form.message),
+    };
+
+    if (!validateEmail(sanitizedForm.email)) {
       setError('Please enter a valid email address.');
       return;
     }
 
-    if (form.message.length < 10) {
+    if (sanitizedForm.message.length < 10) {
       setError('Please provide more details in your message.');
       return;
     }
@@ -136,20 +146,26 @@ export default function Contact() {
         </div>
 
         {/* Calendly Widget */}
-        <div className="glass-card calendly-card" style={{ padding: '1rem', height: '100%' }}>
+        <div className="glass-card calendly-card" style={{ padding: '1rem', height: '100%' }} ref={calendlyRef}>
           <h2 style={{ marginBottom: '1rem' }}>Schedule a Discovery Call</h2>
-          <div className="calendly-skeleton" style={{ width: '100%', height: '700px', borderRadius: '10px', overflow: 'hidden' }}>
-            <InlineWidget 
-              url="https://calendly.com/raja-xaivon/30min"
-              styles={{ height: '100%', width: '100%' }}
-              pageSettings={{
-                backgroundColor: '0A0D15',
-                hideEventTypeDetails: false,
-                hideLandingPageDetails: false,
-                primaryColor: '60A5FA',
-                textColor: 'FFFFFF'
-              }}
-            />
+          <div className="calendly-skeleton" style={{ width: '100%', height: '700px', borderRadius: '10px', overflow: 'hidden', background: 'rgba(255, 255, 255, 0.02)' }}>
+            {calendlyVisible ? (
+              <InlineWidget 
+                url="https://calendly.com/raja-xaivon/30min"
+                styles={{ height: '100%', width: '100%' }}
+                pageSettings={{
+                  backgroundColor: '0A0D15',
+                  hideEventTypeDetails: false,
+                  hideLandingPageDetails: false,
+                  primaryColor: '60A5FA',
+                  textColor: 'FFFFFF'
+                }}
+              />
+            ) : (
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--text-muted)' }}>
+                <span className="badge badge-gold"><span className="badge-dot"></span>Loading Scheduler...</span>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -171,11 +187,6 @@ export default function Contact() {
           </div>
         </div>
       </section>
-
-      {/* Pricing Section Embedded */}
-      <div className="contact-pricing-wrapper">
-        <Pricing />
-      </div>
 
       {/* FAQ */}
       <section className="contact-faq" id="faq">

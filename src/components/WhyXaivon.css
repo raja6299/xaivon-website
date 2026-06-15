@@ -1,0 +1,260 @@
+/* ============================================
+   WhyXaivon — Comparison Section
+   ============================================ */
+
+.why-xaivon {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-primary);
+}
+
+/* ============================================
+   Two-Column Comparison Layout
+   ============================================ */
+.why-xaivon-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   Column Base (shared)
+   ============================================ */
+.why-xaivon-column {
+  position: relative;
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+/* Top subtle line */
+.why-xaivon-column::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+}
+
+/* ============================================
+   Traditional Column — Dimmed / Subtle
+   ============================================ */
+.why-xaivon-traditional {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%), var(--bg-card);
+  opacity: 0.85;
+}
+
+.why-xaivon-traditional::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+}
+
+/* ============================================
+   AI-Powered Column — Elevated Premium
+   ============================================ */
+.why-xaivon-ai-powered {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(212, 175, 55, 0.02) 100%), var(--bg-card);
+  border: 1px solid var(--border-hover);
+  box-shadow: var(--shadow-md), 0 0 20px rgba(59, 130, 246, 0.1);
+  transform: translateY(-4px);
+}
+
+.why-xaivon-ai-powered::before {
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
+}
+
+/* Reveal overrides: keep the AI column elevated after reveal */
+.why-xaivon-ai-powered.reveal-right.visible {
+  transform: translateX(0) translateY(-4px);
+}
+
+/* Pulse glow behind AI column */
+.why-xaivon-pulse-glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(212, 175, 55, 0.05));
+  z-index: -1;
+  animation: why-xaivon-glow-pulse 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes why-xaivon-glow-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.01); }
+}
+
+/* ============================================
+   Column Header
+   ============================================ */
+.why-xaivon-column-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.why-xaivon-icon-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+
+.why-xaivon-icon-badge--red {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+}
+
+.why-xaivon-icon-badge--cyan {
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  color: var(--color-secondary);
+}
+
+.why-xaivon-column-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+/* ============================================
+   List Items
+   ============================================ */
+.why-xaivon-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.why-xaivon-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.why-xaivon-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.why-xaivon-item:first-child {
+  padding-top: 0;
+}
+
+/* Icon containers */
+.why-xaivon-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-xs);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.why-xaivon-item-icon--red {
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.why-xaivon-item-icon--cyan {
+  color: var(--color-secondary);
+  background: rgba(59, 130, 246, 0.1);
+}
+
+/* Text */
+.why-xaivon-item-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Negative items are slightly muted */
+.why-xaivon-item--negative .why-xaivon-item-text {
+  color: var(--text-muted);
+}
+
+/* Positive items are brighter */
+.why-xaivon-item--positive .why-xaivon-item-text {
+  color: var(--text-secondary);
+}
+
+/* ============================================
+   CTA Section
+   ============================================ */
+.why-xaivon-cta {
+  text-align: center;
+  margin-top: 3.5rem;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 768px) {
+  .why-xaivon-comparison {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 540px;
+  }
+
+  .why-xaivon-column {
+    padding: 2rem;
+  }
+
+  .why-xaivon-ai-powered {
+    transform: translateY(0);
+  }
+
+  .why-xaivon-ai-powered.reveal-right.visible {
+    transform: translateX(0) translateY(0);
+  }
+
+  .why-xaivon-cta {
+    margin-top: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .why-xaivon-column {
+    padding: 1.5rem;
+  }
+
+  .why-xaivon-column-header {
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+  }
+
+  .why-xaivon-column-title {
+    font-size: 1.05rem;
+  }
+
+  .why-xaivon-item {
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+  }
+
+  .why-xaivon-item-text {
+    font-size: 0.9rem;
+  }
+}

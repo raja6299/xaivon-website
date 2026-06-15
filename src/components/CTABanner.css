@@ -1,31 +1,162 @@
+/* ============================================
+   CTA Banner — Final Call-to-Action
+   ============================================ */
+
 .cta-banner {
-  padding: 6rem 5%;
-  text-align: center;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(30, 58, 138, 0.12) 0%, rgba(91, 33, 182, 0.08) 100%);
+  padding: clamp(6rem, 12vh, 10rem) 5%;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 30% 50%, rgba(59, 130, 246, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 50%, rgba(212, 175, 55, 0.04) 0%, transparent 60%),
+    linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 40%, var(--bg-secondary) 100%);
   border-top: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
 }
 
-.cta-banner::before {
-  content: '';
+.cta-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+.cta-orb-1 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+  top: -10%;
+  left: 10%;
+  animation: ctaOrb1 12s ease-in-out infinite;
+}
+
+.cta-orb-2 {
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+  bottom: -8%;
+  right: 12%;
+  animation: ctaOrb2 16s ease-in-out infinite;
+}
+
+.cta-orb-3 {
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.06) 0%, transparent 70%);
+  top: 40%;
+  right: 30%;
+  animation: ctaOrb3 10s ease-in-out infinite;
+}
+
+@keyframes ctaOrb1 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+  33%      { transform: translate(60px, 30px) scale(1.15); opacity: 0.7; }
+  66%      { transform: translate(-30px, 50px) scale(0.95); opacity: 0.55; }
+}
+
+@keyframes ctaOrb2 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+  50%      { transform: translate(-50px, -40px) scale(1.12); opacity: 0.65; }
+}
+
+@keyframes ctaOrb3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(-40px, 30px) scale(1.2); }
+}
+
+/* Floating particles */
+.cta-particles {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, rgba(30, 58, 138, 0.1) 0%, transparent 70%);
-  animation: ctaPulse 4s ease-in-out infinite alternate;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
 }
 
-@keyframes ctaPulse {
-  from { opacity: 0.5; transform: scale(1); }
-  to { opacity: 1; transform: scale(1.03); }
+.cta-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(203, 213, 225, 0.25);
+  border-radius: 50%;
+  animation: ctaParticleFloat linear infinite;
 }
 
-.cta-banner h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; position: relative; }
-.cta-banner p { font-size: 1.1rem; color: var(--text-secondary); max-width: 500px; margin: 0 auto 2.5rem; position: relative; }
-.cta-banner .btn-primary { padding: 18px 44px; font-size: 1.05rem; position: relative; animation: pulseGlow 3s ease-in-out infinite; }
+.cta-particle:nth-child(1) { left: 12%; animation-duration: 18s; animation-delay: 0s; }
+.cta-particle:nth-child(2) { left: 30%; animation-duration: 22s; animation-delay: 2s; width: 3px; height: 3px; }
+.cta-particle:nth-child(3) { left: 48%; animation-duration: 20s; animation-delay: 4s; }
+.cta-particle:nth-child(4) { left: 65%; animation-duration: 24s; animation-delay: 1s; width: 3px; height: 3px; background: rgba(59, 130, 246, 0.15); }
+.cta-particle:nth-child(5) { left: 78%; animation-duration: 19s; animation-delay: 3s; }
+.cta-particle:nth-child(6) { left: 90%; animation-duration: 21s; animation-delay: 5s; width: 4px; height: 4px; background: rgba(212, 175, 55, 0.12); }
 
-@keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 4px 20px rgba(30, 58, 138, 0.3); }
-  50% { box-shadow: 0 8px 40px rgba(30, 58, 138, 0.5), 0 4px 20px rgba(91, 33, 182, 0.3); }
+@keyframes ctaParticleFloat {
+  0%   { transform: translateY(100%) rotate(0deg); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+
+/* Content */
+.cta-banner-content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cta-banner-content h2 {
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  line-height: 1.15;
+}
+
+.cta-banner-content p {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  max-width: 540px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.8;
+}
+
+.cta-banner-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Subtle pulse on primary button */
+.cta-banner-buttons .btn-primary {
+  animation: ctaBtnPulse 3s ease-in-out infinite;
+}
+
+@keyframes ctaBtnPulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(59, 130, 246, 0.25); }
+  50%      { box-shadow: 0 8px 40px rgba(59, 130, 246, 0.45), 0 0 20px rgba(6, 182, 212, 0.15); }
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 768px) {
+  .cta-banner {
+    padding: clamp(4rem, 10vh, 6rem) 5%;
+  }
+
+  .cta-banner-content p {
+    font-size: 1rem;
+  }
+
+  .cta-banner-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-banner-buttons .btn {
+    width: 100%;
+    max-width: 320px;
+  }
 }

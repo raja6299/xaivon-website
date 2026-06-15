@@ -1,64 +1,144 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
+
+const NAV_LINKS = [
+  { path: '/', label: 'Home' },
+  { path: '/services', label: 'Services' },
+  { path: '/logistics-solutions', label: 'Logistics Solutions' },
+  { path: '/about', label: 'About' },
+  { path: '/contact', label: 'Contact' },
+];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
 
+  /* ── Scroll detection ── */
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
+      setScrolled(window.scrollY > 40);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  /* ── Lock body scroll when mobile menu is open ── */
   useEffect(() => {
-    // Menu closes automatically on mobile when a link is clicked,
-    // so we don't strictly need a location effect, but we can safely sync it here.
     if (menuOpen) {
-      setTimeout(() => setMenuOpen(false), 0);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
     }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [menuOpen]);
+
+  /* ── Close mobile menu on route change ── */
+  useEffect(() => {
+    setMenuOpen(false);
   }, [location.pathname]);
 
-  const isActive = (path) => location.pathname === path ? 'active' : '';
+  const toggleMenu = useCallback(() => {
+    setMenuOpen((prev) => !prev);
+  }, []);
+
+  const closeMenu = useCallback(() => {
+    setMenuOpen(false);
+  }, []);
+
+  const isActive = (path) => {
+    if (path === '/') return location.pathname === '/';
+    return location.pathname.startsWith(path);
+  };
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`} id="main-nav">
-      <Link to="/" className="navbar-logo" aria-label="XAIVON Home">
-        <img src="/logo.png" alt="XAIVON Logo" />
-        <span>XAIVON</span>
-      </Link>
-
-      <ul className={`navbar-links ${menuOpen ? 'open' : ''}`}>
-        <li><Link to="/" className={isActive('/')} onClick={() => setMenuOpen(false)}>Home</Link></li>
-        <li><Link to="/about" className={isActive('/about')} onClick={() => setMenuOpen(false)}>About</Link></li>
-        <li><Link to="/services" className={isActive('/services')} onClick={() => setMenuOpen(false)}>Services</Link></li>
-        <li><Link to="/blog" className={isActive('/blog')} onClick={() => setMenuOpen(false)}>Insights</Link></li>
-        <li><Link to="/contact" className={isActive('/contact')} onClick={() => setMenuOpen(false)}>Contact</Link></li>
-        <li className="mobile-cta">
-          <Link to="/contact" className="btn btn-primary" onClick={() => setMenuOpen(false)}>Book a Call</Link>
-        </li>
-      </ul>
-
-      <div className="navbar-cta">
-        <Link to="/contact" className="btn btn-primary" id="nav-cta">
-          Book Discovery Call
+    <header
+      className={`navbar ${scrolled ? 'navbar--scrolled' : ''} ${menuOpen ? 'navbar--menu-open' : ''}`}
+      id="main-nav"
+      role="navigation"
+      aria-label="Main navigation"
+    >
+      <div className="navbar__inner">
+        {/* ── Logo ── */}
+        <Link to="/" className="navbar__logo" aria-label="XAIVON Home" onClick={closeMenu}>
+          <span className="navbar__logo-text">XAIVON</span>
         </Link>
+
+        {/* ── Desktop Navigation ── */}
+        <nav className="navbar__nav" aria-label="Primary">
+          <ul className="navbar__links">
+            {NAV_LINKS.map((link) => (
+              <li key={link.path} className="navbar__link-item">
+                <Link
+                  to={link.path}
+                  className={`navbar__link ${isActive(link.path) ? 'navbar__link--active' : ''}`}
+                >
+                  {link.label}
+                  <span className="navbar__link-dot" aria-hidden="true" />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* ── Desktop CTA ── */}
+        <div className="navbar__cta">
+          <Link to="/contact" className="btn btn-primary btn-sm" id="nav-cta">
+            Book Strategy Call
+          </Link>
+        </div>
+
+        {/* ── Mobile Hamburger ── */}
+        <button
+          className={`navbar__hamburger ${menuOpen ? 'navbar__hamburger--open' : ''}`}
+          onClick={toggleMenu}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+          id="menu-toggle"
+        >
+          <span className="navbar__hamburger-bar" aria-hidden="true" />
+          <span className="navbar__hamburger-bar" aria-hidden="true" />
+          <span className="navbar__hamburger-bar" aria-hidden="true" />
+        </button>
       </div>
 
-      <button
-        className={`navbar-toggle ${menuOpen ? 'open' : ''}`}
-        onClick={() => setMenuOpen(!menuOpen)}
-        aria-label="Toggle menu"
-        id="menu-toggle"
+      {/* ── Mobile Overlay ── */}
+      <div
+        className={`navbar__overlay ${menuOpen ? 'navbar__overlay--open' : ''}`}
+        aria-hidden={!menuOpen}
       >
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </nav>
+        <nav className="navbar__overlay-nav" aria-label="Mobile navigation">
+          <ul className="navbar__overlay-links">
+            {NAV_LINKS.map((link, index) => (
+              <li
+                key={link.path}
+                className={`navbar__overlay-item ${menuOpen ? 'navbar__overlay-item--visible' : ''}`}
+                style={{ transitionDelay: menuOpen ? `${0.08 + index * 0.06}s` : '0s' }}
+              >
+                <Link
+                  to={link.path}
+                  className={`navbar__overlay-link ${isActive(link.path) ? 'navbar__overlay-link--active' : ''}`}
+                  onClick={closeMenu}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <div
+            className={`navbar__overlay-cta ${menuOpen ? 'navbar__overlay-cta--visible' : ''}`}
+            style={{ transitionDelay: menuOpen ? `${0.08 + NAV_LINKS.length * 0.06}s` : '0s' }}
+          >
+            <Link to="/contact" className="btn btn-primary" onClick={closeMenu}>
+              Book Strategy Call
+            </Link>
+          </div>
+        </nav>
+      </div>
+    </header>
   );
 }
