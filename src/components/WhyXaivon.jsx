@@ -39,7 +39,7 @@ export default function WhyXaivon() {
           </span>
           <h2>
             Traditional Operations vs{' '}
-            <span className="text-gradient-cyan">AI-Powered</span> Operations
+            <span className="text-gradient-premium">AI-Powered</span> Operations
           </h2>
         </div>
 
@@ -79,7 +79,6 @@ export default function WhyXaivon() {
             ref={rightRef}
             className={`why-xaivon-column why-xaivon-ai-powered reveal-right ${rightVisible ? 'visible' : ''}`}
           >
-            <div className="why-xaivon-pulse-glow" aria-hidden="true" />
             <div className="why-xaivon-column-header">
               <div className="why-xaivon-icon-badge why-xaivon-icon-badge--primary">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -88,7 +87,7 @@ export default function WhyXaivon() {
               </div>
               <h3 className="why-xaivon-column-title">
                 AI-Powered with{' '}
-                <span className="text-gradient-cyan">XAIVON</span>
+                <span className="text-gradient-premium">XAIVON</span>
               </h3>
             </div>
             <ul className="why-xaivon-list">
@@ -109,13 +108,47 @@ export default function WhyXaivon() {
           </div>
         </div>
 
+        {/* Trust & Security Layer */}
+        <div className="security-trust-bar reveal-scale">
+          <div className="security-trust-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <div className="security-trust-text">
+              <h4>Bank-Grade Security</h4>
+              <p>SOC2 Compliant Infrastructure</p>
+            </div>
+          </div>
+          <div className="security-trust-divider"></div>
+          <div className="security-trust-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            </svg>
+            <div className="security-trust-text">
+              <h4>Data Sovereignty</h4>
+              <p>Your Data Never Trains Public Models</p>
+            </div>
+          </div>
+          <div className="security-trust-divider"></div>
+          <div className="security-trust-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            <div className="security-trust-text">
+              <h4>99.99% Uptime</h4>
+              <p>Enterprise SLA Guarantees</p>
+            </div>
+          </div>
+        </div>
+
         {/* CTA */}
         <div
           ref={ctaRef}
           className={`why-xaivon-cta reveal ${ctaVisible ? 'visible' : ''}`}
         >
           <Link to="/contact" className="btn btn-primary btn-lg" id="why-xaivon-cta-btn">
-            Start Your AI Transformation
+            Request Assessment
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M4.167 10H15.833M15.833 10L10.833 5M15.833 10L10.833 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>

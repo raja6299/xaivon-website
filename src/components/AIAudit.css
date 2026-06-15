@@ -8,31 +8,7 @@
   overflow: hidden;
 }
 
-/* Subtle gold gradient background accents */
-.ai-audit-bg-glow {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.ai-audit-bg-glow-1 {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, transparent 70%);
-  top: -10%;
-  right: -5%;
-  animation: floatOrb1 14s ease-in-out infinite;
-}
-
-.ai-audit-bg-glow-2 {
-  width: 450px;
-  height: 450px;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.04) 0%, transparent 70%);
-  bottom: -8%;
-  left: -5%;
-  animation: floatOrb2 18s ease-in-out infinite;
-}
+/* Glow removed */
 
 /* Grid layout */
 .ai-audit-grid {
@@ -110,10 +86,10 @@
   border-image: linear-gradient(90deg, var(--color-luxury), var(--color-luxury-light), var(--color-luxury)) 1;
 }
 
-/* Override glass-card hover so form card doesn't lift */
+/* Clean enterprise form card */
 .ai-audit-form-card:hover {
   transform: none;
-  box-shadow: var(--shadow-md), var(--shadow-glow-gold);
+  box-shadow: var(--shadow-sm);
 }
 
 .ai-audit-form {

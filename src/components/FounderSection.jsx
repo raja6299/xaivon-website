@@ -34,13 +34,9 @@ export default function FounderSection() {
             className={`founder-visual reveal-left ${avatarVisible ? 'visible' : ''}`}
           >
             <div className="founder-avatar-wrapper">
-              {/* Animated ring */}
-              <div className="founder-ring" aria-hidden="true" />
-              <div className="founder-ring founder-ring-2" aria-hidden="true" />
-
               <div className="glass-card founder-avatar-card">
                 <div className="founder-avatar-gradient" aria-hidden="true" />
-                <span className="founder-initial text-gradient-cyan">R</span>
+                <span className="founder-initial text-gradient-premium">R</span>
               </div>
             </div>
           </div>
@@ -61,7 +57,7 @@ export default function FounderSection() {
                 This traditional approach destroys margins. It creates bottlenecks, high error rates, and employee burnout. I founded XAIVON because I realized that artificial intelligence shouldn&apos;t just be a tool for writing emails — it should be the core operational infrastructure of modern business.
               </p>
               <p>
-                At XAIVON, we don&apos;t sell hype. We build resilient, deeply integrated AI systems that do the heavy lifting. By automating your most complex and repetitive workflows, we help you achieve unprecedented operational efficiency. Our vision is to build the infrastructure that allows your business to scale infinitely, without scaling your headcount.
+                At XAIVON, we build resilient, deeply integrated AI systems that do the heavy lifting. By automating complex and repetitive workflows, we help companies remove operational friction. Our long-term vision is to build the technological foundation that allows your business to scale systematically and securely, without being constrained by human limitations.
               </p>
               <p className="founder-signature">
                 — Raja
@@ -72,7 +68,7 @@ export default function FounderSection() {
 
             {/* CTA */}
             <Link to="/contact" className="btn btn-primary btn-lg founder-cta" id="founder-cta">
-              Build With Us
+              Discuss Your Operations
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12" />
                 <polyline points="12 5 19 12 12 19" />

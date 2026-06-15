@@ -10,37 +10,7 @@ export default function Hero() {
     <section className="hero" id="hero">
       {/* === Background Effects === */}
 
-      {/* Gradient orbs — parallax-linked */}
-      <div
-        className="hero-orb hero-orb-1"
-        style={{ transform: `translate(${parallax.x * 1.2}px, ${parallax.y * 1.2}px)` }}
-      />
-      <div
-        className="hero-orb hero-orb-2"
-        style={{ transform: `translate(${parallax.x * -0.8}px, ${parallax.y * -0.8}px)` }}
-      />
-      <div
-        className="hero-orb hero-orb-3"
-        style={{ transform: `translate(${parallax.x * 0.6}px, ${parallax.y * 0.6}px)` }}
-      />
-
-      {/* Grid overlay */}
-      <div className="hero-grid" />
-
-      {/* Network dots */}
-      <div className="hero-network" />
-
-      {/* Floating particles */}
-      <div className="hero-particles">
-        <span className="hero-particle" />
-        <span className="hero-particle" />
-        <span className="hero-particle" />
-        <span className="hero-particle" />
-        <span className="hero-particle" />
-        <span className="hero-particle" />
-        <span className="hero-particle" />
-        <span className="hero-particle" />
-      </div>
+      {/* Removed particles, grids, and network dots for an ultra-clean look */}
 
       {/* === Content === */}
       <div className="hero-content">
@@ -55,20 +25,20 @@ export default function Hero() {
         {/* Headline */}
         <h1 className="hero-headline hero-fade hero-fade-2">
           Building The{' '}
-          <span className="text-gradient-cyan">AI Infrastructure</span>
+          <span className="text-gradient-premium">AI Infrastructure</span>
           <br />
           Behind Modern Logistics.
         </h1>
 
         {/* Subheadline */}
         <p className="hero-subheadline hero-fade hero-fade-3">
-          We design and deploy enterprise-grade AI systems that reduce operational costs, eliminate manual data entry, and scale freight operations without increasing headcount.
+          We design and deploy enterprise-grade AI systems that reduce operational costs, streamline workflows, and scale operations without increasing headcount.
         </p>
 
         {/* CTA Buttons */}
         <div className="hero-cta-row hero-fade hero-fade-4">
           <Link to="/contact" className="btn btn-primary btn-lg" id="hero-cta-book">
-            Book Strategy Call
+            Schedule a Strategy Call
           </Link>
           <Link to="/services" className="btn btn-secondary btn-lg" id="hero-cta-demo">
             <svg
@@ -84,7 +54,7 @@ export default function Hero() {
             >
               <polygon points="5 3 19 12 5 21 5 3" />
             </svg>
-            Explore Services
+            Explore Infrastructure
           </Link>
         </div>
 
@@ -117,7 +87,7 @@ export default function Hero() {
               <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
               <path d="M16 3.13a4 4 0 0 1 0 7.75" />
             </svg>
-            <span>Dedicated Support</span>
+            <span>Operational Continuity</span>
           </div>
         </div>
       </div>

@@ -5,32 +5,32 @@ const steps = [
   {
     num: 1,
     title: 'Discovery',
-    desc: 'We analyze your current operations, identify automation opportunities, and understand your business goals.',
+    desc: 'We analyze your current operations, identify bottlenecks, and map out your critical workflows.',
   },
   {
     num: 2,
     title: 'Strategy',
-    desc: 'Our team designs a custom AI automation roadmap tailored to your specific needs and industry.',
+    desc: 'We design a comprehensive AI automation roadmap tailored to your specific infrastructure and industry requirements.',
   },
   {
     num: 3,
     title: 'Build',
-    desc: 'We develop and configure your AI systems, automations, and integrations with precision.',
+    desc: 'We develop, integrate, and deploy resilient AI systems across your existing operational stack.',
   },
   {
     num: 4,
     title: 'Automate',
-    desc: 'Your AI systems go live, automating workflows and eliminating manual processes.',
+    desc: 'Your automated systems go live, systematically eliminating manual data entry and repetitive workflows.',
   },
   {
     num: 5,
     title: 'Optimize',
-    desc: 'We monitor performance, gather data, and continuously optimize for maximum efficiency.',
+    desc: 'We continuously monitor data flows and system performance to maximize operational efficiency.',
   },
   {
     num: 6,
     title: 'Scale',
-    desc: 'Expand your AI infrastructure across departments and operations as your business grows.',
+    desc: 'Expand your AI infrastructure across new departments as your organization\'s capacity grows.',
   },
 ];
 
@@ -83,8 +83,7 @@ export default function HowItWorks() {
           </span>
           <h2>How We Build Your AI Infrastructure</h2>
           <p>
-            A proven 6-step methodology to transform your business operations
-            with AI.
+            A systematic methodology for integrating AI into enterprise operations.
           </p>
         </div>
 

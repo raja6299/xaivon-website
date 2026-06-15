@@ -9,103 +9,7 @@
   z-index: var(--z-base);
 }
 
-/* Gold background orb */
-.logistics-bg-orb {
-  position: absolute;
-  top: 10%;
-  right: -10%;
-  width: 700px;
-  height: 700px;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(212, 175, 55, 0.06) 0%,
-    rgba(212, 175, 55, 0.02) 40%,
-    transparent 70%
-  );
-  pointer-events: none;
-  z-index: 0;
-  animation: logistics-orb-pulse 8s ease-in-out infinite;
-}
-
-@keyframes logistics-orb-pulse {
-  0%, 100% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.08);
-  }
-}
-
-/* Animated route lines (SVG background) */
-.logistics-section-bg-glow {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.logistics-route-lines {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.logistics-route-lines svg {
-  width: 100%;
-  height: 100%;
-}
-
-.logistics-route-path {
-  stroke-linecap: round;
-}
-
-.logistics-route-path-1 {
-  animation: logistics-route-dash 25s linear infinite;
-}
-
-.logistics-route-path-2 {
-  animation: logistics-route-dash 30s linear infinite reverse;
-}
-
-.logistics-route-path-3 {
-  animation: logistics-route-dash 35s linear infinite;
-}
-
-@keyframes logistics-route-dash {
-  0% {
-    stroke-dashoffset: 0;
-  }
-  100% {
-    stroke-dashoffset: -200;
-  }
-}
-
-.logistics-route-node {
-  animation: logistics-node-pulse 4s ease-in-out infinite;
-}
-
-.logistics-route-node:nth-child(even) {
-  animation-delay: 2s;
-}
-
-@keyframes logistics-node-pulse {
-  0%, 100% {
-    opacity: 0.5;
-    r: 2.5;
-  }
-  50% {
-    opacity: 1;
-    r: 4;
-  }
-}
+/* Background orbs and SVG paths removed for enterprise cleanliness */
 
 /* Container z-index */
 .logistics-section .container {
@@ -219,9 +123,7 @@
 .logistics-card:hover {
   transform: translateY(-6px);
   border-color: rgba(212, 175, 55, 0.15);
-  box-shadow:
-    var(--shadow-md),
-    0 0 50px -15px rgba(212, 175, 55, 0.15);
+  box-shadow: var(--shadow-md);
   background:
     linear-gradient(
       135deg,
@@ -251,12 +153,11 @@
   height: 10px;
   border-radius: 50%;
   background: var(--color-luxury);
-  box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
-  transition: box-shadow var(--duration-normal) var(--ease-out);
+  transition: opacity var(--duration-normal) var(--ease-out);
 }
 
 .logistics-card:hover .logistics-card-dot {
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+  opacity: 0.8;
 }
 
 /* Title */
@@ -292,12 +193,7 @@
     gap: 1.5rem;
   }
 
-  .logistics-bg-orb {
-    width: 400px;
-    height: 400px;
-    right: -15%;
-    top: 5%;
-  }
+  /* Glow removed */
 }
 
 /* Mobile: 1 column */
@@ -311,14 +207,5 @@
     padding: 1.75rem;
   }
 
-  .logistics-bg-orb {
-    width: 300px;
-    height: 300px;
-    right: -20%;
-    top: 0;
-  }
-
-  .logistics-route-lines {
-    display: none;
-  }
+  /* Glow removed */
 }

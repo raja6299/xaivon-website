@@ -4,11 +4,11 @@ import './LogisticsSection.css';
 const services = [
   {
     title: 'Automated Freight Dispatch',
-    description: 'Eliminate manual matching. AI systems execute optimal route planning and zero-error load assignment instantly.',
+    description: 'Streamline load matching. Systems execute optimal route planning and systematic load assignment without manual intervention.',
   },
   {
     title: 'AI Document Processing',
-    description: 'Automate BOL, POD, and invoice extraction. Eradicate manual data entry and drastically reduce Days Sales Outstanding (DSO).',
+    description: 'Automate BOL, POD, and invoice extraction. Reduce manual data entry and systematically shorten Days Sales Outstanding (DSO).',
   },
   {
     title: 'Intelligent Customer Support',
@@ -20,7 +20,7 @@ const services = [
   },
   {
     title: 'Dynamic Quote Processing',
-    description: 'Instantly analyze market rates and capacity to deliver accurate freight quotes in seconds, winning loads before competitors respond.',
+    description: 'Rapidly analyze market rates and capacity to deliver accurate freight quotes, increasing win rates without margin erosion.',
   },
   {
     title: 'Proactive Exception Management',
@@ -42,39 +42,7 @@ export default function LogisticsSection() {
 
   return (
     <section className="logistics-section section" id="logistics">
-      {/* Background accents */}
-      <div className="logistics-bg-orb" aria-hidden="true" />
-      <div className="logistics-route-lines" aria-hidden="true">
-        <svg viewBox="0 0 1440 600" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <path
-            d="M-50 120 Q 200 80, 400 200 T 800 150 T 1200 250 T 1500 180"
-            stroke="rgba(212, 175, 55, 0.07)"
-            strokeWidth="1.5"
-            strokeDasharray="8 12"
-            className="logistics-route-path logistics-route-path-1"
-          />
-          <path
-            d="M-50 300 Q 300 250, 500 350 T 900 280 T 1300 380 T 1550 300"
-            stroke="rgba(212, 175, 55, 0.05)"
-            strokeWidth="1"
-            strokeDasharray="6 10"
-            className="logistics-route-path logistics-route-path-2"
-          />
-          <path
-            d="M-50 450 Q 250 400, 450 480 T 850 420 T 1250 500 T 1550 440"
-            stroke="rgba(212, 175, 55, 0.04)"
-            strokeWidth="1"
-            strokeDasharray="4 8"
-            className="logistics-route-path logistics-route-path-3"
-          />
-          <circle cx="400" cy="200" r="3" fill="rgba(212, 175, 55, 0.12)" className="logistics-route-node" />
-          <circle cx="800" cy="150" r="3" fill="rgba(212, 175, 55, 0.10)" className="logistics-route-node" />
-          <circle cx="1200" cy="250" r="3" fill="rgba(212, 175, 55, 0.08)" className="logistics-route-node" />
-          <circle cx="500" cy="350" r="2.5" fill="rgba(212, 175, 55, 0.10)" className="logistics-route-node" />
-          <circle cx="900" cy="280" r="2.5" fill="rgba(212, 175, 55, 0.08)" className="logistics-route-node" />
-          <circle cx="1300" cy="380" r="2.5" fill="rgba(212, 175, 55, 0.06)" className="logistics-route-node" />
-        </svg>
-      </div>
+      {/* Removed background orbs and route lines for enterprise cleanliness */}
 
       <div className="container">
         <div
@@ -91,9 +59,9 @@ export default function LogisticsSection() {
             Companies
           </h2>
           <p>
-            Purpose-built AI automation for freight brokers, carriers, 3PLs, and
-            logistics companies. Reduce response times, automate dispatch, and
-            scale operations.
+            Purpose-built infrastructure for freight brokers, carriers, 3PLs, and
+            logistics companies. Improve visibility, streamline dispatch workflows, and
+            increase operational scalability.
           </p>
         </div>
 

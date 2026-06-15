@@ -7,24 +7,11 @@ export default function CTABanner() {
 
   return (
     <section className="cta-banner" id="cta-banner" ref={ref}>
-      {/* Background gradient orbs */}
-      <div className="cta-orb cta-orb-1" aria-hidden="true"></div>
-      <div className="cta-orb cta-orb-2" aria-hidden="true"></div>
-      <div className="cta-orb cta-orb-3" aria-hidden="true"></div>
-
-      {/* Floating particles */}
-      <div className="cta-particles" aria-hidden="true">
-        <span className="cta-particle"></span>
-        <span className="cta-particle"></span>
-        <span className="cta-particle"></span>
-        <span className="cta-particle"></span>
-        <span className="cta-particle"></span>
-        <span className="cta-particle"></span>
-      </div>
+      {/* Removed orbs and particles for an enterprise look */}
 
       <div className={`cta-banner-content reveal-scale ${isVisible ? 'visible' : ''}`}>
         <h2>
-          Ready To <span className="text-gradient-cyan">Scale With AI</span>?
+          Ready To <span className="text-gradient-premium">Scale Systematically</span>?
         </h2>
         <p>
           Join forward-thinking businesses that are automating operations and growing faster with XAIVON.
@@ -35,7 +22,7 @@ export default function CTABanner() {
             className="btn btn-primary btn-lg"
             id="cta-banner-strategy"
           >
-            Book Strategy Call
+            Schedule a Strategy Call
           </Link>
           <Link
             to="/contact"

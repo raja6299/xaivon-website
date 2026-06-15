@@ -7,21 +7,7 @@
   position: relative;
 }
 
-.services-section__bg-glow {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 800px;
-  height: 600px;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(59, 130, 246, 0.04) 0%,
-    transparent 70%
-  );
-  pointer-events: none;
-  z-index: 0;
-}
+/* Ambient glow removed for enterprise cleanliness */
 
 /* ============================================
    Grid Layout
@@ -60,7 +46,7 @@
     90deg,
     transparent 0%,
     var(--color-secondary) 30%,
-    var(--color-accent) 70%,
+    var(--text-primary) 70%,
     transparent 100%
   );
   opacity: 0.6;
@@ -105,9 +91,8 @@
 }
 
 .services-section__card:hover .services-section__icon-wrap {
-  background: rgba(59, 130, 246, 0.18);
-  border-color: rgba(59, 130, 246, 0.35);
-  box-shadow: 0 0 20px -4px rgba(59, 130, 246, 0.25);
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.3);
   transform: scale(1.05);
 }
 
@@ -177,10 +162,7 @@
     gap: 1.25rem;
   }
 
-  .services-section__bg-glow {
-    width: 600px;
-    height: 400px;
-  }
+  /* Glow removed */
 }
 
 /* ============================================
@@ -201,10 +183,7 @@
     gap: 0.35rem 0.5rem;
   }
 
-  .services-section__bg-glow {
-    width: 400px;
-    height: 300px;
-  }
+  /* Glow removed */
 }
 
 /* ============================================

@@ -19,14 +19,14 @@ const services = [
     ),
   },
   {
-    title: 'Eliminate Manual Work',
+    title: 'Reduce Manual Work',
     description:
-      'Achieve near-zero error rates by automatically extracting, classifying, and syncing data across your TMS, CRM, and accounting software.',
+      'Improve data accuracy and streamline operations by systematically extracting, classifying, and syncing data across your TMS, CRM, and accounting software.',
     features: [
-      'Zero Data Entry',
       'Automated Extraction',
+      'Data Accuracy',
       'Cross-Platform Sync',
-      'Error Elimination',
+      'Process Standardization',
     ],
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -146,8 +146,6 @@ export default function ServicesSection() {
 
   return (
     <section className="services-section section" id="services" ref={sectionRef}>
-      {/* Background ambient glow */}
-      <div className="services-section__bg-glow" aria-hidden="true" />
 
       <div className="container-wide">
         {/* Section Header */}
@@ -157,7 +155,7 @@ export default function ServicesSection() {
             Our Services
           </span>
           <h2>
-            Enterprise AI Infrastructure <span className="text-gradient-cyan">That Scales</span>
+            Enterprise AI Infrastructure <span className="text-gradient-premium">That Scales</span>
           </h2>
           <p>
             We build intelligent operational backbones that eliminate manual work, reduce costs, and allow your business to scale without adding complexity.

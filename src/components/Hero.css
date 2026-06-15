@@ -18,60 +18,7 @@
     var(--bg-primary);
 }
 
-/* --- Gradient orbs ----------------------- */
-.hero-orb {
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.12;
-  pointer-events: none;
-  z-index: 0;
-  will-change: transform;
-}
-
-.hero-orb-1 {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.5) 0%, transparent 70%);
-  top: -12%;
-  left: -8%;
-  animation: heroOrbFloat1 16s var(--ease-in-out) infinite;
-}
-
-.hero-orb-2 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, transparent 70%);
-  bottom: -10%;
-  right: -6%;
-  animation: heroOrbFloat2 20s var(--ease-in-out) infinite;
-}
-
-.hero-orb-3 {
-  width: 450px;
-  height: 450px;
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.3) 0%, transparent 70%);
-  top: 40%;
-  right: 18%;
-  animation: heroOrbFloat3 14s var(--ease-in-out) infinite;
-}
-
-@keyframes heroOrbFloat1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  25%      { transform: translate(60px, 40px) scale(1.12); }
-  50%      { transform: translate(30px, 70px) scale(1.04); }
-  75%      { transform: translate(-25px, 30px) scale(0.96); }
-}
-
-@keyframes heroOrbFloat2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33%      { transform: translate(-50px, -35px) scale(1.08); }
-  66%      { transform: translate(40px, -55px) scale(0.92); }
-}
-
-@keyframes heroOrbFloat3 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50%      { transform: translate(-40px, 35px) scale(1.15); }
-}
+/* --- Gradient orbs removed for cleaner enterprise look --- */
 
 /* --- Grid overlay ------------------------ */
 .hero-grid {
@@ -90,16 +37,7 @@
   to   { opacity: 1; }
 }
 
-/* --- Network dots ------------------------ */
-.hero-network {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background-image:
-    radial-gradient(circle, rgba(59, 130, 246, 0.08) 1px, transparent 1px);
-  background-size: 60px 60px;
-  opacity: 0.3;
-}
+/* --- Network dots removed --- */
 
 /* --- Floating particles removed for enterprise cleanliness --- */
 
@@ -228,9 +166,7 @@
     font-size: 0.78rem;
   }
 
-  .hero-orb-1 { width: 350px; height: 350px; }
-  .hero-orb-2 { width: 280px; height: 280px; }
-  .hero-orb-3 { width: 250px; height: 250px; }
+  /* Orbs removed */
 }
 
 @media (max-width: 480px) {
@@ -276,7 +212,6 @@
   }
 
   .hero-cursor {
-    animation: none;
     opacity: 1;
   }
 }

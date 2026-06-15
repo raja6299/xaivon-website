@@ -10,7 +10,6 @@
   /* Core Palette — Refined Luxury */
   --color-primary: #0A0A0B;
   --color-secondary: #3B82F6;
-  --color-accent: #06B6D4;
   --color-luxury: #D4AF37;
   --color-luxury-light: #E8C853;
 
@@ -37,25 +36,17 @@
   --border-luxury: rgba(212, 175, 55, 0.25);
 
   /* Shadows */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
-  --shadow-glow-blue: 0 0 40px -10px rgba(59, 130, 246, 0.25);
-  --shadow-glow-gold: 0 0 40px -10px rgba(212, 175, 55, 0.18);
-  --shadow-glow-blue-strong: 0 0 60px -10px rgba(59, 130, 246, 0.4);
-
-  /* Legacy cyan aliases — for existing components */
-  --color-cyan: #06B6D4;
-  --shadow-glow-cyan: var(--shadow-glow-blue);
-  --shadow-glow-cyan-strong: var(--shadow-glow-blue-strong);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.4);
 
   /* Typography */
   --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Spacing */
-  --section-py: clamp(5rem, 10vh, 8rem);
-  --section-px: clamp(1rem, 4vw, 3rem);
+  --section-py: clamp(6rem, 12vh, 10rem);
+  --section-px: clamp(1.5rem, 5vw, 4rem);
   --container-max: 1280px;
   --container-wide: 1440px;
 
@@ -330,35 +321,7 @@ ul, ol {
   background: var(--bg-card-hover);
   border-color: var(--border-hover);
   transform: translateY(-4px);
-  box-shadow: var(--shadow-md), var(--shadow-glow-blue);
-}
-
-/* Card with animated gradient border on hover */
-.glass-card-glow {
-  position: relative;
-}
-
-.glass-card-glow::after {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, var(--color-secondary), var(--color-accent), var(--color-luxury));
-  background-size: 300% 300%;
-  animation: gradient-shift 6s ease infinite;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity var(--duration-slow) var(--ease-out);
-}
-
-.glass-card-glow:hover::after {
-  opacity: 0.3;
-}
-
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  box-shadow: var(--shadow-md);
 }
 
 /* ============================================
@@ -482,7 +445,7 @@ ul, ol {
 }
 
 .text-gradient-cyan {
-  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-accent) 100%);
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--color-secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -496,7 +459,7 @@ ul, ol {
 }
 
 .text-gradient-premium {
-  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-luxury) 50%, var(--color-accent) 100%);
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--color-secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

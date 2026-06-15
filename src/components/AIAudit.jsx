@@ -111,9 +111,7 @@ export default function AIAudit() {
       id="ai-audit"
       ref={sectionRef}
     >
-      {/* Background accents */}
-      <div className="ai-audit-bg-glow ai-audit-bg-glow-1" aria-hidden="true"></div>
-      <div className="ai-audit-bg-glow ai-audit-bg-glow-2" aria-hidden="true"></div>
+      {/* Removed background accents for a cleaner enterprise look */}
 
       <div className="container">
         <div className={`section-header reveal ${sectionVisible ? 'visible' : ''}`}>

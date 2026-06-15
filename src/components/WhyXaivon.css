@@ -76,21 +76,7 @@
   transform: translateX(0) translateY(-4px);
 }
 
-/* Pulse glow behind AI column */
-.why-xaivon-pulse-glow {
-  position: absolute;
-  inset: -2px;
-  border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(212, 175, 55, 0.05));
-  z-index: -1;
-  animation: why-xaivon-glow-pulse 4s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes why-xaivon-glow-pulse {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.01); }
-}
+/* Pulse glow removed */
 
 /* ============================================
    Column Header
@@ -200,6 +186,57 @@
 }
 
 /* ============================================
+   Security Trust Bar
+   ============================================ */
+.security-trust-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 4rem auto 0;
+  padding: 2rem 3rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  max-width: 1000px;
+}
+
+.security-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  color: var(--text-primary);
+}
+
+.security-trust-item svg {
+  color: var(--color-luxury);
+  flex-shrink: 0;
+}
+
+.security-trust-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.security-trust-text h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.security-trust-text p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.security-trust-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--border-subtle);
+}
+
+/* ============================================
    CTA Section
    ============================================ */
 .why-xaivon-cta {
@@ -231,6 +268,18 @@
 
   .why-xaivon-cta {
     margin-top: 2.5rem;
+  }
+
+  .security-trust-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .security-trust-divider {
+    width: 100%;
+    height: 1px;
   }
 }
 
