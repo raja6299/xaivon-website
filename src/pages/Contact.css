@@ -58,7 +58,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2.5rem;
-  max-width: var(--max-width);
+  max-width: var(--container-max);
   margin: 0 auto;
 }
 
@@ -199,7 +199,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
-  max-width: var(--max-width);
+  max-width: var(--container-max);
   margin: 0 auto;
 }
 

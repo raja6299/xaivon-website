@@ -26,7 +26,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: var(--container-wide);
+  max-width: var(--container-max);
   margin: 0 auto;
   height: 72px;
 }

@@ -58,7 +58,7 @@
 }
 
 .featured-card {
-  max-width: var(--max-width);
+  max-width: var(--container-max);
   margin: 0 auto;
   padding: 3.5rem;
   position: relative;
@@ -216,7 +216,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-  max-width: var(--max-width);
+  max-width: var(--container-max);
   margin: 0 auto;
 }
 
