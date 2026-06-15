@@ -22,7 +22,7 @@ export default function Footer() {
                 }
               }}
             >
-              <img src="/xaivon-logo.svg" alt="XAIVON Logo" className="footer-logo-icon" width="28" height="28" />
+              <img src="/xaivon-logo.svg" alt="XAIVON Logo" className="footer-logo-icon" width="40" height="40" />
               <span>XAIVON</span>
             </Link>
             <p className="footer-desc">

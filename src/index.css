@@ -46,7 +46,7 @@
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Spacing */
-  --section-py: clamp(6rem, 12vh, 10rem);
+  --section-py: clamp(7rem, 12vh, 10rem);
   --section-px: clamp(1.5rem, 5vw, 4rem);
   --container-max: 1280px;
   --container-wide: 1440px;
@@ -154,18 +154,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-size: clamp(3rem, 7vw, 5.5rem);
   font-weight: 700;
   letter-spacing: -0.03em;
 }
 
 h2 {
-  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
   font-weight: 600;
 }
 
 h3 {
-  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 600;
 }
 
@@ -178,6 +178,7 @@ p {
   color: var(--text-secondary);
   line-height: 1.8;
   font-weight: 400;
+  font-size: 1.05rem;
 }
 
 a {
@@ -333,10 +334,10 @@ ul, ol {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 14px 32px;
+  padding: 16px 36px;
   border-radius: var(--radius-sm);
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-family: var(--font-body);
   letter-spacing: 0.3px;
   transition: all var(--duration-normal) var(--ease-out);

@@ -48,7 +48,7 @@
 .navbar__logo-text {
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: 1.5rem;
+  font-size: 1.65rem;
   letter-spacing: 4px;
   background: linear-gradient(135deg, var(--text-primary) 40%, var(--color-secondary));
   -webkit-background-clip: text;
@@ -73,7 +73,7 @@
 }
 
 .navbar__link {
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   font-weight: 500;
   color: var(--text-secondary);
   letter-spacing: 0.2px;
