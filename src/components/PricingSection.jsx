@@ -12,9 +12,15 @@ const PRICING_DATA = {
       description: 'Foundational automation for small brokerage operations.',
       isPopular: false,
       features: [
-        'Reduce Manual Quote Handling',
-        'Basic Workflow Automation',
-        'Faster Response Times'
+        'Workflow Audit',
+        'Email Automation',
+        'Lead Tracking',
+        'CRM Setup',
+        'Basic Dispatch Automation',
+        'Quote Request Management',
+        'Process Documentation',
+        'Team Training',
+        '14 Days Support'
       ]
     },
     {
@@ -24,10 +30,16 @@ const PRICING_DATA = {
       description: 'Complete back-office automation to scale capacity without headcount.',
       isPopular: true,
       features: [
-        'QuoteFlow AI',
+        'QuoteFlow AI Setup',
+        'Email Parsing',
+        'Advanced Lead Management',
         'CRM Integration',
-        'Automated Lead Handling',
-        'Increased Operational Efficiency'
+        'Dispatch Workflow Automation',
+        'AI Customer Support',
+        'Reporting Dashboard',
+        'Workflow Optimization',
+        'Team Training',
+        '30 Days Support'
       ]
     },
     {
@@ -37,10 +49,16 @@ const PRICING_DATA = {
       description: 'Custom AI infrastructure deeply integrated into your existing TMS.',
       isPopular: false,
       features: [
-        'End-to-End Logistics Automation',
-        'TMS Integrations',
+        'TMS Integration',
+        'Custom AI Infrastructure',
+        'AI Agents',
+        'Advanced Analytics',
+        'Multi-Workflow Automation',
         'Dispatch Automation',
-        'AI Operations Infrastructure'
+        'Operations Dashboard',
+        'Dedicated Optimization',
+        'Priority SLA Support',
+        'Ongoing Consulting'
       ]
     }
   ],
@@ -52,10 +70,14 @@ const PRICING_DATA = {
       description: 'Best for small businesses establishing their digital presence.',
       isPopular: false,
       features: [
-        'Professional Business Website',
+        'Premium Business Website',
         'Mobile Responsive Design',
         'Fast Loading',
-        'Basic SEO Setup'
+        'Basic SEO Setup',
+        'Contact Forms',
+        'Security Setup',
+        'Google Maps Integration',
+        '14 Days Support'
       ]
     },
     {
@@ -66,9 +88,13 @@ const PRICING_DATA = {
       isPopular: true,
       features: [
         'Everything in Starter',
-        'Conversion-Focused Design',
-        'Advanced UI/UX',
-        'Analytics Setup'
+        'Conversion Focused UI/UX',
+        'Analytics Setup',
+        'Advanced SEO',
+        'Lead Generation Forms',
+        'CRM Integration Ready',
+        'Performance Optimization',
+        '30 Days Support'
       ]
     },
     {
@@ -80,9 +106,13 @@ const PRICING_DATA = {
       features: [
         'Everything in Growth',
         'Custom Animations',
-        'Advanced SEO Architecture',
-        'Lead Generation Optimization',
-        'Enterprise-Level Experience'
+        'Enterprise Architecture',
+        'Advanced SEO Structure',
+        'Blog Architecture',
+        'Schema Markup',
+        'Analytics Infrastructure',
+        'Conversion Optimization',
+        'Priority Support'
       ]
     }
   ],
