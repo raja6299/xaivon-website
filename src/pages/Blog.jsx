@@ -22,7 +22,7 @@ const posts = [
   },
   {
     id: 'freight-operations-scaling-without-headcount',
-    tag: 'FREIGHT OPERATIONS',
+    tag: 'FREIGHT TECHNOLOGY',
     title: 'Scaling Freight Operations Without Adding Headcount',
     date: 'July 5, 2026',
     readTime: '7 min read',
@@ -30,36 +30,20 @@ const posts = [
   },
   {
     id: 'business-systems-ai-audits',
-    tag: 'BUSINESS SYSTEMS',
+    tag: 'BUSINESS PROCESS AUTOMATION',
     title: 'Conducting an AI Audit on Your Business Systems',
     date: 'June 28, 2026',
     readTime: '8 min read',
     excerpt: 'A step-by-step guide to evaluating your existing software stack and identifying the highest ROI opportunities for automation.',
   },
   {
-    id: 'ai-strategy-for-executives',
-    tag: 'AI STRATEGY',
-    title: 'The Executive Guide to Building an AI Strategy',
+    id: 'crm-automation-lead-management',
+    tag: 'CRM SYSTEMS',
+    title: 'Automating Lead Routing and CRM Data Entry',
     date: 'June 20, 2026',
     readTime: '5 min read',
-    excerpt: 'Why adopting an "AI-first" mindset requires a shift in leadership thinking, budget allocation, and technical hiring.',
-  },
-  {
-    id: 'workflow-automation-examples',
-    tag: 'WORKFLOW AUTOMATION',
-    title: '10 Complex Workflows You Can Automate Today',
-    date: 'June 15, 2026',
-    readTime: '6 min read',
-    excerpt: 'Stop relying on manual data entry. We break down 10 specific processes across finance, HR, and operations that AI can handle.',
-  },
-  {
-    id: 'lead-generation-ai-voice-agents',
-    tag: 'LEAD GENERATION',
-    title: 'Transforming Lead Generation with AI Voice Agents',
-    date: 'June 5, 2026',
-    readTime: '4 min read',
-    excerpt: 'How outbound and inbound call centers are utilizing low-latency AI voice agents to qualify leads 24/7 without human intervention.',
-  },
+    excerpt: 'How outbound and inbound call centers are utilizing low-latency AI to update CRMs instantly, without human intervention.',
+  }
 ];
 
 export default function Blog() {

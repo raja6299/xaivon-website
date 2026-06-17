@@ -25,7 +25,7 @@ const INDUSTRIES = [
     )
   },
   {
-    title: 'Transportation',
+    title: 'Transportation Companies',
     description: 'Optimize route planning, track fleets in real-time, and manage driver communications autonomously.',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -45,7 +45,7 @@ const INDUSTRIES = [
     )
   },
   {
-    title: 'Warehousing',
+    title: 'Warehousing Operations',
     description: 'Intelligent inventory forecasting, automated POD processing, and supply chain visibility.',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -56,7 +56,16 @@ const INDUSTRIES = [
     )
   },
   {
-    title: 'Professional Services',
+    title: 'Service Businesses',
+    description: 'Automate lead qualification, appointment booking, and customer follow-ups to maximize sales conversions.',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+      </svg>
+    )
+  },
+  {
+    title: 'Professional Service Firms',
     description: 'Scale client onboarding, document processing, and administrative tasks using reliable AI infrastructure.',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">

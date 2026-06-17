@@ -282,13 +282,14 @@ export default function AIAudit() {
                   id="audit-submit-btn"
                   disabled={cooldown > 0}
                 >
-                  {cooldown > 0 ? `Wait ${cooldown}s` : 'Request Assessment →'}
+                  {cooldown > 0 ? `Wait ${cooldown}s` : 'Get a Free AI Infrastructure Assessment'}
                 </button>
 
                 <div className="ai-audit-trust-indicators" style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', color: 'var(--text-muted)', fontSize: '0.85rem', textAlign: 'center' }}>
                   <span>✓ Secure & Encrypted</span>
                   <span>✓ Response Within 12 Hours</span>
                   <span>✓ Built For Long-Term Growth</span>
+                  <span style={{ marginTop: '0.5rem', fontSize: '0.75rem' }}>Your information is encrypted and never shared with third parties.</span>
                 </div>
               </form>
             )}

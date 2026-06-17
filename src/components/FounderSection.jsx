@@ -43,7 +43,7 @@ export default function FounderSection() {
               <div className="founder-block">
                 <h4>Our Mission</h4>
                 <p>
-                  We build resilient, deeply integrated AI infrastructure that handles the heavy lifting. By systematically automating complex, repetitive workflows, our mission is to eliminate operational friction and restore your profit margins, allowing your team to focus exclusively on high-value strategic execution.
+                  Our mission is to eliminate operational friction, reduce manual data entry, and drastically increase your response speed. By systematically automating complex workflows, we restore your profit margins and empower your team to focus exclusively on high-value strategic execution instead of repetitive tasks.
                 </p>
               </div>
 

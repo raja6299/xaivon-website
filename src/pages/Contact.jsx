@@ -179,7 +179,7 @@ export default function Contact() {
               <PopupButton
                 url="https://calendly.com/raja-xaivon/30min"
                 rootElement={document.getElementById('root')}
-                text="Book Your Strategy Call"
+                text="Schedule a Strategy Call"
                 className="btn btn-primary btn-lg"
                 styles={{ width: '100%', maxWidth: '300px' }}
               />

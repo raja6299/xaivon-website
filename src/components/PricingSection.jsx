@@ -7,99 +7,82 @@ const PRICING_DATA = {
   logistics: [
     {
       id: 'log-starter',
-      name: 'Logistics Starter',
+      name: 'Starter',
       price: '$1499',
       description: 'Foundational automation for small brokerage operations.',
       isPopular: false,
       features: [
-        'Workflow Audit',
-        'Email Automation',
-        'Lead Tracking',
-        'CRM Setup',
-        'Basic Dispatch Automation',
-        '14 Days Support'
+        'Reduce Manual Quote Handling',
+        'Basic Workflow Automation',
+        'Faster Response Times'
       ]
     },
     {
       id: 'log-growth',
-      name: 'Logistics Growth',
-      price: '$2999',
+      name: 'Growth',
+      price: '$2499',
       description: 'Complete back-office automation to scale capacity without headcount.',
       isPopular: true,
       features: [
-        'QuoteFlow AI Setup',
-        'Email Parsing',
-        'Advanced Lead Management',
-        'Dispatch Workflow Automation',
-        'AI Customer Support',
-        'Reporting Dashboard',
-        '30 Days Support'
+        'QuoteFlow AI',
+        'CRM Integration',
+        'Automated Lead Handling',
+        'Increased Operational Efficiency'
       ]
     },
     {
       id: 'log-enterprise',
-      name: 'Logistics Enterprise',
-      price: 'Custom',
+      name: 'Enterprise',
+      price: '$4999+',
       description: 'Custom AI infrastructure deeply integrated into your existing TMS.',
       isPopular: false,
       features: [
-        'TMS Integration',
-        'Custom AI Infrastructure',
-        'AI Agents',
-        'Advanced Analytics',
-        'Multi-Workflow Automation',
-        'Dedicated Optimization',
-        'Priority SLA Support'
+        'End-to-End Logistics Automation',
+        'TMS Integrations',
+        'Dispatch Automation',
+        'AI Operations Infrastructure'
       ]
     }
   ],
   website: [
     {
       id: 'web-starter',
-      name: 'Starter Website',
+      name: 'Starter',
       price: '$699',
       description: 'Best for small businesses establishing their digital presence.',
       isPopular: false,
       features: [
-        'Up to 5 Pages',
+        'Professional Business Website',
         'Mobile Responsive Design',
-        'Contact Forms',
-        'Basic SEO Setup',
-        'WhatsApp Integration',
-        'SSL Ready',
-        '14 Days Support'
+        'Fast Loading',
+        'Basic SEO Setup'
       ]
     },
     {
       id: 'web-growth',
-      name: 'Growth Website',
+      name: 'Growth',
       price: '$999',
       description: 'Ideal for businesses focused on scaling and lead generation.',
       isPopular: true,
       features: [
-        'Up to 10 Pages',
-        'Premium UI/UX',
-        'Blog Setup',
-        'Calendly Integration',
-        'Lead Capture Forms',
-        'Advanced SEO Setup',
-        '30 Days Support'
+        'Everything in Starter',
+        'Conversion-Focused Design',
+        'Advanced UI/UX',
+        'Analytics Setup'
       ]
     },
     {
       id: 'web-premium',
-      name: 'Enterprise Web Application',
-      price: '$2499+',
+      name: 'Premium',
+      price: '$1499',
       description: 'High-performance infrastructure for established enterprises.',
       isPopular: false,
       features: [
-        'Custom Web App',
-        'Unlimited Pages',
-        'Database Integration',
-        'User Authentication',
-        'CRM Integration',
-        'Performance Optimization',
-        'Priority SLA Support'
+        'Everything in Growth',
+        'Custom Animations',
+        'Advanced SEO Architecture',
+        'Lead Generation Optimization',
+        'Enterprise-Level Experience'
       ]
     }
   ],

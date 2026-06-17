@@ -29,7 +29,7 @@ export default function CTABanner() {
             className="btn btn-secondary btn-lg"
             id="cta-banner-contact"
           >
-            Contact Us
+            Get a Free AI Infrastructure Assessment
           </Link>
         </div>
       </div>
