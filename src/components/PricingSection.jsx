@@ -7,7 +7,7 @@ const PRICING_DATA = {
   logistics: [
     {
       id: 'log-starter',
-      name: 'Starter',
+      name: 'Logistics Starter',
       price: '$1499',
       description: 'Foundational automation for small brokerage operations.',
       isPopular: false,
@@ -17,15 +17,12 @@ const PRICING_DATA = {
         'Lead Tracking',
         'CRM Setup',
         'Basic Dispatch Automation',
-        'Quote Request Management',
-        'Process Documentation',
-        'Team Training',
         '14 Days Support'
       ]
     },
     {
       id: 'log-growth',
-      name: 'Growth',
+      name: 'Logistics Growth',
       price: '$2499',
       description: 'Complete back-office automation to scale capacity without headcount.',
       isPopular: true,
@@ -33,18 +30,15 @@ const PRICING_DATA = {
         'QuoteFlow AI Setup',
         'Email Parsing',
         'Advanced Lead Management',
-        'CRM Integration',
         'Dispatch Workflow Automation',
         'AI Customer Support',
         'Reporting Dashboard',
-        'Workflow Optimization',
-        'Team Training',
         '30 Days Support'
       ]
     },
     {
       id: 'log-enterprise',
-      name: 'Enterprise',
+      name: 'Logistics Enterprise',
       price: '$4999+',
       description: 'Custom AI infrastructure deeply integrated into your existing TMS.',
       isPopular: false,
@@ -54,65 +48,58 @@ const PRICING_DATA = {
         'AI Agents',
         'Advanced Analytics',
         'Multi-Workflow Automation',
-        'Dispatch Automation',
-        'Operations Dashboard',
         'Dedicated Optimization',
-        'Priority SLA Support',
-        'Ongoing Consulting'
+        'Priority SLA Support'
       ]
     }
   ],
   website: [
     {
       id: 'web-starter',
-      name: 'Starter',
+      name: 'Starter Website',
       price: '$699',
       description: 'Best for small businesses establishing their digital presence.',
       isPopular: false,
       features: [
-        'Premium Business Website',
+        'Up to 5 Pages',
         'Mobile Responsive Design',
-        'Fast Loading',
-        'Basic SEO Setup',
         'Contact Forms',
-        'Security Setup',
-        'Google Maps Integration',
+        'Basic SEO Setup',
+        'WhatsApp Integration',
+        'SSL Ready',
         '14 Days Support'
       ]
     },
     {
       id: 'web-growth',
-      name: 'Growth',
+      name: 'Growth Website',
       price: '$999',
       description: 'Ideal for businesses focused on scaling and lead generation.',
       isPopular: true,
       features: [
-        'Everything in Starter',
-        'Conversion Focused UI/UX',
-        'Analytics Setup',
-        'Advanced SEO',
-        'Lead Generation Forms',
-        'CRM Integration Ready',
-        'Performance Optimization',
+        'Up to 10 Pages',
+        'Premium UI/UX',
+        'Blog Setup',
+        'Calendly Integration',
+        'Lead Capture Forms',
+        'Advanced SEO Setup',
         '30 Days Support'
       ]
     },
     {
       id: 'web-premium',
-      name: 'Premium',
-      price: '$1499',
+      name: 'Premium Website',
+      price: '$2499+',
       description: 'High-performance infrastructure for established enterprises.',
       isPopular: false,
       features: [
-        'Everything in Growth',
-        'Custom Animations',
-        'Enterprise Architecture',
-        'Advanced SEO Structure',
-        'Blog Architecture',
-        'Schema Markup',
-        'Analytics Infrastructure',
-        'Conversion Optimization',
-        'Priority Support'
+        'Custom Web App',
+        'Unlimited Pages',
+        'Database Integration',
+        'User Authentication',
+        'CRM Integration',
+        'Performance Optimization',
+        'Priority SLA Support'
       ]
     }
   ],
