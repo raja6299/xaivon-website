@@ -93,6 +93,22 @@ export default function BlogPost() {
     window.scrollTo(0, 0);
   }, [id]);
 
+  useEffect(() => {
+    let link = document.querySelector("link[rel='canonical']");
+    if (!link) {
+      link = document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      document.head.appendChild(link);
+    }
+    link.setAttribute(
+      'href',
+      'https://xaivon.com' + window.location.pathname
+    );
+    return () => {
+      if (link && link.parentNode) link.parentNode.removeChild(link);
+    };
+  }, []);
+
   if (!post) {
     return (
       <div className="blog-post-page not-found">
