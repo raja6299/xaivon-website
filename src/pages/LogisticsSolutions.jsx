@@ -77,6 +77,20 @@ const ADVANTAGES = [
 ];
 
 export default function LogisticsSolutions() {
+
+  useEffect(() => {
+    let link = document.querySelector("link[rel='canonical']");
+    if (!link) {
+      link = document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      document.head.appendChild(link);
+    }
+    link.setAttribute('href', 'https://xaivon.com' + window.location.pathname);
+    return () => {
+      if (link && link.parentNode) link.parentNode.removeChild(link);
+    };
+  }, []);
+
   const [heroRef, heroVisible] = useScrollReveal({ threshold: 0.1 });
   const [gridRef, gridVisible] = useScrollReveal({ threshold: 0.05 });
   const [advRef, advVisible] = useScrollReveal({ threshold: 0.1 });

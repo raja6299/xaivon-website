@@ -35,6 +35,20 @@ const resourcesData = [
 ];
 
 export default function Resources() {
+
+  useEffect(() => {
+    let link = document.querySelector("link[rel='canonical']");
+    if (!link) {
+      link = document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      document.head.appendChild(link);
+    }
+    link.setAttribute('href', 'https://xaivon.com' + window.location.pathname);
+    return () => {
+      if (link && link.parentNode) link.parentNode.removeChild(link);
+    };
+  }, []);
+
   const [headerRef, headerVisible] = useScrollReveal();
   const [gridRef, gridVisible] = useScrollReveal({ threshold: 0.1 });
 

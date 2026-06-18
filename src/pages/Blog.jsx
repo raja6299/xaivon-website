@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import {  useState , useEffect } from 'react';
 import { useStaggerAnimation } from '../hooks/useScrollAnimation';
 import './Blog.css';
 
@@ -47,6 +47,20 @@ const posts = [
 ];
 
 export default function Blog() {
+
+  useEffect(() => {
+    let link = document.querySelector("link[rel='canonical']");
+    if (!link) {
+      link = document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      document.head.appendChild(link);
+    }
+    link.setAttribute('href', 'https://xaivon.com' + window.location.pathname);
+    return () => {
+      if (link && link.parentNode) link.parentNode.removeChild(link);
+    };
+  }, []);
+
   const ref = useStaggerAnimation('.scroll-fade-in');
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);

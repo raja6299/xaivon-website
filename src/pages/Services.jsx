@@ -350,6 +350,20 @@ function ServiceSection({ service, index }) {
 
 /* ── Main Page Component ── */
 export default function Services() {
+
+  useEffect(() => {
+    let link = document.querySelector("link[rel='canonical']");
+    if (!link) {
+      link = document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      document.head.appendChild(link);
+    }
+    link.setAttribute('href', 'https://xaivon.com' + window.location.pathname);
+    return () => {
+      if (link && link.parentNode) link.parentNode.removeChild(link);
+    };
+  }, []);
+
   const [heroRef, heroVisible] = useScrollReveal({ threshold: 0.1 });
   const [ctaRef, ctaVisible] = useScrollReveal({ threshold: 0.2 });
 

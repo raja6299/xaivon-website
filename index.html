@@ -74,18 +74,11 @@
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "XAIVON",
-      "url": "https://xaivon.com",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://xaivon.com/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
+      "url": "https://xaivon.com"
     }
     </script>
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://xaivon.com/" />
-
+    <!-- Canonical URL handled dynamically by React -->
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -96,24 +89,6 @@
     <meta name="msapplication-TileColor" content="#0A0A0A" />
   </head>
   <body>
-    <!-- Google Analytics 4 (Placeholder) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    </script>
-
-    <!-- Microsoft Clarity (Placeholder) -->
-    <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "clarity_id_placeholder");
-    </script>
-
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

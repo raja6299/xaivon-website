@@ -1,11 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useMouseParallax } from '../hooks/useMouseParallax';
 import './Hero.css';
 
 export default function Hero() {
-  const parallax = useMouseParallax(0.02);
-
   return (
     <section className="hero" id="hero">
       {/* === Background Effects === */}

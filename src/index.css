@@ -42,7 +42,7 @@
   --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
 
   /* Typography */
-  --font-heading: 'Sora', 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Spacing */

@@ -18,6 +18,20 @@ import LeadMagnet from '../components/LeadMagnet';
 import SchemaMarkup from '../components/SchemaMarkup';
 
 export default function Home() {
+
+  useEffect(() => {
+    let link = document.querySelector("link[rel='canonical']");
+    if (!link) {
+      link = document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      document.head.appendChild(link);
+    }
+    link.setAttribute('href', 'https://xaivon.com' + '');
+    return () => {
+      if (link && link.parentNode) link.parentNode.removeChild(link);
+    };
+  }, []);
+
   useEffect(() => {
     document.title = 'XAIVON — AI-Powered Business Infrastructure Company';
   }, []);

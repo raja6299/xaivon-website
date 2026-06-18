@@ -11,6 +11,7 @@ export default function ROICalculator() {
   const [employees, setEmployees] = useState(3);
   const [timePerQuote, setTimePerQuote] = useState(15); // minutes
   const [monthlyLabor, setMonthlyLabor] = useState(15000); // dollars
+  const [automationRate, setAutomationRate] = useState(75);
 
   // Output states
   const [hoursSaved, setHoursSaved] = useState(0);
@@ -19,13 +20,17 @@ export default function ROICalculator() {
   const [annualROI, setAnnualROI] = useState(0);
 
   useEffect(() => {
+    if (quotesPerDay === 0) {
+      setHoursSaved(0); setCostSavings(0); setProductivityGain(0); setAnnualROI(0); return;
+    }
+
     // Math logic
     const workDaysPerMonth = 21;
     const totalQuotesPerMonth = quotesPerDay * workDaysPerMonth;
     const totalHoursSpent = (totalQuotesPerMonth * timePerQuote) / 60;
     
-    // Assuming 85% automation rate with AI
-    const calculatedHoursSaved = totalHoursSpent * 0.85;
+    // Assuming automationRate with AI
+    const calculatedHoursSaved = totalHoursSpent * (automationRate / 100);
     
     // Calculate effective hourly rate
     const totalWorkingHours = Math.max(employees * 160, 1); // Prevent div by 0
@@ -38,9 +43,9 @@ export default function ROICalculator() {
     // Animate numbers smoothly (simplified for immediate update, css transitions handle feel)
     setHoursSaved(Math.round(calculatedHoursSaved));
     setCostSavings(Math.round(monthlyCostSavings));
-    setProductivityGain(Math.round(calculatedProductivityGain));
+    setProductivityGain(Math.min(Math.round(calculatedProductivityGain), 95));
     setAnnualROI(Math.round(calculatedAnnualROI));
-  }, [quotesPerDay, employees, timePerQuote, monthlyLabor]);
+  }, [quotesPerDay, employees, timePerQuote, monthlyLabor, automationRate]);
 
   const formatCurrency = (value) => {
     return new Intl.NumberFormat('en-US', {
@@ -135,6 +140,22 @@ export default function ROICalculator() {
                 className="roi-slider"
               />
             </div>
+
+            <div className="roi-input-group">
+              <div className="roi-input-header">
+                <label>Estimated Automation Rate</label>
+                <span className="roi-value-display">{automationRate}%</span>
+              </div>
+              <input 
+                type="range" 
+                min="50" 
+                max="95" 
+                step="5"
+                value={automationRate} 
+                onChange={(e) => setAutomationRate(Number(e.target.value))}
+                className="roi-slider"
+              />
+            </div>
           </div>
 
           {/* Results / Outputs */}
@@ -164,6 +185,10 @@ export default function ROICalculator() {
             </div>
           </div>
         </div>
+
+        <p style={{fontSize: '0.78rem', color: 'var(--text-muted)', textAlign: 'center', marginTop: '1rem'}}>
+          Estimates are illustrative. Actual results depend on workflow complexity and implementation scope.
+        </p>
 
         {/* CTAs */}
         <div className={`roi-cta-wrap reveal ${isVisible ? 'visible' : ''} delay-3`}>

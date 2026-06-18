@@ -20,8 +20,35 @@ export default function ExitIntentPopup() {
       }
     };
 
+    let peakScrollY = 0;
+    const handleScroll = () => {
+      if (hasTriggered) return;
+      const currentScrollY = window.scrollY;
+      const docHeight = document.body.scrollHeight;
+      
+      if (currentScrollY > peakScrollY) {
+        peakScrollY = currentScrollY;
+      }
+      
+      if (peakScrollY > docHeight * 0.6 && currentScrollY < peakScrollY - 150) {
+        setIsVisible(true);
+        setHasTriggered(true);
+      }
+    };
+
     document.addEventListener('mouseleave', handleMouseLeave);
-    return () => document.removeEventListener('mouseleave', handleMouseLeave);
+    
+    const isTouchDevice = navigator.maxTouchPoints > 0;
+    if (isTouchDevice) {
+      window.addEventListener('scroll', handleScroll, { passive: true });
+    }
+    
+    return () => {
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      if (isTouchDevice) {
+        window.removeEventListener('scroll', handleScroll);
+      }
+    };
   }, [hasTriggered]);
 
   const handleClose = () => {

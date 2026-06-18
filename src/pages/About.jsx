@@ -1,7 +1,22 @@
+import { useEffect } from 'react';
 import { useStaggerAnimation } from '../hooks/useScrollAnimation';
 import './About.css';
 
 export default function About() {
+
+  useEffect(() => {
+    let link = document.querySelector("link[rel='canonical']");
+    if (!link) {
+      link = document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      document.head.appendChild(link);
+    }
+    link.setAttribute('href', 'https://xaivon.com' + window.location.pathname);
+    return () => {
+      if (link && link.parentNode) link.parentNode.removeChild(link);
+    };
+  }, []);
+
   const staggerRef = useStaggerAnimation('.scroll-fade-in');
 
   return (

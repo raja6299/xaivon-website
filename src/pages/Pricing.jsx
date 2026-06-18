@@ -1,9 +1,24 @@
+import { useEffect } from 'react';
 import PricingSection from '../components/PricingSection';
 import AIAudit from '../components/AIAudit';
 import { useStaggerAnimation } from '../hooks/useScrollAnimation';
 import './Pricing.css';
 
 export default function Pricing() {
+
+  useEffect(() => {
+    let link = document.querySelector("link[rel='canonical']");
+    if (!link) {
+      link = document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      document.head.appendChild(link);
+    }
+    link.setAttribute('href', 'https://xaivon.com' + window.location.pathname);
+    return () => {
+      if (link && link.parentNode) link.parentNode.removeChild(link);
+    };
+  }, []);
+
   const ref = useStaggerAnimation('.scroll-fade-in');
 
   return (
