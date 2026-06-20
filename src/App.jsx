@@ -1,5 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect, Suspense, lazy, useState } from 'react';
+import ReactGA from 'react-ga4';
 import ScrollToTop from './hooks/ScrollToTop';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -8,6 +9,9 @@ import LoadingScreen from './components/LoadingScreen';
 import StickyCallToAction from './components/StickyCallToAction';
 import ExitIntentPopup from './components/ExitIntentPopup';
 import './App.css';
+
+// Initialize GA4
+ReactGA.initialize('G-15122217015');
 
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
@@ -32,6 +36,12 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
+
+  // Track page views on route change
+  useEffect(() => {
+    ReactGA.send({ hitType: 'pageview', page: location.pathname });
+  }, [location]);
 
   return (
     <>
