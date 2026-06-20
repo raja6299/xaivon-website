@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PageMeta from '../components/PageMeta';
 import {  useState , useEffect } from 'react';
 import { useStaggerAnimation } from '../hooks/useScrollAnimation';
 import './Blog.css';
@@ -47,20 +48,6 @@ const posts = [
 ];
 
 export default function Blog() {
-
-  useEffect(() => {
-    let link = document.querySelector("link[rel='canonical']");
-    if (!link) {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      document.head.appendChild(link);
-    }
-    link.setAttribute('href', 'https://xaivon.com' + window.location.pathname);
-    return () => {
-      if (link && link.parentNode) link.parentNode.removeChild(link);
-    };
-  }, []);
-
   const ref = useStaggerAnimation('.scroll-fade-in');
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
@@ -75,6 +62,11 @@ export default function Blog() {
 
   return (
     <div className="blog-page" ref={ref}>
+      <PageMeta 
+        title="Blog — AI Automation Insights"
+        description="Latest insights, technical guides, and industry news on AI automation from XAIVON."
+        url="https://xaivon.com/blog"
+      />
       {/* Hero */}
       <section className="blog-hero" id="blog-hero">
         <div className="scroll-fade-in">

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import PageMeta from '../components/PageMeta';
 import useScrollReveal from '../hooks/useScrollReveal';
 import './Services.css';
 
@@ -350,29 +351,17 @@ function ServiceSection({ service, index }) {
 
 /* ── Main Page Component ── */
 export default function Services() {
-
-  useEffect(() => {
-    let link = document.querySelector("link[rel='canonical']");
-    if (!link) {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      document.head.appendChild(link);
-    }
-    link.setAttribute('href', 'https://xaivon.com' + window.location.pathname);
-    return () => {
-      if (link && link.parentNode) link.parentNode.removeChild(link);
-    };
-  }, []);
-
   const [heroRef, heroVisible] = useScrollReveal({ threshold: 0.1 });
   const [ctaRef, ctaVisible] = useScrollReveal({ threshold: 0.2 });
 
-  useEffect(() => {
-    document.title = 'Services — XAIVON | AI Solutions For Modern Businesses';
-  }, []);
-
   return (
-    <div className="services-page">
+    <>
+      <PageMeta 
+        title="Services — AI Automation, Logistics, Chatbots"
+        description="Comprehensive AI solutions to scale your enterprise operations."
+        url="https://xaivon.com/services"
+      />
+      <div className="services-page">
       {/* ─── Hero ─── */}
       <section className="svc-hero" id="services-hero">
         <div className="svc-hero__orb svc-hero__orb--1" />
@@ -422,6 +411,7 @@ export default function Services() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

@@ -1,28 +1,21 @@
 import { useEffect } from 'react';
+import PageMeta from '../components/PageMeta';
 import PricingSection from '../components/PricingSection';
 import AIAudit from '../components/AIAudit';
 import { useStaggerAnimation } from '../hooks/useScrollAnimation';
 import './Pricing.css';
 
 export default function Pricing() {
-
-  useEffect(() => {
-    let link = document.querySelector("link[rel='canonical']");
-    if (!link) {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      document.head.appendChild(link);
-    }
-    link.setAttribute('href', 'https://xaivon.com' + window.location.pathname);
-    return () => {
-      if (link && link.parentNode) link.parentNode.removeChild(link);
-    };
-  }, []);
-
   const ref = useStaggerAnimation('.scroll-fade-in');
 
   return (
-    <div className="pricing-page" ref={ref}>
+    <>
+      <PageMeta 
+        title="Pricing — Transparent AI Automation Costs"
+        description="Transparent pricing for logistics automation, AI chatbots, workflow automation & AI agents. See all tiers."
+        url="https://xaivon.com/pricing"
+      />
+      <div className="pricing-page" ref={ref}>
       <section className="pricing-hero">
         <div className="container scroll-fade-in">
           <span className="badge">INVESTMENT</span>
@@ -35,6 +28,7 @@ export default function Pricing() {
 
       <PricingSection />
       <AIAudit />
-    </div>
+      </div>
+    </>
   );
 }

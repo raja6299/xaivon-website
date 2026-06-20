@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import PageMeta from '../components/PageMeta';
 import Hero from '../components/Hero';
 import TrustBar from '../components/TrustBar';
 import ServicesSection from '../components/ServicesSection';
@@ -19,25 +20,13 @@ import SchemaMarkup from '../components/SchemaMarkup';
 
 export default function Home() {
 
-  useEffect(() => {
-    let link = document.querySelector("link[rel='canonical']");
-    if (!link) {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      document.head.appendChild(link);
-    }
-    link.setAttribute('href', 'https://xaivon.com' + '');
-    return () => {
-      if (link && link.parentNode) link.parentNode.removeChild(link);
-    };
-  }, []);
-
-  useEffect(() => {
-    document.title = 'XAIVON — AI-Powered Business Infrastructure Company';
-  }, []);
-
   return (
     <>
+      <PageMeta 
+        title="XAIVON — AI-Powered Business Infrastructure"
+        description="Enterprise AI automation, logistics solutions, chatbots & agents."
+        url="https://xaivon.com"
+      />
       <Hero />
       <TrustBar />
       <ServicesSection />

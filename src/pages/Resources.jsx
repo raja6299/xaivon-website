@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import PageMeta from '../components/PageMeta';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import LeadMagnet from '../components/LeadMagnet';
 import './Resources.css';
@@ -35,29 +36,16 @@ const resourcesData = [
 ];
 
 export default function Resources() {
-
-  useEffect(() => {
-    let link = document.querySelector("link[rel='canonical']");
-    if (!link) {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      document.head.appendChild(link);
-    }
-    link.setAttribute('href', 'https://xaivon.com' + window.location.pathname);
-    return () => {
-      if (link && link.parentNode) link.parentNode.removeChild(link);
-    };
-  }, []);
-
   const [headerRef, headerVisible] = useScrollReveal();
   const [gridRef, gridVisible] = useScrollReveal({ threshold: 0.1 });
 
-  useEffect(() => {
-    document.title = 'Resources & Insights | XAIVON';
-  }, []);
-
   return (
     <div className="resources-page" style={{ paddingTop: '10rem', minHeight: '100vh' }}>
+      <PageMeta 
+        title="Resources — AI Automation Guides & Tools"
+        description="Guides, case studies, and tools for implementing AI automation in your enterprise."
+        url="https://xaivon.com/resources"
+      />
       <div className="container">
         <div ref={headerRef} className={`section-header text-center reveal-scale ${headerVisible ? 'visible' : ''}`}>
           <span className="badge">KNOWLEDGE BASE</span>

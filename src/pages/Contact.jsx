@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import PageMeta from '../components/PageMeta';
 import { PopupButton } from 'react-calendly';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { trackEvent } from '../utils/tracking';
@@ -86,24 +87,30 @@ export default function Contact() {
       return;
     }
 
-    if (cooldown > 0) {
-      setError(`Please wait ${cooldown}s before submitting again.`);
-      return;
-    }
+    if (cooldown > 0) return;
+
+    setIsSubmitting(true);
+    setError(null);
+
+    const form = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      company: formData.company.trim(),
+      phone: formData.phone.trim(),
+      message: formData.message.trim()
+    };
 
     try {
-      setError('');
-      setIsSubmitting(true);
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
       });
 
-      const result = await response.json();
+      const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(result.error || 'Failed to submit message.');
+        throw new Error(data.error || 'Failed to send message.');
       }
 
       setSubmitted(true);
@@ -122,6 +129,11 @@ export default function Contact() {
 
   return (
     <div className="contact-page">
+      <PageMeta 
+        title="Contact XAIVON — Schedule Strategy Call"
+        description="Book a free discovery call or send us a message. We respond within 12 hours."
+        url="https://xaivon.com/contact"
+      />
       {/* Hero */}
       <section className="contact-hero" id="contact-hero">
         <span className="badge">GET IN TOUCH</span>
