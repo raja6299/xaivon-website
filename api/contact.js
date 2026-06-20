@@ -64,17 +64,47 @@ export default async function handler(req, res) {
     // Log the IP as successfully submitting
     ipRequests.set(ip, now);
 
-    // TODO: Connect to Resend or preferred ESP here
-    // Example:
-    // await resend.emails.send({
-    //   from: 'onboarding@resend.dev',
-    //   to: 'raja@xaivon.com',
-    //   subject: 'New Contact Form Submission',
-    //   html: `<p>Name: ${cleanName}</p><p>Email: ${cleanEmail}</p>`
-    // });
+    // Email sending via Resend
+    const { Resend } = await import('resend');
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    
+    // Import email templates
+    const { contactEmailTemplates } = await import('../src/utils/email-templates.js');
 
-    // Simulate network delay to prevent timing attacks and feel realistic
-    await new Promise(resolve => setTimeout(resolve, 800));
+    try {
+      // Send email to customer (confirmation)
+      const customerEmail = await resend.emails.send({
+        from: 'leads@xaivon.com',
+        to: cleanEmail,
+        subject: 'We Received Your Message - XAIVON',
+        html: contactEmailTemplates.customerConfirmation(cleanName).html
+      });
+
+      // Send email to admin (internal notification)
+      const adminEmail = await resend.emails.send({
+        from: 'leads@xaivon.com',
+        to: process.env.RESEND_CONTACT_EMAIL_TO || 'raja@xaivon.com',
+        subject: `🔔 New Lead: ${cleanName} from ${cleanCompany || 'Unknown'}`,
+        html: contactEmailTemplates.adminNotification({
+          name: cleanName,
+          email: cleanEmail,
+          company: cleanCompany,
+          message: cleanMessage
+        }).html
+      });
+
+      // Verify both emails sent
+      if (!customerEmail.id || !adminEmail.id) {
+        console.error('Email send failed:', { customerEmail, adminEmail });
+        return res.status(500).json({ error: 'Failed to send confirmation email. Please try again.' });
+      }
+
+      // Log success
+      console.log(`✅ Lead captured: ${cleanName} (${cleanEmail}) from ${cleanCompany}`);
+    } catch (emailError) {
+      console.error('❌ Resend Error:', emailError.message);
+      return res.status(500).json({ error: 'Email delivery failed. Our team will follow up manually.' });
+    }
 
     return res.status(200).json({ success: true, message: 'Message received securely.' });
   } catch (error) {

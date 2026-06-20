@@ -57,9 +57,51 @@ export default async function handler(req, res) {
 
     ipRequests.set(ip, now);
 
-    // TODO: Connect to Resend or preferred ESP here
+    // Email sending via Resend
+    const { Resend } = await import('resend');
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    
+    const { contactEmailTemplates } = await import('../src/utils/email-templates.js');
 
-    await new Promise(resolve => setTimeout(resolve, 800));
+    try {
+      // Send confirmation to user
+      const userEmail = await resend.emails.send({
+        from: 'leads@xaivon.com',
+        to: cleanEmail,
+        subject: 'Your AI Infrastructure Assessment - XAIVON',
+        html: contactEmailTemplates.auditConfirmation(cleanName).html
+      });
+
+      // Send detailed report to admin
+      const adminEmail = await resend.emails.send({
+        from: 'leads@xaivon.com',
+        to: process.env.RESEND_CONTACT_EMAIL_TO || 'raja@xaivon.com',
+        subject: `🔔 Assessment Submitted: ${cleanName} - ${cleanIndustry}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background: #0a0e27; color: #e4e4e7;">
+            <h2 style="color: #6366f1;">📋 AI Infrastructure Assessment</h2>
+            <div style="background: #18181b; padding: 20px; border-radius: 8px; margin: 20px 0;">
+              <p><strong>Name:</strong> ${cleanName}</p>
+              <p><strong>Email:</strong> <a href="mailto:${cleanEmail}" style="color: #6366f1;">${cleanEmail}</a></p>
+              <p><strong>Company:</strong> ${cleanCompany}</p>
+              <p><strong>Industry:</strong> ${cleanIndustry}</p>
+              <p><strong>Challenge:</strong></p>
+              <div style="background: #27272a; padding: 15px; border-radius: 6px; color: #d4d4d8; white-space: pre-wrap;">${cleanChallenge}</div>
+            </div>
+          </div>
+        `
+      });
+
+      if (!userEmail.id || !adminEmail.id) {
+        console.error('Assessment email failed:', { userEmail, adminEmail });
+        return res.status(500).json({ error: 'Failed to process assessment.' });
+      }
+
+      console.log(`✅ Assessment captured: ${cleanName} (${cleanIndustry})`);
+    } catch (emailError) {
+      console.error('❌ Resend Error:', emailError.message);
+      return res.status(500).json({ error: 'Assessment processing failed. Please contact us directly.' });
+    }
 
     return res.status(200).json({ success: true, message: 'Assessment request securely received.' });
   } catch (error) {
