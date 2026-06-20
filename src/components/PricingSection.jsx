@@ -73,7 +73,7 @@ const PRICING_DATA = {
     {
       id: 'web-growth',
       name: 'Growth Website',
-      price: '$999',
+      price: '$1499',
       description: 'Ideal for businesses focused on scaling and lead generation.',
       isPopular: true,
       features: [
@@ -89,7 +89,7 @@ const PRICING_DATA = {
     {
       id: 'web-premium',
       name: 'Premium Website',
-      price: '$2499+',
+      price: '$2499',
       description: 'High-performance infrastructure for established enterprises.',
       isPopular: false,
       features: [
