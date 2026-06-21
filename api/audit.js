@@ -1,5 +1,8 @@
-// Minimal in-memory rate limiting map for this serverless instance
-const ipRequests = new Map();
+// API Route: POST /api/audit
+// Handles AI Infrastructure Assessment form submissions
+
+import { handleCors } from './_cors.js';
+import { checkRateLimit } from './_ratelimit.js';
 
 function sanitize(str) {
   if (typeof str !== 'string') return '';
@@ -7,25 +10,17 @@ function sanitize(str) {
 }
 
 export default async function handler(req, res) {
+  // CORS
+  if (handleCors(req, res)) return;
+
+  // Method check
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown';
-  const now = Date.now();
-  
-  // Clean up
-  for (const [key, timestamp] of ipRequests.entries()) {
-    if (now - timestamp > 60000) ipRequests.delete(key);
-  }
-
-  // Rate Limiting
-  if (ipRequests.has(ip)) {
-    const lastRequest = ipRequests.get(ip);
-    if (now - lastRequest < 60000) {
-      return res.status(429).json({ error: 'Too many requests. Please try again later.' });
-    }
-  }
+  // Rate limiting (Upstash Redis)
+  const { limited } = await checkRateLimit(req, res, 'audit');
+  if (limited) return;
 
   try {
     const data = req.body;
@@ -54,8 +49,6 @@ export default async function handler(req, res) {
     if (cleanName.length > 100 || cleanEmail.length > 100 || cleanCompany.length > 100 || cleanIndustry.length > 100 || cleanChallenge.length > 2000) {
       return res.status(400).json({ error: 'Input length exceeded' });
     }
-
-    ipRequests.set(ip, now);
 
     // Verify API key exists
     if (!process.env.RESEND_API_KEY) {

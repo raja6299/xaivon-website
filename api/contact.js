@@ -1,67 +1,56 @@
-// Minimal in-memory rate limiting map for this serverless instance
-const ipRequests = new Map();
+// API Route: POST /api/contact
+// Handles contact form submissions with full security
 
-// Helper to sanitize input (basic HTML strip)
+import { handleCors } from './_cors.js';
+import { checkRateLimit } from './_ratelimit.js';
+
 function sanitize(str) {
   if (typeof str !== 'string') return '';
   return str.replace(/<[^>]*>?/gm, '').trim();
 }
 
 export default async function handler(req, res) {
-  // Only allow POST
+  // CORS
+  if (handleCors(req, res)) return;
+
+  // Method check
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  // IP extraction for rate limiting
-  const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown';
-  const now = Date.now();
-  
-  // Clean up old IP entries (older than 1 minute)
-  for (const [key, timestamp] of ipRequests.entries()) {
-    if (now - timestamp > 60000) ipRequests.delete(key);
-  }
-
-  // Rate Limiting: 2 requests per minute per IP
-  if (ipRequests.has(ip)) {
-    const lastRequest = ipRequests.get(ip);
-    if (now - lastRequest < 60000) {
-      return res.status(429).json({ error: 'Too many requests. Please try again later.' });
-    }
-  }
+  // Rate limiting (Upstash Redis)
+  const { limited } = await checkRateLimit(req, res, 'contact');
+  if (limited) return;
 
   try {
     const data = req.body;
 
-    // 1. Honeypot check
+    // Honeypot check
     if (data.website) {
       return res.status(400).json({ error: 'Invalid request' });
     }
 
-    // 2. Validate required fields
+    // Validate required fields
     if (!data.name || !data.email || !data.message) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
-    // 3. Sanitize inputs
+    // Sanitize inputs
     const cleanName = sanitize(data.name);
     const cleanEmail = sanitize(data.email);
     const cleanCompany = sanitize(data.company);
     const cleanMessage = sanitize(data.message);
 
-    // 4. Validate email format
+    // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(cleanEmail)) {
       return res.status(400).json({ error: 'Invalid email format' });
     }
 
-    // 5. Length constraints
+    // Length constraints
     if (cleanName.length > 100 || cleanEmail.length > 100 || cleanCompany.length > 100 || cleanMessage.length > 2000) {
       return res.status(400).json({ error: 'Input length exceeded' });
     }
-
-    // Log the IP as successfully submitting
-    ipRequests.set(ip, now);
 
     // Verify API key exists
     if (!process.env.RESEND_API_KEY) {
@@ -75,7 +64,7 @@ export default async function handler(req, res) {
     const adminTo = process.env.RESEND_CONTACT_EMAIL_TO || 'raja@xaivon.com';
 
     try {
-      // Send email to admin (internal notification) — this is the critical one
+      // Send email to admin (critical)
       const { data: adminData, error: adminError } = await resend.emails.send({
         from: 'XAIVON Leads <leads@xaivon.com>',
         to: adminTo,
@@ -102,7 +91,7 @@ export default async function handler(req, res) {
 
       console.log('Admin email sent, ID:', adminData?.id);
 
-      // Send confirmation to customer (non-blocking — don't fail the request if this errors)
+      // Send confirmation to customer (non-blocking)
       try {
         const { data: custData, error: custError } = await resend.emails.send({
           from: 'XAIVON <leads@xaivon.com>',
