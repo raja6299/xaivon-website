@@ -76,7 +76,8 @@ function injectMetaTagsForRoute(route, metadata) {
   const metaTags = generateMetaTags(route, metadata);
 
   if (html.includes('</head>')) {
-    html = html.replace('</head>', metaTags + '\n  </head>');
+    const buildStamp = `<!-- build: ${new Date().toISOString()} -->`;
+    html = html.replace('</head>', metaTags + '\n    ' + buildStamp + '\n  </head>');
   } else {
     console.warn(`  ⚠️  Warning: No </head> found in HTML for route ${route}`);
   }
