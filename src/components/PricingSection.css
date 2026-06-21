@@ -2,7 +2,6 @@
   position: relative;
   background-color: var(--bg-primary);
   overflow: hidden;
-  padding: 6rem 0;
 }
 
 .pricing-bg-glow {

@@ -21,10 +21,13 @@ export default function Hero() {
 
         {/* Headline */}
         <h1 className="hero-headline hero-fade hero-fade-2">
-          Building The{' '}
-          <span className="text-gradient-premium">AI Infrastructure</span>
-          <br />
-          Behind Modern Logistics.
+          <span className="hero-headline-l1">
+            <span className="hero-headline-l1a">Building The</span>{' '}
+            <span className="hero-headline-l1b">
+              <span className="text-gradient-premium">AI Infrastructure</span>
+            </span>
+          </span>
+          <span className="hero-headline-l2">Behind Modern Logistics.</span>
         </h1>
 
         {/* Subheadline */}

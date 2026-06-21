@@ -77,11 +77,28 @@
 
 /* --- Headline ---------------------------- */
 .hero-headline {
-  font-size: clamp(3rem, 7vw, 5.5rem);
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.15;
   letter-spacing: -0.03em;
   margin-bottom: 1rem;
+}
+
+.hero-headline-l1 {
+  display: block;
+  white-space: nowrap;
+  font-size: clamp(2.2rem, 4.2vw, 3.8rem);
+}
+
+.hero-headline-l2 {
+  display: block;
+  white-space: nowrap;
+  font-size: clamp(2.2rem, 4.2vw, 3.8rem);
+  margin-top: 0.15em;
+}
+
+.hero-headline-l1a,
+.hero-headline-l1b {
+  display: inline;
 }
 
 /* Typewriter removed */
@@ -146,8 +163,20 @@
     min-height: calc(100vh - 60px);
   }
 
-  .hero-headline {
-    font-size: clamp(2rem, 8vw, 2.8rem);
+  .hero-headline-l1 {
+    white-space: normal;
+  }
+
+  .hero-headline-l1a,
+  .hero-headline-l1b,
+  .hero-headline-l2 {
+    display: block;
+    white-space: nowrap;
+    font-size: clamp(1.15rem, 6.2vw, 2.2rem);
+  }
+
+  .hero-headline-l1b {
+    margin-top: 0.1em;
   }
 
   .hero-subheadline {
