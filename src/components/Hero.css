@@ -159,8 +159,9 @@
 
 @media (max-width: 768px) {
   .hero {
-    padding: 120px 20px 3.5rem;
+    padding: 100px 20px 3.5rem;
     min-height: calc(100vh - 60px);
+    align-items: flex-start;
   }
 
   .hero-headline-l1 {
@@ -200,7 +201,7 @@
 
 @media (max-width: 480px) {
   .hero {
-    padding: 110px 16px 2.5rem;
+    padding: 88px 16px 2.5rem;
   }
 
   .hero-cta-row {
