@@ -83,7 +83,9 @@ function injectMetaTagsForRoute(route, metadata) {
 
   // STEP 3: Write to output file
   fs.writeFileSync(outputIndexPath, html, 'utf-8');
+  const ogUrl = `https://xaivon.com${route}`;
   console.log(`  ✓ Injected: ${route}`);
+  console.log(`  📄 File size: ${fs.statSync(outputIndexPath).size} bytes | og:url verified: ${html.includes(`og:url" content="${ogUrl}"`)}`);
 }
 
 // MAIN EXECUTION

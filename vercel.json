@@ -41,16 +41,18 @@
     }
   },
   "routes": [
-    { "handle": "filesystem" },
-    { "src": "/api/(.*)", "dest": "/api/$1" },
-    { "src": "^/about$", "dest": "/about/index.html" },
-    { "src": "^/services$", "dest": "/services/index.html" },
-    { "src": "^/pricing$", "dest": "/pricing/index.html" },
-    { "src": "^/contact$", "dest": "/contact/index.html" },
-    { "src": "^/blog$", "dest": "/blog/index.html" },
-    { "src": "^/resources$", "dest": "/resources/index.html" },
-    { "src": "^/privacy-policy$", "dest": "/privacy-policy/index.html" },
-    { "src": "^/terms$", "dest": "/terms/index.html" },
+    { "src": "^/api/(.*)", "dest": "/api/$1" },
+    { "src": "^/_next/(.*)", "dest": "/_next/$1" },
+    { "src": "^/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "^/([^/]+\\.[^/]+)$", "dest": "/$1" },
+    { "src": "^/about/?$", "dest": "/about/index.html" },
+    { "src": "^/services/?$", "dest": "/services/index.html" },
+    { "src": "^/pricing/?$", "dest": "/pricing/index.html" },
+    { "src": "^/contact/?$", "dest": "/contact/index.html" },
+    { "src": "^/blog/?$", "dest": "/blog/index.html" },
+    { "src": "^/resources/?$", "dest": "/resources/index.html" },
+    { "src": "^/privacy-policy/?$", "dest": "/privacy-policy/index.html" },
+    { "src": "^/terms/?$", "dest": "/terms/index.html" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
