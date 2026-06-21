@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 // TODO: Replace with your actual IDs
-const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // e.g. G-1234567890
-const CLARITY_PROJECT_ID = 'XXXXXXXXXX'; // e.g. abcdefgh12
+const GA_MEASUREMENT_ID = 'G-15122217015';
+const CLARITY_PROJECT_ID = 'REPLACE_WITH_ACTUAL_PROJECT_ID';
 
 export default function Analytics() {
   const location = useLocation();
