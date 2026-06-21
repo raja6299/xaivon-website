@@ -92,19 +92,19 @@ export default function Contact() {
     setIsSubmitting(true);
     setError(null);
 
-    const form = {
-      name: formData.name.trim(),
-      email: formData.email.trim(),
-      company: formData.company.trim(),
-      phone: formData.phone.trim(),
-      message: formData.message.trim()
+    const payload = {
+      name: form.name.trim(),
+      email: form.email.trim(),
+      company: form.company.trim(),
+      message: form.message.trim(),
+      website: form.website
     };
 
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form)
+        body: JSON.stringify(payload)
       });
 
       const data = await response.json();
@@ -115,7 +115,7 @@ export default function Contact() {
 
       setSubmitted(true);
       setCooldown(60); // 60 second rate limit
-      trackEvent('contact_form_submit', { company: form.company });
+      trackEvent('contact_form_submit', { company: payload.company });
     } catch (err) {
       setError(err.message || 'Something went wrong. Please try again later.');
     } finally {
