@@ -2,7 +2,6 @@ export function setCorsHeaders(req, res) {
   const allowedOrigins = [
     'https://xaivon.com',
     'https://www.xaivon.com',
-    'https://xaivon-website.vercel.app',
   ];
 
   const origin = req.headers.origin || '';
