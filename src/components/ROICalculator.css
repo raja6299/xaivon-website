@@ -1,9 +1,28 @@
+/* ============================================
+   ROI Calculator — Premium Enterprise Design
+   ============================================ */
+
 .roi-calculator-section {
   position: relative;
   background-color: var(--bg-primary);
   border-top: 1px solid var(--border-color);
   overflow: hidden;
 }
+
+/* Ambient glow behind the section */
+.roi-calculator-section::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 600px;
+  background: radial-gradient(ellipse, rgba(0, 210, 255, 0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ─── Grid Layout ──────────────────────────────────────────────────── */
 
 .roi-grid {
   display: grid;
@@ -12,27 +31,41 @@
   margin-top: 3rem;
 }
 
+/* ─── Controls Panel ───────────────────────────────────────────────── */
+
 .roi-controls {
   padding: 2.5rem;
-  border-radius: 16px;
-  background: rgba(15, 15, 15, 0.6);
-  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  background: rgba(12, 12, 18, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .roi-card-title {
-  font-size: 1.2rem;
-  font-weight: 500;
+  font-size: 1.15rem;
+  font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 2rem;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 1rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
+
+.roi-card-title svg {
+  color: var(--accent-cyan, #00d2ff);
+}
+
+/* ─── Slider Input Groups ──────────────────────────────────────────── */
 
 .roi-input-group {
-  margin-bottom: 2rem;
+  margin-bottom: 2.25rem;
 }
 
-.roi-input-group:last-child {
+.roi-input-group:last-of-type {
   margin-bottom: 0;
 }
 
@@ -40,150 +73,290 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
 }
 
 .roi-input-header label {
   color: var(--text-secondary);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 500;
 }
 
 .roi-value-display {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 0.25rem 0.75rem;
-  border-radius: 6px;
+  background: rgba(0, 210, 255, 0.08);
+  padding: 0.3rem 0.85rem;
+  border-radius: 8px;
   font-family: var(--font-primary);
-  font-weight: 600;
-  color: var(--accent-cyan);
+  font-weight: 700;
+  color: var(--accent-cyan, #00d2ff);
   font-size: 0.95rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 210, 255, 0.15);
+  min-width: 70px;
+  text-align: center;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
-/* Custom Range Slider Styling */
+/* ─── Custom Range Slider ──────────────────────────────────────────── */
+
 .roi-slider {
   -webkit-appearance: none;
+  appearance: none;
   width: 100%;
   height: 6px;
-  background: var(--border-color);
   border-radius: 10px;
   outline: none;
+  cursor: pointer;
+  /* Dynamic fill using CSS variable set via inline style */
+  background: linear-gradient(
+    to right,
+    var(--accent-cyan, #00d2ff) 0%,
+    var(--accent-cyan, #00d2ff) var(--slider-percent, 50%),
+    rgba(255, 255, 255, 0.08) var(--slider-percent, 50%),
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  transition: background 0.1s ease;
 }
 
 .roi-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  background: var(--accent-cyan);
+  background: #fff;
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
-  transition: transform 0.2s ease;
+  box-shadow:
+    0 0 0 4px rgba(0, 210, 255, 0.25),
+    0 0 20px rgba(0, 210, 255, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .roi-slider::-webkit-slider-thumb:hover {
-  transform: scale(1.2);
+  transform: scale(1.15);
+  box-shadow:
+    0 0 0 6px rgba(0, 210, 255, 0.3),
+    0 0 30px rgba(0, 210, 255, 0.4),
+    0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.roi-slider::-webkit-slider-thumb:active {
+  transform: scale(1.05);
 }
 
 .roi-slider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  background: var(--accent-cyan);
+  background: #fff;
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
-  transition: transform 0.2s ease;
   border: none;
+  box-shadow:
+    0 0 0 4px rgba(0, 210, 255, 0.25),
+    0 0 20px rgba(0, 210, 255, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease;
 }
 
 .roi-slider::-moz-range-thumb:hover {
-  transform: scale(1.2);
+  transform: scale(1.15);
 }
+
+.roi-slider::-moz-range-track {
+  height: 6px;
+  border-radius: 10px;
+  background: transparent;
+}
+
+/* Slider range labels */
+.roi-slider-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.4rem;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Automation badge */
+.roi-automation-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  padding: 0.85rem 1.25rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(0, 210, 255, 0.06), rgba(124, 58, 237, 0.06));
+  border: 1px solid rgba(0, 210, 255, 0.12);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.roi-automation-badge svg {
+  color: var(--accent-cyan, #00d2ff);
+  flex-shrink: 0;
+}
+
+.roi-automation-badge strong {
+  color: var(--accent-cyan, #00d2ff);
+}
+
+/* ─── Results Panel ────────────────────────────────────────────────── */
 
 .roi-results {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
+  gap: 1.25rem;
+  align-content: start;
 }
 
 .roi-result-card {
-  padding: 2rem;
-  border-radius: 16px;
-  background: rgba(15, 15, 15, 0.6);
-  border: 1px solid var(--border-color);
+  padding: 1.75rem;
+  border-radius: 20px;
+  background: rgba(12, 12, 18, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .roi-result-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
 }
+
+.roi-result-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* ─── Highlight (Savings) Card ─────────────────────────────────────── */
 
 .roi-result-card.highlight-card {
   grid-column: 1 / -1;
-  background: linear-gradient(135deg, rgba(15, 15, 15, 0.9) 0%, rgba(20, 25, 35, 0.9) 100%);
-  border: 1px solid rgba(0, 210, 255, 0.3);
+  background: linear-gradient(135deg, rgba(10, 12, 20, 0.95), rgba(15, 20, 35, 0.95));
+  border: 1px solid rgba(0, 210, 255, 0.2);
   position: relative;
   overflow: hidden;
+  padding: 2.5rem;
 }
 
+/* Top neon line */
 .roi-result-card.highlight-card::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0, 210, 255, 0.8), transparent);
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 210, 255, 0.8) 30%, rgba(124, 58, 237, 0.8) 70%, transparent 100%);
 }
+
+/* Ambient glow behind savings number */
+.roi-highlight-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 200px;
+  background: radial-gradient(ellipse, rgba(0, 210, 255, 0.06), transparent 70%);
+  pointer-events: none;
+}
+
+/* ─── Result Typography ────────────────────────────────────────────── */
 
 .roi-result-label {
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.75rem;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
 }
 
 .roi-result-value {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
   color: var(--text-primary);
   font-family: var(--font-primary);
   line-height: 1.1;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
+  /* Smooth transition for font tabular figures */
+  font-variant-numeric: tabular-nums;
 }
 
-.highlight-card .roi-result-value {
-  font-size: 3.5rem;
+.roi-savings-hero {
+  font-size: 3.2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.roi-cost-before {
+  color: rgba(255, 100, 100, 0.9);
+}
+
+.roi-cost-after {
+  color: #10b981;
 }
 
 .roi-result-desc {
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
 }
 
+/* ─── Disclaimer ───────────────────────────────────────────────────── */
+
+.roi-disclaimer {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 1.25rem;
+}
+
+/* ─── CTA Section ──────────────────────────────────────────────────── */
+
 .roi-cta-wrap {
-  margin-top: 4rem;
+  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
 }
 
+.roi-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.05rem;
+  padding: 1rem 2.25rem;
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(0, 210, 255, 0.15);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.roi-cta-btn:hover {
+  box-shadow: 0 0 50px rgba(0, 210, 255, 0.25);
+  transform: translateY(-2px);
+}
+
 .trust-indicators-row {
-  margin-top: 1rem;
+  margin-top: 0.75rem;
   display: flex;
   gap: 1.5rem;
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   flex-wrap: wrap;
   justify-content: center;
 }
+
+/* ─── Responsive ───────────────────────────────────────────────────── */
 
 @media (max-width: 1024px) {
   .roi-grid {
@@ -196,15 +369,32 @@
     grid-template-columns: 1fr;
   }
   
-  .roi-controls, .roi-result-card {
+  .roi-controls,
+  .roi-result-card {
     padding: 1.5rem;
+  }
+
+  .roi-result-card.highlight-card {
+    padding: 2rem 1.5rem;
   }
   
   .roi-result-value {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
   
-  .highlight-card .roi-result-value {
+  .roi-savings-hero {
     font-size: 2.5rem;
+  }
+
+  .roi-cta-btn {
+    font-size: 0.95rem;
+    padding: 0.9rem 1.75rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .trust-indicators-row {
+    gap: 1rem;
+    font-size: 0.78rem;
   }
 }
