@@ -1,20 +1,12 @@
-export const trackEvent = (eventName, eventData = {}) => {
-  try {
-    // Google Analytics 4
-    if (window.gtag) {
-      window.gtag('event', eventName, eventData);
-    }
-    
-    // Microsoft Clarity (Custom Tags/Events)
-    if (window.clarity) {
-      window.clarity('set', eventName, JSON.stringify(eventData));
-    }
+export const initTracking = () => {
+  // Tracking scripts (GA4 and Clarity) are now strictly handled 
+  // directly in index.html and Analytics.jsx.
+  // This utility is safely cleared to prevent duplicate script injections.
+  console.log('Tracking initialized via index.html');
+};
 
-    // Development logging
-    if (import.meta.env.DEV) {
-      console.log(`[Tracking] Event: ${eventName}`, eventData);
-    }
-  } catch (error) {
-    console.error('Tracking Error:', error);
+export const trackEvent = (eventName, eventParams = {}) => {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', eventName, eventParams);
   }
 };
