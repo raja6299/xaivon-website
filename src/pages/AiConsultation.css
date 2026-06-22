@@ -1,0 +1,285 @@
+/* ============================================
+   AI Consultation Confirmation Page
+   ============================================ */
+
+.ai-consultation-page {
+  padding-top: 72px;
+}
+
+/* --- Hero --- */
+.consultation-hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--section-padding);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.consultation-hero::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 600px;
+  background: radial-gradient(ellipse, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.consultation-hero-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- Success Icon --- */
+.consultation-icon-wrapper {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.consultation-icon {
+  color: #10b981;
+  z-index: 1;
+}
+
+.consultation-icon-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.12);
+  animation: iconPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.25); opacity: 0; }
+}
+
+/* --- Badge --- */
+.consultation-hero .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(37, 99, 235, 0.2));
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #10b981;
+}
+
+.consultation-hero .badge .badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  animation: dotBlink 1.5s ease-in-out infinite;
+}
+
+@keyframes dotBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* --- Typography --- */
+.consultation-hero h1 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.2;
+  margin-bottom: 1.25rem;
+}
+
+.consultation-subtitle {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 540px;
+  margin-bottom: 3rem;
+}
+
+/* --- Progress Steps --- */
+.consultation-steps {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 3rem;
+  width: 100%;
+  max-width: 520px;
+  justify-content: center;
+}
+
+.consultation-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.step-indicator {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+/* Completed step */
+.consultation-step.completed .step-indicator {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+/* Active step */
+.consultation-step.active .step-indicator {
+  background: rgba(37, 99, 235, 0.15);
+  border: 2px solid rgba(37, 99, 235, 0.5);
+  color: var(--color-accent);
+}
+
+.processing-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid rgba(37, 99, 235, 0.2);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Pending step */
+.consultation-step.pending .step-indicator {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+}
+
+/* Step connector line */
+.step-connector {
+  flex: 1;
+  height: 2px;
+  min-width: 40px;
+  max-width: 80px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 0 0.25rem;
+  margin-bottom: 2.5rem;
+  border-radius: 2px;
+}
+
+.step-connector.active {
+  background: linear-gradient(90deg, #10b981, rgba(37, 99, 235, 0.4));
+}
+
+/* Step text */
+.step-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.step-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.step-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.consultation-step.pending .step-title {
+  color: var(--text-muted);
+}
+
+/* --- CTA Buttons --- */
+.consultation-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* --- Trust Indicators --- */
+.consultation-trust {
+  padding: 0 var(--section-px) 6rem;
+}
+
+.consultation-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.consultation-trust-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem 1rem;
+  text-align: center;
+}
+
+.consultation-trust-icon {
+  font-size: 1.75rem;
+}
+
+.consultation-trust-card p {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .consultation-trust-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .consultation-steps {
+    max-width: 100%;
+  }
+
+  .step-connector {
+    min-width: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .consultation-hero {
+    min-height: 70vh;
+  }
+
+  .consultation-trust-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+}

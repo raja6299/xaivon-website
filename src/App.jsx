@@ -11,7 +11,7 @@ import ExitIntentPopup from './components/ExitIntentPopup';
 import './App.css';
 
 // Initialize GA4
-ReactGA.initialize('G-15122217015');
+ReactGA.initialize('G-FKYVMSFM5B');
 
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
@@ -32,6 +32,7 @@ const AIAgents = lazy(() => import('./pages/services/AIAgents'));
 const AIAutomation = lazy(() => import('./pages/services/AIAutomation'));
 const AIChatbots = lazy(() => import('./pages/services/AIChatbots'));
 const Resources = lazy(() => import('./pages/Resources'));
+const AiConsultation = lazy(() => import('./pages/AiConsultation'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
@@ -69,6 +70,7 @@ function App() {
             <Route path="/ai-chatbots" element={<AIChatbots />} />
             
             <Route path="/resources" element={<Resources />} />
+            <Route path="/ai-consultation" element={<AiConsultation />} />
             
             {/* 404 Page */}
             <Route path="*" element={<NotFound />} />

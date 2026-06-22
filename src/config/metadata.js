@@ -52,4 +52,9 @@ export const pageMetadata = {
     description: 'Review XAIVON\'s terms of service and conditions.',
     image: 'https://xaivon.com/og-image.png',
   },
+  '/ai-consultation': {
+    title: 'AI Consultation Received — XAIVON',
+    description: 'Your consultation request has been received. Our AI systems are analyzing your needs.',
+    image: 'https://xaivon.com/og-image.png',
+  },
 };
