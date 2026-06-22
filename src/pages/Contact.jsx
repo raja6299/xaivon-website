@@ -109,13 +109,26 @@ export default function Contact() {
 
       const data = await response.json();
 
+      // ─── Server Error (4xx/5xx) ─────────────────────────────
       if (!response.ok) {
         throw new Error(data.error || 'Failed to send message.');
       }
 
-      setSubmitted(true);
-      setCooldown(60); // 60 second rate limit
+      // ─── Rate-Limited: show soft WhatsApp notification ──────
+      // API returns 200 + rateLimited:true so we handle it
+      // gracefully without throwing an error.
+      if (data.rateLimited) {
+        setError('We have received your multiple requests. Our team is already reviewing your case. For urgent support, please contact us via WhatsApp.');
+        setCooldown(60);
+        return;
+      }
+
+      // ─── Success: email delivered → redirect to consultation ─
       trackEvent('contact_form_submit', { company: payload.company });
+      setCooldown(60);
+      
+      // Redirect to AI consultation page
+      window.location.href = data.redirect || '/ai-consultation';
     } catch (err) {
       setError(err.message || 'Something went wrong. Please try again later.');
     } finally {
