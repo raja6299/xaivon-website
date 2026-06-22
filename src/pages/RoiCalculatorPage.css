@@ -1,0 +1,125 @@
+/* ============================================
+   ROI Calculator Landing Page
+   ============================================ */
+
+.roi-page {
+  padding-top: 72px;
+}
+
+/* ─── Hero ──────────────────────────────────────────────────────────── */
+
+.roi-page-hero {
+  padding: var(--section-padding);
+  padding-bottom: 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.roi-page-hero::before {
+  content: '';
+  position: absolute;
+  top: -250px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 700px;
+  background: radial-gradient(ellipse, rgba(0, 210, 255, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.roi-page-hero-inner {
+  max-width: 750px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.roi-page-hero .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, rgba(0, 210, 255, 0.15), rgba(124, 58, 237, 0.15));
+  border: 1px solid rgba(0, 210, 255, 0.2);
+  color: var(--accent-cyan, #00d2ff);
+}
+
+.roi-page-hero h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+}
+
+.roi-page-hero-subtitle {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-bottom: 2.5rem;
+}
+
+/* ─── Stats Row ─────────────────────────────────────────────────────── */
+
+.roi-page-hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.5rem 2.5rem;
+  border-radius: 16px;
+  background: rgba(12, 12, 18, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 1rem;
+}
+
+.roi-page-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.roi-page-stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--accent-cyan, #00d2ff);
+  font-family: var(--font-primary);
+}
+
+.roi-page-stat-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.roi-page-stat-divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ─── Responsive ────────────────────────────────────────────────────── */
+
+@media (max-width: 600px) {
+  .roi-page-hero-stats {
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.5rem;
+  }
+
+  .roi-page-stat-divider {
+    width: 60px;
+    height: 1px;
+  }
+}

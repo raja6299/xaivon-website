@@ -29,6 +29,7 @@ const AIAutomation = lazy(() => import('./pages/services/AIAutomation'));
 const AIChatbots = lazy(() => import('./pages/services/AIChatbots'));
 const Resources = lazy(() => import('./pages/Resources'));
 const AiConsultation = lazy(() => import('./pages/AiConsultation'));
+const RoiCalculatorPage = lazy(() => import('./pages/RoiCalculatorPage'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
@@ -66,6 +67,7 @@ function App() {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/cookie-policy" element={<CookiePolicy />} />
+            <Route path="/roi-calculator" element={<RoiCalculatorPage />} />
             
             {/* 404 Page — must be last */}
             <Route path="*" element={<NotFound />} />

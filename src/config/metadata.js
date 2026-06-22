@@ -57,4 +57,9 @@ export const pageMetadata = {
     description: 'Your consultation request has been received. Our AI systems are analyzing your needs.',
     image: 'https://xaivon.com/og-image.png',
   },
+  '/roi-calculator': {
+    title: 'AI Automation ROI Calculator — XAIVON',
+    description: 'Calculate how much time and capital XAIVON\'s AI infrastructure can recover for your operations.',
+    image: 'https://xaivon.com/og-image.png',
+  },
 };
