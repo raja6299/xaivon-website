@@ -1,3 +1,5 @@
+import { Helmet } from 'react-helmet-async';
+
 export default function SchemaMarkup({ type, data }) {
   let schema = {};
 
@@ -7,7 +9,7 @@ export default function SchemaMarkup({ type, data }) {
       "@type": "Organization",
       "name": "XAIVON",
       "url": "https://xaivon.com",
-      "logo": "https://xaivon.com/og-image.png",
+      "logo": "https://xaivon.com/logo.png",
       "description": "Premium AI Infrastructure & Logistics Automation Company",
       "contactPoint": {
         "@type": "ContactPoint",
@@ -54,9 +56,10 @@ export default function SchemaMarkup({ type, data }) {
   }
 
   return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
+    <Helmet>
+      <script type="application/ld+json">
+        {JSON.stringify(schema)}
+      </script>
+    </Helmet>
   );
 }

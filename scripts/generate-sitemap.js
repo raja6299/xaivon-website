@@ -47,15 +47,9 @@ ${pages.map(p => `  <url>
   </url>`).join('\n')}
 </urlset>`;
 
-const robots = `# XAIVON Robots.txt
-User-agent: *
+const robots = `User-agent: *
 Allow: /
-
-# Sitemap
 Sitemap: ${BASE_URL}/sitemap.xml
-
-# Disallow admin and API routes
-Disallow: /api/
 `;
 
 const publicDir = resolve(__dirname, '..', 'public');

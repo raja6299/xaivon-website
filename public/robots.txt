@@ -1,9 +1,3 @@
-# XAIVON Robots.txt
 User-agent: *
 Allow: /
-
-# Sitemap
 Sitemap: https://xaivon.com/sitemap.xml
-
-# Disallow admin and API routes
-Disallow: /api/
