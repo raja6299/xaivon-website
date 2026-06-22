@@ -77,7 +77,7 @@ export default function Navbar() {
             closeMenu();
           }}
         >
-          <img src="/xaivon-logo.svg" alt="XAIVON Logo" className="navbar__logo-icon" width="40" height="40" />
+          <img src="/xaivon-logo.svg" alt="XAIVON Logo" className="navbar__logo-icon" width="40" height="40" fetchpriority="high" decoding="async" />
           <span className="navbar__logo-text">XAIVON</span>
         </Link>
 
