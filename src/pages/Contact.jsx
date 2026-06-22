@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import PageMeta from '../components/PageMeta';
-import { PopupButton } from 'react-calendly';
+import { InlineWidget } from 'react-calendly';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { trackEvent } from '../utils/tracking';
 import './Contact.css';
@@ -49,7 +49,6 @@ export default function Contact() {
   const [openFaq, setOpenFaq] = useState(null);
   const [cooldown, setCooldown] = useState(0);
   const [error, setError] = useState('');
-  const [calendlyRef, calendlyVisible] = useScrollReveal({ threshold: 0.1 });
 
   useEffect(() => {
     let timer;
@@ -207,26 +206,27 @@ export default function Contact() {
           )}
         </div>
 
-        {/* Calendly Widget */}
-        <div className="glass-card calendly-card" style={{ padding: '3rem 2rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }} ref={calendlyRef}>
-          <h2 style={{ marginBottom: '1rem' }}>Schedule a Strategy Call</h2>
-          <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', maxWidth: '400px' }}>
-            Choose a time that works for you. We'll discuss your current operations, identify bottlenecks, and build a custom ROI projection.
-          </p>
-          <div className="calendly-trigger-wrapper">
-            {calendlyVisible ? (
-              <PopupButton
-                url="https://calendly.com/raja-xaivon/30min"
-                rootElement={document.getElementById('root')}
-                text="Schedule a Strategy Call"
-                className="btn btn-primary btn-lg"
-                styles={{ width: '100%', maxWidth: '300px' }}
-              />
-            ) : (
-              <button className="btn btn-primary btn-lg" disabled style={{ opacity: 0.7 }}>
-                Loading Scheduler...
-              </button>
-            )}
+        {/* Calendly Inline Embed */}
+        <div className="glass-card calendly-card" id="calendly-embed">
+          <div className="calendly-card-header">
+            <h2>Schedule a Strategy Call</h2>
+            <p>
+              Choose a time that works for you. We'll discuss your current operations, identify bottlenecks, and build a custom ROI projection.
+            </p>
+          </div>
+          <div className="calendly-embed-wrapper">
+            <InlineWidget
+              url="https://calendly.com/raja-xaivon/30min"
+              styles={{ height: '660px', width: '100%', minWidth: '280px' }}
+              pageSettings={{
+                backgroundColor: '0a0a0a',
+                hideEventTypeDetails: false,
+                hideLandingPageDetails: false,
+                primaryColor: '7c3aed',
+                textColor: 'f0f0f0',
+                hideGdprBanner: true,
+              }}
+            />
           </div>
         </div>
       </section>

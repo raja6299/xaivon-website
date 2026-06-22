@@ -7,6 +7,7 @@ const NAV_LINKS = [
   { path: '/services', label: 'Services' },
   { path: '/logistics-solutions', label: 'Logistics Solutions' },
   { path: '/pricing', label: 'Pricing' },
+  { path: '/roi-calculator', label: 'ROI Calculator' },
   { path: '/about', label: 'About' },
   { path: '/contact', label: 'Contact' },
 ];
