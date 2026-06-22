@@ -1,3 +1,11 @@
+export const defaultMetadata = {
+  title: 'XAIVON — Premium AI Infrastructure & Logistics Automation',
+  description: 'Enterprise AI automation, logistics solutions, chatbots & agents. We design AI systems that scale your business without increasing complexity.',
+  url: 'https://xaivon.com',
+  image: 'https://xaivon.com/og-image.png',
+  keywords: 'AI automation, logistics automation, freight AI, dispatch automation, AI infrastructure, XAIVON',
+};
+
 export const pageMetadata = {
   '/': {
     title: 'XAIVON — AI-Powered Business Infrastructure',
