@@ -22,8 +22,8 @@ export default async function handler(req, res) {
 
   if (!success) {
     return res.status(429).json({ 
-      error: 'Too many requests. Please try again later.',
-      remaining 
+      success: false,
+      error: 'You have already submitted the form. Your email is already registered.'
     });
   }
 
