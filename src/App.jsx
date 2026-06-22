@@ -1,6 +1,5 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect, Suspense, lazy, useState } from 'react';
-import ReactGA from 'react-ga4';
+import { Routes, Route } from 'react-router-dom';
+import { Suspense, lazy, useState } from 'react';
 import ScrollToTop from './hooks/ScrollToTop';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -9,9 +8,6 @@ import LoadingScreen from './components/LoadingScreen';
 import StickyCallToAction from './components/StickyCallToAction';
 import ExitIntentPopup from './components/ExitIntentPopup';
 import './App.css';
-
-// Initialize GA4
-ReactGA.initialize('G-FKYVMSFM5B');
 
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
@@ -37,12 +33,6 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const location = useLocation();
-
-  // Track page views on route change
-  useEffect(() => {
-    ReactGA.send({ hitType: 'pageview', page: location.pathname });
-  }, [location]);
 
   return (
     <>
@@ -72,12 +62,13 @@ function App() {
             <Route path="/resources" element={<Resources />} />
             <Route path="/ai-consultation" element={<AiConsultation />} />
             
-            {/* 404 Page */}
-            <Route path="*" element={<NotFound />} />
-            
+            {/* Legal Pages */}
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/cookie-policy" element={<CookiePolicy />} />
+            
+            {/* 404 Page — must be last */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </main>
