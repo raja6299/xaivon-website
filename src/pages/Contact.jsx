@@ -219,11 +219,8 @@ export default function Contact() {
               url="https://calendly.com/raja-xaivon/30min"
               styles={{ height: '660px', width: '100%', minWidth: '280px' }}
               pageSettings={{
-                backgroundColor: '0a0a0a',
                 hideEventTypeDetails: false,
                 hideLandingPageDetails: false,
-                primaryColor: '7c3aed',
-                textColor: 'f0f0f0',
                 hideGdprBanner: true,
               }}
             />
