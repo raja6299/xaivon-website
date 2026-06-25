@@ -5,13 +5,11 @@
 /* --- Section shell ----------------------- */
 .hero {
   position: relative;
-  min-height: 100vh;
-  min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 140px var(--section-px) 5rem;
+  padding: 160px var(--section-px) 120px;
   overflow: hidden;
   background:
     radial-gradient(ellipse at 25% 40%, rgba(59, 130, 246, 0.04) 0%, transparent 50%),
@@ -245,5 +243,18 @@
 
   .hero-cursor {
     opacity: 1;
+  }
+}
+
+/* ============================================
+   Real desktop: restore cinematic full-viewport hero
+   Chrome forced-desktop reports ~980px, so this
+   does NOT trigger on phones.
+   ============================================ */
+@media (min-width: 1024px) {
+  .hero {
+    min-height: 100vh;
+    padding: 140px var(--section-px) 5rem;
+    align-items: center;
   }
 }
