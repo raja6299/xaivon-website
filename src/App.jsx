@@ -7,6 +7,7 @@ import Analytics from './components/Analytics';
 import LoadingScreen from './components/LoadingScreen';
 import StickyCallToAction from './components/StickyCallToAction';
 import ExitIntentPopup from './components/ExitIntentPopup';
+import { ChatEmbed } from './components/ChatEmbed';
 import './App.css';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -77,6 +78,7 @@ function App() {
       <Footer />
       <StickyCallToAction />
       <ExitIntentPopup />
+      <ChatEmbed />
     </>
   );
 }
