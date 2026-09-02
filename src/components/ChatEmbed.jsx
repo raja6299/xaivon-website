@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 // Require the environment variable immediately
 const assistantUrlStr = import.meta.env.VITE_AI_ASSISTANT_URL;

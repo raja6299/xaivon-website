@@ -1,0 +1,170 @@
+.workflow-panel-container {
+  position: relative;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 32px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+
+.workflow-panel-header {
+  position: absolute;
+  top: 24px;
+  left: 32px;
+  z-index: 10;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.workflow-desktop {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1000 / 800;
+  display: block;
+}
+
+.workflow-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.workflow-nodes-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.wf-node {
+  position: absolute;
+  width: 26%;
+  background: #fdfaf7;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255, 255, 255, 1);
+  border: 1px solid #e2d9cf;
+  transition: all 0.4s ease;
+  pointer-events: auto;
+}
+
+.wf-node small {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #8f8578;
+  margin-bottom: 8px;
+}
+
+.wf-node strong {
+  display: block;
+  font-size: 18px;
+  color: #1a1815;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.wf-state {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #7d756a;
+}
+
+.wf-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ccc4ba;
+  transition: all 0.3s ease;
+}
+
+/* Specific Node Positioning (Desktop) */
+.wf-node-1 { top: 42%; left: 5%; }
+.wf-node-2 { top: 12.5%; left: 37%; }
+.wf-node-3 { top: 42%; left: 69%; }
+.wf-node-4 { top: 73.75%; left: 69%; }
+
+/* States */
+.wf-node.idle {
+  opacity: 0.8;
+  transform: scale(0.98);
+}
+.wf-node.idle .wf-dot {
+  background: #ccc4ba;
+}
+
+.wf-node.active {
+  opacity: 1;
+  transform: scale(1.02);
+  border-color: #B35734;
+  box-shadow: 0 16px 48px rgba(179, 87, 52, 0.15), inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+.wf-node.active .wf-state {
+  color: #B35734;
+}
+.wf-node.active .wf-dot {
+  background: #B35734;
+  box-shadow: 0 0 0 4px rgba(179, 87, 52, 0.15);
+}
+
+.wf-node.completed {
+  opacity: 0.9;
+  transform: scale(1);
+}
+.wf-node.completed .wf-state {
+  color: #2d7456;
+}
+.wf-node.completed .wf-dot {
+  background: #2d7456;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .workflow-panel-container {
+    animation: pulseBorder 4s infinite alternate;
+  }
+}
+
+@keyframes pulseBorder {
+  0% { border-color: rgba(255, 255, 255, 0.15); }
+  100% { border-color: rgba(255, 255, 255, 0.4); }
+}
+
+/* Mobile View */
+.workflow-mobile {
+  display: none;
+  padding: 64px 24px 32px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wf-mobile-connector {
+  width: 2px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+  .workflow-desktop { display: none; }
+  .workflow-mobile { display: flex; }
+  .workflow-mobile .wf-node {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    top: auto;
+    left: auto;
+  }
+}

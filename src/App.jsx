@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { Suspense, lazy, useState } from 'react';
 import ScrollToTop from './hooks/ScrollToTop';
-import Navbar from './components/Navbar';
+import PremiumNav from './components/PremiumNav';
 import Footer from './components/Footer';
 import Analytics from './components/Analytics';
 import LoadingScreen from './components/LoadingScreen';
@@ -44,7 +44,7 @@ function App() {
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
       <ScrollToTop />
       <Analytics />
-      <Navbar />
+      <PremiumNav />
       <main className="main-content">
         <Suspense fallback={<div className="loading-spinner"></div>}>
           <Routes>

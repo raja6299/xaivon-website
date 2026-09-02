@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
+import Hero from '../components/Hero';
 import { XAIVON_DATA } from '../data/xaivonData';
 
 export default function Home() {
@@ -51,52 +52,7 @@ export default function Home() {
         url="https://xaivon.com"
       />
       
-      <section className="hero">
-        <div className="container hero-grid">
-          <div className="hero-copy-block reveal in">
-            <div className="eyebrow">AI infrastructure + business automation</div>
-            <h1>Build a business that runs with <span className="text-accent">less manual work.</span></h1>
-            <p>XAIVON designs and deploys AI-powered workflows, agents and integrations around the way your business actually operates?"across teams, systems and industries.</p>
-            <div className="hero-actions">
-              <Link className="btn btn-primary" to="/contact">Book an AI Assessment ↗</Link>
-              <a className="btn btn-secondary" href="#how">See how it works</a>
-            </div>
-            <div className="hero-note">Current execution focus: logistics & freight • broader industry expansion follows validated workflows.</div>
-            <div className="hero-meta">
-              <span className="pill"><i className="pill-dot"></i> Process-led automation</span>
-              <span className="pill">Human checkpoints</span>
-              <span className="pill">Industry-flexible</span>
-            </div>
-          </div>
-          <div className="workflow-visual reveal in">
-            <div className="workflow-board">
-              <div className="workflow-head">
-                <span>XAIVON / SYSTEM VIEW</span>
-                <span className="live"><i className="live-dot"></i> Running demo</span>
-              </div>
-              <div className="workflow-flow">
-                <article className="flow-node">
-                  <small>Input</small><strong>Customer request</strong><span className="state"><i></i> captured</span>
-                </article>
-                <article className="flow-node highlight">
-                  <small>AI step</small><strong>Understand + classify</strong><span className="state"><i></i> validated</span>
-                </article>
-                <article className="flow-node">
-                  <small>Business logic</small><strong>Rules + routing</strong><span className="state"><i></i> controlled</span>
-                </article>
-                <article className="flow-node">
-                  <small>Action</small><strong>CRM + follow-up</strong><span className="state"><i></i> completed</span>
-                </article>
-              </div>
-              <div className="workflow-foot">
-                <span>Show the system, not abstract AI art.</span>
-                <span>01 → 04</span>
-              </div>
-              <div className="packet" aria-hidden="true"></div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Hero />
 
       <section className="proof-strip">
         <div className="container">
