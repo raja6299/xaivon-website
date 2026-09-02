@@ -1,156 +1,134 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import './Navbar.css';
-
-const NAV_LINKS = [
-  { path: '/', label: 'Home' },
-  { path: '/services', label: 'Services' },
-  { path: '/logistics-solutions', label: 'Logistics Solutions' },
-  { path: '/pricing', label: 'Pricing' },
-  { path: '/about', label: 'About' },
-  { path: '/contact', label: 'Contact' },
-];
+import { XAIVON_DATA } from '../data/xaivonData';
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
+  const [openMobileGroup, setOpenMobileGroup] = useState(null);
   const location = useLocation();
 
-  /* ── Scroll detection ── */
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  /* ── Lock body scroll when mobile menu is open ── */
-  useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [menuOpen]);
-
-  /* ── Close mobile menu on route change ── */
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [location.pathname]);
-
-  const toggleMenu = useCallback(() => {
-    setMenuOpen((prev) => !prev);
-  }, []);
-
-  const closeMenu = useCallback(() => {
-    setMenuOpen(false);
-  }, []);
-
-  const isActive = (path) => {
-    if (path === '/') return location.pathname === '/';
-    return location.pathname.startsWith(path);
+  const toggleDropdown = (index, e) => {
+    e.stopPropagation();
+    setOpenDropdown(openDropdown === index ? null : index);
   };
 
+  const closeMenu = () => {
+    setMobileMenuOpen(false);
+    setOpenDropdown(null);
+  };
+
+  useEffect(() => {
+    const handleOutsideClick = () => setOpenDropdown(null);
+    document.addEventListener('click', handleOutsideClick);
+    return () => document.removeEventListener('click', handleOutsideClick);
+  }, []);
+
+  useEffect(() => {
+    closeMenu();
+  }, [location]);
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+    }
+  }, [mobileMenuOpen]);
+
+  const navItems = XAIVON_DATA.navigation.primary;
+
   return (
-    <header
-      className={`navbar ${scrolled ? 'navbar--scrolled' : ''} ${menuOpen ? 'navbar--menu-open' : ''}`}
-      id="main-nav"
-      role="navigation"
-      aria-label="Main navigation"
-    >
-      <div className="navbar__inner">
-        {/* ── Logo ── */}
-        <Link 
-          to="/" 
-          className="navbar__logo" 
-          aria-label="XAIVON Home" 
-          onClick={(e) => {
-            if (location.pathname === '/') {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-            closeMenu();
-          }}
-        >
-          <img src="/xaivon-logo.svg" alt="XAIVON Logo" className="navbar__logo-icon" width="40" height="40" fetchpriority="high" decoding="async" />
-          <span className="navbar__logo-text">XAIVON</span>
+    <header className="site-header">
+      <nav className="navbar container">
+        <Link className="brand" to="/" aria-label="XAIVON home" onClick={closeMenu}>
+          <span className="brand-mark" aria-hidden="true"></span>
+          <span>XAIVON</span>
         </Link>
-
-        {/* ── Desktop Navigation ── */}
-        <nav className="navbar__nav" aria-label="Primary">
-          <ul className="navbar__links">
-            {NAV_LINKS.map((link) => (
-              <li key={link.path} className="navbar__link-item">
-                <Link
-                  to={link.path}
-                  className={`navbar__link ${isActive(link.path) ? 'navbar__link--active' : ''}`}
+        <div className="nav-links">
+          {navItems.map((item, i) => (
+            item.dropdown ? (
+              <div className={`nav-item ${openDropdown === i ? 'is-open' : ''}`} key={i}>
+                <button
+                  className="nav-trigger"
+                  type="button"
+                  aria-expanded={openDropdown === i}
+                  onClick={(e) => toggleDropdown(i, e)}
                 >
-                  {link.label}
-                  <span className="navbar__link-dot" aria-hidden="true" />
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        {/* ── Desktop CTA ── */}
-        <div className="navbar__cta">
-          <Link to="/contact" className="btn btn-primary btn-sm" id="nav-cta">
-            Schedule a Strategy Call
+                  {item.name} <span className="chevron">⌄</span>
+                </button>
+                <div className={`dropdown ${item.dropdown.groups.length > 1 ? 'wide' : ''}`}>
+                  <div className={item.dropdown.groups.length > 1 ? 'dropdown-grid' : ''}>
+                    {item.dropdown.groups.map((group, j) => (
+                      <div className="dropdown-group" key={j}>
+                        {group.label && <div className="dropdown-label">{group.label}</div>}
+                        {group.links.map((link, k) => {
+                          const isHash = link.path.startsWith('#') || link.path.includes('#');
+                          return isHash && !link.path.startsWith('/') ? (
+                            <a href={link.path} key={k} onClick={closeMenu}>{link.name}</a>
+                          ) : (
+                            <Link to={link.path} key={k} onClick={closeMenu}>{link.name}</Link>
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <Link className="nav-link" to={item.path} key={i} onClick={closeMenu}>
+                {item.name}
+              </Link>
+            )
+          ))}
+        </div>
+        <Link className="nav-cta" to="/contact" onClick={closeMenu}>
+          Book an Assessment <span>↗</span>
+        </Link>
+        <button
+          className="mobile-trigger"
+          type="button"
+          aria-expanded={mobileMenuOpen}
+          aria-label="Open mobile navigation"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          ☰
+        </button>
+      </nav>
+      <div className={`mobile-panel ${mobileMenuOpen ? 'open' : ''}`}>
+        {navItems.map((item, i) => (
+          item.dropdown ? (
+            <div className="mobile-group" key={i}>
+              <button
+                className="mobile-group-title"
+                type="button"
+                aria-expanded={openMobileGroup === i}
+                onClick={() => setOpenMobileGroup(openMobileGroup === i ? null : i)}
+              >
+                {item.name} <span>⌄</span>
+              </button>
+              <div className="mobile-group-items" hidden={openMobileGroup !== i}>
+                {item.dropdown.groups.flatMap(g => g.links).map((link, j) => {
+                  const isHash = link.path.startsWith('#') || link.path.includes('#');
+                  return isHash && !link.path.startsWith('/') ? (
+                    <a className="mobile-link" href={link.path} key={j} onClick={closeMenu}>{link.name}</a>
+                  ) : (
+                    <Link className="mobile-link" to={link.path} key={j} onClick={closeMenu}>{link.name}</Link>
+                  );
+                })}
+              </div>
+            </div>
+          ) : (
+            <Link className="mobile-link" to={item.path} key={i} onClick={closeMenu}>
+              {item.name}
+            </Link>
+          )
+        ))}
+        <div className="mobile-group">
+          <Link className="btn btn-primary" style={{ width: '100%' }} to="/contact" onClick={closeMenu}>
+            Book an Assessment ↗
           </Link>
         </div>
-
-        {/* ── Mobile Hamburger ── */}
-        <button
-          className={`navbar__hamburger ${menuOpen ? 'navbar__hamburger--open' : ''}`}
-          onClick={toggleMenu}
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={menuOpen}
-          id="menu-toggle"
-        >
-          <span className="navbar__hamburger-bar" aria-hidden="true" />
-          <span className="navbar__hamburger-bar" aria-hidden="true" />
-          <span className="navbar__hamburger-bar" aria-hidden="true" />
-        </button>
-      </div>
-
-      {/* ── Mobile Overlay ── */}
-      <div
-        className={`navbar__overlay ${menuOpen ? 'navbar__overlay--open' : ''}`}
-        aria-hidden={!menuOpen}
-      >
-        <nav className="navbar__overlay-nav" aria-label="Mobile navigation">
-          <ul className="navbar__overlay-links">
-            {NAV_LINKS.map((link, index) => (
-              <li
-                key={link.path}
-                className={`navbar__overlay-item ${menuOpen ? 'navbar__overlay-item--visible' : ''}`}
-                style={{ transitionDelay: menuOpen ? `${0.08 + index * 0.06}s` : '0s' }}
-              >
-                <Link
-                  to={link.path}
-                  className={`navbar__overlay-link ${isActive(link.path) ? 'navbar__overlay-link--active' : ''}`}
-                  onClick={closeMenu}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div
-            className={`navbar__overlay-cta ${menuOpen ? 'navbar__overlay-cta--visible' : ''}`}
-            style={{ transitionDelay: menuOpen ? `${0.08 + NAV_LINKS.length * 0.06}s` : '0s' }}
-          >
-            <Link to="/contact" className="btn btn-primary" onClick={closeMenu}>
-              Schedule a Strategy Call
-            </Link>
-          </div>
-        </nav>
       </div>
     </header>
   );
