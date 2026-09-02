@@ -4,7 +4,7 @@ export const XAIVON_DATA = {
       { name: 'Home', path: '/' },
       {
         name: 'Solutions',
-        path: '#',
+        path: '/solutions',
         dropdown: {
           groups: [
             {
@@ -32,7 +32,7 @@ export const XAIVON_DATA = {
       },
       {
         name: 'Products',
-        path: '#',
+        path: '/products',
         dropdown: {
           groups: [
             {
@@ -56,7 +56,7 @@ export const XAIVON_DATA = {
       },
       {
         name: 'Industries',
-        path: '#',
+        path: '/industries',
         dropdown: {
           groups: [
             {
@@ -74,7 +74,7 @@ export const XAIVON_DATA = {
       },
       {
         name: 'About',
-        path: '#',
+        path: '/about',
         dropdown: {
           groups: [
             {

@@ -22,6 +22,9 @@ const SeoLandingPage = lazy(() => import('./pages/SeoLandingPage'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const Terms = lazy(() => import('./pages/Terms'));
 const CookiePolicy = lazy(() => import('./pages/CookiePolicy'));
+const Solutions = lazy(() => import('./pages/Solutions'));
+const Products = lazy(() => import('./pages/Products'));
+const Industries = lazy(() => import('./pages/Industries'));
 
 // Dedicated Service Pages
 const QuoteFlowAI = lazy(() => import('./pages/services/QuoteFlowAI'));
@@ -46,6 +49,9 @@ function App() {
         <Suspense fallback={<div className="loading-spinner"></div>}>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/solutions" element={<Solutions />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/industries" element={<Industries />} />
             <Route path="/services" element={<Services />} />
             <Route path="/logistics-solutions" element={<LogisticsSolutions />} />
             <Route path="/about" element={<About />} />

@@ -6,14 +6,31 @@ import { XAIVON_DATA } from '../data/xaivonData';
 export default function Pricing() {
   const [activeCategory, setActiveCategory] = useState(XAIVON_DATA.pricing.categories[0]);
   const [currency, setCurrency] = useState('USD');
+  const [manualCurrency, setManualCurrency] = useState(false);
 
   useEffect(() => {
-    // Simple mock detection for India timezone
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    if (tz && tz.toLowerCase().includes('kolkata')) {
-      setCurrency('INR');
-    }
-  }, []);
+    if (manualCurrency) return;
+
+    fetch('https://ipapi.co/json/')
+      .then(res => res.json())
+      .then(data => {
+        if (!manualCurrency) {
+          if (data.country_code === 'IN' || data.country_name === 'India') {
+            setCurrency('INR');
+          } else {
+            setCurrency('USD');
+          }
+        }
+      })
+      .catch(() => {
+        // Fallback or leave as default
+      });
+  }, [manualCurrency]);
+
+  const handleCurrencyChange = (curr) => {
+    setCurrency(curr);
+    setManualCurrency(true);
+  };
 
   const activeService = XAIVON_DATA.pricing.services.find(s => s.category === activeCategory) || XAIVON_DATA.pricing.services[0];
 
@@ -50,14 +67,14 @@ export default function Pricing() {
             </div>
             <div className="pricing-currency-switch" style={{ display: 'flex', gap: '5px' }}>
               <button 
-                onClick={() => setCurrency('INR')}
+                onClick={() => handleCurrencyChange('INR')}
                 className={`btn btn-sm ${currency === 'INR' ? 'btn-dark' : 'btn-secondary'}`}
                 style={{ minHeight: '34px', padding: '6px 12px' }}
               >
                 ₹ INR
               </button>
               <button 
-                onClick={() => setCurrency('USD')}
+                onClick={() => handleCurrencyChange('USD')}
                 className={`btn btn-sm ${currency === 'USD' ? 'btn-dark' : 'btn-secondary'}`}
                 style={{ minHeight: '34px', padding: '6px 12px' }}
               >
