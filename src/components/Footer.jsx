@@ -1,88 +1,37 @@
-import { Link, useLocation } from 'react-router-dom';
-import './Footer.css';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-  const location = useLocation();
-
+  const year = new Date().getFullYear();
   return (
-    <footer className="footer" id="footer">
+    <footer className="footer">
       <div className="container">
-        {/* Main Footer Content */}
-        <div className="footer-top">
-          {/* Brand Column */}
-          <div className="footer-brand-col">
-            <Link 
-              to="/" 
-              className="footer-logo"
-              onClick={(e) => {
-                if (location.pathname === '/') {
-                  e.preventDefault();
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
-              }}
-            >
-              <img src="/xaivon-logo.svg" alt="XAIVON Logo" className="footer-logo-icon" width="40" height="40" loading="lazy" decoding="async" />
-              <span>XAIVON</span>
-            </Link>
-            <p className="footer-desc">
-              Enterprise AI infrastructure and logistics automation. We build scalable systems that eliminate operational friction and accelerate growth.
-            </p>
-              {/* Socials removed per request until official accounts exist */}
+        <div className="footer-grid">
+          <div>
+            <div className="footer-brand">XAIVON</div>
+            <p>AI automation systems built around real business operations.</p>
           </div>
-
-          {/* Links Columns */}
-          <div className="footer-links-wrapper">
-            <div className="footer-nav-col">
-              <h4 className="footer-heading">Solutions</h4>
-              <ul className="footer-links">
-                <li><Link to="/quoteflow-ai">QuoteFlow AI</Link></li>
-                <li><Link to="/ai-agents">AI Agents</Link></li>
-                <li><Link to="/ai-automation">AI Automation</Link></li>
-                <li><Link to="/ai-chatbots">AI Chatbots</Link></li>
-              </ul>
-            </div>
-
-            <div className="footer-nav-col">
-              <h4 className="footer-heading">Company</h4>
-              <ul className="footer-links">
-                <li><Link to="/about">About Us</Link></li>
-                <li><Link to="/pricing">Pricing</Link></li>
-                <li><Link to="/resources">Resources</Link></li>
-                <li><Link to="/roi-calculator">ROI Calculator</Link></li>
-                <li><Link to="/blog">Blog</Link></li>
-              </ul>
-            </div>
-
-            <div className="footer-nav-col">
-              <h4 className="footer-heading">Contact</h4>
-              <ul className="footer-links">
-                <li><Link to="/contact">Schedule a Call</Link></li>
-                <li><a href="mailto:raja@xaivon.com">raja@xaivon.com</a></li>
-                <li><a href="mailto:partnerships@xaivon.com">partnerships@xaivon.com</a></li>
-              </ul>
-              
-              <div className="footer-trust-badge" style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', marginTop: '1rem', color: 'var(--text-muted)' }}>
-                <span>✓ Enterprise Security Standards</span>
-                <span>✓ Built For Long-Term Growth</span>
-                <span>✓ Response Within 12 Hours</span>
-              </div>
-            </div>
+          <div>
+            <h3>Company</h3>
+            <Link to="/about#who">About</Link>
+            <Link to="/pricing">Pricing</Link>
+            <Link to="/contact">Contact</Link>
+            <Link to="/about#future">Roadmap</Link>
+          </div>
+          <div>
+            <h3>Explore</h3>
+            <Link to="/solutions">Solutions</Link>
+            <Link to="/products">Products</Link>
+            <Link to="/industries">Industries</Link>
+          </div>
+          <div>
+            <h3>Legal</h3>
+            <Link to="/privacy-policy">Privacy</Link>
+            <Link to="/terms">Terms</Link>
           </div>
         </div>
-
-        {/* Footer Bottom */}
         <div className="footer-bottom">
-          <div className="footer-copyright">
-            &copy; {currentYear} XAIVON LLC. All rights reserved.
-          </div>
-          <div className="footer-legal">
-            <Link to="/privacy-policy">Privacy Policy</Link>
-            <span className="footer-separator"></span>
-            <Link to="/terms">Terms & Conditions</Link>
-            <span className="footer-separator"></span>
-            <Link to="/cookie-policy">Cookie Policy</Link>
-          </div>
+          <div>© {year} XAIVON</div>
+          <div>No fabricated evidence</div>
         </div>
       </div>
     </footer>

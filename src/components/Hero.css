@@ -1,66 +1,199 @@
 /* ============================================
-   Hero — Cinematic Enterprise Landing
+   Hero — Cinematic Enterprise Landing (Copper)
+   Multi-layer depth system
    ============================================ */
 
-/* --- Section shell ----------------------- */
 .hero {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 160px var(--section-px) 120px;
+  padding: 120px var(--section-px, 5%) 80px;
   overflow: hidden;
-  background:
-    radial-gradient(ellipse at 25% 40%, rgba(59, 130, 246, 0.04) 0%, transparent 50%),
-    radial-gradient(ellipse at 75% 60%, rgba(212, 175, 55, 0.025) 0%, transparent 50%),
-    var(--bg-primary);
+  background-color: #B35734;
+  color: #fff;
+  min-height: 100vh;
 }
 
-/* --- Gradient orbs removed for cleaner enterprise look --- */
-
-/* --- Grid overlay ------------------------ */
-.hero-grid {
+/* --- Background Layer System --- */
+/* Layer 1: Copper base + tonal variation */
+.hero-background {
   position: absolute;
   inset: 0;
   z-index: 0;
+  background:
+    radial-gradient(ellipse at 75% 15%, #D96C3A 0%, transparent 55%),
+    radial-gradient(ellipse at 25% 85%, #8c3b1e 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 50%, #c25230 0%, transparent 70%),
+    radial-gradient(ellipse at 90% 70%, #7a3018 0%, transparent 40%);
+}
+
+/* Layer 2: Ambient lighting + depth field */
+.hero-background::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 70% 20%, rgba(255, 200, 140, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 70%, rgba(60, 20, 5, 0.3) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 100%, rgba(40, 15, 5, 0.25) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Layer 3: Noise / grain for material depth */
+.hero-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  pointer-events: none;
+}
+
+/* Layer 4: Architectural grid */
+.hero-grid-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.035;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-  background-size: 80px 80px;
-  animation: heroGridReveal 2.5s ease-out;
+    linear-gradient(rgba(255, 255, 255, 1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 1) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
 }
 
-@keyframes heroGridReveal {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+/* Layer 5: Contour / flow lines */
+.hero-contour-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
 }
 
-/* --- Network dots removed --- */
+.hero-contour-layer svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
 
-/* --- Floating particles removed for enterprise cleanliness --- */
-
-/* --- Content wrapper --------------------- */
+/* --- Content wrapper --- */
 .hero-content {
   position: relative;
-  z-index: var(--z-elevated);
-  max-width: 1200px;
+  z-index: 2;
+  max-width: 1300px;
   width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 60px;
+  align-items: center;
 }
 
-/* --- Fade-up entrance animations --------- */
+/* --- Left Column --- */
+.hero-copy-column {
+  max-width: 600px;
+}
+
+.hero-overline {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 24px;
+}
+
+.overline-line {
+  height: 1px;
+  width: 48px;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.hero-headline {
+  font-weight: 800;
+  font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin-bottom: 24px;
+  color: #fff;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+}
+
+.hero-subheadline {
+  font-size: clamp(1.1rem, 1.4vw, 1.25rem);
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.6;
+  margin-bottom: 40px;
+  max-width: 90%;
+}
+
+/* --- CTA row --- */
+.hero-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 28px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.hero-btn-primary {
+  background: #ffffff;
+  color: #171713;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.hero-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+.hero-btn-secondary {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.hero-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.btn-arrow {
+  margin-left: 8px;
+  font-weight: 800;
+}
+
+/* --- Fade-up entrance animations --- */
 .hero-fade {
   opacity: 0;
-  transform: translateY(32px);
-  animation: heroFadeUp 0.9s var(--ease-out) forwards;
+  transform: translateY(24px);
+  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .hero-fade-1 { animation-delay: 0.1s; }
-.hero-fade-2 { animation-delay: 0.25s; }
-.hero-fade-3 { animation-delay: 0.4s; }
-.hero-fade-4 { animation-delay: 0.55s; }
-.hero-fade-5 { animation-delay: 0.7s; }
-.hero-fade-6 { animation-delay: 0.9s; }
+.hero-fade-2 { animation-delay: 0.2s; }
+.hero-fade-3 { animation-delay: 0.3s; }
+.hero-fade-4 { animation-delay: 0.4s; }
+.hero-fade-5 { animation-delay: 0.5s; }
 
 @keyframes heroFadeUp {
   to {
@@ -69,160 +202,43 @@
   }
 }
 
-/* --- Badge ------------------------------- */
-.hero-badge-wrap {
-  margin-bottom: 0.25rem;
-}
-
-/* --- Headline ---------------------------- */
-.hero-headline {
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
-  margin-bottom: 1rem;
-}
-
-.hero-headline-l1 {
-  display: block;
-  white-space: nowrap;
-  font-size: clamp(2.2rem, 4.2vw, 3.8rem);
-}
-
-.hero-headline-l2 {
-  display: block;
-  white-space: nowrap;
-  font-size: clamp(2.2rem, 4.2vw, 3.8rem);
-  margin-top: 0.15em;
-}
-
-.hero-headline-l1a,
-.hero-headline-l1b {
-  display: inline;
-}
-
-/* Typewriter removed */
-
-/* --- Subheadline ------------------------- */
-.hero-subheadline {
-  font-size: clamp(1.1rem, 1.8vw, 1.25rem);
-  color: var(--text-secondary);
-  line-height: 1.85;
-  max-width: 800px;
-  margin: 0 auto 2.5rem;
-}
-
-/* --- CTA row ----------------------------- */
-.hero-cta-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-/* --- Trust indicators row ---------------- */
-.hero-trust {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-  margin-top: 4rem;
-  padding-top: 2.5rem;
-  border-top: 1px solid var(--border-subtle);
-}
-
-.hero-trust-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.3px;
-}
-
-.hero-trust-item svg {
-  color: var(--color-secondary);
-  opacity: 0.7;
-  flex-shrink: 0;
-}
-
 /* ============================================
    Responsive
    ============================================ */
 @media (max-width: 1024px) {
-  .hero-trust {
-    gap: 1.5rem;
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .hero-copy-column {
+    max-width: 100%;
+  }
+  .hero {
+    padding-top: 140px;
+    padding-bottom: 80px;
+    align-items: flex-start;
   }
 }
 
 @media (max-width: 768px) {
   .hero {
-    padding: 100px 20px 3.5rem;
-    min-height: auto;
-    align-items: flex-start;
+    padding: 120px 20px 60px;
   }
-
-  .hero-headline-l1 {
-    white-space: normal;
+  .hero-headline {
+    font-size: clamp(2.4rem, 8vw, 3.2rem);
   }
-
-  .hero-headline-l1a,
-  .hero-headline-l1b,
-  .hero-headline-l2 {
-    display: block;
-    white-space: nowrap;
-    font-size: clamp(1.15rem, 6.2vw, 2.2rem);
-  }
-
-  .hero-headline-l1b {
-    margin-top: 0.1em;
-  }
-
   .hero-subheadline {
-    font-size: 0.98rem;
+    max-width: 100%;
   }
-
-  .hero-trust {
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 3rem;
-    padding-top: 2rem;
-  }
-
-  .hero-trust-item {
-    font-size: 0.78rem;
-  }
-
-  /* Orbs removed */
-}
-
-@media (max-width: 480px) {
-  .hero {
-    padding: 88px 16px 2.5rem;
-    min-height: auto;
-  }
-
   .hero-cta-row {
     flex-direction: column;
     width: 100%;
   }
-
-  .hero-cta-row .btn {
+  .hero-btn {
     width: 100%;
-    justify-content: center;
   }
-
-  .hero-trust {
-    gap: 0.75rem;
-    margin-top: 2.5rem;
-    padding-top: 1.5rem;
-  }
-
-  .hero-trust-item {
-    flex: 0 0 calc(50% - 0.5rem);
-    font-size: 0.75rem;
+  .hero-grid-layer {
+    background-size: 40px 40px;
   }
 }
 
@@ -234,27 +250,5 @@
     opacity: 1;
     transform: none;
     animation: none;
-  }
-
-  .hero-orb,
-  .hero-particle {
-    animation: none;
-  }
-
-  .hero-cursor {
-    opacity: 1;
-  }
-}
-
-/* ============================================
-   Real desktop: restore cinematic full-viewport hero
-   Chrome forced-desktop reports ~980px, so this
-   does NOT trigger on phones.
-   ============================================ */
-@media (min-width: 1024px) {
-  .hero {
-    min-height: 100vh;
-    padding: 140px var(--section-px) 5rem;
-    align-items: center;
   }
 }

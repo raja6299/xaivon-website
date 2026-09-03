@@ -1,0 +1,347 @@
+/* ============================================
+   WorkflowPanel — Premium Animated System Board
+   ============================================ */
+
+.workflow-panel-container {
+  position: relative;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 28px;
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.18),
+    0 8px 24px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  overflow: visible;
+}
+
+/* --- Header --- */
+.workflow-panel-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+}
+
+.wf-header-label {
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.wf-header-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.wf-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.15);
+}
+
+/* --- Footer --- */
+.workflow-panel-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 24px 16px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* --- Desktop Layout --- */
+.workflow-desktop {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1000 / 700;
+  display: block;
+}
+
+.workflow-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* --- Connector path states --- */
+.wf-connector {
+  transition: stroke 0.4s ease, opacity 0.4s ease;
+}
+
+.wf-connector.transmitting {
+  stroke: url(#line-grad-active);
+  stroke-dasharray: 8 4;
+}
+
+.wf-connector.completed {
+  stroke: rgba(74, 222, 128, 0.3);
+  stroke-dasharray: none;
+}
+
+/* --- Signal dot --- */
+.signal-group {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.signal-group.visible {
+  opacity: 1;
+}
+
+/* --- Desktop Nodes Layer --- */
+.workflow-nodes-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* --- Node Base --- */
+.wf-node {
+  background: rgba(253, 250, 247, 0.97);
+  border-radius: 14px;
+  padding: 16px 18px;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  border: 1px solid #e2d9cf;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
+}
+
+/* Desktop node positioning — corrected geometry */
+.workflow-desktop .wf-node {
+  position: absolute;
+  width: 24%;
+}
+
+.wf-node-1 { top: 42%; left: 5%; }
+.wf-node-2 { top: 14%; left: 37%; }
+.wf-node-3 { top: 42%; left: 68%; }
+.wf-node-4 { top: 70%; left: 68%; }
+
+.wf-node small {
+  display: block;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #8f8578;
+  margin-bottom: 6px;
+}
+
+.wf-node strong {
+  display: block;
+  font-size: 15px;
+  color: #1a1815;
+  margin-bottom: 10px;
+  line-height: 1.25;
+}
+
+.wf-state {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 650;
+  color: #7d756a;
+}
+
+.wf-state-text {
+  text-transform: lowercase;
+}
+
+.wf-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ccc4ba;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   Node States
+   ============================================ */
+
+/* Idle */
+.wf-node.idle {
+  opacity: 0.7;
+  transform: scale(0.97);
+  border-color: #e2d9cf;
+}
+
+.wf-node.idle .wf-dot {
+  background: #ccc4ba;
+}
+
+/* Active / Processing */
+.wf-node.active {
+  opacity: 1;
+  transform: scale(1.03);
+  border-color: #B35734;
+  box-shadow:
+    0 12px 36px rgba(179, 87, 52, 0.15),
+    0 4px 12px rgba(179, 87, 52, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.wf-node.active .wf-state {
+  color: #B35734;
+}
+
+.wf-node.active .wf-dot {
+  background: #B35734;
+  box-shadow: 0 0 0 4px rgba(179, 87, 52, 0.12);
+  animation: dotPulse 1s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(179, 87, 52, 0.12); }
+  50% { box-shadow: 0 0 0 6px rgba(179, 87, 52, 0.06); }
+}
+
+/* Completed */
+.wf-node.completed {
+  opacity: 0.85;
+  transform: scale(1);
+  border-color: rgba(45, 116, 86, 0.3);
+}
+
+.wf-node.completed .wf-state {
+  color: #2d7456;
+}
+
+.wf-node.completed .wf-dot {
+  background: #2d7456;
+  box-shadow: none;
+  animation: none;
+}
+
+/* ============================================
+   Mobile View
+   ============================================ */
+.workflow-mobile {
+  display: none;
+  position: relative;
+  padding: 56px 20px 16px;
+}
+
+.workflow-mobile-svg {
+  position: absolute;
+  top: 56px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: calc(100% - 72px);
+  z-index: 0;
+}
+
+.workflow-mobile-nodes {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wf-mobile-spacer {
+  height: 32px;
+}
+
+.wf-mobile-node {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+}
+
+.mobile-signal {
+  opacity: 0;
+}
+
+.mobile-signal.visible {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .workflow-desktop {
+    display: none;
+  }
+
+  .workflow-mobile {
+    display: block;
+  }
+
+  .workflow-panel-container {
+    border-radius: 20px;
+  }
+
+  .wf-node {
+    padding: 14px 16px;
+    border-radius: 12px;
+  }
+
+  .wf-node strong {
+    font-size: 14px;
+  }
+}
+
+/* ============================================
+   Reduced motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .wf-node {
+    transition: none;
+  }
+
+  .wf-connector {
+    transition: none;
+  }
+
+  .signal-group,
+  .mobile-signal {
+    display: none;
+  }
+
+  /* All nodes show completed state statically */
+  .wf-node.idle,
+  .wf-node.active,
+  .wf-node.completed {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .wf-dot {
+    animation: none !important;
+  }
+
+  /* Subtle border pulse instead of signal animation */
+  .workflow-panel-container {
+    animation: subtlePulse 4s ease-in-out infinite alternate;
+  }
+
+  @keyframes subtlePulse {
+    0% { border-color: rgba(255, 255, 255, 0.15); }
+    100% { border-color: rgba(255, 255, 255, 0.35); }
+  }
+}

@@ -1,92 +1,179 @@
-import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
-import { useStaggerAnimation } from '../hooks/useScrollAnimation';
-import './About.css';
 
 export default function About() {
-  const staggerRef = useStaggerAnimation('.scroll-fade-in');
-
   return (
-    <>
+    <div className="about-page">
       <PageMeta 
-        title="About XAIVON — AI Infrastructure Company"
-        description="Learn about XAIVON, the premier enterprise AI automation and logistics solutions provider."
+        title="About XAIVON - AI Infrastructure & Business Automation"
+        description="We build AI systems around the way businesses actually work."
         url="https://xaivon.com/about"
       />
-      <div className="about-page" ref={staggerRef}>
-        {/* Hero */}
-        <section className="about-hero" id="about-hero">
-          <div className="scroll-fade-in">
-            <span className="badge">ABOUT XAIVON</span>
-            <h1 className="text-gradient">Built to Transform Logistics Operations</h1>
-            <p className="about-hero-desc">
-              XAIVON was founded with one mission: make enterprise-grade AI accessible to logistics businesses of every size.
-            </p>
-          </div>
-        </section>
 
-        {/* Our Story */}
-        <section className="about-story" id="about-story">
-          <div className="glass-card about-story-card scroll-fade-in">
-            <h2>Our <span className="text-accent">Story</span></h2>
-            <p>
-              XAIVON was born from a simple observation: freight brokers were spending hours each day on repetitive, manual quoting work — reading emails, looking up rates, typing out responses. Meanwhile, the technology to automate all of this already existed, but it was locked behind enterprise contracts that only the largest 3PLs could afford.
-            </p>
-            <p>
-              We set out to change that. By combining cutting-edge Agentic AI with deep logistics industry knowledge, we built QuoteFlow AI — a system that processes RFQs end-to-end in under 30 seconds. No templates. No copy-pasting. No missed opportunities at 2 AM.
-            </p>
-            <p>
-              Today, XAIVON partners with freight brokerages of all sizes to eliminate operational bottlenecks, reduce response times from hours to seconds, and help brokers focus on what actually grows their business: building relationships and moving freight.
-            </p>
-          </div>
-        </section>
+      <section className="page-hero">
+        <div className="container">
+          <div className="eyebrow">ABOUT XAIVON</div>
+          <h1 style={{ maxWidth: '800px' }}>We build AI systems around the way businesses actually work.</h1>
+          <p>XAIVON helps businesses turn repetitive work, disconnected systems and manual processes into reliable workflows, AI agents and connected business systems.</p>
+        </div>
+      </section>
 
-        {/* Founder */}
-        <section className="about-founder" id="about-founder">
-          <div className="about-founder-inner scroll-fade-in">
-            <div className="founder-avatar" aria-label="Founder photo placeholder">
-              R
-            </div>
-            <div className="founder-info">
-              <h3>Raja</h3>
-              <span className="founder-title">Founder &amp; CEO</span>
-              <p className="founder-bio">
-                Raja is an AI automation specialist who partners with logistics companies to streamline their operations using cutting-edge Agentic AI technology. His mission is to help freight brokers focus on relationships and growth while AI handles the repetitive work.
-              </p>
-            </div>
+      <section className="section" id="who">
+        <div className="container two-col">
+          <div>
+            <div className="eyebrow">What we do</div>
+            <h2>AI infrastructure and business automation.</h2>
           </div>
-        </section>
+          <div>
+            <p className="text-muted" style={{ fontSize: '16px' }}>XAIVON is an AI infrastructure and business automation company. We build the systems behind the work?"workflows, agents, integrations and supporting infrastructure that help teams handle repetitive operational work with less manual effort.</p>
+          </div>
+        </div>
+      </section>
 
-        {/* Mission / Vision / Values */}
-        <section className="about-mvv" id="about-mvv">
-          <div className="about-mvv-header scroll-fade-in">
-            <h2>What <span className="text-gradient-brand">Drives Us</span></h2>
+      <section className="section bg-soft" id="why">
+        <div className="container two-col">
+          <div>
+            <div className="eyebrow">Why we started</div>
+            <h2>Too many systems, too much repetitive work.</h2>
           </div>
-          <div className="about-mvv-grid">
-            <div className="glass-card mvv-card scroll-fade-in delay-1">
-              <span className="mvv-icon" role="img" aria-label="Mission">🎯</span>
-              <h3>Our Mission</h3>
-              <p>
-                To eliminate repetitive manual work in logistics through intelligent AI automation, letting humans focus on what they do best — building relationships and growing business.
-              </p>
-            </div>
-            <div className="glass-card mvv-card scroll-fade-in delay-2">
-              <span className="mvv-icon" role="img" aria-label="Vision">🔭</span>
-              <h3>Our Vision</h3>
-              <p>
-                A world where every freight broker has access to enterprise-grade AI, leveling the playing field between small brokerages and industry giants.
-              </p>
-            </div>
-            <div className="glass-card mvv-card scroll-fade-in delay-3">
-              <span className="mvv-icon" role="img" aria-label="Values">💎</span>
-              <h3>Our Values</h3>
-              <p>
-                Transparency, Results-First, Long-Term Partnership. We measure our success by our clients' ROI, not our revenue.
-              </p>
+          <div>
+            <p className="text-muted" style={{ fontSize: '16px' }}>Most businesses do not have a lack of software. They have too many systems, too much repetitive work, and too many steps that still depend on someone moving information from one place to another.</p>
+            <p className="text-muted" style={{ fontSize: '16px', marginTop: '16px' }}>XAIVON exists to solve that gap.</p>
+            <p className="text-muted" style={{ fontSize: '16px', marginTop: '16px' }}>We look at the way a business actually operates, find where work gets repeated or stuck, and build a system around it.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section" id="how-we-think">
+        <div className="container two-col">
+          <div>
+            <div className="eyebrow">How we think about AI</div>
+            <h2>AI should do useful work.</h2>
+          </div>
+          <div>
+            <p className="text-muted" style={{ fontSize: '16px' }}>We do not believe every business problem needs an AI agent.</p>
+            <p className="text-muted" style={{ fontSize: '16px', marginTop: '16px' }}>Sometimes a simple workflow is enough. Sometimes the right answer is a CRM integration, document processing system, voice agent or a larger automated process.</p>
+            <p className="text-muted" style={{ fontSize: '16px', marginTop: '16px' }}>We choose the simplest system that reliably solves the problem.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section bg-soft" id="how">
+        <div className="container">
+          <div className="section-head">
+            <div>
+              <div className="eyebrow">How we work</div>
+              <h2>From problem to working system</h2>
             </div>
           </div>
-        </section>
-      </div>
-    </>
+          <div className="four-col">
+            <article className="surface card">
+              <h3 style={{ fontSize: '16px', marginBottom: '8px' }}>Understand</h3>
+              <p className="text-muted" style={{ fontSize: '13px' }}>Map the process, the systems involved and the handoffs that create drag.</p>
+            </article>
+            <article className="surface card">
+              <h3 style={{ fontSize: '16px', marginBottom: '8px' }}>Design</h3>
+              <p className="text-muted" style={{ fontSize: '13px' }}>Convert the process into measurable steps and decision points.</p>
+            </article>
+            <article className="surface card">
+              <h3 style={{ fontSize: '16px', marginBottom: '8px' }}>Build</h3>
+              <p className="text-muted" style={{ fontSize: '13px' }}>Connect models, tools, data and business rules into the workflow.</p>
+            </article>
+            <article className="surface card">
+              <h3 style={{ fontSize: '16px', marginBottom: '8px' }}>Test</h3>
+              <p className="text-muted" style={{ fontSize: '13px' }}>Verify edge cases, error handling and system stability.</p>
+            </article>
+            <article className="surface card">
+              <h3 style={{ fontSize: '16px', marginBottom: '8px' }}>Deploy</h3>
+              <p className="text-muted" style={{ fontSize: '13px' }}>Push to production with monitoring and fallback paths.</p>
+            </article>
+            <article className="surface card">
+              <h3 style={{ fontSize: '16px', marginBottom: '8px' }}>Improve</h3>
+              <p className="text-muted" style={{ fontSize: '13px' }}>Track exceptions and optimize based on real-world usage.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="section" id="principles">
+        <div className="container">
+          <div className="section-head">
+            <div>
+              <div className="eyebrow">What makes the approach different</div>
+              <h2>Built on operational principles.</h2>
+            </div>
+          </div>
+          <div className="four-col">
+            <article className="surface card">
+              <h3 style={{ fontSize: '16px', marginBottom: '8px' }}>Build around the real workflow</h3>
+              <p className="text-muted" style={{ fontSize: '13px' }}>Start from the work, not from a favorite AI tool.</p>
+            </article>
+            <article className="surface card">
+              <h3 style={{ fontSize: '16px', marginBottom: '8px' }}>Keep humans in control</h3>
+              <p className="text-muted" style={{ fontSize: '13px' }}>Automation should know when to act and when to hand work back.</p>
+            </article>
+            <article className="surface card">
+              <h3 style={{ fontSize: '16px', marginBottom: '8px' }}>Use what already works</h3>
+              <p className="text-muted" style={{ fontSize: '13px' }}>Integrate with the client's existing systems where possible.</p>
+            </article>
+            <article className="surface card">
+              <h3 style={{ fontSize: '16px', marginBottom: '8px' }}>Be clear about what is real</h3>
+              <p className="text-muted" style={{ fontSize: '13px' }}>No fabricated outcomes, fake customer logos or invented case studies.</p>
+            </article>
+            <article className="surface card">
+              <h3 style={{ fontSize: '16px', marginBottom: '8px' }}>Build for the next stage</h3>
+              <p className="text-muted" style={{ fontSize: '13px' }}>The system should be maintainable and expandable as the business grows.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="section bg-soft" id="founder">
+        <div className="container two-col">
+          <div>
+            <div className="eyebrow">Founder</div>
+            <h2>Built by the people responsible for the work.</h2>
+            <div style={{ marginTop: '24px' }}>
+              <strong>Raja</strong><br/>
+              <span className="text-muted">Founder & CEO, XAIVON</span>
+            </div>
+          </div>
+          <div>
+            <p className="text-muted" style={{ fontSize: '16px' }}>I started XAIVON with a simple view: businesses should not have to keep adding people just to keep up with repetitive work.</p>
+            <p className="text-muted" style={{ fontSize: '16px', marginTop: '16px' }}>As I worked through automation and AI systems, the more important problem became clear: the hard part is not adding another AI tool. It is understanding the workflow, connecting the systems, and making the whole thing reliable.</p>
+            <p className="text-muted" style={{ fontSize: '16px', marginTop: '16px' }}>That is what I want XAIVON to build.</p>
+            <p className="text-muted" style={{ fontSize: '16px', marginTop: '16px' }}>Practical AI systems that fit the business, work with the tools already in place, and become more useful as the company grows.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section" id="future">
+        <div className="container two-col">
+          <div>
+            <div className="eyebrow">Current focus + future</div>
+            <h2>Built for today. Designed to grow.</h2>
+          </div>
+          <div>
+            <p className="text-muted" style={{ fontSize: '16px' }}>XAIVON serves businesses across industries. Logistics & Freight is one of the current areas where XAIVON is actively developing and validating automation workflows.</p>
+            <p className="text-muted" style={{ fontSize: '16px', marginTop: '16px' }}>Future industry-specific SaaS platforms and a unified enterprise AI ecosystem are planned productizations that will be derived from these validated real-world workflows.</p>
+            <div style={{ marginTop: '24px' }}>
+              <Link to="/#proof" className="btn btn-secondary">See the systems we build</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="cta" style={{ margin: '0 10px 52px', borderRadius: '30px' }}>
+        <div className="container">
+          <div className="eyebrow" style={{color: '#ffe3d6'}}>Ready to start?</div>
+          <h2>Find the work your team should stop doing manually.</h2>
+          <div className="hero-actions">
+            <Link className="btn btn-light" to="/contact">Book an AI Assessment ↗</Link>
+            <Link className="btn" style={{background: 'rgba(255,255,255,.1)', borderColor: 'rgba(255,255,255,.35)', color: '#fff'}} to="/solutions">Explore Solutions</Link>
+          </div>
+        </div>
+      </section>
+
+    </div>
   );
 }

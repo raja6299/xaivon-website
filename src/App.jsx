@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { Suspense, lazy, useState } from 'react';
 import ScrollToTop from './hooks/ScrollToTop';
-import Navbar from './components/Navbar';
+import PremiumNav from './components/PremiumNav';
 import Footer from './components/Footer';
 import Analytics from './components/Analytics';
 import LoadingScreen from './components/LoadingScreen';
@@ -22,6 +22,9 @@ const SeoLandingPage = lazy(() => import('./pages/SeoLandingPage'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const Terms = lazy(() => import('./pages/Terms'));
 const CookiePolicy = lazy(() => import('./pages/CookiePolicy'));
+const Solutions = lazy(() => import('./pages/Solutions'));
+const Products = lazy(() => import('./pages/Products'));
+const Industries = lazy(() => import('./pages/Industries'));
 
 // Dedicated Service Pages
 const QuoteFlowAI = lazy(() => import('./pages/services/QuoteFlowAI'));
@@ -41,11 +44,14 @@ function App() {
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
       <ScrollToTop />
       <Analytics />
-      <Navbar />
+      <PremiumNav />
       <main className="main-content">
         <Suspense fallback={<div className="loading-spinner"></div>}>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/solutions" element={<Solutions />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/industries" element={<Industries />} />
             <Route path="/services" element={<Services />} />
             <Route path="/logistics-solutions" element={<LogisticsSolutions />} />
             <Route path="/about" element={<About />} />

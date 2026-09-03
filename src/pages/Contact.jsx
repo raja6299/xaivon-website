@@ -158,7 +158,7 @@ export default function Contact() {
       {/* Two-Column Layout */}
       <section className="contact-columns" id="contact-form-section">
         {/* Contact Form */}
-        <div className="glass-card contact-form-card">
+        <div className="surface card contact-form-card">
           {!submitted ? (
             <>
               <h2>Send Us a Message</h2>
@@ -166,19 +166,19 @@ export default function Contact() {
                 {/* Honeypot Field */}
                 <input type="text" name="website" value={form.website} onChange={handleChange} style={{ display: 'none' }} tabIndex="-1" autoComplete="off" />
                 
-                <div className="form-group">
+                <div className="field">
                   <label htmlFor="contact-name">Full Name</label>
                   <input type="text" id="contact-name" name="name" placeholder="Sarah Smith" value={form.name} onChange={handleChange} required maxLength="50" />
                 </div>
-                <div className="form-group">
+                <div className="field">
                   <label htmlFor="contact-email">Work Email</label>
                   <input type="email" id="contact-email" name="email" placeholder="sarah@apexlogistics.com" value={form.email} onChange={handleChange} required />
                 </div>
-                <div className="form-group">
+                <div className="field">
                   <label htmlFor="contact-company">Company Name</label>
                   <input type="text" id="contact-company" name="company" placeholder="Apex Freight Brokerage" value={form.company} onChange={handleChange} maxLength="50" />
                 </div>
-                <div className="form-group">
+                <div className="field">
                   <label htmlFor="contact-message">Message</label>
                   <textarea id="contact-message" name="message" placeholder="We process 500+ quotes daily and want to automate our rate extraction..." value={form.message} onChange={handleChange} required maxLength="500" />
                 </div>
@@ -207,7 +207,7 @@ export default function Contact() {
         </div>
 
         {/* Calendly Inline Embed */}
-        <div className="glass-card calendly-card" id="calendly-embed">
+        <div className="surface card calendly-card" id="calendly-embed">
           <div className="calendly-card-header">
             <h2>Schedule a Strategy Call</h2>
             <p>
@@ -231,19 +231,19 @@ export default function Contact() {
       {/* Contact Info Cards */}
       <section className="contact-info-section" id="contact-info">
         <div className="contact-info-grid">
-          <div className="glass-card contact-info-card">
+          <div className="surface card contact-info-card">
             <span className="contact-info-icon" role="img" aria-label="Response Time">⏱️</span>
             <p>Response Time &lt; 12 Hours</p>
           </div>
-          <div className="glass-card contact-info-card">
+          <div className="surface card contact-info-card">
             <span className="contact-info-icon" role="img" aria-label="Strategy">📞</span>
             <p>Free Strategy Call</p>
           </div>
-          <div className="glass-card contact-info-card">
+          <div className="surface card contact-info-card">
             <span className="contact-info-icon" role="img" aria-label="Global Support">🌍</span>
             <p>Global Support</p>
           </div>
-          <div className="glass-card contact-info-card">
+          <div className="surface card contact-info-card">
             <span className="contact-info-icon" role="img" aria-label="Security">🔒</span>
             <p>Enterprise-Grade Security</p>
           </div>

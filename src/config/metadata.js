@@ -13,8 +13,23 @@ export const pageMetadata = {
     image: 'https://xaivon.com/og-image.png',
   },
   '/about': {
-    title: 'About XAIVON — AI Infrastructure Company',
-    description: 'Learn how XAIVON builds enterprise-grade AI systems for logistics, dispatch automation, and business operations.',
+    title: 'About XAIVON - AI Infrastructure & Business Automation',
+    description: 'We build AI systems around the way businesses actually work.',
+    image: 'https://xaivon.com/og-image.png',
+  },
+  '/solutions': {
+    title: 'Solutions - XAIVON AI Capabilities',
+    description: 'Explore XAIVON\'s AI workflow automation, lead generation, CRM automation, and AI agents.',
+    image: 'https://xaivon.com/og-image.png',
+  },
+  '/products': {
+    title: 'Products & Roadmap - XAIVON',
+    description: 'Explore XAIVON\'s current AI products and our future roadmap for industry SaaS platforms.',
+    image: 'https://xaivon.com/og-image.png',
+  },
+  '/industries': {
+    title: 'Industries - XAIVON',
+    description: 'XAIVON builds automation for Logistics, Real Estate, Healthcare, Finance, and more.',
     image: 'https://xaivon.com/og-image.png',
   },
   '/services': {
