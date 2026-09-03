@@ -6,15 +6,15 @@ const CASE_STUDIES = [
   {
     id: 'freight-brokerage-capacity',
     category: 'Freight Brokerage Automation',
-    title: 'Scaling Capacity by 300% Without Adding Headcount',
-    description: 'How an emerging 3PL deployed QuoteFlow AI and automated dispatch to handle triple their standard volume without hiring additional back-office staff.',
+    title: 'Scaling Capacity Without Adding Headcount',
+    description: 'How an automation-first approach helps 3PLs handle higher volume without proportional headcount increases.',
     tags: ['QuoteFlow AI', 'TMS Integration', 'Email Parsing']
   },
   {
     id: 'ai-dispatch-optimization',
     category: 'AI Dispatch Optimization',
     title: 'Eliminating After-Hours Check Calls with Voice Agents',
-    description: 'Implementing autonomous AI Voice Dispatchers to handle 24/7 driver check calls, reducing manual dispatch work by over 40 hours per week.',
+    description: 'Implementing autonomous AI Voice Dispatchers to handle driver check calls, significantly reducing manual dispatch work.',
     tags: ['AI Voice Agents', '24/7 Operations', 'Carrier Comms']
   },
   {
@@ -36,7 +36,7 @@ export default function CaseStudiesSection() {
         <div className={`section-header reveal ${isVisible ? 'visible' : ''}`}>
           <span className="badge">
             <span className="badge-dot" />
-            Proven Outcomes
+            Workflow Examples
           </span>
           <h2>
             Infrastructure Built For <span className="text-gradient-premium">Results</span>
@@ -66,8 +66,8 @@ export default function CaseStudiesSection() {
               </div>
               
               <div className="case-study-footer">
-                <Link to={`/blog/${study.id}`} className="case-study-link">
-                  Read Full Case Study
+                <Link to="/contact" className="case-study-link">
+                  Discuss This Approach
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>

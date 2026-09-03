@@ -28,7 +28,7 @@ const beforeAfterData = [
   },
   {
     before: { label: 'Error-Prone', detail: 'Human mistakes cost $15K+ annually in rework' },
-    after: { label: '99.9% Accuracy', detail: 'AI validates, formats, and routes data flawlessly' },
+    after: { label: 'High Accuracy', detail: 'AI validates, formats, and routes data automatically' },
   },
   {
     before: { label: 'Slow Scaling', detail: 'Hiring more staff to handle growing volume' },
@@ -97,7 +97,7 @@ export default function AIAutomation() {
     <div className="ai-automation-page">
       <PageMeta
         title="AI Automation — Intelligent Business Process Automation | XAIVON"
-        description="Eliminate manual data entry and connect siloed systems with custom AI-powered automation workflows. 70% cost reduction guaranteed."
+        description="Eliminate manual data entry and connect siloed systems with custom AI-powered automation workflows."
         url="https://xaivon.com/ai-automation"
       />
 
@@ -124,8 +124,8 @@ export default function AIAutomation() {
             </div>
             <div className="aa-hero-proof">
               <div className="aa-proof-item">
-                <span className="aa-proof-value">70%</span>
-                <span className="aa-proof-label">Cost Reduction</span>
+                <span className="aa-proof-value">Significant</span>
+                <span className="aa-proof-label">Cost Savings</span>
               </div>
               <div className="aa-proof-divider"></div>
               <div className="aa-proof-item">
@@ -134,7 +134,7 @@ export default function AIAutomation() {
               </div>
               <div className="aa-proof-divider"></div>
               <div className="aa-proof-item">
-                <span className="aa-proof-value">99.9%</span>
+                <span className="aa-proof-value">High</span>
                 <span className="aa-proof-label">Accuracy</span>
               </div>
             </div>
@@ -197,7 +197,7 @@ export default function AIAutomation() {
               Our Process
             </span>
             <h2>From Audit to <span className="text-gradient-premium">Automation</span></h2>
-            <p>A proven 3-step framework that eliminates risk and maximizes ROI.</p>
+            <p>A structured 3-step framework designed to reduce risk and improve ROI.</p>
           </div>
 
           <div className="aa-process-timeline">

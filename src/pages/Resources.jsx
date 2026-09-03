@@ -8,28 +8,28 @@ const resourcesData = [
   {
     category: 'Guide',
     title: 'The Ultimate Guide to Logistics Automation in 2026',
-    description: 'A comprehensive technical breakdown of how Top 100 brokerages are using AI to decouple headcount from revenue.',
+    description: 'A comprehensive technical breakdown of how leading brokerages are using AI to decouple headcount from revenue.',
     link: '#',
     readTime: '12 min read'
   },
   {
     category: 'Case Study',
-    title: 'How Acme Freight Reduced Quote Times by 85%',
-    description: 'Learn how a mid-sized brokerage implemented QuoteFlow AI and handled a 3x volume spike without hiring.',
-    link: '#',
+    title: 'How AI Quoting Can Reduce Response Times',
+    description: 'An illustrative example of how AI-assisted quoting helps brokerages handle volume spikes.',
+    link: '/contact',
     readTime: '5 min read'
   },
   {
     category: 'Playbook',
     title: 'Implementing AI Agents in Customer Support',
-    description: 'Step-by-step instructions on deploying LLM-based autonomous agents to handle 80% of Tier 1 support tickets.',
+    description: 'Step-by-step instructions on deploying LLM-based autonomous agents to handle common Tier 1 support tickets.',
     link: '#',
     readTime: '8 min read'
   },
   {
     category: 'Industry Insight',
     title: 'The Hidden Costs of Manual Data Entry in CRMs',
-    description: 'Why your sales team is losing 15 hours a week, and how to build automated pipelines using webhooks and Python.',
+    description: 'Why your sales team is spending significant time on repetitive tasks, and how to build automated pipelines using webhooks and Python.',
     link: '#',
     readTime: '6 min read'
   }

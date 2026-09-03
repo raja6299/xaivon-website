@@ -100,7 +100,7 @@ export default function Blog() {
         <h2>Get Weekly <span className="text-gradient-brand">AI Insights</span></h2>
         <p>Join logistics leaders who get our weekly breakdown of AI automation trends, tips, and case studies.</p>
         {subscribed ? (
-          <p style={{ color: 'var(--accent-platinum)', fontWeight: 600 }}>✓ Thank you! You're subscribed.</p>
+          <p style={{ color: 'var(--accent-platinum)', fontWeight: 600 }}>✓ Thank you for your interest. Newsletter coming soon.</p>
         ) : (
           <form className="newsletter-form" onSubmit={handleSubscribe}>
             <input
@@ -111,7 +111,7 @@ export default function Blog() {
               required
               id="newsletter-email"
             />
-            <button type="submit" className="btn btn-primary">Subscribe</button>
+            <button type="submit" className="btn btn-primary">Notify Me</button>
           </form>
         )}
       </section>

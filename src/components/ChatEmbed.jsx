@@ -1,22 +1,40 @@
 import { useState, useEffect, useRef } from 'react';
 
-// Require the environment variable immediately
-const assistantUrlStr = import.meta.env.VITE_AI_ASSISTANT_URL;
-if (!assistantUrlStr) {
-  throw new Error("Missing required environment variable VITE_AI_ASSISTANT_URL");
-}
+// Safely read the environment variable — never throw at module level
+const assistantUrlStr = (() => {
+  try {
+    const raw = import.meta.env.VITE_AI_ASSISTANT_URL;
+    if (!raw || typeof raw !== 'string') return null;
+    const url = new URL(raw); // validates URL format
+    if (url.protocol !== 'https:' && url.protocol !== 'http:') return null;
+    return raw;
+  } catch {
+    return null;
+  }
+})();
 
-const assistantUrl = new URL(assistantUrlStr);
-// Ensure we use a clean origin and a clean embed URL
-const trustedOrigin = assistantUrl.origin;
-const embedSrc = `${assistantUrlStr.replace(/\/+$/, "")}/embed`;
+const trustedOrigin = (() => {
+  try {
+    return assistantUrlStr ? new URL(assistantUrlStr).origin : null;
+  } catch {
+    return null;
+  }
+})();
+
+const embedSrc = assistantUrlStr
+  ? `${assistantUrlStr.replace(/\/+$/, '')}/embed`
+  : null;
 
 export function ChatEmbed() {
   const [isOpen, setIsOpen] = useState(false);
   const [hasOpened, setHasOpened] = useState(false);
   const iframeRef = useRef(null);
 
-  // Lazy load iframe only after first interaction
+  // If chat is not configured, render nothing — never crash
+  if (!embedSrc || !trustedOrigin) {
+    return null;
+  }
+
   const handleOpen = () => {
     setIsOpen(true);
     if (!hasOpened) setHasOpened(true);
@@ -26,12 +44,12 @@ export function ChatEmbed() {
     setIsOpen(false);
   };
 
-  // Listen for messages from the iframe (e.g., closing the widget)
+  // Listen for messages from the iframe
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     const handleMessage = (event) => {
-      // Security: Only accept messages from the trusted origin derived from the env var
+      // Security: Only accept messages from the trusted origin
       if (event.origin !== trustedOrigin) return;
-
       if (event.data?.type === 'XAIVON_CHAT_CLOSE') {
         setIsOpen(false);
       }
@@ -44,7 +62,7 @@ export function ChatEmbed() {
   return (
     <div style={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: 9999 }}>
       {/* Iframe Container */}
-      <div 
+      <div
         style={{
           position: 'absolute',
           bottom: '80px',
@@ -62,7 +80,7 @@ export function ChatEmbed() {
           transformOrigin: 'bottom right',
           transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
           overflow: 'hidden',
-          display: hasOpened ? 'block' : 'none' // completely hide until first load
+          display: hasOpened ? 'block' : 'none'
         }}
       >
         {hasOpened && (
@@ -97,8 +115,8 @@ export function ChatEmbed() {
           transform: 'scale(1)',
           outline: 'none',
         }}
-        onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-        onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+        onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.05)'; }}
+        onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
       >
         <div style={{ transition: 'transform 0.15s ease', display: 'flex' }}>
           {isOpen ? (

@@ -45,7 +45,7 @@ export default function CookiePolicy() {
             <h2>5. Third Party Cookies</h2>
             <p>In some special cases, we also use cookies provided by trusted third parties. The following section details which third party cookies you might encounter through this site.</p>
             <ul>
-              <li>This site uses Google Analytics and Microsoft Clarity which are some of the most widespread and trusted analytics solutions on the web for helping us to understand how you use the site and ways that we can improve your experience. These cookies may track things such as how long you spend on the site and the pages that you visit so we can continue to produce engaging content.</li>
+              <li>This site uses Google Analytics, one of the most widespread and trusted analytics solutions on the web for helping us to understand how you use the site and ways that we can improve your experience. These cookies may track things such as how long you spend on the site and the pages that you visit so we can continue to produce engaging content.</li>
             </ul>
           </section>
         </div>
