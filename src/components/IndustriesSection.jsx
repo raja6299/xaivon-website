@@ -1,4 +1,4 @@
-import { useStaggerAnimation } from '../hooks/useScrollAnimation';
+﻿import { useStaggerAnimation } from '../hooks/useScrollAnimation';
 import './IndustriesSection.css';
 
 const INDUSTRIES = [
@@ -36,7 +36,7 @@ const INDUSTRIES = [
   },
   {
     title: 'Dispatch Teams',
-    description: 'Deploy AI Voice Agents to handle 24/7 check calls and exception handling without manual intervention.',
+    description: 'Deploy AI Voice Agents to handle always-on check calls and exception handling without manual intervention.',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="10" />
@@ -94,7 +94,7 @@ export default function IndustriesSection() {
             Infrastructure Built For <span className="text-gradient-premium">Complex Operations</span>
           </h2>
           <p>
-            We design high-leverage AI systems tailored to environments where speed, accuracy, and volume are critical to the bottom line.
+            We design high-use AI systems tailored to environments where speed, accuracy, and volume are critical to the bottom line.
           </p>
         </div>
 
@@ -114,3 +114,5 @@ export default function IndustriesSection() {
     </section>
   );
 }
+
+

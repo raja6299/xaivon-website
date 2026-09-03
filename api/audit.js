@@ -1,6 +1,7 @@
 ﻿import { checkRateLimit } from '../src/lib/ratelimit.js';
 import { setCorsHeaders, handleCorsOptions } from './_cors.js';
 import { Resend } from 'resend';
+import crypto from 'crypto';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -75,6 +76,7 @@ export default async function handler(req, res) {
       from: process.env.RESEND_FROM_EMAIL,
       to: process.env.RESEND_CONTACT_EMAIL_TO,
       subject: `New Audit Request from ${cleanName} at ${cleanCompany}`,
+      headers: { 'Idempotency-Key': crypto.createHash('sha256').update(cleanEmail + cleanName).digest('hex') },
       html: `
         <h2>New Automation Audit Request</h2>
         <p><strong>Name:</strong> ${cleanName}</p>

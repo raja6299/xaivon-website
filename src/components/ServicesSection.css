@@ -52,7 +52,7 @@
   opacity: 0.6;
 }
 
-.services-section__card-accent--gold {
+.services-section__card-accent--accent {
   background: linear-gradient(
     90deg,
     transparent 0%,
@@ -68,7 +68,7 @@
   opacity: 1;
 }
 
-.services-section__card:hover .services-section__card-accent--gold {
+.services-section__card:hover .services-section__card-accent--accent {
   opacity: 0.9;
 }
 
@@ -195,7 +195,7 @@
   }
 
   .services-section__card-accent--cyan,
-  .services-section__card-accent--gold {
+  .services-section__card-accent--accent {
     transition: none;
   }
 }

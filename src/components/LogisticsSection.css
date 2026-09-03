@@ -1,5 +1,5 @@
 /* ============================================
-   LogisticsSection — Gold-Themed Premium Grid
+   LogisticsSection — accent-Themed Premium Grid
    ============================================ */
 
 /* Section base */
@@ -27,7 +27,7 @@
 }
 
 /* ============================================
-   Card Design — Gold Luxury Variant
+   Card Design — accent Luxury Variant
    ============================================ */
 .logistics-card {
   position: relative;
@@ -67,7 +67,7 @@
   );
 }
 
-/* Left gold accent border (partial height, animated) */
+/* Left accent accent border (partial height, animated) */
 .logistics-card-border {
   position: absolute;
   top: 50%;
@@ -140,7 +140,7 @@
   z-index: 1;
 }
 
-/* Gold dot icon */
+/* accent dot icon */
 .logistics-card-icon {
   margin-bottom: 1.25rem;
   display: flex;

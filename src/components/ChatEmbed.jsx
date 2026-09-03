@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+﻿import { useState, useEffect, useRef } from 'react';
 
 // Safely read the environment variable — never throw at module level
 const assistantUrlStr = (() => {
@@ -6,7 +6,7 @@ const assistantUrlStr = (() => {
     const raw = import.meta.env.VITE_AI_ASSISTANT_URL;
     if (!raw || typeof raw !== 'string') return null;
     const url = new URL(raw); // validates URL format
-    if (url.protocol !== 'https:' && url.protocol !== 'http:') return null;
+    if (url.protocol !== 'https:' && !(import.meta.env.DEV && url.protocol === 'http:')) return null;
     return raw;
   } catch {
     return null;
@@ -30,6 +30,20 @@ export function ChatEmbed() {
   const [hasOpened, setHasOpened] = useState(false);
   const iframeRef = useRef(null);
 
+  useEffect(() => {
+    if (!embedSrc || !trustedOrigin) return;
+    const handleMessage = (event) => {
+      // Security: Only accept messages from the trusted origin
+      if (event.origin !== trustedOrigin) return;
+      if (event.data?.type === 'XAIVON_CHAT_CLOSE') {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, []);
+
   // If chat is not configured, render nothing — never crash
   if (!embedSrc || !trustedOrigin) {
     return null;
@@ -43,21 +57,6 @@ export function ChatEmbed() {
   const handleClose = () => {
     setIsOpen(false);
   };
-
-  // Listen for messages from the iframe
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffect(() => {
-    const handleMessage = (event) => {
-      // Security: Only accept messages from the trusted origin
-      if (event.origin !== trustedOrigin) return;
-      if (event.data?.type === 'XAIVON_CHAT_CLOSE') {
-        setIsOpen(false);
-      }
-    };
-
-    window.addEventListener('message', handleMessage);
-    return () => window.removeEventListener('message', handleMessage);
-  }, []);
 
   return (
     <div style={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: 9999 }}>
@@ -136,3 +135,4 @@ export function ChatEmbed() {
     </div>
   );
 }
+

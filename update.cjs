@@ -1,0 +1,11 @@
+﻿const fs = require('fs');
+let code = fs.readFileSync('api/contact.js', 'utf-8');
+code = code.replace("import { Resend } from 'resend';", "import { Resend } from 'resend';\nimport crypto from 'crypto';");
+code = code.replace("await checkRateLimit(cleanEmail);", "await checkRateLimit(`${ip}_${cleanEmail}`);");
+code = code.replace("html: `", "headers: { 'Idempotency-Key': crypto.createHash('sha256').update(cleanEmail + cleanMessage).digest('hex') },\n      html: `");
+fs.writeFileSync('api/contact.js', code);
+let audit = fs.readFileSync('api/audit.js', 'utf-8');
+audit = audit.replace("import { Resend } from 'resend';", "import { Resend } from 'resend';\nimport crypto from 'crypto';");
+audit = audit.replace("await checkRateLimit(cleanEmail);", "await checkRateLimit(`${ip}_${cleanEmail}`);");
+audit = audit.replace("html: `", "headers: { 'Idempotency-Key': crypto.createHash('sha256').update(cleanEmail + cleanName).digest('hex') },\n      html: `");
+fs.writeFileSync('api/audit.js', audit);

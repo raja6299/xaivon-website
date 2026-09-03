@@ -180,7 +180,7 @@ export default function Contact() {
                 </div>
                 <div className="field">
                   <label htmlFor="contact-message">Message</label>
-                  <textarea id="contact-message" name="message" placeholder="We process 500+ quotes daily and want to automate our rate extraction..." value={form.message} onChange={handleChange} required maxLength="500" />
+                  <textarea id="contact-message" name="message" placeholder="We process high volume quotes and want to automate our rate extraction..." value={form.message} onChange={handleChange} required maxLength="500" />
                 </div>
                 {error && <div className="form-error" style={{ color: '#ff4d4f', fontSize: '0.9rem', marginBottom: '1rem' }}>{error}</div>}
                 
@@ -281,4 +281,5 @@ export default function Contact() {
     </div>
   );
 }
+
 

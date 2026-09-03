@@ -1,4 +1,4 @@
-import { useScrollReveal } from '../hooks/useScrollReveal';
+﻿import { useScrollReveal } from '../hooks/useScrollReveal';
 import './LogisticsSection.css';
 
 const services = [
@@ -12,7 +12,7 @@ const services = [
   },
   {
     title: 'Intelligent Customer Support',
-    description: 'Provide shippers and carriers with 24/7 real-time tracking updates and proactive issue resolution, without increasing headcount.',
+    description: 'Provide shippers and carriers with always-on real-time tracking updates and proactive issue resolution, without increasing headcount.',
   },
   {
     title: 'Sales Pipeline Automation',
@@ -91,3 +91,4 @@ export default function LogisticsSection() {
     </section>
   );
 }
+

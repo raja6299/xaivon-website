@@ -1,4 +1,4 @@
-import { useScrollReveal } from '../hooks/useScrollReveal';
+﻿import { useScrollReveal } from '../hooks/useScrollReveal';
 import './HowItWorks.css';
 
 const steps = [
@@ -89,7 +89,7 @@ export default function HowItWorks() {
             How We Deliver <span className="text-gradient-premium">Results</span>
           </h2>
           <p>
-            Enterprise software deployments shouldn't be chaotic. We follow a strict 6-step engineering framework to ensure seamless integration.
+            Enterprise software deployments shouldn't be chaotic. We follow a strict 6-step engineering framework to ensure integration.
           </p>
         </div>
 
@@ -133,3 +133,4 @@ export default function HowItWorks() {
     </section>
   );
 }
+

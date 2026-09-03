@@ -15,7 +15,7 @@ const resourcesData = [
     readTime: '12 min read'
   },
   {
-    category: 'Case Study',
+    category: 'Workflow Example',
     title: 'How AI Quoting Can Reduce Response Times',
     description: 'An illustrative example of how AI-assisted quoting helps brokerages handle volume spikes.',
     link: '/contact',
@@ -80,3 +80,4 @@ export default function Resources() {
     </div>
   );
 }
+

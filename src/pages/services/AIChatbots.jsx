@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+﻿import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import AIAudit from '../../components/AIAudit';
@@ -52,7 +52,7 @@ export default function AIChatbots() {
               Omnichannel <span className="text-gradient-premium">AI Assistants</span>
             </h1>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', maxWidth: '700px', margin: '0 auto 2.5rem' }}>
-              Deploy intelligent chatbots and voice agents that provide 24/7 customer support, capture leads, and resolve issues autonomously.
+              Deploy intelligent chatbots and voice agents that provide always-on customer support, capture leads, and resolve issues autonomously.
             </p>
             <Link to="/contact" className="btn btn-primary btn-lg">Schedule a Strategy Call</Link>
           </div>
@@ -65,13 +65,13 @@ export default function AIChatbots() {
             <div ref={problemRef} className={`glass-card reveal-left ${problemVisible ? 'visible' : ''}`}>
               <h3 style={{ color: '#ff4d4f', marginBottom: '1rem' }}>The Problem</h3>
               <p style={{ color: 'var(--text-secondary)' }}>
-                Providing 24/7 customer support requires immense headcount and operational overhead. Missed calls or delayed email responses outside of business hours directly result in lost revenue and dissatisfied customers.
+                Providing always-on customer support requires immense headcount and operational overhead. Missed calls or delayed email responses outside of business hours directly result in lost revenue and dissatisfied customers.
               </p>
             </div>
             <div ref={solutionRef} className={`glass-card reveal-right ${solutionVisible ? 'visible' : ''}`} style={{ borderColor: 'var(--border-accent)' }}>
               <h3 style={{ color: 'var(--color-secondary)', marginBottom: '1rem' }}>The XAIVON Solution</h3>
               <p style={{ color: 'var(--text-secondary)' }}>
-                We deploy AI agents trained exclusively on your knowledge base. They engage customers on your website, via SMS, or over the phone, instantly answering FAQs, capturing leads, and booking appointments 24/7.
+                We deploy AI agents trained exclusively on your knowledge base. They engage customers on your website, via SMS, or over the phone, instantly answering FAQs, capturing leads, and booking appointments always-on.
               </p>
             </div>
           </div>
@@ -114,3 +114,4 @@ export default function AIChatbots() {
     </div>
   );
 }
+

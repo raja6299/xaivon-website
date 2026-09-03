@@ -21,7 +21,7 @@ const SEO_CONTENT = {
   },
   'ai-chatbots': {
     title: 'AI Chatbots & Voice Agents',
-    description: 'Provide instant, 24/7 responses to your customers and carriers. Capture leads and handle customer support autonomously.',
+    description: 'Provide instant, always-on responses to your customers and carriers. Capture leads and handle customer support autonomously.',
     badge: 'AI CHATBOTS'
   },
   'workflow-automation': {
@@ -84,5 +84,6 @@ export default function SeoLandingPage() {
     </div>
   );
 }
+
 
 

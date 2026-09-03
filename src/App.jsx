@@ -1,8 +1,9 @@
-import { Routes, Route } from 'react-router-dom';
+﻿import { Routes, Route } from 'react-router-dom';
 import { Suspense, lazy, useState } from 'react';
 import ScrollToTop from './hooks/ScrollToTop';
 import PremiumNav from './components/PremiumNav';
 import Footer from './components/Footer';
+import CookieConsent from './components/CookieConsent';
 import Analytics from './components/Analytics';
 import LoadingScreen from './components/LoadingScreen';
 import StickyCallToAction from './components/StickyCallToAction';
@@ -76,12 +77,13 @@ function App() {
             <Route path="/cookie-policy" element={<CookiePolicy />} />
             <Route path="/roi-calculator" element={<RoiCalculatorPage />} />
             
-            {/* 404 Page — must be last */}
+            {/* 404 Page â€” must be last */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </main>
       <Footer />
+        <CookieConsent />
       <StickyCallToAction />
       <ExitIntentPopup />
       <ChatEmbed />
@@ -90,3 +92,4 @@ function App() {
 }
 
 export default App;
+

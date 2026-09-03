@@ -37,7 +37,7 @@ const services = [
     ),
   },
   {
-    title: '24/7 Lead Capture & Support',
+    title: 'always-on Lead Capture & Support',
     description:
       'Provide instant responses at any time of day. Our AI Chatbots and Voice Agents handle inbound inquiries, qualify leads, and follow up autonomously.',
     features: [
@@ -54,19 +54,19 @@ const services = [
     ),
   },
   {
-    title: 'Premium Website Development',
-    description:
-      'Your digital infrastructure needs to convert. We build high-performance, SEO-optimized, luxury websites designed to generate and capture high-ticket B2B leads.',
+    title: 'CRM & Data Automation',
+    description: 'Eliminate manual data entry. We build AI agents that parse incoming communications and update your CRM and internal databases continuously.',
     features: [
-      'Conversion Optimization',
-      'Premium UI/UX',
-      'Advanced SEO',
-      'High-Speed Architecture',
+      'Automated Data Extraction',
+      'Real-time CRM Syncing',
+      'Data Validation',
+      'Pipeline Automation',
     ],
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="3" width="18" height="18" rx="2" />
-        <path d="M9 3v18M15 3v18M3 9h18M3 15h18" />
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <ellipse cx="12" cy="5" rx="9" ry="3" />
+        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
       </svg>
     ),
   },
@@ -138,3 +138,6 @@ export default function ServicesSection() {
     </section>
   );
 }
+
+
+

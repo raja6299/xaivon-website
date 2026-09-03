@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import PageMeta from '../../components/PageMeta';
@@ -27,15 +27,15 @@ const beforeAfterData = [
     after: { label: 'Auto-Sync', detail: 'Real-time data flow across your entire tech stack' },
   },
   {
-    before: { label: 'Error-Prone', detail: 'Human mistakes cost $15K+ annually in rework' },
+    before: { label: 'Error-Prone', detail: 'Human mistakes cost significant time in rework' },
     after: { label: 'High Accuracy', detail: 'AI validates, formats, and routes data automatically' },
   },
   {
     before: { label: 'Slow Scaling', detail: 'Hiring more staff to handle growing volume' },
-    after: { label: 'Infinite Scale', detail: 'Process 10x volume without adding headcount' },
+    after: { label: 'Infinite Scale', detail: 'Process increasing volume without adding headcount' },
   },
   {
-    before: { label: 'Siloed Tools', detail: '5-10 disconnected apps with no shared context' },
+    before: { label: 'Siloed Tools', detail: 'Disconnected apps with no shared context' },
     after: { label: 'Unified Ops', detail: 'One intelligent layer connecting all your software' },
   },
 ];
@@ -54,7 +54,7 @@ const processSteps = [
   {
     num: '02',
     title: 'Custom AI Development',
-    desc: 'Our engineers build your automations using Python, LLMs, and enterprise-grade APIs — not drag-and-drop templates.',
+    desc: 'Our engineers build your automations using Python, LLMs, and enterprise-grade APIs â€” not drag-and-drop templates.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" />
@@ -96,14 +96,14 @@ export default function AIAutomation() {
   return (
     <div className="ai-automation-page">
       <PageMeta
-        title="AI Automation — Intelligent Business Process Automation | XAIVON"
+        title="AI Automation â€” Intelligent Business Process Automation | XAIVON"
         description="Eliminate manual data entry and connect siloed systems with custom AI-powered automation workflows."
         url="https://xaivon.com/ai-automation"
       />
 
-      {/* ═══════════════════════════════════════════════════════════
+      {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
           HERO
-      ═══════════════════════════════════════════════════════════ */}
+      â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
       <section className="aa-hero" id="aa-hero">
         <div className="aa-hero-glow"></div>
         <div className="container">
@@ -116,7 +116,7 @@ export default function AIAutomation() {
               Intelligent <span className="text-gradient-premium">AI Automation</span>
             </h1>
             <p className="aa-hero-subtitle">
-              Connect siloed software, eliminate manual data entry, and deploy resilient automated workflows — powered by custom AI, not drag-and-drop templates.
+              Connect siloed software, eliminate manual data entry, and deploy resilient automated workflows â€” powered by custom AI, not drag-and-drop templates.
             </p>
             <div className="aa-hero-actions">
               <Link to="/contact" className="btn btn-primary btn-lg">Schedule a Strategy Call</Link>
@@ -142,9 +142,9 @@ export default function AIAutomation() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════
+      {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
           BEFORE vs AFTER
-      ═══════════════════════════════════════════════════════════ */}
+      â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
       <section className="aa-compare section" id="aa-compare">
         <div className="container">
           <div className={`section-header reveal ${compareVisible ? 'visible' : ''}`} ref={compareRef}>
@@ -186,9 +186,9 @@ export default function AIAutomation() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════
+      {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
           OUR PROCESS
-      ═══════════════════════════════════════════════════════════ */}
+      â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
       <section className="aa-process section" id="aa-process">
         <div className="container">
           <div className={`section-header reveal ${processVisible ? 'visible' : ''}`} ref={processRef}>
@@ -222,9 +222,9 @@ export default function AIAutomation() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════
+      {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
           FAQ
-      ═══════════════════════════════════════════════════════════ */}
+      â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
       <section className="aa-faq section" id="aa-faq">
         <div className="container" style={{ maxWidth: '800px' }}>
           <div className="section-header">
@@ -244,7 +244,7 @@ export default function AIAutomation() {
                   type="button"
                 >
                   <span>{faq.q}</span>
-                  <span className="aa-faq-chevron">▾</span>
+                  <span className="aa-faq-chevron">â–¾</span>
                 </button>
                 <div className="aa-faq-answer-wrap">
                   <div className="aa-faq-answer">
@@ -257,16 +257,16 @@ export default function AIAutomation() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════
+      {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
           BOTTOM CTA
-      ═══════════════════════════════════════════════════════════ */}
+      â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
       <section className="aa-bottom-cta section" id="aa-cta">
         <div className="aa-cta-glow"></div>
         <div className="container">
           <div ref={ctaRef} className={`aa-cta-inner reveal-scale ${ctaVisible ? 'visible' : ''}`}>
             <h2>Ready to Automate Your Operations?</h2>
             <p>
-              Book a free strategy call. We'll audit your workflows, identify the highest-ROI automation opportunities, and build a custom projection — no obligation.
+              Book a free strategy call. We'll audit your workflows, identify the highest-ROI automation opportunities, and build a custom projection â€” no obligation.
             </p>
             <div className="aa-cta-actions">
               <Link to="/contact" className="btn btn-primary btn-lg">
@@ -277,9 +277,9 @@ export default function AIAutomation() {
               </Link>
             </div>
             <div className="aa-cta-trust">
-              <span>✓ Free Strategy Call</span>
-              <span>✓ Custom ROI Projection</span>
-              <span>✓ No Obligation</span>
+              <span>âœ“ Free Strategy Call</span>
+              <span>âœ“ Custom ROI Projection</span>
+              <span>âœ“ No Obligation</span>
             </div>
           </div>
         </div>
@@ -290,3 +290,4 @@ export default function AIAutomation() {
     </div>
   );
 }
+

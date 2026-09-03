@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+﻿import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import './LogisticsSolutions.css';
@@ -6,7 +6,7 @@ import './LogisticsSolutions.css';
 const SOLUTIONS = [
   {
     title: 'Freight Broker Automation',
-    desc: 'Automate the entire freight brokerage workflow — from quote requests to carrier matching, rate negotiation, and load booking.',
+    desc: 'Automate the entire freight brokerage workflow â€” from quote requests to carrier matching, rate negotiation, and load booking.',
     features: ['Quote Processing', 'Carrier Matching', 'Rate Optimization', 'Load Booking'],
   },
   {
@@ -26,7 +26,7 @@ const SOLUTIONS = [
   },
   {
     title: 'Customer Support AI',
-    desc: '24/7 AI agents handling shipper and carrier inquiries, shipment tracking, and issue resolution.',
+    desc: 'always-on AI agents handling shipper and carrier inquiries, shipment tracking, and issue resolution.',
     features: ['Shipment Tracking', 'Claims Processing', 'Rate Inquiries', 'Issue Resolution'],
   },
   {
@@ -58,7 +58,7 @@ const ADVANTAGES = [
   },
   {
     title: 'Rapid Deployment',
-    desc: 'Most solutions deployed within 2–4 weeks. Start seeing operational improvements fast.',
+    desc: 'Most solutions deployed within 2â€“4 weeks. Start seeing operational improvements fast.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
@@ -97,12 +97,12 @@ export default function LogisticsSolutions() {
   const [ctaRef, ctaVisible] = useScrollReveal({ threshold: 0.2 });
 
   useEffect(() => {
-    document.title = 'Logistics & Freight AI Solutions — XAIVON';
+    document.title = 'Logistics & Freight AI Solutions â€” XAIVON';
   }, []);
 
   return (
     <>
-      {/* ── Page Hero ── */}
+      {/* â”€â”€ Page Hero â”€â”€ */}
       <section className="logistics-hero" ref={heroRef}>
         <div className="logistics-hero-orb-1" aria-hidden="true" />
         <div className="logistics-hero-orb-2" aria-hidden="true" />
@@ -130,7 +130,7 @@ export default function LogisticsSolutions() {
         </div>
       </section>
 
-      {/* ── Solutions Grid ── */}
+      {/* â”€â”€ Solutions Grid â”€â”€ */}
       <section className="section" id="solutions" ref={gridRef}>
         <div className="container">
           <div className="section-header">
@@ -165,7 +165,7 @@ export default function LogisticsSolutions() {
         </div>
       </section>
 
-      {/* ── Advantages ── */}
+      {/* â”€â”€ Advantages â”€â”€ */}
       <section className="section-alt" ref={advRef}>
         <div className="container">
           <div className="section-header">
@@ -186,7 +186,7 @@ export default function LogisticsSolutions() {
         </div>
       </section>
 
-      {/* ── CTA ── */}
+      {/* â”€â”€ CTA â”€â”€ */}
       <section className="logistics-cta-section section" ref={ctaRef}>
         <div className={`container logistics-cta-inner ${ctaVisible ? 'visible' : ''}`}>
           <h2>Transform Your Logistics Operations</h2>
@@ -195,10 +195,11 @@ export default function LogisticsSolutions() {
             Book Strategy Call
           </Link>
           <span className="logistics-cta-trust">
-            Free consultation · No obligation · Results-driven approach
+            Free consultation Â· No obligation Â· Results-driven approach
           </span>
         </div>
       </section>
     </>
   );
 }
+

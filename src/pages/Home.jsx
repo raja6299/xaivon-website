@@ -122,7 +122,7 @@ export default function Home() {
             <article className="surface card cap-card reveal in">
               <div className="icon-box">◎</div>
               <h3>AI Agents</h3>
-              <p>Bounded agents with defined tools, rules, and escalation paths — deployed where they create real leverage.</p>
+              <p>Bounded agents with defined tools, rules, and escalation paths — deployed where they create real use.</p>
               <Link className="text-link" to="/solutions#agents">Learn more →</Link>
             </article>
           </div>

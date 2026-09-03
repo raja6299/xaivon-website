@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
+﻿import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import useScrollReveal from '../hooks/useScrollReveal';
 import './Services.css';
 
-/* ── SVG Icon components for each service ── */
+/* â”€â”€ SVG Icon components for each service â”€â”€ */
 function IconAutomation() {
   return (
     <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="svc-icon-svg">
@@ -151,7 +151,7 @@ function CheckIcon() {
   );
 }
 
-/* ── Service Data ── */
+/* â”€â”€ Service Data â”€â”€ */
 const SERVICES = [
   {
     id: 'ai-automation',
@@ -162,7 +162,7 @@ const SERVICES = [
       'Significantly reduce manual work',
       'Eliminate human errors',
       'Scale operations without hiring',
-      '24/7 automated processing',
+      'always-on automated processing',
     ],
     useCases: ['Email automation', 'Data processing', 'Report generation', 'Scheduling'],
     Icon: IconAutomation,
@@ -174,7 +174,7 @@ const SERVICES = [
     overview: 'Deploy AI-powered chatbots that engage visitors, qualify leads, book appointments, and provide instant customer support across all channels.',
     benefits: [
       'Instant response times',
-      '24/7 availability',
+      'always-on availability',
       'Higher conversion rates',
       'Reduced support costs',
     ],
@@ -243,7 +243,7 @@ const SERVICES = [
     title: 'Workflow Automation',
     overview: 'Connect your entire tech stack and create automated multi-step workflows that eliminate manual handoffs and bottlenecks.',
     benefits: [
-      'Seamless integration',
+      'integration',
       'Faster execution',
       'Better visibility',
       'Reduced bottlenecks',
@@ -253,7 +253,7 @@ const SERVICES = [
   },
 ];
 
-/* ── Individual Service Section ── */
+/* â”€â”€ Individual Service Section â”€â”€ */
 function ServiceSection({ service, index }) {
   const [contentRef, contentVisible] = useScrollReveal({ threshold: 0.15 });
   const [visualRef, visualVisible] = useScrollReveal({ threshold: 0.15 });
@@ -335,7 +335,7 @@ function ServiceSection({ service, index }) {
   );
 }
 
-/* ── Main Page Component ── */
+/* â”€â”€ Main Page Component â”€â”€ */
 export default function Services() {
   const [heroRef, heroVisible] = useScrollReveal({ threshold: 0.1 });
   const [ctaRef, ctaVisible] = useScrollReveal({ threshold: 0.2 });
@@ -343,12 +343,12 @@ export default function Services() {
   return (
     <>
       <PageMeta 
-        title="Services — AI Automation, Logistics, Chatbots"
+        title="Services â€” AI Automation, Logistics, Chatbots"
         description="Comprehensive AI solutions to scale your enterprise operations."
         url="https://xaivon.com/services"
       />
       <div className="services-page">
-      {/* ─── Hero ─── */}
+      {/* â”€â”€â”€ Hero â”€â”€â”€ */}
       <section className="svc-hero" id="services-hero">
         <div className="svc-hero__orb svc-hero__orb--1" />
         <div className="svc-hero__orb svc-hero__orb--2" />
@@ -370,12 +370,12 @@ export default function Services() {
         </div>
       </section>
 
-      {/* ─── Service Detail Sections ─── */}
+      {/* â”€â”€â”€ Service Detail Sections â”€â”€â”€ */}
       {SERVICES.map((service, index) => (
         <ServiceSection key={service.id} service={service} index={index} />
       ))}
 
-      {/* ─── Bottom CTA ─── */}
+      {/* â”€â”€â”€ Bottom CTA â”€â”€â”€ */}
       <section className="svc-bottom-cta section-alt" id="services-cta">
         <div className="svc-bottom-cta__orb svc-bottom-cta__orb--1" />
         <div className="svc-bottom-cta__orb svc-bottom-cta__orb--2" />
@@ -401,4 +401,6 @@ export default function Services() {
     </>
   );
 }
+
+
 

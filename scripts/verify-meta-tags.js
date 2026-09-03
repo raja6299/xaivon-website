@@ -64,7 +64,17 @@ if (!fs.existsSync(SITEMAP_PATH)) {
     if (!html.includes('property="og:title"')) error(`Missing og:title for route: ${route}`);
     if (!html.includes('property="og:description"')) error(`Missing og:description for route: ${route}`);
     if (!html.includes(`property="og:url" content="${url}"`)) error(`Missing or incorrect og:url for route: ${route}`);
-    if (!html.includes('property="og:image"')) error(`Missing og:image for route: ${route}`);
+    
+    // Check Image Exists
+    const ogImageMatch = html.match(/property="og:image" content="https:\/\/xaivon\.com\/(.+?)"/);
+    if (!ogImageMatch) {
+      error(`Missing og:image for route: ${route}`);
+    } else {
+      const imgPath = path.join(DIST_DIR, ogImageMatch[1]);
+      if (!fs.existsSync(imgPath)) {
+        error(`OG Image file does not exist: ${imgPath}`);
+      }
+    }
     
     // Twitter
     if (!html.includes('name="twitter:title"')) error(`Missing twitter:title for route: ${route}`);
@@ -82,6 +92,6 @@ if (hasError) {
   console.error('\n💥 SEO verification FAILED. Build should be halted.');
   process.exit(1);
 } else {
-  console.log('✅ All SEO metadata and sitemap verifications passed successfully.');
+  console.log('✅ All SEO metadata, sitemap, and OG images verifications passed successfully.');
   process.exit(0);
 }

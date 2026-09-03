@@ -1,4 +1,4 @@
-import { useScrollReveal } from '../hooks/useScrollReveal';
+﻿import { useScrollReveal } from '../hooks/useScrollReveal';
 import { Link } from 'react-router-dom';
 import './CaseStudiesSection.css';
 
@@ -15,7 +15,7 @@ const CASE_STUDIES = [
     category: 'AI Dispatch Optimization',
     title: 'Eliminating After-Hours Check Calls with Voice Agents',
     description: 'Implementing autonomous AI Voice Dispatchers to handle driver check calls, significantly reducing manual dispatch work.',
-    tags: ['AI Voice Agents', '24/7 Operations', 'Carrier Comms']
+    tags: ['AI Voice Agents', 'always-on Operations', 'Carrier Comms']
   },
   {
     id: 'lead-management-systems',
@@ -84,10 +84,11 @@ export default function CaseStudiesSection() {
             Schedule a Strategy Call
           </Link>
           <p className="trust-indicator" style={{ marginTop: '1rem', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-            ✓ Strategy-First Approach • Built For Long-Term Growth
+            âœ“ Strategy-First Approach â€¢ Built For Long-Term Growth
           </p>
         </div>
       </div>
     </section>
   );
 }
+
