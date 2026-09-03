@@ -16,11 +16,10 @@ export const ratelimit = new Ratelimit({
 });
 
 /**
- * Check rate limit by email (primary) or IP (fallback).
- * Uses email as the identifier so the limit follows the user,
- * not the network — fairer for shared office IPs.
+ * Check rate limit using a composite identifier (IP + email).
+ * Fails closed if Redis is unavailable.
  *
- * @param {string} identifier - The user's email address or IP
+ * @param {string} identifier - Composite key (e.g. IP_email)
  * @returns {{ success: boolean, remaining: number }} 
  */
 export async function checkRateLimit(identifier) {
@@ -29,7 +28,7 @@ export async function checkRateLimit(identifier) {
     return { success, limit, remaining, reset };
   } catch (error) {
     console.error('Rate limit check failed:', error);
-    // Fail-open: allow submission if Redis is down
-    return { success: true, limit: 3, remaining: 3, reset: 0 };
+    // Fail-closed: deny submission if rate-limit infrastructure is unavailable
+    return { success: false, limit: 0, remaining: 0, reset: 0 };
   }
 }

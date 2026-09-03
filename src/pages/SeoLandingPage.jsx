@@ -1,4 +1,4 @@
-﻿import { useParams, Navigate, Link } from 'react-router-dom';
+import { useParams, Navigate, Link } from 'react-router-dom';
 import { useStaggerAnimation } from '../hooks/useScrollAnimation';
 import PricingSection from '../components/PricingSection';
 import AIAudit from '../components/AIAudit';

@@ -4,24 +4,25 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const SRC_DIR = path.resolve(__dirname, '../src');
+const ROOT = path.resolve(__dirname, '..');
+const SRC_DIR = path.resolve(ROOT, 'src');
 
 // ─── Explicit Allowlist ─────────────────────────────────────────────
-// Each entry: { file: partial path match, text: exact matched string, reason: why it's approved }
+// Each entry: { file, text, reason }
+// text must match exactly (case-insensitive). No wildcards.
 const ALLOWLIST = [
-  // ROI Calculator — explicitly an illustrative estimation tool
-  { file: 'ROICalculator', text: '*', reason: 'ROI Calculator is explicitly labelled as illustrative estimation tool' },
-  { file: 'RoiCalculatorPage', text: '*', reason: 'ROI Calculator page is explicitly labelled as illustrative estimation tool' },
-  // Valid capability descriptors
-  { file: 'FAQ.jsx', text: 'enterprise-grade', reason: 'Approved capability descriptor in FAQ answer' },
-  { file: 'WhyXaivon.jsx', text: 'Enterprise-Grade', reason: 'Approved section heading for capability positioning' },
-  { file: 'metadata.js', text: 'enterprise-grade', reason: 'SEO description — approved capability language' },
+  // Capability descriptors — approved business positioning language
+  { file: 'FAQ.jsx', text: 'enterprise-grade', reason: 'FAQ answer — approved capability descriptor' },
+  { file: 'WhyXaivon.jsx', text: 'Enterprise-Grade', reason: 'Section heading — approved capability positioning' },
+  { file: 'metadata.js', text: 'enterprise-grade', reason: 'SEO meta description — approved capability language' },
   { file: 'AIAutomation.jsx', text: 'enterprise-grade', reason: 'Service page capability descriptor' },
-  // Contact page — remaining approved uses
   { file: 'Contact.jsx', text: 'enterprise-grade', reason: 'FAQ answer about security practices' },
   { file: 'Contact.jsx', text: 'Enterprise-Grade', reason: 'Section heading' },
-  // Chatbot descriptions — always-on is a valid product capability
-  { file: 'metadata.js', text: '24/7', reason: 'SEO description for chatbot capability — valid product feature' },
+  // ROI Calculator — specific UI slider boundary labels
+  { file: 'ROICalculator', text: '20%', reason: 'Slider min label' },
+  { file: 'ROICalculator', text: '80%', reason: 'Slider max label' },
+  // Chatbot SEO description — valid product capability
+  { file: 'metadata.js', text: '24/7', reason: 'SEO description for chatbot — valid product capability' },
 ];
 
 const SUSPICIOUS_PATTERNS = [
@@ -38,79 +39,77 @@ const SUSPICIOUS_PATTERNS = [
   /24\/7/g,
   /2-4 weeks/gi,
   /100% private/gi,
-  /100% secure/gi
+  /100% secure/gi,
 ];
 
-// CSS/style numeric values to ignore (e.g., width: 100%, opacity: 50%)
-const CSS_CONTEXT_REGEX = /(?:width|height|opacity|scale|transform|max-width|min-width|flex|border-radius|padding|margin|gap|font-size|line-height|top|left|right|bottom|grid|overflow|vh|vw|calc|rgba?|hsla?)[\s(:]*\d+%/i;
+const CSS_KEYWORDS = /(?:width|height|opacity|scale|transform|max-width|min-width|flex|border-radius|padding|margin|gap|font-size|line-height|top|left|right|bottom|grid|overflow|vh|vw|calc|rgba?|hsla?|translateY|translateX|scaleX|scaleY)\s*[:(]\s*\d/i;
 
 function isAllowlisted(filePath, matchedText) {
   return ALLOWLIST.some(entry => {
     if (!filePath.includes(entry.file)) return false;
-    if (entry.text === '*') return true;
     return matchedText.toLowerCase() === entry.text.toLowerCase();
   });
 }
 
-function isCssContext(content, matchIndex, matchedText) {
-  // Check if the % match is in a CSS/style context
-  const contextStart = Math.max(0, matchIndex - 60);
-  const contextEnd = Math.min(content.length, matchIndex + matchedText.length + 20);
-  const context = content.substring(contextStart, contextEnd);
-  return CSS_CONTEXT_REGEX.test(context);
+function isCssContext(content, idx, text) {
+  const start = Math.max(0, idx - 80);
+  const end = Math.min(content.length, idx + text.length + 20);
+  const ctx = content.substring(start, end);
+  return CSS_KEYWORDS.test(ctx);
 }
 
-function isCommentOrImport(content, matchIndex) {
-  const lineStart = content.lastIndexOf('\n', matchIndex) + 1;
-  const lineContent = content.substring(lineStart, matchIndex).trim();
-  return lineContent.startsWith('//') || lineContent.startsWith('*') || lineContent.startsWith('import ') || lineContent.startsWith('console.');
+function isCommentOrImport(content, idx) {
+  const lineStart = content.lastIndexOf('\n', idx) + 1;
+  const linePrefix = content.substring(lineStart, idx).trim();
+  return linePrefix.startsWith('//') || linePrefix.startsWith('*') || linePrefix.startsWith('import ') || linePrefix.startsWith('console.');
+}
+
+function scanFile(filePath, label) {
+  const content = fs.readFileSync(filePath, 'utf-8');
+  let found = false;
+
+  SUSPICIOUS_PATTERNS.forEach(regex => {
+    regex.lastIndex = 0;
+    let match;
+    while ((match = regex.exec(content)) !== null) {
+      const text = match[0];
+      if (isAllowlisted(label, text)) continue;
+      if (text.match(/\d+%/) && isCssContext(content, match.index, text)) continue;
+      if (isCommentOrImport(content, match.index)) continue;
+
+      const line = content.substring(0, match.index).split('\n').length;
+      console.log(`⚠️  UNAPPROVED: "${text}" in ${label}:${line}`);
+      found = true;
+    }
+  });
+  return found;
 }
 
 function walkDir(dir, callback) {
   fs.readdirSync(dir).forEach(f => {
-    const dirPath = path.join(dir, f);
-    const isDirectory = fs.statSync(dirPath).isDirectory();
-    isDirectory ? walkDir(dirPath, callback) : callback(dirPath);
+    const p = path.join(dir, f);
+    if (fs.statSync(p).isDirectory()) walkDir(p, callback);
+    else callback(p);
   });
 }
 
-let foundClaims = false;
-console.log('🔍 Auditing claims in source code...\n');
+console.log('🔍 Auditing claims in source code and public content...\n');
+let hasFailures = false;
 
-walkDir(SRC_DIR, function(filePath) {
+// Scan src/**/*.{js,jsx}
+walkDir(SRC_DIR, (filePath) => {
   if (!filePath.endsWith('.jsx') && !filePath.endsWith('.js')) return;
-
-  const content = fs.readFileSync(filePath, 'utf-8');
-  const relativePath = filePath.replace(SRC_DIR, '');
-
-  SUSPICIOUS_PATTERNS.forEach(regex => {
-    let match;
-    while ((match = regex.exec(content)) !== null) {
-      const matchedText = match[0];
-
-      // Skip if allowlisted
-      if (isAllowlisted(relativePath, matchedText)) continue;
-
-      // Skip CSS/style percentage values
-      if (matchedText.match(/\d+%/) && isCssContext(content, match.index, matchedText)) continue;
-
-      // Skip comments and imports
-      if (isCommentOrImport(content, match.index)) continue;
-
-      // Skip 100% in literal contexts like "100% free"
-      if (matchedText === '100%') {
-        const after = content.substring(match.index, match.index + 10).toLowerCase();
-        if (after.includes('free')) continue;
-      }
-
-      const lineNumber = content.substring(0, match.index).split('\n').length;
-      console.log(`⚠️  UNAPPROVED: "${matchedText}" in ${relativePath}:${lineNumber}`);
-      foundClaims = true;
-    }
-  });
+  const label = path.relative(ROOT, filePath);
+  if (scanFile(filePath, label)) hasFailures = true;
 });
 
-if (foundClaims) {
+// Scan index.html (public claim source)
+const indexPath = path.resolve(ROOT, 'index.html');
+if (fs.existsSync(indexPath)) {
+  if (scanFile(indexPath, 'index.html')) hasFailures = true;
+}
+
+if (hasFailures) {
   console.error('\n💥 Claim verification FAILED. Unapproved public claims remain.');
   process.exit(1);
 } else {

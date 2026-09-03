@@ -1,4 +1,4 @@
-﻿import { useStaggerAnimation } from '../hooks/useScrollAnimation';
+import { useStaggerAnimation } from '../hooks/useScrollAnimation';
 import './IndustriesSection.css';
 
 const INDUSTRIES = [

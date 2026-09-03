@@ -1,4 +1,4 @@
-﻿import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 // Safely read the environment variable — never throw at module level
 const assistantUrlStr = (() => {

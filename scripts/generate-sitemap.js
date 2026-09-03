@@ -1,4 +1,4 @@
-﻿import fs from 'fs';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { pageMetadata } from '../src/config/metadata.js';
@@ -6,7 +6,7 @@ import { pageMetadata } from '../src/config/metadata.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const SITEMAP_PATH = path.resolve(__dirname, '../public/sitemap.xml');
+const SITEMAP_PATH = path.resolve(__dirname, '../dist/sitemap.xml');
 const BASE_URL = 'https://xaivon.com';
 
 function generateSitemap() {
@@ -32,7 +32,7 @@ function generateSitemap() {
   xml += `</urlset>`;
 
   fs.writeFileSync(SITEMAP_PATH, xml, 'utf-8');
-  console.log('✅ Sitemap successfully generated at public/sitemap.xml');
+  console.log('✅ Sitemap successfully generated at dist/sitemap.xml');
 }
 
 generateSitemap();

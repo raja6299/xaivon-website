@@ -1,4 +1,4 @@
-﻿import { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import PageMeta from '../components/PageMeta';
 import ROICalculator from '../components/ROICalculator';

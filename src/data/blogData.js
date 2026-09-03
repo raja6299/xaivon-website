@@ -1,4 +1,4 @@
-﻿export const BLOG_POSTS = {
+export const BLOG_POSTS = {
   'ai-automation-enterprise-infrastructure': {
     tag: 'AI AUTOMATION',
     title: 'How AI Automation is Rewiring Enterprise Infrastructure',

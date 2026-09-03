@@ -6,11 +6,12 @@ export default function Analytics() {
 
   useEffect(() => {
     if (window.gtag) {
-      window.gtag('config', 'G-FKYVMSFM5B', {
+      window.gtag('event', 'page_view', {
         page_path: location.pathname + location.search,
+        send_to: 'G-FKYVMSFM5B',
       });
     }
-  }, [location]);
+  }, [location.pathname, location.search]);
 
   // Calendly GA4 Tracking Logic
   useEffect(() => {

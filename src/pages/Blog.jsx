@@ -1,4 +1,4 @@
-﻿import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import { useStaggerAnimation } from '../hooks/useScrollAnimation';
 import { BLOG_POSTS } from '../data/blogData';

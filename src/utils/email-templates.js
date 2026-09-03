@@ -1,4 +1,4 @@
-﻿// src/utils/email-templates.js
+// src/utils/email-templates.js
 
 export const contactEmailTemplates = {
   // Email sent to customer (confirmation)

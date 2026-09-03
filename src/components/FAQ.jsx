@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import './FAQ.css';
 

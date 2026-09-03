@@ -1,4 +1,4 @@
-﻿import { useScrollReveal } from '../hooks/useScrollReveal';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 import { Link } from 'react-router-dom';
 
 export default function LeadMagnet() {

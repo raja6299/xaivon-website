@@ -1,4 +1,4 @@
-﻿import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Link, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import PageMeta from '../components/PageMeta';
 import { BLOG_POSTS } from '../data/blogData';

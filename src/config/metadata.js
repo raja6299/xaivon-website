@@ -1,4 +1,4 @@
-﻿import { BLOG_POSTS } from '../data/blogData.js';
+import { BLOG_POSTS } from '../data/blogData.js';
 
 export const defaultMetadata = {
   title: 'XAIVON — Global AI Infrastructure & Business Automation',

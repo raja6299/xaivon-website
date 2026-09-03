@@ -1,4 +1,4 @@
-﻿import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { Suspense, lazy, useState } from 'react';
 import ScrollToTop from './hooks/ScrollToTop';
 import PremiumNav from './components/PremiumNav';

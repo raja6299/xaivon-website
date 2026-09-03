@@ -1,4 +1,4 @@
-﻿export const initTracking = () => {
+export const initTracking = () => {
   // Tracking scripts (GA4) are now strictly handled 
   // directly in index.html and Analytics.jsx.
   // This utility is safely cleared to prevent duplicate script injections.

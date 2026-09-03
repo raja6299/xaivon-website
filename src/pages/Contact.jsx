@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import PageMeta from '../components/PageMeta';
 import { InlineWidget } from 'react-calendly';
 import { useScrollReveal } from '../hooks/useScrollReveal';
