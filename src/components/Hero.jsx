@@ -27,13 +27,13 @@ export default function Hero() {
           </div>
 
           <h1 className="hero-headline hero-fade hero-fade-2">
-            Building The<br/>
-            AI Infrastructure<br/>
-            Behind Modern Logistics.
+            We automate the<br/>
+            operational work your<br/>
+            team shouldn&apos;t do twice.
           </h1>
 
           <p className="hero-subheadline hero-fade hero-fade-3">
-            We design and deploy enterprise-grade AI systems that reduce operational costs, streamline workflows, and scale operations without increasing headcount.
+            XAIVON connects your systems, applies business rules, and handles the repetitive handoffs — so your team works on decisions, not data entry.
           </p>
 
           <div className="hero-cta-row hero-fade hero-fade-4">
@@ -41,7 +41,7 @@ export default function Hero() {
               Book an Assessment <span className="btn-arrow">↗</span>
             </Link>
             <Link to="/solutions" className="hero-btn hero-btn-secondary">
-              Explore solutions
+              See how it works
             </Link>
           </div>
         </div>

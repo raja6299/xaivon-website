@@ -11,7 +11,7 @@ export default function WorkflowPanel() {
         <span className="wf-header-label">XAIVON / SYSTEM VIEW</span>
         <span className="wf-header-status">
           <span className="wf-live-dot"></span>
-          LIVE
+          EXAMPLE
         </span>
       </div>
 
@@ -41,12 +41,7 @@ export default function WorkflowPanel() {
           {/* Background grid */}
           <rect width="1000" height="700" fill="url(#wf-grid)" />
 
-          {/* Connector paths:
-               Node 1 (Input)        → left area, ~y=350
-               Node 2 (AI)           → center-left, ~y=150
-               Node 3 (Rules)        → center-right, ~y=350
-               Node 4 (Action)       → center-right, ~y=560
-          */}
+          {/* Connector paths */}
           <path
             ref={path1Ref}
             className="wf-connector wf-connector-1"
@@ -83,7 +78,7 @@ export default function WorkflowPanel() {
           </g>
         </svg>
 
-        {/* Desktop Nodes (HTML overlay for rich content) */}
+        {/* Desktop Nodes */}
         <div className="workflow-nodes-layer">
           <div className="wf-node wf-node-1 idle" ref={(el) => (nodesRef.current[0] = el)}>
             <small>INPUT</small>
@@ -157,8 +152,8 @@ export default function WorkflowPanel() {
 
       {/* Panel Footer */}
       <div className="workflow-panel-footer">
-        <span>v2.1 — production</span>
-        <span>latency: 12ms</span>
+        <span>Example workflow</span>
+        <span>illustrative</span>
       </div>
     </div>
   );

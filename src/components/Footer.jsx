@@ -8,14 +8,14 @@ export default function Footer() {
         <div className="footer-grid">
           <div>
             <div className="footer-brand">XAIVON</div>
-            <p>AI infrastructure and business automation systems designed around real operational work.</p>
+            <p>AI automation systems built around real business operations.</p>
           </div>
           <div>
             <h3>Company</h3>
             <Link to="/about#who">About</Link>
             <Link to="/pricing">Pricing</Link>
             <Link to="/contact">Contact</Link>
-            <Link to="/about#future">Future</Link>
+            <Link to="/about#future">Roadmap</Link>
           </div>
           <div>
             <h3>Explore</h3>
@@ -31,7 +31,7 @@ export default function Footer() {
         </div>
         <div className="footer-bottom">
           <div>© {year} XAIVON</div>
-          <div>J1 V3 demo • verified evidence only</div>
+          <div>No fabricated evidence</div>
         </div>
       </div>
     </footer>
