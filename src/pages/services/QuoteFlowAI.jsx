@@ -25,7 +25,6 @@ const [heroRef, heroVisible] = useScrollReveal();
   const [solutionRef, solutionVisible] = useScrollReveal({ threshold: 0.1 });
 
   useEffect(() => {
-    document.title = 'QuoteFlow AI — Freight Automation | XAIVON';
   }, []);
 
   return (

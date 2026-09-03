@@ -9,11 +9,14 @@ function getStoredConsent() {
 }
 
 function updateGtagConsent(status) {
-  if (window.gtag) {
-    window.gtag('consent', 'update', {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push([
+    'consent',
+    'update',
+    {
       analytics_storage: status === 'granted' ? 'granted' : 'denied'
-    });
-  }
+    }
+  ]);
 }
 
 // Initialize consent state on first render

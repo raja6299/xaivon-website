@@ -83,7 +83,6 @@ const [heroRef, heroVisible] = useScrollReveal({ threshold: 0.1 });
   const [ctaRef, ctaVisible] = useScrollReveal({ threshold: 0.2 });
 
   useEffect(() => {
-    document.title = 'Logistics & Freight AI Solutions — XAIVON';
   }, []);
 
   return (

@@ -35,10 +35,10 @@ export const contactEmailTemplates = {
   
   // Email sent to admin (internal notification)
   adminNotification: (data) => ({
-    subject: `ðŸ”” New Lead: ${data.name} from ${data.company || 'Unknown'}`,
+    subject: `🔔 New Lead: ${data.name} from ${data.company || 'Unknown'}`,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background: #0a0e27; color: #e4e4e7;">
-        <h2 style="color: #6366f1;">ðŸŽ¯ New Lead Received</h2>
+        <h2 style="color: #6366f1;">🎯 New Lead Received</h2>
         
         <div style="background: #18181b; padding: 20px; border-radius: 8px; border-left: 4px solid #6366f1; margin: 20px 0;">
           <p style="margin: 5px 0;"><strong>Name:</strong> ${data.name}</p>

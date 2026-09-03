@@ -6,7 +6,6 @@ export default function CookiePolicy() {
   const [contentRef, contentVisible] = useScrollReveal({ threshold: 0.05 });
 
   useEffect(() => {
-    document.title = 'Cookie Policy | XAIVON';
   }, []);
 
   return (

@@ -218,7 +218,7 @@ const [form, setForm] = useState({ name: '', email: '', company: '', message: ''
       <section className="contact-info-section" id="contact-info">
         <div className="contact-info-grid">
           <div className="surface card contact-info-card">
-            <span className="contact-info-icon" role="img" aria-label="Response Time">â±ï¸</span>
+            <span className="contact-info-icon" role="img" aria-label="Response Time">⏱️</span>
             <p>Fast Response Time</p>
           </div>
           <div className="surface card contact-info-card">
@@ -226,7 +226,7 @@ const [form, setForm] = useState({ name: '', email: '', company: '', message: ''
             <p>Free Strategy Call</p>
           </div>
           <div className="surface card contact-info-card">
-            <span className="contact-info-icon" role="img" aria-label="Global Support">ðŸŒ</span>
+            <span className="contact-info-icon" role="img" aria-label="Global Support">🌍</span>
             <p>Global Support</p>
           </div>
           <div className="surface card contact-info-card">

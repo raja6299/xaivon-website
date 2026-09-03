@@ -16,7 +16,9 @@ export default function Analytics() {
   // Calendly GA4 Tracking Logic
   useEffect(() => {
     function handleCalendlyMessage(e) {
-      if (e.data.event && e.data.event.indexOf('calendly') === 0) {
+      if (e.origin !== 'https://calendly.com') return;
+
+      if (e.data?.event && e.data.event.indexOf('calendly') === 0) {
         if (e.data.event === 'calendly.event_scheduled') {
           if (window.gtag) {
             window.gtag('event', 'calendly_booking', {
