@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import PageMeta from '../components/PageMeta';
 import { InlineWidget } from 'react-calendly';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -8,7 +8,7 @@ import './Contact.css';
 const faqData = [
   {
     q: 'How long does it take to set up QuoteFlow AI?',
-    a: 'Typically 2–3 weeks from kickoff to going live. This includes integration with your email, TMS, and rate databases. Week 1 is discovery and setup, Week 2 is testing, and Week 3 is go-live with support.',
+    a: 'Typically 2â€“3 weeks from kickoff to going live. This includes integration with your email, TMS, and rate databases. Week 1 is discovery and setup, Week 2 is testing, and Week 3 is go-live with support.',
   },
   {
     q: 'What does it cost?',
@@ -16,7 +16,7 @@ const faqData = [
   },
   {
     q: 'Is my data secure?',
-    a: 'Absolutely. All data is encrypted in transit (TLS 1.3) and at rest (AES-256). We follow enterprise-grade security practices, and never share your data with third parties. Your rate data and client information stays 100% private.',
+    a: 'Absolutely. All data is encrypted in transit (TLS 1.3) and at rest (AES-256). We follow industry standard security practices, and never share your data with third parties. Your rate data and client information is kept secure.',
   },
   {
     q: 'Will it work with my existing TMS?',
@@ -108,12 +108,12 @@ export default function Contact() {
 
       const data = await response.json();
 
-      // ─── Server Error (4xx/5xx) ─────────────────────────────
+      // â”€â”€â”€ Server Error (4xx/5xx) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       if (!response.ok) {
         throw new Error(data.error || 'Failed to send message.');
       }
 
-      // ─── Rate-Limited: show soft WhatsApp notification ──────
+      // â”€â”€â”€ Rate-Limited: show soft WhatsApp notification â”€â”€â”€â”€â”€â”€
       // API returns 200 + rateLimited:true so we handle it
       // gracefully without throwing an error.
       if (data.rateLimited) {
@@ -122,7 +122,7 @@ export default function Contact() {
         return;
       }
 
-      // ─── Success: email delivered → redirect to consultation ─
+      // â”€â”€â”€ Success: email delivered â†’ redirect to consultation â”€
       trackEvent('contact_form_submit', { company: payload.company });
       setCooldown(60);
       
@@ -142,8 +142,8 @@ export default function Contact() {
   return (
     <div className="contact-page">
       <PageMeta 
-        title="Contact XAIVON — Schedule Strategy Call"
-        description="Book a free discovery call or send us a message. We respond within 12 hours."
+        title="Contact XAIVON â€” Schedule Strategy Call"
+        description="Book a free discovery call or send us a message. Our team will review and follow up."
         url="https://xaivon.com/contact"
       />
       {/* Hero */}
@@ -151,7 +151,7 @@ export default function Contact() {
         <span className="badge">GET IN TOUCH</span>
         <h1 className="text-gradient">Let's Talk About Your Operations</h1>
         <p className="contact-hero-desc">
-          Book a free discovery call or send us a message. We respond within 12 hours.
+          Book a free discovery call or send us a message. Our team will review and follow up.
         </p>
       </section>
 
@@ -199,9 +199,9 @@ export default function Contact() {
             </>
           ) : (
             <div className="form-success">
-              <span className="form-success-icon">✅</span>
+              <span className="form-success-icon">âœ…</span>
               <h3>Thank you!</h3>
-              <p>We've received your message and will get back to you within 12 hours.</p>
+              <p>We've received your message and will review and follow up.</p>
             </div>
           )}
         </div>
@@ -232,19 +232,19 @@ export default function Contact() {
       <section className="contact-info-section" id="contact-info">
         <div className="contact-info-grid">
           <div className="surface card contact-info-card">
-            <span className="contact-info-icon" role="img" aria-label="Response Time">⏱️</span>
-            <p>Response Time &lt; 12 Hours</p>
+            <span className="contact-info-icon" role="img" aria-label="Response Time">â±ï¸</span>
+            <p>Fast Response Time</p>
           </div>
           <div className="surface card contact-info-card">
-            <span className="contact-info-icon" role="img" aria-label="Strategy">📞</span>
+            <span className="contact-info-icon" role="img" aria-label="Strategy">ðŸ“ž</span>
             <p>Free Strategy Call</p>
           </div>
           <div className="surface card contact-info-card">
-            <span className="contact-info-icon" role="img" aria-label="Global Support">🌍</span>
+            <span className="contact-info-icon" role="img" aria-label="Global Support">ðŸŒ</span>
             <p>Global Support</p>
           </div>
           <div className="surface card contact-info-card">
-            <span className="contact-info-icon" role="img" aria-label="Security">🔒</span>
+            <span className="contact-info-icon" role="img" aria-label="Security">ðŸ”’</span>
             <p>Enterprise-Grade Security</p>
           </div>
         </div>
@@ -267,7 +267,7 @@ export default function Contact() {
                 type="button"
               >
                 <span>{item.q}</span>
-                <span className="faq-chevron">▾</span>
+                <span className="faq-chevron">â–¾</span>
               </button>
               <div className="faq-answer-wrapper">
                 <div className="faq-answer">
@@ -281,3 +281,4 @@ export default function Contact() {
     </div>
   );
 }
+

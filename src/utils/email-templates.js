@@ -1,4 +1,4 @@
-// src/utils/email-templates.js
+﻿// src/utils/email-templates.js
 
 export const contactEmailTemplates = {
   // Email sent to customer (confirmation)
@@ -14,7 +14,7 @@ export const contactEmailTemplates = {
         <div style="background: #18181b; padding: 20px; border-radius: 8px; border: 1px solid #27272a;">
           <h2 style="color: #f4f4f5; margin-top: 0;">Thank you, ${name}!</h2>
           <p style="color: #d4d4d8; line-height: 1.6;">
-            We've received your message and will review your inquiry within 12 hours.
+            We've received your message and will review your inquiry shortly.
           </p>
           <p style="color: #d4d4d8; line-height: 1.6;">
             In the meantime, you can:
@@ -27,7 +27,7 @@ export const contactEmailTemplates = {
         </div>
         
         <div style="text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #27272a; color: #71717a; font-size: 12px;">
-          <p>© 2025 XAIVON. Enterprise AI Infrastructure.</p>
+          <p>Â© 2025 XAIVON. Enterprise AI Infrastructure.</p>
         </div>
       </div>
     `
@@ -35,10 +35,10 @@ export const contactEmailTemplates = {
   
   // Email sent to admin (internal notification)
   adminNotification: (data) => ({
-    subject: `🔔 New Lead: ${data.name} from ${data.company || 'Unknown'}`,
+    subject: `ðŸ”” New Lead: ${data.name} from ${data.company || 'Unknown'}`,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background: #0a0e27; color: #e4e4e7;">
-        <h2 style="color: #6366f1;">🎯 New Lead Received</h2>
+        <h2 style="color: #6366f1;">ðŸŽ¯ New Lead Received</h2>
         
         <div style="background: #18181b; padding: 20px; border-radius: 8px; border-left: 4px solid #6366f1; margin: 20px 0;">
           <p style="margin: 5px 0;"><strong>Name:</strong> ${data.name}</p>
@@ -53,7 +53,7 @@ ${data.message}
         </div>
         
         <div style="margin-top: 20px; text-align: center;">
-          <a href="https://xaivon.com/dashboard" style="background: #6366f1; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; display: inline-block;">View in Dashboard →</a>
+          <a href="https://xaivon.com/dashboard" style="background: #6366f1; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; display: inline-block;">View in Dashboard â†’</a>
         </div>
       </div>
     `
@@ -66,7 +66,7 @@ ${data.message}
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background: #0a0e27; color: #e4e4e7;">
         <h2 style="color: #6366f1; margin-top: 0;">Assessment Received, ${name}</h2>
         <p style="color: #d4d4d8; line-height: 1.6;">
-          Thank you for submitting your AI Infrastructure Assessment. Our team is analyzing your requirements and will provide a detailed ROI projection within 24 hours.
+          Thank you for submitting your AI Infrastructure Assessment. Our team will review your requirements and follow up with an evaluation.
         </p>
         <p style="color: #a1a1aa; font-size: 12px;">
           If you have urgent questions, schedule a strategy call: <a href="https://calendly.com/raja-xaivon/30min" style="color: #6366f1;">calendly.com/raja-xaivon</a>
@@ -75,3 +75,4 @@ ${data.message}
     `
   })
 };
+

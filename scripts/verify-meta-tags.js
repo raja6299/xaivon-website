@@ -1,4 +1,4 @@
-import fs from 'fs';
+﻿import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { pageMetadata } from '../src/config/metadata.js';
@@ -6,59 +6,82 @@ import { pageMetadata } from '../src/config/metadata.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const DIST_DIR = path.resolve(__dirname, '../dist');
+const SITEMAP_PATH = path.resolve(DIST_DIR, 'sitemap.xml');
 
-function escapeHtml(text) {
-  const map = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#039;'
-  };
-  return text.replace(/[&<>"']/g, (m) => map[m]);
+let hasError = false;
+
+function error(msg) {
+  console.error(`❌ ERROR: ${msg}`);
+  hasError = true;
 }
 
-console.log('🔍 Verifying meta tag injection...\n');
+console.log('🔍 Verifying SEO and Metadata in dist directory...\n');
 
-let allPassed = true;
-
-Object.entries(pageMetadata).forEach(([route, metadata]) => {
-  const routePath = route === '/' ? '' : route;
-  const filePath = path.join(DIST_DIR, routePath, 'index.html');
-
-  if (!fs.existsSync(filePath)) {
-    console.log(`❌ ${route}: File NOT found at ${filePath}`);
-    allPassed = false;
-    return;
-  }
-
-  const html = fs.readFileSync(filePath, 'utf-8');
-
-  const ogTitleMatch = html.match(/<meta\s+property="og:title"\s+content="([^"]*)"/);
-  const ogUrlMatch = html.match(/<meta\s+property="og:url"\s+content="([^"]*)"/);
-  const ogDescMatch = html.match(/<meta\s+property="og:description"\s+content="([^"]*)"/);
-
-  const expectedUrl = `https://xaivon.com${route}`;
-  const expectedTitle = escapeHtml(metadata.title);
-  const expectedDesc = escapeHtml(metadata.description);
-
-  const urlCorrect = ogUrlMatch && ogUrlMatch[1] === expectedUrl;
-  const titleCorrect = ogTitleMatch && ogTitleMatch[1] === expectedTitle;
-  const descCorrect = ogDescMatch && ogDescMatch[1] === expectedDesc;
-
-  const status = (urlCorrect && titleCorrect && descCorrect) ? '✅' : '❌';
-  if (status === '❌') allPassed = false;
-
-  console.log(`${status} ${route}`);
-  if (ogTitleMatch) console.log(`   og:title: ${ogTitleMatch[1].substring(0, 60)}`);
-  if (ogUrlMatch) console.log(`   og:url: ${ogUrlMatch[1]}`);
-  if (!urlCorrect) console.log(`   ⚠️  Expected og:url: ${expectedUrl}`);
-  if (!titleCorrect && ogTitleMatch) console.log(`   ⚠️  Expected og:title: ${expectedTitle}`);
-  console.log('');
-});
-
-if (allPassed) {
-  console.log('✅ All routes verified successfully!');
+if (!fs.existsSync(SITEMAP_PATH)) {
+  error('sitemap.xml is missing in dist folder.');
 } else {
-  console.log('⚠️  Some routes had mismatches — review above.');
+  const sitemap = fs.readFileSync(SITEMAP_PATH, 'utf-8');
+  
+  Object.keys(pageMetadata).forEach(route => {
+    const isNoIndex = pageMetadata[route].noindex;
+    const url = route === '/' ? 'https://xaivon.com/' : `https://xaivon.com${route}`;
+    
+    // Check sitemap inclusion
+    if (isNoIndex && sitemap.includes(`<loc>${url}</loc>`)) {
+      error(`noindex route ${route} is present in sitemap.`);
+    }
+    if (!isNoIndex && !sitemap.includes(`<loc>${url}</loc>`)) {
+      error(`Indexable route ${route} is missing from sitemap.`);
+    }
+
+    // Check HTML file
+    const routePath = route === '/' ? '' : route;
+    const htmlPath = path.join(DIST_DIR, routePath, 'index.html');
+    
+    if (!fs.existsSync(htmlPath)) {
+      error(`Missing HTML file for route: ${route} at ${htmlPath}`);
+      return;
+    }
+
+    const html = fs.readFileSync(htmlPath, 'utf-8');
+
+    // Title
+    if (!html.includes(`<title>${pageMetadata[route].title.replace(/[&<>"']/g, m => ({'&': '&amp;','<': '&lt;','>': '&gt;','"': '&quot;',"'": '&#039;'}[m]))}</title>`)) {
+      error(`Missing or incorrect <title> for route: ${route}`);
+    }
+
+    // Description
+    if (!html.includes('name="description"')) {
+      error(`Missing meta description for route: ${route}`);
+    }
+
+    // Canonical
+    if (!html.includes(`<link rel="canonical" href="${url}" />`)) {
+      error(`Missing or incorrect canonical link for route: ${route}`);
+    }
+
+    // OG Tags
+    if (!html.includes('property="og:title"')) error(`Missing og:title for route: ${route}`);
+    if (!html.includes('property="og:description"')) error(`Missing og:description for route: ${route}`);
+    if (!html.includes(`property="og:url" content="${url}"`)) error(`Missing or incorrect og:url for route: ${route}`);
+    if (!html.includes('property="og:image"')) error(`Missing og:image for route: ${route}`);
+    
+    // Twitter
+    if (!html.includes('name="twitter:title"')) error(`Missing twitter:title for route: ${route}`);
+
+    // Robots / noindex
+    if (isNoIndex) {
+      if (!html.includes('name="robots" content="noindex')) {
+        error(`noindex route ${route} is missing noindex robots tag.`);
+      }
+    }
+  });
+}
+
+if (hasError) {
+  console.error('\n💥 SEO verification FAILED. Build should be halted.');
+  process.exit(1);
+} else {
+  console.log('✅ All SEO metadata and sitemap verifications passed successfully.');
+  process.exit(0);
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { XAIVON_DATA } from '../data/xaivonData';
@@ -84,7 +84,7 @@ export default function PricingSection() {
                 <Link to="/contact" className={`btn ${plan.name === 'Plus' ? 'btn-primary' : 'btn-white'} full-width`}>
                   Schedule a Strategy Call
                 </Link>
-                <p className="trust-indicator">✓ Response Within 12 Hours</p>
+                <p className="trust-indicator">âœ“ We will review and follow up</p>
               </div>
             </article>
           ))}
@@ -93,3 +93,5 @@ export default function PricingSection() {
     </section>
   );
 }
+
+

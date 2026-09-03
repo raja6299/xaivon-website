@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { trackEvent } from '../utils/tracking';
 import './AIAudit.css';
@@ -147,7 +147,7 @@ export default function AIAudit() {
         </div>
 
         <div className="ai-audit-grid">
-          {/* Left Column — Benefits */}
+          {/* Left Column â€” Benefits */}
           <div
             className={`ai-audit-benefits reveal-left ${leftVisible ? 'visible' : ''}`}
             ref={leftRef}
@@ -166,11 +166,11 @@ export default function AIAudit() {
               ))}
             </ul>
             <p className="ai-audit-trust-text">
-              ✦ No obligation. 100% free. Results in 48 hours.
+              âœ¦ No obligation. 100% free. Fast turnaround.
             </p>
           </div>
 
-          {/* Right Column — Form */}
+          {/* Right Column â€” Form */}
           <div
             className={`ai-audit-form-card glass-card reveal-right ${rightVisible ? 'visible' : ''}`}
             ref={rightRef}
@@ -185,7 +185,7 @@ export default function AIAudit() {
                 </div>
                 <h3 className="ai-audit-success-title">Thank You!</h3>
                 <p className="ai-audit-success-msg">
-                  We will contact you within 48 hours.
+                  We will review your request and follow up.
                 </p>
               </div>
             ) : (
@@ -286,9 +286,9 @@ export default function AIAudit() {
                 </button>
 
                 <div className="ai-audit-trust-indicators" style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', color: 'var(--text-muted)', fontSize: '0.85rem', textAlign: 'center' }}>
-                  <span>✓ Secure & Encrypted</span>
-                  <span>✓ Response Within 12 Hours</span>
-                  <span>✓ Built For Long-Term Growth</span>
+                  <span>âœ“ Secure & Encrypted</span>
+                  <span>âœ“ Dedicated Support</span>
+                  <span>âœ“ Built For Long-Term Growth</span>
                   <span style={{ marginTop: '0.5rem', fontSize: '0.75rem' }}>Your information is encrypted and never shared with third parties.</span>
                 </div>
               </form>
@@ -299,3 +299,5 @@ export default function AIAudit() {
     </section>
   );
 }
+
+

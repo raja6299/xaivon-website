@@ -1,4 +1,4 @@
-import { useParams, Navigate, Link } from 'react-router-dom';
+﻿import { useParams, Navigate, Link } from 'react-router-dom';
 import { useStaggerAnimation } from '../hooks/useScrollAnimation';
 import PricingSection from '../components/PricingSection';
 import AIAudit from '../components/AIAudit';
@@ -71,9 +71,9 @@ export default function SeoLandingPage() {
             </Link>
           </div>
           <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1.5rem', justifyContent: 'center', color: 'var(--text-muted)', fontSize: '0.85rem', flexWrap: 'wrap' }}>
-            <span>✓ Secure & Encrypted</span>
-            <span>✓ Response Within 12 Hours</span>
-            <span>✓ Built For Long-Term Growth</span>
+            <span>âœ“ Secure & Encrypted</span>
+            <span>âœ“ Dedicated Support</span>
+            <span>âœ“ Built For Long-Term Growth</span>
           </div>
         </div>
       </section>
@@ -84,3 +84,5 @@ export default function SeoLandingPage() {
     </div>
   );
 }
+
+
