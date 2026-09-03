@@ -1,12 +1,8 @@
-import { useEffect } from 'react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import './LegalPage.css';
 
 export default function CookiePolicy() {
   const [contentRef, contentVisible] = useScrollReveal({ threshold: 0.05 });
-
-  useEffect(() => {
-  }, []);
 
   return (
     <div className="legal-page">

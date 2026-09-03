@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import AIAudit from '../../components/AIAudit';
@@ -23,9 +22,6 @@ export default function QuoteFlowAI() {
 const [heroRef, heroVisible] = useScrollReveal();
   const [problemRef, problemVisible] = useScrollReveal({ threshold: 0.1 });
   const [solutionRef, solutionVisible] = useScrollReveal({ threshold: 0.1 });
-
-  useEffect(() => {
-  }, []);
 
   return (
     <div className="service-page">

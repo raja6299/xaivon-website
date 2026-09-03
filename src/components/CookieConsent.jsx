@@ -10,13 +10,10 @@ function getStoredConsent() {
 
 function updateGtagConsent(status) {
   window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push([
-    'consent',
-    'update',
-    {
-      analytics_storage: status === 'granted' ? 'granted' : 'denied'
-    }
-  ]);
+  function gtag(){window.dataLayer.push(arguments);}
+  gtag('consent', 'update', {
+    analytics_storage: status === 'granted' ? 'granted' : 'denied'
+  });
 }
 
 // Initialize consent state on first render
