@@ -1,4 +1,4 @@
-﻿import fs from 'fs';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { pageMetadata } from '../src/config/metadata.js';
@@ -22,7 +22,7 @@ function escapeHtml(text) {
 }
 
 function generateMetaTags(route, metadata) {
-  const ogUrl = `https://xaivon.com${route}`;
+  const ogUrl = route === '/' ? 'https://xaivon.com/' : `https://xaivon.com${route}`;
   const ogTitle = escapeHtml(metadata.title);
   const ogDescription = escapeHtml(metadata.description);
   const ogImage = metadata.image;

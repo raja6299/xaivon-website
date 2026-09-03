@@ -1,4 +1,4 @@
-﻿import { checkRateLimit } from '../src/lib/ratelimit.js';
+import { checkRateLimit } from '../src/lib/ratelimit.js';
 import { setCorsHeaders, handleCorsOptions } from './_cors.js';
 import { Resend } from 'resend';
 import crypto from 'crypto';
@@ -36,24 +36,24 @@ export default async function handler(req, res) {
   }
 
   try {
-    const data = req.body;
+    const body = req.body;
 
-    if (data.website) {
+    if (body.website) {
       return res.status(400).json({ error: 'Invalid request' });
     }
 
-    if (!data.name || !data.email || !data.company || !data.industry || !data.challenge) {
+    if (!body.name || !body.email || !body.company || !body.industry || !body.challenge) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
-    const cleanName = escapeHtml(data.name.trim());
-    const cleanEmail = escapeHtml(data.email.trim());
-    const cleanCompany = escapeHtml(data.company.trim());
-    const cleanIndustry = escapeHtml(data.industry.trim());
-    const cleanChallenge = escapeHtml(data.challenge.trim());
+    const cleanName = escapeHtml(body.name.trim());
+    const cleanEmail = escapeHtml(body.email.trim());
+    const cleanCompany = escapeHtml(body.company.trim());
+    const cleanIndustry = escapeHtml(body.industry.trim());
+    const cleanChallenge = escapeHtml(body.challenge.trim());
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(data.email.trim())) {
+    if (!emailRegex.test(body.email.trim())) {
       return res.status(400).json({ error: 'Invalid email format' });
     }
 
@@ -72,11 +72,12 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'Server configuration error' });
     }
 
+    const idempotencyKey = crypto.createHash('sha256').update(cleanEmail + cleanChallenge).digest('hex');
+
     const { error } = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL,
       to: process.env.RESEND_CONTACT_EMAIL_TO,
       subject: `New Audit Request from ${cleanName} at ${cleanCompany}`,
-      headers: { 'Idempotency-Key': crypto.createHash('sha256').update(cleanEmail + cleanName).digest('hex') },
       html: `
         <h2>New Automation Audit Request</h2>
         <p><strong>Name:</strong> ${cleanName}</p>
@@ -87,7 +88,7 @@ export default async function handler(req, res) {
         <p>${cleanChallenge.replace(/\n/g, '<br>')}</p>
         <p><small>Submitted from IP: ${escapeHtml(ip)}</small></p>
       `,
-    });
+    }, { idempotencyKey });
 
     if (error) {
       console.error('Resend API Error:', error);

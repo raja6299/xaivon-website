@@ -8,7 +8,7 @@ const redis = new Redis({
 });
 
 // ─── Sliding Window Rate Limiter ────────────────────────────────────
-// Agency-grade: 3 submissions per email within a 6-hour sliding window.
+// 3 submissions per identifier within a 6-hour sliding window.
 // This prevents spam while allowing genuine follow-up messages.
 export const ratelimit = new Ratelimit({
   redis,

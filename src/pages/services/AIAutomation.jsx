@@ -79,21 +79,7 @@ export default function AIAutomation() {
   const [processRef, processVisible] = useScrollReveal({ threshold: 0.1 });
   const [ctaRef, ctaVisible] = useScrollReveal({ threshold: 0.1 });
   const [faqOpenIndex, setFaqOpenIndex] = useState(null);
-
-  useEffect(() => {
-    let link = document.querySelector("link[rel='canonical']");
-    if (!link) {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      document.head.appendChild(link);
-    }
-    link.setAttribute('href', 'https://xaivon.com/ai-automation');
-    return () => {
-      if (link && link.parentNode) link.parentNode.removeChild(link);
-    };
-  }, []);
-
-  return (
+return (
     <div className="ai-automation-page">
       <PageMeta
         title="AI Automation â€” Intelligent Business Process Automation | XAIVON"

@@ -29,21 +29,7 @@ const faqData = [
 ];
 
 export default function Contact() {
-
-  useEffect(() => {
-    let link = document.querySelector("link[rel='canonical']");
-    if (!link) {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      document.head.appendChild(link);
-    }
-    link.setAttribute('href', 'https://xaivon.com' + window.location.pathname);
-    return () => {
-      if (link && link.parentNode) link.parentNode.removeChild(link);
-    };
-  }, []);
-
-  const [form, setForm] = useState({ name: '', email: '', company: '', message: '', website: '' });
+const [form, setForm] = useState({ name: '', email: '', company: '', message: '', website: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState(null);

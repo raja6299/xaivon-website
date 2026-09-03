@@ -1,4 +1,4 @@
-﻿import { checkRateLimit } from '../src/lib/ratelimit.js';
+import { checkRateLimit } from '../src/lib/ratelimit.js';
 import { setCorsHeaders, handleCorsOptions } from './_cors.js';
 import { Resend } from 'resend';
 import crypto from 'crypto';
@@ -26,23 +26,23 @@ export default async function handler(req, res) {
   }
 
   try {
-    const data = req.body;
+    const body = req.body;
 
-    if (data.website) {
+    if (body.website) {
       return res.status(400).json({ error: 'Invalid request' });
     }
 
-    if (!data.name || !data.email || !data.message) {
+    if (!body.name || !body.email || !body.message) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
-    const cleanName = escapeHtml(data.name.trim());
-    const cleanEmail = escapeHtml(data.email.trim());
-    const cleanCompany = escapeHtml((data.company || '').trim());
-    const cleanMessage = escapeHtml(data.message.trim());
+    const cleanName = escapeHtml(body.name.trim());
+    const cleanEmail = escapeHtml(body.email.trim());
+    const cleanCompany = escapeHtml((body.company || '').trim());
+    const cleanMessage = escapeHtml(body.message.trim());
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(data.email.trim())) {
+    if (!emailRegex.test(body.email.trim())) {
       return res.status(400).json({ error: 'Invalid email format' });
     }
 
@@ -71,11 +71,12 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'Server configuration error' });
     }
 
+    const idempotencyKey = crypto.createHash('sha256').update(cleanEmail + cleanMessage).digest('hex');
+
     const { error } = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL,
       to: process.env.RESEND_CONTACT_EMAIL_TO,
       subject: `New Contact Form Submission from ${cleanName}`,
-      headers: { 'Idempotency-Key': crypto.createHash('sha256').update(cleanEmail + cleanMessage).digest('hex') },
       html: `
         <h2>New Contact Form Submission</h2>
         <p><strong>Name:</strong> ${cleanName}</p>
@@ -87,7 +88,7 @@ export default async function handler(req, res) {
         <p><small>Submitted from IP: ${escapeHtml(ip)}</small></p>
         <p><small>Remaining submissions in window: ${remaining}</small></p>
       `,
-    });
+    }, { idempotencyKey });
 
     if (error) {
       console.error('Resend API Error:', error);
