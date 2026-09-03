@@ -54,7 +54,7 @@ const processSteps = [
   {
     num: '02',
     title: 'Custom AI Development',
-    desc: 'Our engineers build your automations using Python, LLMs, and enterprise-grade APIs â€” not drag-and-drop templates.',
+    desc: 'Our engineers build your automations using Python, LLMs, and enterprise-grade APIs — not drag-and-drop templates.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" />
@@ -82,7 +82,7 @@ export default function AIAutomation() {
 return (
     <div className="ai-automation-page">
       <PageMeta
-        title="AI Automation â€” Intelligent Business Process Automation | XAIVON"
+        title="AI Automation — Intelligent Business Process Automation | XAIVON"
         description="Eliminate manual data entry and connect siloed systems with custom AI-powered automation workflows."
         url="https://xaivon.com/ai-automation"
       />
@@ -102,7 +102,7 @@ return (
               Intelligent <span className="text-gradient-premium">AI Automation</span>
             </h1>
             <p className="aa-hero-subtitle">
-              Connect siloed software, eliminate manual data entry, and deploy resilient automated workflows â€” powered by custom AI, not drag-and-drop templates.
+              Connect siloed software, eliminate manual data entry, and deploy resilient automated workflows — powered by custom AI, not drag-and-drop templates.
             </p>
             <div className="aa-hero-actions">
               <Link to="/contact" className="btn btn-primary btn-lg">Schedule a Strategy Call</Link>
@@ -230,7 +230,7 @@ return (
                   type="button"
                 >
                   <span>{faq.q}</span>
-                  <span className="aa-faq-chevron">â–¾</span>
+                  <span className="aa-faq-chevron">▾</span>
                 </button>
                 <div className="aa-faq-answer-wrap">
                   <div className="aa-faq-answer">
@@ -252,7 +252,7 @@ return (
           <div ref={ctaRef} className={`aa-cta-inner reveal-scale ${ctaVisible ? 'visible' : ''}`}>
             <h2>Ready to Automate Your Operations?</h2>
             <p>
-              Book a free strategy call. We'll audit your workflows, identify the highest-ROI automation opportunities, and build a custom projection â€” no obligation.
+              Book a free strategy call. We'll audit your workflows, identify the highest-ROI automation opportunities, and build a custom projection — no obligation.
             </p>
             <div className="aa-cta-actions">
               <Link to="/contact" className="btn btn-primary btn-lg">
@@ -263,9 +263,9 @@ return (
               </Link>
             </div>
             <div className="aa-cta-trust">
-              <span>âœ“ Free Strategy Call</span>
-              <span>âœ“ Custom ROI Projection</span>
-              <span>âœ“ No Obligation</span>
+              <span>✓ Free Strategy Call</span>
+              <span>✓ Custom ROI Projection</span>
+              <span>✓ No Obligation</span>
             </div>
           </div>
         </div>

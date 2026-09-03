@@ -84,7 +84,7 @@ export default function CaseStudiesSection() {
             Schedule a Strategy Call
           </Link>
           <p className="trust-indicator" style={{ marginTop: '1rem', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-            âœ“ Strategy-First Approach â€¢ Built For Long-Term Growth
+            ✓ Strategy-First Approach â€¢ Built For Long-Term Growth
           </p>
         </div>
       </div>

@@ -343,7 +343,7 @@ export default function Services() {
   return (
     <>
       <PageMeta 
-        title="Services â€” AI Automation, Logistics, Chatbots"
+        title="Services — AI Automation, Logistics, Chatbots"
         description="Comprehensive AI solutions to scale your enterprise operations."
         url="https://xaivon.com/services"
       />

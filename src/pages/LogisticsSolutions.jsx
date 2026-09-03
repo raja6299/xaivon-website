@@ -6,7 +6,7 @@ import './LogisticsSolutions.css';
 const SOLUTIONS = [
   {
     title: 'Freight Broker Automation',
-    desc: 'Automate the entire freight brokerage workflow â€” from quote requests to carrier matching, rate negotiation, and load booking.',
+    desc: 'Automate the entire freight brokerage workflow — from quote requests to carrier matching, rate negotiation, and load booking.',
     features: ['Quote Processing', 'Carrier Matching', 'Rate Optimization', 'Load Booking'],
   },
   {
@@ -58,7 +58,7 @@ const ADVANTAGES = [
   },
   {
     title: 'Rapid Deployment',
-    desc: 'Most solutions deployed within 2â€“4 weeks. Start seeing operational improvements fast.',
+    desc: 'Most solutions deployed within 2–4 weeks. Start seeing operational improvements fast.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
@@ -83,7 +83,7 @@ const [heroRef, heroVisible] = useScrollReveal({ threshold: 0.1 });
   const [ctaRef, ctaVisible] = useScrollReveal({ threshold: 0.2 });
 
   useEffect(() => {
-    document.title = 'Logistics & Freight AI Solutions â€” XAIVON';
+    document.title = 'Logistics & Freight AI Solutions — XAIVON';
   }, []);
 
   return (

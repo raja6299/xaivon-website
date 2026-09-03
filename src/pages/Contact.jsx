@@ -8,7 +8,7 @@ import './Contact.css';
 const faqData = [
   {
     q: 'How long does it take to set up QuoteFlow AI?',
-    a: 'Typically 2â€“3 weeks from kickoff to going live. This includes integration with your email, TMS, and rate databases. Week 1 is discovery and setup, Week 2 is testing, and Week 3 is go-live with support.',
+    a: 'Typically 2–3 weeks from kickoff to going live. This includes integration with your email, TMS, and rate databases. Week 1 is discovery and setup, Week 2 is testing, and Week 3 is go-live with support.',
   },
   {
     q: 'What does it cost?',
@@ -128,7 +128,7 @@ const [form, setForm] = useState({ name: '', email: '', company: '', message: ''
   return (
     <div className="contact-page">
       <PageMeta 
-        title="Contact XAIVON â€” Schedule Strategy Call"
+        title="Contact XAIVON — Schedule Strategy Call"
         description="Book a free discovery call or send us a message. Our team will review and follow up."
         url="https://xaivon.com/contact"
       />
@@ -185,7 +185,7 @@ const [form, setForm] = useState({ name: '', email: '', company: '', message: ''
             </>
           ) : (
             <div className="form-success">
-              <span className="form-success-icon">âœ…</span>
+              <span className="form-success-icon">✅</span>
               <h3>Thank you!</h3>
               <p>We've received your message and will review and follow up.</p>
             </div>
@@ -222,7 +222,7 @@ const [form, setForm] = useState({ name: '', email: '', company: '', message: ''
             <p>Fast Response Time</p>
           </div>
           <div className="surface card contact-info-card">
-            <span className="contact-info-icon" role="img" aria-label="Strategy">ðŸ“ž</span>
+            <span className="contact-info-icon" role="img" aria-label="Strategy">📞</span>
             <p>Free Strategy Call</p>
           </div>
           <div className="surface card contact-info-card">
@@ -230,7 +230,7 @@ const [form, setForm] = useState({ name: '', email: '', company: '', message: ''
             <p>Global Support</p>
           </div>
           <div className="surface card contact-info-card">
-            <span className="contact-info-icon" role="img" aria-label="Security">ðŸ”’</span>
+            <span className="contact-info-icon" role="img" aria-label="Security">🔒</span>
             <p>Enterprise-Grade Security</p>
           </div>
         </div>
@@ -253,7 +253,7 @@ const [form, setForm] = useState({ name: '', email: '', company: '', message: ''
                 type="button"
               >
                 <span>{item.q}</span>
-                <span className="faq-chevron">â–¾</span>
+                <span className="faq-chevron">▾</span>
               </button>
               <div className="faq-answer-wrapper">
                 <div className="faq-answer">

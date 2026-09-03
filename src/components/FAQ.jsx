@@ -13,7 +13,7 @@ const faqData = [
   },
   {
     q: 'What is an AI Voice Agent?',
-    a: 'An AI Voice Agent is an intelligent system that handles phone calls â€” both inbound and outbound â€” with natural, human-like conversation. They can schedule appointments, qualify leads, provide customer support, and handle dispatch communications always-on.',
+    a: 'An AI Voice Agent is an intelligent system that handles phone calls — both inbound and outbound — with natural, human-like conversation. They can schedule appointments, qualify leads, provide customer support, and handle dispatch communications always-on.',
   },
   {
     q: 'How much does AI automation cost?',
@@ -33,7 +33,7 @@ const faqData = [
   },
   {
     q: 'What makes XAIVON different from other AI agencies?',
-    a: "XAIVON is not an agency â€” we are an AI-Powered Business Infrastructure Company. We don't just build automations; we build comprehensive AI systems that become the operational backbone of your business. Our focus on enterprise-grade quality and measurable ROI sets us apart.",
+    a: "XAIVON is not an agency — we are an AI-Powered Business Infrastructure Company. We don't just build automations; we build comprehensive AI systems that become the operational backbone of your business. Our focus on enterprise-grade quality and measurable ROI sets us apart.",
   },
   {
     q: 'Do you offer ongoing support?',
@@ -41,7 +41,7 @@ const faqData = [
   },
   {
     q: 'How do I get started?',
-    a: "Simple â€” book a free strategy call. We'll discuss your business, identify opportunities, and create a custom plan. There's no obligation, and you'll walk away with valuable insights regardless.",
+    a: "Simple — book a free strategy call. We'll discuss your business, identify opportunities, and create a custom plan. There's no obligation, and you'll walk away with valuable insights regardless.",
   },
 ];
 

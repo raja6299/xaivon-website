@@ -77,7 +77,7 @@ function App() {
             <Route path="/cookie-policy" element={<CookiePolicy />} />
             <Route path="/roi-calculator" element={<RoiCalculatorPage />} />
             
-            {/* 404 Page â€” must be last */}
+            {/* 404 Page — must be last */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

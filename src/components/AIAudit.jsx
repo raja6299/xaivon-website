@@ -147,7 +147,7 @@ export default function AIAudit() {
         </div>
 
         <div className="ai-audit-grid">
-          {/* Left Column â€” Benefits */}
+          {/* Left Column — Benefits */}
           <div
             className={`ai-audit-benefits reveal-left ${leftVisible ? 'visible' : ''}`}
             ref={leftRef}
@@ -166,11 +166,11 @@ export default function AIAudit() {
               ))}
             </ul>
             <p className="ai-audit-trust-text">
-              âœ¦ No obligation. 100% free. Fast turnaround.
+              ✦ No obligation. 100% free. Fast turnaround.
             </p>
           </div>
 
-          {/* Right Column â€” Form */}
+          {/* Right Column — Form */}
           <div
             className={`ai-audit-form-card glass-card reveal-right ${rightVisible ? 'visible' : ''}`}
             ref={rightRef}
@@ -286,9 +286,9 @@ export default function AIAudit() {
                 </button>
 
                 <div className="ai-audit-trust-indicators" style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', color: 'var(--text-muted)', fontSize: '0.85rem', textAlign: 'center' }}>
-                  <span>âœ“ Secure & Encrypted</span>
-                  <span>âœ“ Dedicated Support</span>
-                  <span>âœ“ Built For Long-Term Growth</span>
+                  <span>✓ Secure & Encrypted</span>
+                  <span>✓ Dedicated Support</span>
+                  <span>✓ Built For Long-Term Growth</span>
                   <span style={{ marginTop: '0.5rem', fontSize: '0.75rem' }}>Your information is encrypted and never shared with third parties.</span>
                 </div>
               </form>

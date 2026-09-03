@@ -71,9 +71,9 @@ export default function SeoLandingPage() {
             </Link>
           </div>
           <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1.5rem', justifyContent: 'center', color: 'var(--text-muted)', fontSize: '0.85rem', flexWrap: 'wrap' }}>
-            <span>âœ“ Secure & Encrypted</span>
-            <span>âœ“ Dedicated Support</span>
-            <span>âœ“ Built For Long-Term Growth</span>
+            <span>✓ Secure & Encrypted</span>
+            <span>✓ Dedicated Support</span>
+            <span>✓ Built For Long-Term Growth</span>
           </div>
         </div>
       </section>
