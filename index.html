@@ -62,7 +62,7 @@
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI Voice Agents" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "CRM Automation" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Logistics & Freight AI" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Website Development" } }
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "CRM, Lead & Data Automation" } }
         ]
       }
     }
@@ -92,17 +92,25 @@
     <meta name="theme-color" content="#0A0A0A" />
     <meta name="msapplication-TileColor" content="#0A0A0A" />
 
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FKYVMSFM5B"></script>
+        <!-- Google Analytics 4 Consent Setup -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
       gtag('js', new Date());
       gtag('config', 'G-FKYVMSFM5B');
     </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FKYVMSFM5B"></script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
+
+

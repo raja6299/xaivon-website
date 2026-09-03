@@ -224,20 +224,6 @@ const SERVICES = [
     Icon: IconLeadManagement,
   },
   {
-    id: 'website-development',
-    number: '06',
-    title: 'Website Development',
-    overview: 'Premium, conversion-optimized websites built with modern design principles and integrated with your AI automation stack.',
-    benefits: [
-      'Higher conversion rates',
-      'Professional brand image',
-      'Mobile optimized',
-      'SEO ready',
-    ],
-    useCases: ['Landing pages', 'Corporate sites', 'Sales funnels', 'Booking platforms'],
-    Icon: IconWebDev,
-  },
-  {
     id: 'business-process-automation',
     number: '07',
     title: 'Business Process Automation',
@@ -415,3 +401,4 @@ export default function Services() {
     </>
   );
 }
+

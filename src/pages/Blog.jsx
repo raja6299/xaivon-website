@@ -1,64 +1,13 @@
-import { Link } from 'react-router-dom';
+﻿import { Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
-import {  useState , useEffect } from 'react';
 import { useStaggerAnimation } from '../hooks/useScrollAnimation';
+import { BLOG_POSTS } from '../data/blogData';
 import './Blog.css';
 
-const posts = [
-  {
-    id: 'ai-automation-enterprise-infrastructure',
-    tag: 'AI AUTOMATION',
-    title: 'How AI Automation is Rewiring Enterprise Infrastructure',
-    date: 'July 15, 2026',
-    readTime: '6 min read',
-    excerpt: 'Explore how top-tier organizations are moving beyond simple chatbots to fully integrated, autonomous operational systems.',
-  },
-  {
-    id: 'logistics-automation-tms-integration',
-    tag: 'LOGISTICS AUTOMATION',
-    title: 'Integrating AI with Legacy TMS Systems',
-    date: 'July 10, 2026',
-    readTime: '5 min read',
-    excerpt: 'The logistics industry relies heavily on legacy software. Learn the technical approach to bridging AI agents with older TMS databases.',
-  },
-  {
-    id: 'freight-operations-scaling-without-headcount',
-    tag: 'FREIGHT TECHNOLOGY',
-    title: 'Scaling Freight Operations Without Adding Headcount',
-    date: 'July 5, 2026',
-    readTime: '7 min read',
-    excerpt: 'Discover the exact workflows that high-volume brokerages are automating to scale capacity without increasing operational overhead.',
-  },
-  {
-    id: 'business-systems-ai-audits',
-    tag: 'BUSINESS PROCESS AUTOMATION',
-    title: 'Conducting an AI Audit on Your Business Systems',
-    date: 'June 28, 2026',
-    readTime: '8 min read',
-    excerpt: 'A step-by-step guide to evaluating your existing software stack and identifying the highest ROI opportunities for automation.',
-  },
-  {
-    id: 'crm-automation-lead-management',
-    tag: 'CRM SYSTEMS',
-    title: 'Automating Lead Routing and CRM Data Entry',
-    date: 'June 20, 2026',
-    readTime: '5 min read',
-    excerpt: 'How outbound and inbound call centers are utilizing low-latency AI to update CRMs instantly, without human intervention.',
-  }
-];
+const posts = Object.entries(BLOG_POSTS).map(([id, data]) => ({ id, ...data }));
 
 export default function Blog() {
   const ref = useStaggerAnimation('.scroll-fade-in');
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    if (email) {
-      setSubscribed(true);
-      setEmail('');
-    }
-  };
 
   return (
     <div className="blog-page" ref={ref}>
@@ -86,7 +35,7 @@ export default function Blog() {
             <h3>{post.title}</h3>
             <div className="blog-card-meta">
               <span>{post.date}</span>
-              <span>·</span>
+              <span>•</span>
               <span>{post.readTime}</span>
             </div>
             <p className="blog-card-excerpt">{post.excerpt}</p>
@@ -99,21 +48,7 @@ export default function Blog() {
       <section className="blog-newsletter glass-card scroll-fade-in" id="newsletter">
         <h2>Get Weekly <span className="text-gradient-brand">AI Insights</span></h2>
         <p>Join logistics leaders who get our weekly breakdown of AI automation trends, tips, and case studies.</p>
-        {subscribed ? (
-          <p style={{ color: 'var(--accent-platinum)', fontWeight: 600 }}>✓ Thank you for your interest. Newsletter coming soon.</p>
-        ) : (
-          <form className="newsletter-form" onSubmit={handleSubscribe}>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              id="newsletter-email"
-            />
-            <button type="submit" className="btn btn-primary">Notify Me</button>
-          </form>
-        )}
+        <p style={{ color: 'var(--accent-platinum)', fontWeight: 600, marginTop: '2rem' }}>Newsletter coming soon.</p>
       </section>
     </div>
   );

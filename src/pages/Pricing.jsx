@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
 import { XAIVON_DATA } from '../data/xaivonData';
@@ -6,30 +6,9 @@ import { XAIVON_DATA } from '../data/xaivonData';
 export default function Pricing() {
   const [activeCategory, setActiveCategory] = useState(XAIVON_DATA.pricing.categories[0]);
   const [currency, setCurrency] = useState('USD');
-  const [manualCurrency, setManualCurrency] = useState(false);
-
-  useEffect(() => {
-    if (manualCurrency) return;
-
-    fetch('https://ipapi.co/json/')
-      .then(res => res.json())
-      .then(data => {
-        if (!manualCurrency) {
-          if (data.country_code === 'IN' || data.country_name === 'India') {
-            setCurrency('INR');
-          } else {
-            setCurrency('USD');
-          }
-        }
-      })
-      .catch(() => {
-        // Fallback or leave as default
-      });
-  }, [manualCurrency]);
 
   const handleCurrencyChange = (curr) => {
     setCurrency(curr);
-    setManualCurrency(true);
   };
 
   const activeService = XAIVON_DATA.pricing.services.find(s => s.category === activeCategory) || XAIVON_DATA.pricing.services[0];
@@ -50,64 +29,51 @@ export default function Pricing() {
         </div>
       </section>
 
-      <section className="section" style={{ paddingTop: 0 }}>
-        <div className="container">
-          <div className="pricing-toolbar">
-            <div className="pricing-tabs" role="tablist">
-              {XAIVON_DATA.pricing.categories.map((cat, i) => (
-                <button 
-                  key={i} 
-                  className="pricing-tab" 
-                  aria-selected={activeCategory === cat} 
-                  onClick={() => setActiveCategory(cat)}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-            <div className="pricing-currency-switch" style={{ display: 'flex', gap: '5px' }}>
-              <button 
-                onClick={() => handleCurrencyChange('INR')}
-                className={`btn btn-sm ${currency === 'INR' ? 'btn-dark' : 'btn-secondary'}`}
-                style={{ minHeight: '34px', padding: '6px 12px' }}
-              >
-                ₹ INR
-              </button>
-              <button 
-                onClick={() => handleCurrencyChange('USD')}
-                className={`btn btn-sm ${currency === 'USD' ? 'btn-dark' : 'btn-secondary'}`}
-                style={{ minHeight: '34px', padding: '6px 12px' }}
-              >
-                $ USD
-              </button>
-            </div>
+      <section className="pricing-tabs-section container">
+        <div className="pricing-header-controls">
+          <div className="currency-toggle">
+            <button className={`currency-btn ${currency === 'USD' ? 'active' : ''}`} onClick={() => handleCurrencyChange('USD')}>USD</button>
+            <button className={`currency-btn ${currency === 'INR' ? 'active' : ''}`} onClick={() => handleCurrencyChange('INR')}>INR</button>
           </div>
+        </div>
 
-          <div className="pricing-grid">
-            {activeService.tiers.map((tier, i) => (
-              <article className="surface price-card reveal in" key={i}>
-                <span className="tag" style={{ alignSelf: 'flex-start', padding: '4px 8px', borderRadius: '4px', background: 'var(--bg-soft)', fontSize: '11px', fontWeight: 'bold' }}>{tier.name}</span>
-                {tier.popular && (
-                  <span className="data-badge" style={{ position: 'absolute', top: '27px', right: '27px', background: 'var(--accent-soft)', borderColor: '#f0c7b3', color: 'var(--accent-dark)' }}>
-                    Most Popular
-                  </span>
-                )}
-                <h2>{tier.name}</h2>
-                <p className="subtitle">{tier.purpose}</p>
-                <div className="price">
-                  {tier.price[currency]} <small>starting price</small>
-                </div>
-                <ul className="price-list">
-                  {tier.features.map((feature, j) => (
-                    <li key={j}>{feature}</li>
+        <div className="pricing-category-tabs">
+          {XAIVON_DATA.pricing.categories.map(cat => (
+            <button 
+              key={cat} 
+              className={`pricing-cat-tab ${activeCategory === cat ? 'active' : ''}`}
+              onClick={() => setActiveCategory(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        <div className="pricing-cards-grid">
+          {activeService.tiers.map((tier, idx) => (
+            <div className={`pricing-card glass-panel ${tier.name === 'Plus' ? 'popular' : ''}`} key={idx}>
+              {tier.name === 'Plus' && <div className="popular-badge">Most Popular</div>}
+              <h3>{tier.name}</h3>
+              <div className="price-display">
+                <span className="price-symbol">{currency === 'USD' ? '$' : '?'}</span>
+                <span className="price-amount">{currency === 'USD' ? tier.priceUSD : tier.priceINR}</span>
+              </div>
+              <p className="price-label">Starting Price</p>
+              
+              <div className="tier-features">
+                <h4>What's Included:</h4>
+                <ul>
+                  {tier.features.map((f, i) => (
+                    <li key={i}><span className="check">?</span> {f}</li>
                   ))}
                 </ul>
-                <Link className="btn btn-primary" to="/contact" style={{ marginTop: 'auto' }}>
-                  Discuss this solution ↗
-                </Link>
-              </article>
-            ))}
-          </div>
+              </div>
+              
+              <Link to="/contact" className={`btn ${tier.name === 'Plus' ? 'btn-primary' : 'btn-secondary'} full-width`}>
+                Book Assessment
+              </Link>
+            </div>
+          ))}
         </div>
       </section>
     </div>

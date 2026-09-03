@@ -1,60 +1,44 @@
-// Sitemap Generator for XAIVON
-// Run with: node scripts/generate-sitemap.js
-// This outputs public/sitemap.xml and public/robots.txt
-
-import { writeFileSync } from 'fs';
-import { dirname, resolve } from 'path';
+﻿import fs from 'fs';
+import path from 'path';
 import { fileURLToPath } from 'url';
+import { pageMetadata } from '../src/config/metadata.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const SITEMAP_PATH = path.resolve(__dirname, '../public/sitemap.xml');
 const BASE_URL = 'https://xaivon.com';
 
-const pages = [
-  { path: '/', priority: '1.0', changefreq: 'weekly' },
-  { path: '/about', priority: '0.8', changefreq: 'monthly' },
-  { path: '/services', priority: '0.9', changefreq: 'monthly' },
-  { path: '/pricing', priority: '0.9', changefreq: 'monthly' },
-  { path: '/contact', priority: '0.9', changefreq: 'monthly' },
-  { path: '/resources', priority: '0.8', changefreq: 'weekly' },
-  { path: '/blog', priority: '0.7', changefreq: 'weekly' },
-  // Dedicated Service Pages
-  { path: '/quoteflow-ai', priority: '0.9', changefreq: 'monthly' },
-  { path: '/ai-agents', priority: '0.9', changefreq: 'monthly' },
-  { path: '/ai-automation', priority: '0.9', changefreq: 'monthly' },
-  { path: '/ai-chatbots', priority: '0.9', changefreq: 'monthly' },
-  // SEO Landing Pages
-  { path: '/s/logistics-automation', priority: '0.8', changefreq: 'monthly' },
-  { path: '/s/freight-automation', priority: '0.8', changefreq: 'monthly' },
-  { path: '/s/ai-automation', priority: '0.8', changefreq: 'monthly' },
-  { path: '/s/ai-chatbots', priority: '0.8', changefreq: 'monthly' },
-  { path: '/s/workflow-automation', priority: '0.8', changefreq: 'monthly' },
-  { path: '/s/crm-automation', priority: '0.8', changefreq: 'monthly' },
-  // Legal
-  { path: '/privacy-policy', priority: '0.3', changefreq: 'yearly' },
-  { path: '/terms', priority: '0.3', changefreq: 'yearly' },
-  { path: '/cookie-policy', priority: '0.3', changefreq: 'yearly' },
-];
+function generateSitemap() {
+  let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+  xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
-const today = new Date().toISOString().split('T')[0];
+  const today = new Date().toISOString().split('T')[0];
 
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${pages.map(p => `  <url>
-    <loc>${BASE_URL}${p.path}</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>${p.changefreq}</changefreq>
-    <priority>${p.priority}</priority>
-  </url>`).join('\n')}
-</urlset>`;
+  Object.keys(pageMetadata).forEach(route => {
+    if (pageMetadata[route].noindex) return; // Skip noindex
 
-const robots = `User-agent: *
-Allow: /
-Sitemap: ${BASE_URL}/sitemap.xml
-`;
+    const url = route === '/' ? BASE_URL + '/' : BASE_URL + route;
+    
+    // Simple priority logic
+    let priority = '0.8';
+    if (route === '/') priority = '1.0';
+    else if (route.startsWith('/s/')) priority = '0.6';
+    else if (route.startsWith('/blog/')) priority = '0.7';
+    else if (['/about', '/solutions', '/products', '/pricing'].includes(route)) priority = '0.9';
 
-const publicDir = resolve(__dirname, '..', 'public');
-writeFileSync(resolve(publicDir, 'sitemap.xml'), sitemap);
-writeFileSync(resolve(publicDir, 'robots.txt'), robots);
+    xml += `  <url>\n`;
+    xml += `    <loc>${url}</loc>\n`;
+    xml += `    <lastmod>${today}</lastmod>\n`;
+    xml += `    <changefreq>monthly</changefreq>\n`;
+    xml += `    <priority>${priority}</priority>\n`;
+    xml += `  </url>\n`;
+  });
 
-console.log('✅ sitemap.xml generated');
-console.log('✅ robots.txt generated');
+  xml += `</urlset>`;
+
+  fs.writeFileSync(SITEMAP_PATH, xml, 'utf-8');
+  console.log('? Sitemap successfully generated at public/sitemap.xml');
+}
+
+generateSitemap();

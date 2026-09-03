@@ -1,0 +1,21 @@
+This PR promotes the completed production-hardening work from `production-hardening` into `main`.
+
+Included work:
+- ChatEmbed graceful failure handling
+- removal of fake lead delivery behavior
+- canonical pricing consistency
+- removal of unsupported public claims
+- navigation/hash integrity
+- ROI calculation integrity
+- truthful newsletter/resource behavior
+- metadata and sitemap corrections
+- security header hardening
+- dependency security fixes
+- dead-code cleanup
+- documentation corrections
+
+Verification already completed on the branch:
+- lint PASS
+- production build PASS
+- npm audit PASS
+- branch checks PASS

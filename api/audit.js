@@ -1,12 +1,19 @@
-import { checkRateLimit } from '../src/lib/ratelimit.js';
+﻿import { checkRateLimit } from '../src/lib/ratelimit.js';
 import { setCorsHeaders, handleCorsOptions } from './_cors.js';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-function sanitize(str) {
+function escapeHtml(str) {
   if (typeof str !== 'string') return '';
-  return str.replace(/<[^>]*>?/gm, '').trim();
+  const map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return str.replace(/[&<>"']/g, function(m) { return map[m]; });
 }
 
 export default async function handler(req, res) {
@@ -17,7 +24,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown';
+  const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown';
   const { success, remaining } = await checkRateLimit(ip);
 
   if (!success) {
@@ -38,14 +45,14 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
-    const cleanName = sanitize(data.name);
-    const cleanEmail = sanitize(data.email);
-    const cleanCompany = sanitize(data.company);
-    const cleanIndustry = sanitize(data.industry);
-    const cleanChallenge = sanitize(data.challenge);
+    const cleanName = escapeHtml(data.name.trim());
+    const cleanEmail = escapeHtml(data.email.trim());
+    const cleanCompany = escapeHtml(data.company.trim());
+    const cleanIndustry = escapeHtml(data.industry.trim());
+    const cleanChallenge = escapeHtml(data.challenge.trim());
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(cleanEmail)) {
+    if (!emailRegex.test(data.email.trim())) {
       return res.status(400).json({ error: 'Invalid email format' });
     }
 
@@ -59,9 +66,14 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Input length exceeded' });
     }
 
-    await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || 'leads@xaivon.com',
-      to: process.env.RESEND_CONTACT_EMAIL_TO || 'raja@xaivon.com',
+    if (!process.env.RESEND_FROM_EMAIL || !process.env.RESEND_CONTACT_EMAIL_TO) {
+      console.error('Missing Resend environment configuration');
+      return res.status(500).json({ error: 'Server configuration error' });
+    }
+
+    const { error } = await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL,
+      to: process.env.RESEND_CONTACT_EMAIL_TO,
       subject: `New Audit Request from ${cleanName} at ${cleanCompany}`,
       html: `
         <h2>New Automation Audit Request</h2>
@@ -71,13 +83,18 @@ export default async function handler(req, res) {
         <p><strong>Industry:</strong> ${cleanIndustry}</p>
         <p><strong>Challenge:</strong></p>
         <p>${cleanChallenge.replace(/\n/g, '<br>')}</p>
-        <p><small>Submitted from: ${ip}</small></p>
+        <p><small>Submitted from IP: ${escapeHtml(ip)}</small></p>
       `,
     });
 
+    if (error) {
+      console.error('Resend API Error:', error);
+      return res.status(500).json({ error: 'Failed to send message' });
+    }
+
     return res.status(200).json({ success: true, message: 'Assessment request received.' });
   } catch (error) {
-    console.error('API Error:', error);
+    console.error('API Error:', error.message);
     return res.status(500).json({ error: 'Internal Server Error' });
   }
 }

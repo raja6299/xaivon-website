@@ -1,111 +1,138 @@
+﻿import { BLOG_POSTS } from '../data/blogData.js';
+
 export const defaultMetadata = {
-  title: 'XAIVON — Premium AI Infrastructure & Logistics Automation',
-  description: 'Enterprise AI automation, logistics solutions, chatbots & agents. We design AI systems that scale your business without increasing complexity.',
+  title: 'XAIVON — Global AI Infrastructure & Business Automation',
+  description: 'Replace manual operational work with autonomous AI infrastructure. Scale your capacity and increase efficiency with intelligent workflow systems.',
   url: 'https://xaivon.com',
-  image: 'https://xaivon.com/og-image.png',
-  keywords: 'AI automation, logistics automation, freight AI, dispatch automation, AI infrastructure, XAIVON',
+  image: 'https://xaivon.com/og-image.jpg',
+  keywords: 'AI Automation, Workflow Automation, AI Agents, Business Systems'
 };
 
 export const pageMetadata = {
   '/': {
-    title: 'XAIVON — AI-Powered Business Infrastructure',
-    description: 'Enterprise AI automation, logistics solutions, chatbots & agents. We design AI systems that scale your business without increasing complexity.',
-    image: 'https://xaivon.com/og-image.png',
+    title: defaultMetadata.title,
+    description: defaultMetadata.description,
+    image: defaultMetadata.image
   },
   '/about': {
     title: 'About XAIVON - AI Infrastructure & Business Automation',
-    description: 'We build AI systems around the way businesses actually work.',
-    image: 'https://xaivon.com/og-image.png',
+    description: 'Learn about XAIVON’s mission to build autonomous infrastructure for modern businesses and freight operations.',
+    image: 'https://xaivon.com/og-about.jpg'
   },
   '/solutions': {
     title: 'Solutions - XAIVON AI Capabilities',
-    description: 'Explore XAIVON\'s AI workflow automation, lead generation, CRM automation, and AI agents.',
-    image: 'https://xaivon.com/og-image.png',
+    description: 'Explore our AI solutions: workflow automation, voice agents, data syncing, and freight quoting infrastructure.',
+    image: 'https://xaivon.com/og-solutions.jpg'
   },
   '/products': {
     title: 'Products & Roadmap - XAIVON',
-    description: 'Explore XAIVON\'s current AI products and our future roadmap for industry SaaS platforms.',
-    image: 'https://xaivon.com/og-image.png',
+    description: 'Discover XAIVON’s live products like QuoteFlow AI and view our upcoming platform roadmap.',
+    image: 'https://xaivon.com/og-products.jpg'
   },
   '/industries': {
     title: 'Industries - XAIVON',
-    description: 'XAIVON builds automation for Logistics, Real Estate, Healthcare, Finance, and more.',
-    image: 'https://xaivon.com/og-image.png',
+    description: 'See how XAIVON’s AI infrastructure powers logistics, freight, and future enterprise sectors.',
+    image: 'https://xaivon.com/og-industries.jpg'
   },
   '/services': {
-    title: 'Services — AI Automation, Logistics, Chatbots',
-    description: 'Custom AI automation, logistics solutions, AI chatbots, workflow automation, and AI agents tailored to your business.',
-    image: 'https://xaivon.com/og-image.png',
+    title: 'Services — AI Automation, Voice Agents, Chatbots',
+    description: 'Implementation and infrastructure services for autonomous AI agents, automated quoting, and CRM data automation.',
+    image: 'https://xaivon.com/og-services.jpg'
   },
   '/pricing': {
     title: 'Pricing — AI Automation Solutions',
-    description: 'See starting prices for workflow automation, AI agents, voice AI, chatbots, CRM automation, and document processing.',
-    image: 'https://xaivon.com/og-image.png',
+    description: 'Transparent starting prices for AI Agents, Voice AI, CRM Automation, and Business Process Automation systems.',
+    image: 'https://xaivon.com/og-pricing.jpg'
   },
   '/contact': {
     title: 'Contact XAIVON — Book an Assessment',
-    description: 'Get in touch with XAIVON. Book a call to discuss your AI automation needs.',
-    image: 'https://xaivon.com/og-image.png',
+    description: 'Schedule a technical assessment to discover the highest ROI automation opportunities in your business operations.',
+    image: 'https://xaivon.com/og-contact.jpg'
   },
   '/blog': {
     title: 'Blog — AI Automation Insights & Guides',
-    description: 'Read guides and insights on AI automation, logistics, and business infrastructure.',
-    image: 'https://xaivon.com/og-image.png',
+    description: 'Expert perspectives and technical guides on transforming business operations with artificial intelligence.',
+    image: 'https://xaivon.com/og-blog.jpg'
   },
   '/resources': {
-    title: 'Resources — AI Automation Tools & Guides',
-    description: 'Guides, checklists, and resources for implementing AI automation in your business.',
-    image: 'https://xaivon.com/og-image.png',
+    title: 'Resources — AI Automation Guides',
+    description: 'In-depth case studies, workflow examples, and implementation guides for autonomous business systems.',
+    image: 'https://xaivon.com/og-resources.jpg'
   },
   '/privacy-policy': {
     title: 'Privacy Policy — XAIVON',
-    description: 'Read XAIVON\'s privacy policy and how we handle your data.',
-    image: 'https://xaivon.com/og-image.png',
+    description: 'Learn how XAIVON protects your data and privacy.',
+    image: 'https://xaivon.com/og-legal.jpg'
   },
   '/terms': {
     title: 'Terms of Service — XAIVON',
-    description: 'Review XAIVON\'s terms of service and conditions.',
-    image: 'https://xaivon.com/og-image.png',
+    description: 'Terms and conditions for using XAIVON’s website and services.',
+    image: 'https://xaivon.com/og-legal.jpg'
   },
   '/cookie-policy': {
     title: 'Cookie Policy — XAIVON',
-    description: 'How XAIVON uses cookies and similar technologies.',
-    image: 'https://xaivon.com/og-image.png',
+    description: 'Information about how XAIVON uses cookies and analytics.',
+    image: 'https://xaivon.com/og-legal.jpg'
   },
   '/ai-consultation': {
     title: 'AI Consultation Received — XAIVON',
-    description: 'Your consultation request has been received.',
-    image: 'https://xaivon.com/og-image.png',
-    noindex: true,
+    description: 'Thank you for booking an assessment with XAIVON.',
+    image: 'https://xaivon.com/og-contact.jpg',
+    noindex: true
   },
   '/roi-calculator': {
     title: 'AI Automation ROI Calculator — XAIVON',
-    description: 'Estimate how much time and cost your operations could potentially recover with AI automation.',
-    image: 'https://xaivon.com/og-image.png',
+    description: 'Estimate the potential time and cost savings of replacing manual workflows with XAIVON autonomous AI infrastructure.',
+    image: 'https://xaivon.com/og-roi.jpg'
   },
   '/logistics-solutions': {
     title: 'Logistics Solutions — XAIVON',
-    description: 'AI-powered automation for freight brokerages, 3PLs, and logistics operations.',
-    image: 'https://xaivon.com/og-image.png',
+    description: 'Purpose-built AI automation for 3PLs and freight brokers. Scale your capacity and win more freight.',
+    image: 'https://xaivon.com/og-logistics.jpg'
   },
   '/quoteflow-ai': {
     title: 'QuoteFlow AI — Automated Freight Quoting',
-    description: 'AI-assisted quote processing for freight brokerages. Extract, validate, and respond to RFQs faster.',
-    image: 'https://xaivon.com/og-image.png',
+    description: 'Process RFQs instantly. QuoteFlow AI reads emails, calculates margins, and responds to shippers autonomously.',
+    image: 'https://xaivon.com/og-quoteflow.jpg'
   },
   '/ai-agents': {
     title: 'AI Agents — XAIVON',
-    description: 'Autonomous AI agents for business operations. Task execution, decision support, and workflow automation.',
-    image: 'https://xaivon.com/og-image.png',
+    description: 'Deploy autonomous AI agents that act as independent digital workers for dispatching, quoting, and data entry.',
+    image: 'https://xaivon.com/og-agents.jpg'
   },
   '/ai-automation': {
     title: 'AI Automation — XAIVON',
-    description: 'Custom AI-powered automation workflows for data entry, system integration, and business processes.',
-    image: 'https://xaivon.com/og-image.png',
+    description: 'Transform manual cost centers into efficient, automated workflows with enterprise-grade AI infrastructure.',
+    image: 'https://xaivon.com/og-automation.jpg'
   },
   '/ai-chatbots': {
     title: 'AI Chatbots — XAIVON',
-    description: 'Intelligent chatbots and voice AI for customer support, lead capture, and business communication.',
-    image: 'https://xaivon.com/og-image.png',
-  },
+    description: 'Provide instant, 24/7 intelligent customer support and lead capture with conversational AI systems.',
+    image: 'https://xaivon.com/og-chatbots.jpg'
+  }
 };
+
+Object.keys(BLOG_POSTS).forEach(id => {
+  pageMetadata['/blog/' + id] = {
+    title: BLOG_POSTS[id].title + ' — XAIVON Blog',
+    description: BLOG_POSTS[id].excerpt,
+    image: 'https://xaivon.com/og-blog.jpg'
+  };
+});
+
+const SEO_CONTENT = {
+  'ai-automation': { title: 'Enterprise AI Automation Solutions', description: 'Replace manual back-office work with autonomous AI infrastructure. Scale your capacity without scaling headcount.' },
+  'logistics-automation': { title: 'Logistics & Freight Automation Systems', description: 'Automate quoting, dispatching, and carrier communications with AI systems built specifically for 3PLs and freight brokers.' },
+  'freight-automation': { title: 'Freight Brokerage Automation', description: 'Transform your freight brokerage with QuoteFlow AI. Process rates instantly and increase your win rate without adding operational overhead.' },
+  'ai-chatbots': { title: 'AI Chatbots & Voice Agents', description: 'Provide instant, 24/7 responses to your customers and carriers. Capture leads and handle customer support autonomously.' },
+  'workflow-automation': { title: 'Intelligent Workflow Automation', description: 'Connect siloed systems. Extract, classify, and sync data across your CRM, TMS, and accounting software automatically.' },
+  'crm-automation': { title: 'CRM Data Automation', description: 'Eliminate manual CRM data entry. Our AI systems automatically parse incoming emails and update your CRM records in real-time.' }
+};
+
+Object.keys(SEO_CONTENT).forEach(slug => {
+  pageMetadata['/s/' + slug] = {
+    title: SEO_CONTENT[slug].title + ' — XAIVON',
+    description: SEO_CONTENT[slug].description,
+    image: 'https://xaivon.com/og-seo.jpg'
+  };
+});

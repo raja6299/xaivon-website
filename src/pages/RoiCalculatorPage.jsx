@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+﻿import { useEffect } from 'react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import PageMeta from '../components/PageMeta';
 import ROICalculator from '../components/ROICalculator';
@@ -7,28 +7,14 @@ import './RoiCalculatorPage.css';
 export default function RoiCalculatorPage() {
   const [heroRef, heroVisible] = useScrollReveal({ threshold: 0.1 });
 
-  useEffect(() => {
-    let link = document.querySelector("link[rel='canonical']");
-    if (!link) {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      document.head.appendChild(link);
-    }
-    link.setAttribute('href', 'https://xaivon.com/roi-calculator');
-    return () => {
-      if (link && link.parentNode) link.parentNode.removeChild(link);
-    };
-  }, []);
-
   return (
     <div className="roi-page">
       <PageMeta
         title="AI Automation ROI Calculator — XAIVON"
-        description="Calculate how much time and capital XAIVON's AI infrastructure can recover for your operations."
+        description="Estimate the potential time and cost savings of replacing manual workflows with XAIVON autonomous AI infrastructure."
         url="https://xaivon.com/roi-calculator"
       />
 
-      {/* ─── Hero Section ─────────────────────────────────────────── */}
       <section className="roi-page-hero" id="roi-page-hero">
         <div
           ref={heroRef}
@@ -36,7 +22,7 @@ export default function RoiCalculatorPage() {
         >
           <span className="badge">
             <span className="badge-dot"></span>
-            Free AI Assessment Tool
+            Estimation Tool
           </span>
 
           <h1 className="text-gradient">
@@ -44,29 +30,28 @@ export default function RoiCalculatorPage() {
           </h1>
 
           <p className="roi-page-hero-subtitle">
-            Get a custom projection of the time, money, and capacity your business can unlock — powered by real operational data, not guesswork.
+            Estimate the opportunity from the inputs you provide.
           </p>
 
           <div className="roi-page-hero-stats">
             <div className="roi-page-stat">
-              <span className="roi-page-stat-value">Significant</span>
+              <span className="roi-page-stat-value">Illustrative</span>
               <span className="roi-page-stat-label">Potential Savings</span>
             </div>
             <div className="roi-page-stat-divider"></div>
             <div className="roi-page-stat">
-              <span className="roi-page-stat-value">24h</span>
-              <span className="roi-page-stat-label">Custom Report Delivery</span>
+              <span className="roi-page-stat-value">Instant</span>
+              <span className="roi-page-stat-label">Custom Estimation</span>
             </div>
             <div className="roi-page-stat-divider"></div>
             <div className="roi-page-stat">
-              <span className="roi-page-stat-value">Hundreds</span>
-              <span className="roi-page-stat-label">Of Hours Recoverable</span>
+              <span className="roi-page-stat-value">Adjustable</span>
+              <span className="roi-page-stat-label">Automation Variables</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─── ROI Calculator Component (imported as-is) ────────────── */}
       <ROICalculator />
     </div>
   );
