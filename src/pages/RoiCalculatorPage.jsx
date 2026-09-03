@@ -49,8 +49,8 @@ export default function RoiCalculatorPage() {
 
           <div className="roi-page-hero-stats">
             <div className="roi-page-stat">
-              <span className="roi-page-stat-value">70%</span>
-              <span className="roi-page-stat-label">Average Cost Reduction</span>
+              <span className="roi-page-stat-value">Significant</span>
+              <span className="roi-page-stat-label">Potential Savings</span>
             </div>
             <div className="roi-page-stat-divider"></div>
             <div className="roi-page-stat">
@@ -59,8 +59,8 @@ export default function RoiCalculatorPage() {
             </div>
             <div className="roi-page-stat-divider"></div>
             <div className="roi-page-stat">
-              <span className="roi-page-stat-value">500+</span>
-              <span className="roi-page-stat-label">Hours Saved Per Year</span>
+              <span className="roi-page-stat-value">Hundreds</span>
+              <span className="roi-page-stat-label">Of Hours Recoverable</span>
             </div>
           </div>
         </div>

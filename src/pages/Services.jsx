@@ -159,7 +159,7 @@ const SERVICES = [
     title: 'AI Automation',
     overview: 'Intelligent automation systems that handle repetitive tasks, streamline workflows, and optimize business processes without human intervention.',
     benefits: [
-      'Reduce manual work by 90%',
+      'Significantly reduce manual work',
       'Eliminate human errors',
       'Scale operations without hiring',
       '24/7 automated processing',

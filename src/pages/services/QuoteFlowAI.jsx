@@ -108,16 +108,16 @@ export default function QuoteFlowAI() {
           <h2>Projected <span className="text-gradient-premium">Outcomes</span></h2>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '3rem', flexWrap: 'wrap', marginTop: '3rem' }}>
             <div>
-              <div style={{ fontSize: '3rem', color: 'var(--color-secondary)', fontWeight: '700' }}>3x</div>
-              <div style={{ color: 'var(--text-secondary)' }}>Quote Volume</div>
+              <div style={{ fontSize: '3rem', color: 'var(--color-secondary)', fontWeight: '700' }}>Higher</div>
+              <div style={{ color: 'var(--text-secondary)' }}>Quote Capacity</div>
             </div>
             <div>
-              <div style={{ fontSize: '3rem', color: 'var(--color-secondary)', fontWeight: '700' }}>85%</div>
-              <div style={{ color: 'var(--text-secondary)' }}>Less Manual Entry</div>
+              <div style={{ fontSize: '3rem', color: 'var(--color-secondary)', fontWeight: '700' }}>Reduced</div>
+              <div style={{ color: 'var(--text-secondary)' }}>Manual Entry</div>
             </div>
             <div>
-              <div style={{ fontSize: '3rem', color: 'var(--color-secondary)', fontWeight: '700' }}>12s</div>
-              <div style={{ color: 'var(--text-secondary)' }}>Average Response Time</div>
+              <div style={{ fontSize: '3rem', color: 'var(--color-secondary)', fontWeight: '700' }}>Faster</div>
+              <div style={{ color: 'var(--text-secondary)' }}>Response Times</div>
             </div>
           </div>
         </div>

@@ -23,11 +23,11 @@ export default function LeadMagnet() {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to subscribe.');
+        throw new Error('Something went wrong. Please try again.');
       }
 
       setStatus('success');
-      trackEvent('lead_magnet_download', { resource: '25-logistics-workflows' });
+      trackEvent('lead_magnet_signup', { resource: '25-logistics-workflows' });
       setEmail('');
     } catch (err) {
       setStatus('error');
@@ -39,24 +39,24 @@ export default function LeadMagnet() {
     <section className="section-alt" ref={sectionRef} id="lead-magnet">
       <div className="container">
         <div className={`glass-card reveal-scale ${isVisible ? 'visible' : ''}`} style={{ padding: '4rem 2rem', textAlign: 'center', borderColor: 'var(--border-accent)' }}>
-          <span className="badge badge-gold"><span className="badge-dot"></span>FREE PLAYBOOK</span>
+          <span className="badge badge-gold"><span className="badge-dot"></span>EARLY ACCESS</span>
           <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', marginTop: '1.5rem' }}>
             25 Logistics Workflows You Should <span className="text-gradient-premium">Automate Today</span>
           </h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '600px', margin: '0 auto 2rem' }}>
-            Stop wasting headcount on manual data entry. Download our executive playbook detailing the 25 highest-ROI automations currently used by leading freight brokers.
+            We are building a guide to the highest-ROI logistics automations. Join the early access list and we will send it when it is ready.
           </p>
 
           {status === 'success' ? (
             <div style={{ background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.2)', padding: '1.5rem', borderRadius: 'var(--radius-md)', display: 'inline-block' }}>
-              <h3 style={{ color: '#10b981', marginBottom: '0.5rem' }}>Success! Playbook Sent.</h3>
-              <p style={{ color: 'var(--text-secondary)' }}>Check your inbox in the next 5 minutes.</p>
+              <h3 style={{ color: '#10b981', marginBottom: '0.5rem' }}>You are on the list.</h3>
+              <p style={{ color: 'var(--text-secondary)' }}>We will email you when the playbook is ready.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', maxWidth: '500px', margin: '0 auto' }}>
-              <input 
-                type="email" 
-                placeholder="Enter your work email..." 
+              <input
+                type="email"
+                placeholder="Enter your work email..."
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -64,12 +64,12 @@ export default function LeadMagnet() {
                 style={{ flex: '1', minWidth: '250px' }}
                 disabled={status === 'submitting'}
               />
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 className="btn btn-primary"
                 disabled={status === 'submitting'}
               >
-                {status === 'submitting' ? 'Sending...' : 'Get The Playbook'}
+                {status === 'submitting' ? 'Joining...' : 'Join Early Access'}
               </button>
             </form>
           )}
@@ -79,7 +79,7 @@ export default function LeadMagnet() {
           )}
 
           <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem', marginTop: '1.5rem' }}>
-            🔒 We respect your privacy. No spam. Unsubscribe anytime.
+            No spam. Unsubscribe anytime.
           </p>
         </div>
       </div>

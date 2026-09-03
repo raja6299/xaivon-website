@@ -23,7 +23,7 @@ const pillars = [
   },
   {
     title: 'AI Infrastructure',
-    description: 'True automation requires robust plumbing. We deploy security-first, single-tenant AI environments with integrated vector databases, automated fallback logic, and real-time observability, ensuring 99.99% system uptime.',
+    description: 'True automation requires robust plumbing. We deploy security-first, single-tenant AI environments with integrated vector databases, automated fallback logic, and real-time observability, designed for high availability.',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <ellipse cx="12" cy="5" rx="9" ry="3"/>
@@ -44,7 +44,7 @@ const pillars = [
   },
   {
     title: 'Long-Term Impact',
-    description: 'We position you to scale revenue without scaling headcount. Our solutions reduce human error to near-zero, cut response times from hours to milliseconds, and transform your cost centers into intelligent, profit-generating engines.',
+    description: 'We position you to scale revenue without scaling headcount. Our solutions significantly reduce human error, accelerate response times, and help transform manual cost centers into more efficient operations.',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>

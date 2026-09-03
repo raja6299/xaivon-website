@@ -48,7 +48,7 @@ export const XAIVON_DATA = {
               links: [
                 { name: 'Logistics SaaS Platform', path: '/products#logistics-saas' },
                 { name: 'Industry-specific SaaS', path: '/products#industry-saas' },
-                { name: 'Platform roadmap', path: '/about#roadmap' }
+                { name: 'Platform roadmap', path: '/about#future' }
               ]
             }
           ]
@@ -82,9 +82,9 @@ export const XAIVON_DATA = {
               links: [
                 { name: 'Who We Are', path: '/about#who' },
                 { name: 'How We Work', path: '/about#how' },
-                { name: 'Integrations', path: '/about#integrations' },
+                { name: 'Our Principles', path: '/about#principles' },
                 { name: 'Future', path: '/about#future' },
-                { name: 'FAQ', path: '/about#faq' }
+                { name: 'Founder', path: '/about#founder' }
               ]
             }
           ]

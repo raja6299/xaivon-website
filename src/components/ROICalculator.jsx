@@ -58,15 +58,15 @@ export default function ROICalculator() {
   const [manualHours, setManualHours] = useState(80);
   const [hourlyRate, setHourlyRate] = useState(45);
   const [teamSize, setTeamSize] = useState(5);
+  const [automationRate, setAutomationRate] = useState(0.50);
 
   // ─── Derived Calculations ─────────────────────────────────────────
-  const AUTOMATION_RATE = 0.70; // AI automates 70% of manual work
   const WEEKS_PER_YEAR = 52;
 
   const currentYearlyCost = manualHours * hourlyRate * teamSize * WEEKS_PER_YEAR;
-  const projectedCost = currentYearlyCost * (1 - AUTOMATION_RATE);
+  const projectedCost = currentYearlyCost * (1 - automationRate);
   const totalYearlySavings = currentYearlyCost - projectedCost;
-  const hoursSavedPerYear = Math.round(manualHours * teamSize * WEEKS_PER_YEAR * AUTOMATION_RATE);
+  const hoursSavedPerYear = Math.round(manualHours * teamSize * WEEKS_PER_YEAR * automationRate);
 
   // ─── Animated Display Values ──────────────────────────────────────
   const animatedCurrentCost = useAnimatedValue(currentYearlyCost);
@@ -110,7 +110,7 @@ export default function ROICalculator() {
             Calculate Your <span className="text-gradient-premium">AI Savings</span>
           </h2>
           <p>
-            See exactly how much time and money your business loses to manual operations — and what XAIVON AI can recover.
+            Estimate how much time and cost your operations could potentially recover
           </p>
         </div>
 
@@ -194,12 +194,35 @@ export default function ROICalculator() {
               </div>
             </div>
 
+            {/* Slider 4: Automation Rate */}
+            <div className="roi-input-group">
+              <div className="roi-input-header">
+                <label>Automation Rate</label>
+                <span className="roi-value-display">{Math.round(automationRate * 100)}%</span>
+              </div>
+              <input 
+                type="range" 
+                min="0.20" 
+                max="0.80" 
+                step="0.05"
+                value={automationRate} 
+                onChange={(e) => setAutomationRate(Number(e.target.value))}
+                className="roi-slider"
+                style={{ '--slider-percent': `${getSliderPercent(automationRate, 0.20, 0.80)}%` }}
+                aria-label="Automation rate"
+              />
+              <div className="roi-slider-labels">
+                <span>20%</span>
+                <span>80%</span>
+              </div>
+            </div>
+
             {/* Automation Badge */}
             <div className="roi-automation-badge">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
               </svg>
-              AI Automation Rate: <strong>70%</strong> of manual work eliminated
+              Assumed automation rate: <strong>{Math.round(automationRate * 100)}%</strong> (adjust above)
             </div>
           </div>
 
@@ -218,7 +241,7 @@ export default function ROICalculator() {
               <div className="roi-result-icon">🤖</div>
               <div className="roi-result-label">Projected Cost with XAIVON AI</div>
               <div className="roi-result-value roi-cost-after">{formatCurrency(animatedProjected)}</div>
-              <div className="roi-result-desc">After automating 70% of manual workflows</div>
+              <div className="roi-result-desc">Based on your assumed automation rate</div>
             </div>
 
             {/* Hours Saved */}
@@ -241,7 +264,7 @@ export default function ROICalculator() {
           </div>
         </div>
 
-        <p className="roi-disclaimer">
+        <p className="roi-disclaimer" style={{ fontWeight: 'bold', fontSize: '1.1rem', color: 'var(--accent-platinum)', textAlign: 'center', marginTop: '1.5rem' }}>
           Estimates are illustrative. Actual results depend on workflow complexity and implementation scope.
         </p>
 
@@ -255,7 +278,7 @@ export default function ROICalculator() {
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
             </svg>
-            Unlock These Savings — Schedule a Strategy Call
+            Explore These Estimates — Book an Assessment
           </Link>
           
           <div className="trust-indicators-row">
