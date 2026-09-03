@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 
 export function useWorkflowAnimation() {
   const path1Ref = useRef(null);
@@ -6,89 +6,153 @@ export function useWorkflowAnimation() {
   const path3Ref = useRef(null);
   const signalRef = useRef(null);
   const nodesRef = useRef([]);
+  const mobilePathRef = useRef(null);
+  const mobileSignalRef = useRef(null);
+
+  const setNodeState = useCallback((nodeIndex, state) => {
+    const node = nodesRef.current[nodeIndex];
+    if (!node) return;
+    node.classList.remove('idle', 'active', 'completed');
+    node.classList.add(state);
+  }, []);
+
+  const setConnectorState = useCallback((connectorEl, state) => {
+    if (!connectorEl) return;
+    connectorEl.classList.remove('transmitting', 'completed');
+    if (state !== 'idle') {
+      connectorEl.classList.add(state);
+    }
+  }, []);
 
   useEffect(() => {
-    // Check for reduced motion
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (mediaQuery.matches) {
-      // Set to completed state
-      nodesRef.current.forEach((node) => {
-        if (node) node.classList.add('completed');
-      });
+      // Static completed state for all nodes
+      for (let i = 0; i < 8; i++) {
+        setNodeState(i, 'completed');
+      }
       if (signalRef.current) signalRef.current.style.display = 'none';
+      if (mobileSignalRef.current) mobileSignalRef.current.style.display = 'none';
       return;
     }
 
     let isActive = true;
-    const totalDuration = 8000; // 8 seconds per loop
-    
-    // Animate paths natively using Web Animations API (if desired for exact sync)
-    // Actually, CSS keyframes / SVG animateMotion is lighter, but since the hook is requested:
-    // We will use JS to toggle node classes precisely.
+    let animId;
 
-    const updateStates = () => {
+    // Total cycle: 10 seconds
+    // Phase 0 (0.00–0.20): Node 1 active, signal travels path1
+    // Phase 1 (0.20–0.40): Node 2 active, signal travels path2
+    // Phase 2 (0.40–0.60): Node 3 active, signal travels path3
+    // Phase 3 (0.60–0.80): Node 4 active (completion)
+    // Phase 4 (0.80–1.00): Reset pause
+
+    const CYCLE_DURATION = 10000;
+    const PHASE_COUNT = 5;
+    const PHASE_DURATION = 1 / PHASE_COUNT; // 0.2
+
+    const paths = [path1Ref, path2Ref, path3Ref];
+    const stateLabels = ['captured', 'validated', 'controlled', 'completed'];
+
+    const updateAnimation = () => {
       if (!isActive) return;
+
       const now = Date.now();
-      const progress = (now % totalDuration) / totalDuration; // 0 to 1
+      const progress = (now % CYCLE_DURATION) / CYCLE_DURATION;
+      const currentPhase = Math.min(Math.floor(progress / PHASE_DURATION), PHASE_COUNT - 1);
+      const phaseProgress = (progress - currentPhase * PHASE_DURATION) / PHASE_DURATION;
 
-      // 4 phases: 
-      // 0.00 - 0.25: Node 1 active, signal moves from 1 to 2
-      // 0.25 - 0.50: Node 2 active, signal moves from 2 to 3
-      // 0.50 - 0.75: Node 3 active, signal moves from 3 to 4
-      // 0.75 - 1.00: Node 4 active, reset
-
-      nodesRef.current.forEach((node, i) => {
-        if (!node) return;
-        node.classList.remove('active', 'completed', 'idle');
-        const stepIndex = i % 4;
-        const phaseStart = stepIndex * 0.25;
-        const phaseEnd = phaseStart + 0.25;
-
-        if (progress >= phaseStart && progress < phaseEnd) {
-          node.classList.add('active');
-        } else if (progress >= phaseEnd) {
-          node.classList.add('completed');
+      // Update desktop nodes (indices 0-3) and mobile nodes (indices 4-7)
+      for (let i = 0; i < 4; i++) {
+        let state;
+        if (currentPhase === 4) {
+          // Reset phase — brief idle
+          state = 'idle';
+        } else if (i < currentPhase) {
+          state = 'completed';
+        } else if (i === currentPhase) {
+          state = 'active';
         } else {
-          node.classList.add('idle');
-        }
-      });
-
-      // Signal movement
-      if (signalRef.current) {
-        let activePath = null;
-        let pathProgress = 0;
-
-        if (progress >= 0 && progress < 0.25) {
-          activePath = path1Ref.current;
-          pathProgress = progress / 0.25;
-        } else if (progress >= 0.25 && progress < 0.5) {
-          activePath = path2Ref.current;
-          pathProgress = (progress - 0.25) / 0.25;
-        } else if (progress >= 0.5 && progress < 0.75) {
-          activePath = path3Ref.current;
-          pathProgress = (progress - 0.5) / 0.25;
-        } else {
-          // Hide signal during phase 4
-          signalRef.current.style.opacity = 0;
+          state = 'idle';
         }
 
-        if (activePath) {
-          signalRef.current.style.opacity = 1;
-          const length = activePath.getTotalLength();
-          const point = activePath.getPointAtLength(length * pathProgress);
-          signalRef.current.setAttribute('transform', `translate(${point.x}, ${point.y})`);
+        // Desktop node
+        setNodeState(i, state);
+        // Mobile node
+        setNodeState(i + 4, state);
+
+        // Update state text
+        const desktopNode = nodesRef.current[i];
+        const mobileNode = nodesRef.current[i + 4];
+        if (desktopNode) {
+          const textEl = desktopNode.querySelector('.wf-state-text');
+          if (textEl) {
+            if (state === 'active') textEl.textContent = 'processing...';
+            else textEl.textContent = stateLabels[i];
+          }
+        }
+        if (mobileNode) {
+          const textEl = mobileNode.querySelector('.wf-state-text');
+          if (textEl) {
+            if (state === 'active') textEl.textContent = 'processing...';
+            else textEl.textContent = stateLabels[i];
+          }
         }
       }
 
-      requestAnimationFrame(updateStates);
+      // Update connector states
+      for (let c = 0; c < 3; c++) {
+        const connectorEl = paths[c].current;
+        if (currentPhase === 4) {
+          setConnectorState(connectorEl, 'idle');
+        } else if (c < currentPhase) {
+          setConnectorState(connectorEl, 'completed');
+        } else if (c === currentPhase) {
+          setConnectorState(connectorEl, 'transmitting');
+        } else {
+          setConnectorState(connectorEl, 'idle');
+        }
+      }
+
+      // Desktop signal movement
+      if (signalRef.current) {
+        if (currentPhase < 3) {
+          const activePath = paths[currentPhase].current;
+          if (activePath) {
+            signalRef.current.classList.add('visible');
+            const length = activePath.getTotalLength();
+            const point = activePath.getPointAtLength(length * phaseProgress);
+            signalRef.current.setAttribute('transform', `translate(${point.x}, ${point.y})`);
+          }
+        } else {
+          signalRef.current.classList.remove('visible');
+        }
+      }
+
+      // Mobile signal movement
+      if (mobileSignalRef.current && mobilePathRef.current) {
+        if (currentPhase < 4) {
+          mobileSignalRef.current.classList.add('visible');
+          const totalLength = mobilePathRef.current.getTotalLength();
+          // Each phase covers 1/4 of the total path
+          const segmentLength = totalLength / 4;
+          const travelledLength = currentPhase * segmentLength + phaseProgress * segmentLength;
+          const point = mobilePathRef.current.getPointAtLength(Math.min(travelledLength, totalLength));
+          mobileSignalRef.current.setAttribute('transform', `translate(${point.x}, ${point.y})`);
+        } else {
+          mobileSignalRef.current.classList.remove('visible');
+        }
+      }
+
+      animId = requestAnimationFrame(updateAnimation);
     };
 
-    const animId = requestAnimationFrame(updateStates);
+    animId = requestAnimationFrame(updateAnimation);
+
     return () => {
       isActive = false;
       cancelAnimationFrame(animId);
     };
-  }, []);
+  }, [setNodeState, setConnectorState]);
 
-  return { path1Ref, path2Ref, path3Ref, signalRef, nodesRef };
+  return { path1Ref, path2Ref, path3Ref, signalRef, nodesRef, mobilePathRef, mobileSignalRef };
 }
