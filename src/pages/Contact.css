@@ -1,5 +1,5 @@
 /* ============================================
-   Contact Page
+   Contact Page — XAIVON design tokens only
    ============================================ */
 
 .contact-page {
@@ -8,7 +8,7 @@
 
 /* --- Hero --- */
 .contact-hero {
-  padding: var(--section-padding);
+  padding: clamp(48px, 6vw, 80px) var(--gutter) clamp(32px, 4vw, 56px);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -37,7 +37,7 @@
   margin-bottom: 1.25rem;
   background: rgba(230, 90, 38, 0.12);
   border: 1px solid rgba(230, 90, 38, 0.3);
-  color: var(--color-accent);
+  color: var(--accent);
 }
 
 .contact-hero h1 {
@@ -49,20 +49,20 @@
   max-width: min(800px, 100%);
   margin: 0 auto;
   font-size: 1.15rem;
-  color: var(--text-secondary);
+  color: var(--muted);
 }
 
 /* --- Two-Column Layout --- */
 .contact-columns {
-  padding: 0 5% 0;
+  padding: 0 var(--gutter);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2.5rem;
-  max-width: var(--container-max);
+  max-width: var(--max);
   margin: 0 auto;
 }
 
-/* Form */
+/* Form card */
 .contact-form-card {
   padding: 2.5rem;
 }
@@ -70,49 +70,58 @@
 .contact-form-card h2 {
   font-size: 1.5rem;
   margin-bottom: 2rem;
+  color: var(--ink);
 }
 
-.form-group {
+/* --- Fields: matches Contact.jsx .field class --- */
+.field {
   margin-bottom: 1.5rem;
 }
 
-.form-group label {
+.field label {
   display: block;
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: var(--muted);
   margin-bottom: 0.5rem;
   letter-spacing: 0.3px;
 }
 
-.form-group input,
-.form-group textarea {
+.field input,
+.field textarea {
   width: 100%;
   padding: 12px 16px;
   border-radius: var(--radius-sm);
-  border: 1px solid var(--border-subtle);
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--text-primary);
-  font-family: var(--font-family);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
   font-size: 0.95rem;
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
   outline: none;
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
+.field input:focus,
+.field textarea:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(230, 90, 38, 0.15);
 }
 
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-  color: var(--text-muted);
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--muted-2);
 }
 
-.form-group textarea {
+.field textarea {
   min-height: 120px;
   resize: vertical;
+}
+
+/* Error state */
+.form-error {
+  color: var(--danger, #ab3b33);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  line-height: 1.5;
 }
 
 .form-submit-btn {
@@ -134,33 +143,47 @@
 .form-success h3 {
   font-size: 1.5rem;
   margin-bottom: 0.75rem;
+  color: var(--ink);
 }
 
 .form-success p {
   font-size: 1rem;
+  color: var(--muted);
 }
 
 /* Calendly Card */
 .calendly-card {
-  padding: 2.5rem;
+  padding: 0;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+}
+
+.calendly-card-header {
+  padding: 2rem 2rem 1.25rem;
   text-align: center;
 }
 
-.calendly-card h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1.25rem;
+.calendly-card-header h2 {
+  margin-bottom: 0.75rem;
+  font-size: 1.4rem;
+  color: var(--ink);
+}
+
+.calendly-card-header p {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .calendly-placeholder {
   width: 100%;
   min-height: 260px;
   border-radius: var(--radius-md);
-  border: 1px dashed var(--border-subtle);
-  background: rgba(255, 255, 255, 0.015);
+  border: 1px dashed var(--line);
+  background: var(--bg-soft);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -176,30 +199,70 @@
 
 .calendly-placeholder p {
   font-size: 0.9rem;
-  color: var(--text-muted);
+  color: var(--muted-2);
 }
 
 .calendly-placeholder a {
-  color: var(--color-accent);
+  color: var(--accent);
   font-weight: 500;
   border-bottom: 1px solid rgba(230, 90, 38, 0.3);
-  transition: border-color var(--transition-fast);
+  transition: border-color 0.18s ease;
 }
 
 .calendly-placeholder a:hover {
-  border-color: var(--color-accent);
+  border-color: var(--accent);
+}
+
+.calendly-embed-wrapper {
+  flex: 1;
+  min-height: 660px;
+  border-top: 1px solid var(--line);
+}
+
+.calendly-embed-wrapper .calendly-inline-widget {
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+/* --- Calendly Skeleton Loader --- */
+.calendly-skeleton {
+  background: linear-gradient(90deg, var(--bg-soft) 25%, var(--surface-2) 50%, var(--bg-soft) 75%);
+  background-size: 400% 100%;
+  animation: skeleton-loading 1.5s infinite ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.calendly-skeleton::after {
+  content: 'Loading Calendar...';
+  color: var(--muted-2);
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  position: absolute;
+  z-index: 0;
+}
+
+.calendly-skeleton iframe {
+  z-index: 1;
+  position: relative;
+}
+
+@keyframes skeleton-loading {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 /* --- Contact Info Cards --- */
 .contact-info-section {
-  padding: var(--section-padding);
+  padding: clamp(40px, 5vw, 64px) var(--gutter);
 }
 
 .contact-info-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
-  max-width: var(--container-max);
+  max-width: var(--max);
   margin: 0 auto;
 }
 
@@ -216,17 +279,17 @@
 
 .contact-info-card p {
   font-size: 0.95rem;
-  color: var(--text-secondary);
+  color: var(--muted);
 }
 
 .contact-info-card a {
-  color: var(--color-accent);
+  color: var(--accent);
 }
 
 /* --- FAQ Section --- */
 .contact-faq {
-  padding: var(--section-padding);
-  background: var(--bg-secondary);
+  padding: clamp(40px, 5vw, 64px) var(--gutter);
+  background: var(--bg-soft);
 }
 
 .faq-header {
@@ -246,7 +309,7 @@
   margin-bottom: 1.25rem;
   background: rgba(230, 90, 38, 0.12);
   border: 1px solid rgba(230, 90, 38, 0.3);
-  color: var(--color-accent);
+  color: var(--accent);
 }
 
 .faq-list {
@@ -259,14 +322,14 @@
 
 .faq-item {
   border-radius: var(--radius-md);
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+  background: var(--surface);
+  border: 1px solid var(--line);
   overflow: hidden;
-  transition: border-color var(--transition-smooth);
+  transition: border-color 0.22s ease;
 }
 
 .faq-item.faq-open {
-  border-color: var(--border-hover);
+  border-color: var(--line-strong);
 }
 
 .faq-question {
@@ -277,30 +340,35 @@
   gap: 1.5rem;
   padding: 1.5rem;
   background: transparent;
-  color: var(--text-primary);
+  color: var(--ink);
   font-size: 1.05rem;
   font-weight: 600;
   text-align: left;
   cursor: pointer;
-  transition: color var(--transition-fast);
+  transition: color 0.18s ease;
   border: none;
   outline: none;
 }
 
 .faq-question:hover {
-  color: var(--color-accent);
+  color: var(--accent);
+}
+
+.faq-question:focus-visible {
+  outline: 3px solid rgba(230, 90, 38, 0.28);
+  outline-offset: 2px;
 }
 
 .faq-chevron {
   font-size: 1.2rem;
-  transition: transform var(--transition-smooth);
+  transition: transform 0.22s ease;
   flex-shrink: 0;
-  color: var(--text-muted);
+  color: var(--muted-2);
 }
 
 .faq-item.faq-open .faq-chevron {
   transform: rotate(180deg);
-  color: var(--color-accent);
+  color: var(--accent);
 }
 
 .faq-answer-wrapper {
@@ -318,7 +386,7 @@
   padding: 0 1.5rem 1.5rem;
   font-size: 1rem;
   line-height: 1.8;
-  color: var(--text-secondary);
+  color: var(--muted);
   opacity: 0;
   transform: translateY(-8px);
   transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
@@ -331,15 +399,18 @@
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
-  .contact-hero,
+  .contact-hero {
+    padding: clamp(32px, 5vw, 52px) var(--gutter);
+  }
+
   .contact-info-section,
   .contact-faq {
-    padding: var(--section-padding-mobile);
+    padding: clamp(28px, 4vw, 44px) var(--gutter);
   }
 
   .contact-columns {
     grid-template-columns: 1fr;
-    padding: 0 5%;
+    padding: 0 var(--gutter);
   }
 
   .contact-info-grid {
@@ -348,7 +419,7 @@
   }
 
   .contact-form-card,
-  .calendly-card {
+  .calendly-card-header {
     padding: 1.75rem;
   }
 
@@ -356,73 +427,4 @@
     font-size: 0.95rem;
     padding: 1rem 1.25rem;
   }
-}
-
-
-/* Calendly Skeleton Loader */
-.calendly-skeleton {
-  background: linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.02) 75%);
-  background-size: 400% 100%;
-  animation: skeleton-loading 1.5s infinite ease-in-out;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.calendly-skeleton::after {
-  content: 'Loading Calendar...';
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-  position: absolute;
-  z-index: 0;
-}
-
-.calendly-skeleton iframe {
-  z-index: 1;
-  position: relative;
-}
-
-@keyframes skeleton-loading {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-/* ─── Calendly Inline Embed ────────────────────────────────────────── */
-
-.calendly-card {
-  padding: 0;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.calendly-card-header {
-  padding: 2rem 2rem 1.25rem;
-  text-align: center;
-}
-
-.calendly-card-header h2 {
-  margin-bottom: 0.75rem;
-  font-size: 1.4rem;
-}
-
-.calendly-card-header p {
-  color: var(--text-secondary);
-  font-size: 0.92rem;
-  line-height: 1.6;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-.calendly-embed-wrapper {
-  flex: 1;
-  min-height: 660px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-/* Override Calendly iframe border */
-.calendly-embed-wrapper .calendly-inline-widget {
-  border-radius: 0 0 16px 16px;
 }

@@ -75,7 +75,7 @@ const [form, setForm] = useState({ name: '', email: '', company: '', message: ''
     if (cooldown > 0) return;
 
     setIsSubmitting(true);
-    setError(null);
+    setError('');
 
     const payload = {
       name: form.name.trim(),
@@ -115,7 +115,12 @@ const [form, setForm] = useState({ name: '', email: '', company: '', message: ''
       // Redirect to AI consultation page
       window.location.href = data.redirect || '/ai-consultation';
     } catch (err) {
-      setError(err.message || 'Something went wrong. Please try again later.');
+      const raw = err.message || '';
+      if (raw.toLowerCase().includes('server configuration')) {
+        setError('Something went wrong while sending your message. Please email raja@xaivon.com and we\'ll get back to you.');
+      } else {
+        setError(raw || 'Something went wrong. Please try again later.');
+      }
     } finally {
       setIsSubmitting(false);
     }

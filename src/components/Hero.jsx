@@ -27,9 +27,7 @@ export default function Hero() {
           </div>
 
           <h1 className="hero-headline hero-fade hero-fade-2">
-            We automate the<br/>
-            operational work your<br/>
-            team shouldn&apos;t do twice.
+            We automate the operational work your team shouldn&apos;t do twice.
           </h1>
 
           <p className="hero-subheadline hero-fade hero-fade-3">
