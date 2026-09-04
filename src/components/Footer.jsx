@@ -16,6 +16,7 @@ export default function Footer() {
             <Link to="/pricing">Pricing</Link>
             <Link to="/contact">Contact</Link>
             <Link to="/about#future">Roadmap</Link>
+            <a href="mailto:raja@xaivon.com">raja@xaivon.com</a>
           </div>
           <div>
             <h3>Explore</h3>
