@@ -71,7 +71,7 @@ export default function Resources() {
               </div>
               <h3>{res.title}</h3>
               <p>{res.description}</p>
-              <Link to={res.link} className="resource-link">{res.linkText} ?</Link>
+              <Link to={res.link} className="resource-link">{res.linkText}</Link>
             </div>
           ))}
         </div>

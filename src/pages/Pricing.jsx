@@ -5,7 +5,10 @@ import { XAIVON_DATA } from '../data/xaivonData';
 
 export default function Pricing() {
   const [activeCategory, setActiveCategory] = useState(XAIVON_DATA.pricing.categories[0]);
-  const [currency, setCurrency] = useState('USD');
+  const [currency, setCurrency] = useState(() => {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    return (tz === 'Asia/Calcutta' || tz === 'Asia/Kolkata') ? 'INR' : 'USD';
+  });
 
   const activeService =
     XAIVON_DATA.pricing.services.find(s => s.category === activeCategory) ||
@@ -74,26 +77,27 @@ export default function Pricing() {
                 className="surface price-card"
                 style={tier.popular ? { borderColor: 'var(--accent)', boxShadow: '0 0 0 1px var(--accent)' } : {}}
               >
-                {tier.popular && (
-                  <div
-                    className="tag"
-                    style={{
-                      display: 'inline-flex',
-                      alignSelf: 'flex-start',
-                      marginBottom: '10px',
-                      padding: '5px 10px',
-                      borderRadius: '999px',
-                      background: 'var(--accent)',
-                      color: 'var(--white)',
-                      fontSize: '10px',
-                      fontWeight: '850',
-                      letterSpacing: '.1em',
-                      textTransform: 'uppercase',
-                    }}
-                  >
-                    Most Popular
-                  </div>
-                )}
+                {/* Fixed-height badge row keeps h2 aligned across all three cards */}
+                <div style={{ height: '28px', marginBottom: '10px', display: 'flex', alignItems: 'center' }}>
+                  {tier.popular && (
+                    <div
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        padding: '5px 10px',
+                        borderRadius: '999px',
+                        background: 'var(--accent)',
+                        color: 'var(--white)',
+                        fontSize: '10px',
+                        fontWeight: '850',
+                        letterSpacing: '.1em',
+                        textTransform: 'uppercase',
+                      }}
+                    >
+                      Most Popular
+                    </div>
+                  )}
+                </div>
 
                 <h2>{tier.name}</h2>
                 <p className="subtitle">{tier.purpose}</p>
