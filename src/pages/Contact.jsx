@@ -29,7 +29,8 @@ const faqData = [
 ];
 
 export default function Contact() {
-const [form, setForm] = useState({ name: '', email: '', company: '', message: '', website: '' });
+  const [form, setForm] = useState({ name: '', email: '', company: '', message: '', website: '' });
+  const [submissionId] = useState(() => (typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : ''));
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState(null);
@@ -55,7 +56,7 @@ const [form, setForm] = useState({ name: '', email: '', company: '', message: ''
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Honeypot check for bots
     if (form.website) {
       console.warn("Spam detected.");
@@ -82,7 +83,8 @@ const [form, setForm] = useState({ name: '', email: '', company: '', message: ''
       email: form.email.trim(),
       company: form.company.trim(),
       message: form.message.trim(),
-      website: form.website
+      website: form.website,
+      submissionId: submissionId
     };
 
     try {
@@ -111,7 +113,7 @@ const [form, setForm] = useState({ name: '', email: '', company: '', message: ''
       // â”€â”€â”€ Success: email delivered â†’ redirect to consultation â”€
       trackEvent('contact_form_submit', { company: payload.company });
       setCooldown(60);
-      
+
       // Redirect to AI consultation page
       window.location.href = data.redirect || '/ai-consultation';
     } catch (err) {
@@ -132,7 +134,7 @@ const [form, setForm] = useState({ name: '', email: '', company: '', message: ''
 
   return (
     <div className="contact-page">
-      <PageMeta 
+      <PageMeta
         title="Contact XAIVON — Schedule Strategy Call"
         description="Book a free discovery call or send us a message. Our team will review and follow up."
         url="https://xaivon.com/contact"
@@ -163,7 +165,7 @@ const [form, setForm] = useState({ name: '', email: '', company: '', message: ''
               <form onSubmit={handleSubmit} id="contact-form">
                 {/* Honeypot Field */}
                 <input type="text" name="website" value={form.website} onChange={handleChange} style={{ display: 'none' }} tabIndex="-1" autoComplete="off" />
-                
+
                 <div className="field">
                   <label htmlFor="contact-name">Full Name</label>
                   <input type="text" id="contact-name" name="name" placeholder="Sarah Smith" value={form.name} onChange={handleChange} required maxLength="50" />
@@ -181,7 +183,7 @@ const [form, setForm] = useState({ name: '', email: '', company: '', message: ''
                   <textarea id="contact-message" name="message" placeholder="We process high volume quotes and want to automate our rate extraction..." value={form.message} onChange={handleChange} required maxLength="500" />
                 </div>
                 {error && <div className="form-error" style={{ color: '#ff4d4f', fontSize: '0.9rem', marginBottom: '1rem' }}>{error}</div>}
-                
+
                 <div className="contact-trust-message" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem', color: 'var(--muted)', fontSize: '0.85rem' }}>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>

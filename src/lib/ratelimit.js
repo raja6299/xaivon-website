@@ -17,10 +17,10 @@ export const ratelimit = new Ratelimit({
 
 /**
  * Check rate limit using a composite identifier (IP + email).
- * Fails closed if Redis is unavailable.
+ * Fails safely (503 Service Unavailable) if Redis is unavailable.
  *
  * @param {string} identifier - Composite key (e.g. IP_email)
- * @returns {{ success: boolean, remaining: number }} 
+ * @returns {{ success: boolean, remaining: number, error?: boolean }}
  */
 export async function checkRateLimit(identifier) {
   try {
@@ -28,7 +28,7 @@ export async function checkRateLimit(identifier) {
     return { success, limit, remaining, reset };
   } catch (error) {
     console.error('Rate limit check failed:', error);
-    // Fail-closed: deny submission if rate-limit infrastructure is unavailable
-    return { success: false, limit: 0, remaining: 0, reset: 0 };
+    // Fail-safe: return error flag so API can respond with 503
+    return { success: false, limit: 0, remaining: 0, reset: 0, error: true };
   }
 }

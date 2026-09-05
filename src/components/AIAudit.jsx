@@ -33,6 +33,7 @@ export default function AIAudit() {
     industry: '',
     challenge: '',
     website: '', // honeypot
+    submissionId: typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : '',
   });
 
   const [errors, setErrors] = useState({});
@@ -102,7 +103,7 @@ export default function AIAudit() {
       setErrors(validationErrors);
       return;
     }
-    
+
     setIsSubmitting(true);
     try {
       setErrors({});
@@ -209,7 +210,7 @@ export default function AIAudit() {
               >
                 {/* Honeypot Field */}
                 <input type="text" name="website" value={formData.website} onChange={handleChange} style={{ display: 'none' }} tabIndex="-1" autoComplete="off" />
-                
+
                 {errors.form && <div className="form-error" style={{ color: '#ff4d4f', fontSize: '0.9rem', marginBottom: '1rem' }}>{errors.form}</div>}
                 <div className="form-group">
                   <label className="form-label" htmlFor="audit-name">Name</label>

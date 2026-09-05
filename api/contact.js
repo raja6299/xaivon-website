@@ -36,13 +36,24 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
+    if (
+      typeof body.name !== 'string' ||
+      typeof body.email !== 'string' ||
+      typeof body.message !== 'string' ||
+      (body.company && typeof body.company !== 'string') ||
+      (body.submissionId && typeof body.submissionId !== 'string')
+    ) {
+      return res.status(400).json({ error: 'Invalid field types' });
+    }
+
+    const rawEmail = body.email.trim();
     const cleanName = escapeHtml(body.name.trim());
-    const cleanEmail = escapeHtml(body.email.trim());
+    const cleanEmail = escapeHtml(rawEmail);
     const cleanCompany = escapeHtml((body.company || '').trim());
     const cleanMessage = escapeHtml(body.message.trim());
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(body.email.trim())) {
+    if (!emailRegex.test(rawEmail)) {
       return res.status(400).json({ error: 'Invalid email format' });
     }
 
@@ -56,7 +67,11 @@ export default async function handler(req, res) {
     }
 
     const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown';
-    const { success, remaining } = await checkRateLimit(`${ip}_${cleanEmail}`);
+    const { success, remaining, error: ratelimitError } = await checkRateLimit(`${ip}_${cleanEmail}`);
+
+    if (ratelimitError) {
+      return res.status(503).json({ error: 'Service temporarily unavailable. Please try again later.' });
+    }
 
     if (!success) {
       return res.status(200).json({
@@ -71,7 +86,13 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'Server configuration error' });
     }
 
-    const baseId = crypto.createHash('sha256').update(cleanEmail + cleanMessage).digest('hex');
+    let baseId;
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (body.submissionId && body.submissionId.length === 36 && uuidRegex.test(body.submissionId)) {
+      baseId = body.submissionId;
+    } else {
+      baseId = crypto.createHash('sha256').update(rawEmail + cleanMessage).digest('hex');
+    }
     const idempotencyKey = `${baseId}:contact-internal`;
     const customerIdempotencyKey = `${baseId}:contact-customer`;
 
@@ -101,7 +122,7 @@ export default async function handler(req, res) {
     try {
       const { error: customerError } = await resend.emails.send({
         from: process.env.RESEND_FROM_EMAIL,
-        to: cleanEmail,
+        to: rawEmail,
         subject: 'Thank you for contacting XAIVON',
         html: `
           <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f8; color: #1a1a1a;">
