@@ -71,7 +71,9 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'Server configuration error' });
     }
 
-    const idempotencyKey = crypto.createHash('sha256').update(cleanEmail + cleanMessage).digest('hex');
+    const baseId = crypto.createHash('sha256').update(cleanEmail + cleanMessage).digest('hex');
+    const idempotencyKey = `${baseId}:contact-internal`;
+    const customerIdempotencyKey = `${baseId}:contact-customer`;
 
     const { error } = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL,
@@ -93,6 +95,33 @@ export default async function handler(req, res) {
     if (error) {
       console.error('Resend API Error:', error);
       return res.status(500).json({ error: 'Failed to send message' });
+    }
+
+    // Secondary Customer Acknowledgement
+    try {
+      const { error: customerError } = await resend.emails.send({
+        from: process.env.RESEND_FROM_EMAIL,
+        to: cleanEmail,
+        subject: 'Thank you for contacting XAIVON',
+        html: `
+          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f8; color: #1a1a1a;">
+            <p style="margin-bottom: 16px;">Hello ${cleanName},</p>
+            <p style="margin-bottom: 16px;">Thank you for contacting XAIVON.</p>
+            <p style="margin-bottom: 16px;">We’ve received your message and the XAIVON team will review it and follow up with you.</p>
+            <p style="margin-bottom: 24px;">We appreciate your interest in improving how your business operates with AI and automation.</p>
+            <p style="margin-bottom: 4px;">Regards,</p>
+            <p style="font-weight: 600; margin-top: 0; margin-bottom: 4px;">XAIVON</p>
+            <p style="color: #9c6c4c; font-size: 14px; margin-top: 0;">AI Infrastructure & Business Automation</p>
+          </div>
+        `,
+        text: `Hello ${cleanName},\n\nThank you for contacting XAIVON.\n\nWe’ve received your message and the XAIVON team will review it and follow up with you.\n\nWe appreciate your interest in improving how your business operates with AI and automation.\n\nRegards,\nXAIVON\nAI Infrastructure & Business Automation`
+      }, { idempotencyKey: customerIdempotencyKey });
+
+      if (customerError) {
+        console.error('Resend Customer API Error:', customerError);
+      }
+    } catch (customerCatchErr) {
+      console.error('Customer Acknowledgement Error:', customerCatchErr.message);
     }
 
     return res.status(200).json({

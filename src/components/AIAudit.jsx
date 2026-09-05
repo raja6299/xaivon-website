@@ -38,6 +38,7 @@ export default function AIAudit() {
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [cooldown, setCooldown] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     let timer;
@@ -102,6 +103,7 @@ export default function AIAudit() {
       return;
     }
     
+    setIsSubmitting(true);
     try {
       setErrors({});
       const response = await fetch('/api/audit', {
@@ -121,6 +123,8 @@ export default function AIAudit() {
       trackEvent('audit_form_submit', { industry: formData.industry, company: formData.company });
     } catch (err) {
       setErrors({ form: err.message || 'Something went wrong. Please try again later.' });
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -280,9 +284,9 @@ export default function AIAudit() {
                   type="submit"
                   className="btn btn-gold btn-lg ai-audit-submit"
                   id="audit-submit-btn"
-                  disabled={cooldown > 0}
+                  disabled={cooldown > 0 || isSubmitting}
                 >
-                  {cooldown > 0 ? `Wait ${cooldown}s` : 'Get a Free AI Infrastructure Assessment'}
+                  {isSubmitting ? 'Processing assessment...' : cooldown > 0 ? `Wait ${cooldown}s` : 'Get a Free AI Infrastructure Assessment'}
                 </button>
 
                 <div className="ai-audit-trust-indicators" style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', color: 'var(--text-muted)', fontSize: '0.85rem', textAlign: 'center' }}>

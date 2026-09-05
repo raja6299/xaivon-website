@@ -184,7 +184,7 @@ const [form, setForm] = useState({ name: '', email: '', company: '', message: ''
                 </div>
 
                 <button type="submit" className="btn btn-primary form-submit-btn" id="contact-submit" disabled={cooldown > 0 || isSubmitting}>
-                  {isSubmitting ? 'Sending...' : cooldown > 0 ? `Wait ${cooldown}s` : 'Send Message'}
+                  {isSubmitting ? 'Processing request...' : cooldown > 0 ? `Wait ${cooldown}s` : 'Send Message'}
                 </button>
               </form>
             </>
