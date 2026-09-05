@@ -1,42 +1,73 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PageMeta from '../components/PageMeta';
-import { useScrollReveal } from '../hooks/useScrollReveal';
 import './AiConsultation.css';
 
 export default function AiConsultation() {
-  const [heroRef, heroVisible] = useScrollReveal();
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <div className="consultation-page">
-      <PageMeta 
+    <div className="ac-page">
+      <PageMeta
         title="Assessment Received — XAIVON"
         description="Your request has been received. Our team will review the information and follow up."
         url="https://xaivon.com/ai-consultation"
       />
-      <div className="container" style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div ref={heroRef} className={`text-center reveal-fade-up ${heroVisible ? 'visible' : ''}`}>
-          <div className="success-icon-wrapper mb-4">
-            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-              <polyline points="22 4 12 14.01 9 11.01"></polyline>
-            </svg>
-          </div>
-          
-          <h1 className="text-gradient">Request Received</h1>
-          
-          <p className="consultation-subtitle">
-            Our team will review your information and follow up shortly.
-          </p>
 
-          <div className="consultation-actions mt-4">
-            <Link to="/" className="btn btn-primary">Return Home</Link>
-          </div>
+      <div className="ac-inner">
+
+        {/* Success icon */}
+        <div className="ac-icon" aria-hidden="true">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M20 6L9 17l-5-5" />
+          </svg>
         </div>
+
+        {/* Eyebrow */}
+        <div className="ac-eyebrow">ASSESSMENT RECEIVED</div>
+
+        {/* Headline */}
+        <h1 className="ac-headline">Your request is with the XAIVON team.</h1>
+
+        {/* Supporting copy */}
+        <p className="ac-body">
+          We've received your information and will review it before following up.
+        </p>
+
+        {/* Next steps */}
+        <ol className="ac-steps" aria-label="What happens next">
+          <li className="ac-step">
+            <span className="ac-step-num">01</span>
+            <span className="ac-step-text">Request received</span>
+          </li>
+          <li className="ac-step">
+            <span className="ac-step-num">02</span>
+            <span className="ac-step-text">XAIVON reviews the information</span>
+          </li>
+          <li className="ac-step">
+            <span className="ac-step-num">03</span>
+            <span className="ac-step-text">We follow up with the next step</span>
+          </li>
+        </ol>
+
+        {/* CTAs */}
+        <div className="ac-actions">
+          <a
+            href="https://calendly.com/raja-xaivon/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary"
+            aria-label="Schedule a strategy call on Calendly"
+          >
+            Schedule a Strategy Call ↗
+          </a>
+          <Link to="/" className="btn btn-secondary">
+            Return Home
+          </Link>
+        </div>
+
       </div>
     </div>
   );

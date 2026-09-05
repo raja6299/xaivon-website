@@ -1,285 +1,167 @@
 /* ============================================
-   AI Consultation Confirmation Page
+   AiConsultation — Assessment confirmation page
+   Classes match AiConsultation.jsx exactly.
+   Uses XAIVON design tokens from index.css only.
    ============================================ */
 
-.ai-consultation-page {
-  padding-top: 72px;
-}
-
-/* --- Hero --- */
-.consultation-hero {
-  min-height: 80vh;
+/* Page wrapper — sits below sticky nav */
+.ac-page {
+  min-height: calc(100svh - 96px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--section-padding);
+  padding: clamp(48px, 7vw, 96px) var(--gutter);
+  background: var(--bg);
+}
+
+/* Centered content container */
+.ac-inner {
+  width: min(640px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.consultation-hero::before {
-  content: '';
-  position: absolute;
-  top: -200px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 800px;
-  height: 600px;
-  background: radial-gradient(ellipse, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.consultation-hero-inner {
-  max-width: 680px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* --- Success Icon --- */
-.consultation-icon-wrapper {
-  position: relative;
-  width: 88px;
-  height: 88px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 2rem;
-}
-
-.consultation-icon {
-  color: #10b981;
-  z-index: 1;
-}
-
-.consultation-icon-pulse {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: rgba(16, 185, 129, 0.12);
-  animation: iconPulse 2.5s ease-in-out infinite;
-}
-
-@keyframes iconPulse {
-  0%, 100% { transform: scale(1); opacity: 0.6; }
-  50% { transform: scale(1.25); opacity: 0; }
-}
-
-/* --- Badge --- */
-.consultation-hero .badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 6px 16px;
-  border-radius: 100px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(37, 99, 235, 0.2));
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  color: #10b981;
-}
-
-.consultation-hero .badge .badge-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #10b981;
-  animation: dotBlink 1.5s ease-in-out infinite;
-}
-
-@keyframes dotBlink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-
-/* --- Typography --- */
-.consultation-hero h1 {
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  line-height: 1.2;
-  margin-bottom: 1.25rem;
-}
-
-.consultation-subtitle {
-  font-size: 1.15rem;
-  line-height: 1.7;
-  color: var(--text-secondary);
-  max-width: 540px;
-  margin-bottom: 3rem;
-}
-
-/* --- Progress Steps --- */
-.consultation-steps {
-  display: flex;
-  align-items: center;
   gap: 0;
-  margin-bottom: 3rem;
-  width: 100%;
-  max-width: 520px;
-  justify-content: center;
 }
 
-.consultation-step {
+/* --- Success icon --- */
+.ac-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 0.6rem;
+  justify-content: center;
+  margin-bottom: 28px;
+  box-shadow: 0 0 0 8px rgba(230, 90, 38, 0.08);
   flex-shrink: 0;
 }
 
-.step-indicator {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
+/* --- Eyebrow --- */
+.ac-eyebrow {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
-  font-weight: 700;
-  transition: all 0.3s ease;
-}
-
-/* Completed step */
-.consultation-step.completed .step-indicator {
-  background: linear-gradient(135deg, #10b981, #059669);
-  color: #fff;
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
-}
-
-/* Active step */
-.consultation-step.active .step-indicator {
-  background: rgba(37, 99, 235, 0.15);
-  border: 2px solid rgba(37, 99, 235, 0.5);
-  color: var(--color-accent);
-}
-
-.processing-spinner {
-  width: 20px;
-  height: 20px;
-  border: 2.5px solid rgba(37, 99, 235, 0.2);
-  border-top-color: var(--color-accent);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* Pending step */
-.consultation-step.pending .step-indicator {
-  background: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  color: var(--text-muted);
-}
-
-/* Step connector line */
-.step-connector {
-  flex: 1;
-  height: 2px;
-  min-width: 40px;
-  max-width: 80px;
-  background: rgba(255, 255, 255, 0.08);
-  margin: 0 0.25rem;
-  margin-bottom: 2.5rem;
-  border-radius: 2px;
-}
-
-.step-connector.active {
-  background: linear-gradient(90deg, #10b981, rgba(37, 99, 235, 0.4));
-}
-
-/* Step text */
-.step-content {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-}
-
-.step-label {
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 1px;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--accent);
+  margin-bottom: 16px;
 }
 
-.step-title {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text-primary);
+/* --- Headline --- */
+.ac-headline {
+  margin: 0 0 18px;
+  font-size: clamp(28px, 3.8vw, 44px);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  font-weight: 780;
+  color: var(--ink);
+  max-width: 560px;
 }
 
-.consultation-step.pending .step-title {
-  color: var(--text-muted);
+/* --- Body copy --- */
+.ac-body {
+  margin: 0 0 40px;
+  color: var(--muted);
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.7;
+  max-width: 480px;
 }
 
-/* --- CTA Buttons --- */
-.consultation-actions {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-/* --- Trust Indicators --- */
-.consultation-trust {
-  padding: 0 var(--section-px) 6rem;
-}
-
-.consultation-trust-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.consultation-trust-card {
+/* --- Next-step sequence --- */
+.ac-steps {
+  list-style: none;
+  margin: 0 0 44px;
+  padding: 0;
+  width: 100%;
+  max-width: 480px;
   display: flex;
   flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.ac-step {
+  display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 1.5rem 1rem;
-  text-align: center;
+  gap: 16px;
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--line);
 }
 
-.consultation-trust-icon {
-  font-size: 1.75rem;
+.ac-step:last-child {
+  border-bottom: none;
 }
 
-.consultation-trust-card p {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--text-secondary);
+.ac-step-num {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ac-step-text {
+  font-size: 14px;
+  font-weight: 650;
+  color: var(--ink);
+  text-align: left;
+  line-height: 1.4;
+}
+
+/* --- CTA group --- */
+.ac-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Ensure buttons inherit correct sizing */
+.ac-actions .btn {
+  min-width: 180px;
 }
 
 /* --- Responsive --- */
-@media (max-width: 768px) {
-  .consultation-trust-grid {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 600px) {
+  .ac-page {
+    align-items: flex-start;
+    padding-top: clamp(40px, 6vw, 64px);
   }
 
-  .consultation-steps {
-    max-width: 100%;
+  .ac-headline {
+    font-size: clamp(24px, 7vw, 32px);
   }
 
-  .step-connector {
-    min-width: 20px;
+  .ac-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .ac-actions .btn {
+    width: 100%;
+    min-width: unset;
   }
 }
 
-@media (max-width: 480px) {
-  .consultation-hero {
-    min-height: 70vh;
-  }
-
-  .consultation-trust-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .ac-icon {
+    box-shadow: none;
   }
 }
