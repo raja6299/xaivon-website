@@ -129,6 +129,48 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="workflow-section section" id="how">
+        <div className="container">
+          <div className="section-head">
+            <div>
+              <div className="eyebrow">How it works</div>
+              <h2>Every automation follows the same four steps.</h2>
+            </div>
+            <p>Map the process, design the workflow, build the connections, then watch it run and improve.</p>
+          </div>
+          <div className="workflow-layout">
+            <div className="step-list">
+              <article className="flow-step active">
+                <div className="n">01</div>
+                <div><h3>Discover</h3><p>Map the process, the systems involved, and the handoffs that slow things down.</p></div>
+              </article>
+              <article className="flow-step">
+                <div className="n">02</div>
+                <div><h3>Design</h3><p>Turn the process into clear steps and decision points.</p></div>
+              </article>
+              <article className="flow-step">
+                <div className="n">03</div>
+                <div><h3>Build</h3><p>Connect the AI, tools, data sources, and business rules.</p></div>
+              </article>
+              <article className="flow-step">
+                <div className="n">04</div>
+                <div><h3>Monitor</h3><p>Track failures, exceptions, and improvement opportunities.</p></div>
+              </article>
+            </div>
+            <div className="flow-canvas">
+              <div className="flow-caption"><span>Example workflow</span><span>human-controlled</span></div>
+              <div className="flow-stack">
+                <article className="flow-card"><small>Input</small><strong>New request</strong></article>
+                <article className="flow-card highlight"><small>AI</small><strong>Extract + classify</strong></article>
+                <article className="flow-card"><small>Rules</small><strong>Validate + route</strong></article>
+                <article className="flow-card"><small>Action</small><strong>Sync + notify</strong></article>
+              </div>
+              <div className="flow-travel" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section tight" id="products">
         <div className="container">
           <div className="section-head">
@@ -185,48 +227,6 @@ export default function Home() {
             <Link className="industry-card" to="/industries#finance"><strong>Finance</strong><span>Planned</span></Link>
             <Link className="industry-card" to="/industries#insurance"><strong>Insurance</strong><span>Planned</span></Link>
             <Link className="industry-card" to="/industries#more"><strong>More</strong><span>Planned</span></Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="workflow-section section" id="how">
-        <div className="container">
-          <div className="section-head">
-            <div>
-              <div className="eyebrow">How it works</div>
-              <h2>Every automation follows the same four steps.</h2>
-            </div>
-            <p>Map the process, design the workflow, build the connections, then watch it run and improve.</p>
-          </div>
-          <div className="workflow-layout">
-            <div className="step-list">
-              <article className="flow-step active">
-                <div className="n">01</div>
-                <div><h3>Discover</h3><p>Map the process, the systems involved, and the handoffs that slow things down.</p></div>
-              </article>
-              <article className="flow-step">
-                <div className="n">02</div>
-                <div><h3>Design</h3><p>Turn the process into clear steps and decision points.</p></div>
-              </article>
-              <article className="flow-step">
-                <div className="n">03</div>
-                <div><h3>Build</h3><p>Connect the AI, tools, data sources, and business rules.</p></div>
-              </article>
-              <article className="flow-step">
-                <div className="n">04</div>
-                <div><h3>Monitor</h3><p>Track failures, exceptions, and improvement opportunities.</p></div>
-              </article>
-            </div>
-            <div className="flow-canvas">
-              <div className="flow-caption"><span>Example workflow</span><span>human-controlled</span></div>
-              <div className="flow-stack">
-                <article className="flow-card"><small>Input</small><strong>New request</strong></article>
-                <article className="flow-card highlight"><small>AI</small><strong>Extract + classify</strong></article>
-                <article className="flow-card"><small>Rules</small><strong>Validate + route</strong></article>
-                <article className="flow-card"><small>Action</small><strong>Sync + notify</strong></article>
-              </div>
-              <div className="flow-travel" aria-hidden="true"></div>
-            </div>
           </div>
         </div>
       </section>
@@ -340,36 +340,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="roadmap">
-        <div className="container" id="future">
-          <div className="eyebrow">Future direction</div>
-          <h2>Start narrow. Build from real problems.</h2>
-          <p className="roadmap-intro">XAIVON&apos;s roadmap: AI foundation → automation agency (logistics first) → industry SaaS → unified platform → enterprise ecosystem.</p>
-          <div className="roadmap-grid">
-            <article className="roadmap-card current">
-              <b>Phase 1–2</b>
-              <h3>Current execution</h3>
-              <p>AI Chatbot, AI Agent, Voice AI, and the automation agency — with logistics as the first market.</p>
-            </article>
-            <article className="roadmap-card">
-              <b>Phase 3–4</b>
-              <h3>Industry products</h3>
-              <p>Freight Broker SaaS and Freight Carrier SaaS, built from validated service workflows.</p>
-            </article>
-            <article className="roadmap-card">
-              <b>Phase 5–6</b>
-              <h3>Multi-industry + platform</h3>
-              <p>Expand into other industries and unify the product layer into a single platform.</p>
-            </article>
-            <article className="roadmap-card">
-              <b>Phase 7</b>
-              <h3>Enterprise ecosystem</h3>
-              <p>A connected platform of AI, automation, knowledge, APIs, analytics, and integrations.</p>
-            </article>
           </div>
         </div>
       </section>
