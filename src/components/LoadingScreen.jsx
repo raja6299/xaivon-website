@@ -31,11 +31,11 @@ export default function LoadingScreen({ onComplete }) {
       role="status"
     >
       <div className="loading-screen-inner">
-        <h1 className="loading-screen-logo text-gradient-cyan">XAIVON</h1>
+        <div className="loading-screen-logo">XAIVON</div>
         <div className="loading-screen-bar-track">
           <div className="loading-screen-bar-fill"></div>
         </div>
-        <p className="loading-screen-text text-muted">Loading...</p>
+        <div className="loading-screen-text">System Initialization</div>
       </div>
     </div>
   );

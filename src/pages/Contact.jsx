@@ -149,7 +149,14 @@ const [form, setForm] = useState({ name: '', email: '', company: '', message: ''
       {/* Two-Column Layout */}
       <section className="contact-columns" id="contact-form-section">
         {/* Contact Form */}
-        <div className="surface card contact-form-card">
+        <div className="surface card contact-form-card" style={{ position: 'relative', overflow: 'hidden' }}>
+          {isSubmitting && (
+            <div className="processing-overlay" style={{ borderRadius: 'inherit' }}>
+              <div className="processing-spinner"></div>
+              <p className="processing-text">Processing request...</p>
+              <p className="processing-subtext">Submitting your information to XAIVON</p>
+            </div>
+          )}
           {!submitted ? (
             <>
               <h2>Send Us a Message</h2>

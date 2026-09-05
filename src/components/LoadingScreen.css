@@ -5,14 +5,15 @@
 .loading-screen {
   position: fixed;
   inset: 0;
-  z-index: var(--z-loading);
+  z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-primary);
+  background: var(--ink);
+  color: var(--white);
   transition:
-    opacity 0.6s var(--ease-out),
-    transform 0.6s var(--ease-out);
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
 }
 
 /* Exit animation */
@@ -32,11 +33,11 @@
 
 /* Logo */
 .loading-screen-logo {
-  font-family: var(--font-heading);
+  font-family: inherit;
   font-size: clamp(2.5rem, 6vw, 3.5rem);
-  font-weight: 800;
-  letter-spacing: 6px;
-  animation: loadingLogoIn 0.6s var(--ease-out) forwards;
+  font-weight: 850;
+  letter-spacing: 0.18em;
+  animation: loadingLogoIn 0.6s ease-out forwards;
   opacity: 0;
 }
 
@@ -55,11 +56,11 @@
 .loading-screen-bar-track {
   width: 200px;
   height: 2px;
-  background: var(--border-subtle);
-  border-radius: var(--radius-full);
+  background: var(--dark-line);
+  border-radius: 99px;
   overflow: hidden;
   opacity: 0;
-  animation: loadingBarIn 0.3s var(--ease-out) 0.3s forwards;
+  animation: loadingBarIn 0.3s ease-out 0.3s forwards;
 }
 
 @keyframes loadingBarIn {
@@ -71,12 +72,9 @@
 .loading-screen-bar-fill {
   height: 100%;
   width: 0%;
-  border-radius: var(--radius-full);
-  background: linear-gradient(90deg, var(--color-secondary), var(--color-accent), var(--color-luxury));
-  background-size: 200% 100%;
-  animation:
-    loadingBarFill 1.2s var(--ease-in-out) 0.3s forwards,
-    loadingBarShimmer 1.5s linear infinite;
+  border-radius: inherit;
+  background: var(--accent);
+  animation: loadingBarFill 1.2s ease-in-out 0.3s forwards;
 }
 
 @keyframes loadingBarFill {
@@ -84,18 +82,17 @@
   to   { width: 100%; }
 }
 
-@keyframes loadingBarShimmer {
-  from { background-position: 200% 0; }
-  to   { background-position: -200% 0; }
-}
+
 
 /* Loading text */
 .loading-screen-text {
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  letter-spacing: 1.5px;
+  font-size: 11px;
+  font-weight: 820;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #aba59b;
   opacity: 0;
-  animation: loadingTextIn 0.4s var(--ease-out) 0.5s forwards;
+  animation: loadingTextIn 0.4s ease-out 0.5s forwards;
 }
 
 @keyframes loadingTextIn {

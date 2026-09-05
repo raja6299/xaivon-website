@@ -47,7 +47,7 @@ function App() {
       <Analytics />
       <PremiumNav />
       <main className="main-content">
-        <Suspense fallback={<div className="loading-spinner"></div>}>
+        <Suspense fallback={<div style={{ display: 'grid', placeItems: 'center', height: '50vh', color: 'var(--muted)', fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 820 }}>System Initialization</div>}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/solutions" element={<Solutions />} />

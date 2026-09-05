@@ -178,7 +178,15 @@ export default function AIAudit() {
           <div
             className={`ai-audit-form-card glass-card reveal-right ${rightVisible ? 'visible' : ''}`}
             ref={rightRef}
+            style={{ position: 'relative', overflow: 'hidden' }}
           >
+            {isSubmitting && (
+              <div className="processing-overlay" style={{ borderRadius: 'inherit' }}>
+                <div className="processing-spinner"></div>
+                <p className="processing-text">Processing assessment...</p>
+                <p className="processing-subtext">Submitting your information to XAIVON</p>
+              </div>
+            )}
             {submitted ? (
               <div className="ai-audit-success">
                 <div className="ai-audit-success-icon" aria-hidden="true">
