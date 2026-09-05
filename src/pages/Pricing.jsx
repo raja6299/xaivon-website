@@ -15,7 +15,7 @@ export default function Pricing() {
     XAIVON_DATA.pricing.services[0];
 
   return (
-    <div>
+    <div className="pricing-page">
       <PageMeta
         title="XAIVON - Pricing & Plans"
         description="Choose the level of automation you need. Transparent starting prices."

@@ -481,4 +481,21 @@ details.faq p { max-width: 800px; margin: 11px 0 0; color: var(--muted); font-si
   .reveal { opacity: 1; transform: none; }
 }
 
+/* Stage B.5 Fixes */
+.about-page #why,
+.about-page #how-we-think {
+  padding-block: clamp(32px, 4vw, 48px);
+}
 
+@media (min-width: 981px) {
+  .solutions-page .four-col > :last-child:nth-child(5) {
+    grid-column: 2 / span 2;
+  }
+}
+
+.pricing-page .page-hero {
+  padding-bottom: clamp(10px, 2vw, 16px);
+}
+.pricing-page .section.tight {
+  padding-top: 16px;
+}

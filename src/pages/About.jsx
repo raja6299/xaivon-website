@@ -25,7 +25,7 @@ export default function About() {
             <h2>AI infrastructure and business automation.</h2>
           </div>
           <div>
-            <p className="text-muted" style={{ fontSize: '16px' }}>XAIVON is an AI infrastructure and business automation company. We build the systems behind the work?"workflows, agents, integrations and supporting infrastructure that help teams handle repetitive operational work with less manual effort.</p>
+            <p className="text-muted" style={{ fontSize: '16px' }}>XAIVON is an AI infrastructure and business automation company. We build the systems behind the work — workflows, agents, integrations and supporting infrastructure that help teams handle repetitive operational work with less manual effort.</p>
           </div>
         </div>
       </section>
