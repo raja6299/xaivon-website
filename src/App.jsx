@@ -47,7 +47,7 @@ function App() {
       <Analytics />
       <PremiumNav />
       <main id="main-content" className="main-content">
-        <Suspense fallback={<div style={{ display: 'grid', placeItems: 'center', height: '50vh', color: 'var(--muted)', fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 820 }}>System Initialization</div>}>
+        <Suspense fallback={<div style={{ display: 'grid', placeItems: 'center', minHeight: '100svh', color: 'var(--muted)', fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 820 }}>System Initialization</div>}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/solutions" element={<Solutions />} />
