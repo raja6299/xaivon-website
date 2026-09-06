@@ -16,11 +16,7 @@ export default function Pricing() {
 
   return (
     <div className="pricing-page">
-      <PageMeta
-        title="XAIVON - Pricing & Plans"
-        description="Choose the level of automation you need. Transparent starting prices."
-        url="https://xaivon.com/pricing"
-      />
+      <PageMeta />
 
       {/* Page hero */}
       <section className="page-hero">

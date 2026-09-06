@@ -8,11 +8,7 @@ export default function Terms() {
 
   return (
     <>
-      <PageMeta 
-        title="Terms & Conditions — XAIVON"
-        description="Review the terms and conditions for using XAIVON's website and AI automation services."
-        url="https://xaivon.com/terms"
-      />
+      <PageMeta />
       <div className="legal-page">
         <div className="container">
           <div className="legal-header">

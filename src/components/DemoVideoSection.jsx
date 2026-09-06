@@ -35,7 +35,7 @@ export default function DemoVideoSection() {
           <div className="demo-video-container glass-card">
             {/* The actual iframe or video tag will go here once the video is ready */}
             <div className="demo-video-placeholder">
-              <div className="demo-play-button">
+              <div className="demo-play-button" aria-hidden="true">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <path d="M8 5v14l11-7z" />
                 </svg>

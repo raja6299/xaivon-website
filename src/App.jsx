@@ -46,7 +46,7 @@ function App() {
       <ScrollToTop />
       <Analytics />
       <PremiumNav />
-      <main className="main-content">
+      <main id="main-content" className="main-content">
         <Suspense fallback={<div style={{ display: 'grid', placeItems: 'center', height: '50vh', color: 'var(--muted)', fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 820 }}>System Initialization</div>}>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -61,22 +61,22 @@ function App() {
             <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/s/:slug" element={<SeoLandingPage />} />
-            
+
             {/* Dedicated Service Pages */}
             <Route path="/quoteflow-ai" element={<QuoteFlowAI />} />
             <Route path="/ai-agents" element={<AIAgents />} />
             <Route path="/ai-automation" element={<AIAutomation />} />
             <Route path="/ai-chatbots" element={<AIChatbots />} />
-            
+
             <Route path="/resources" element={<Resources />} />
             <Route path="/ai-consultation" element={<AiConsultation />} />
-            
+
             {/* Legal Pages */}
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/cookie-policy" element={<CookiePolicy />} />
             <Route path="/roi-calculator" element={<RoiCalculatorPage />} />
-            
+
             {/* 404 Page — must be last */}
             <Route path="*" element={<NotFound />} />
           </Routes>

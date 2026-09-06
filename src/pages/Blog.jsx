@@ -11,11 +11,7 @@ export default function Blog() {
 
   return (
     <div className="blog-page" ref={ref}>
-      <PageMeta 
-        title="Blog — AI Automation Insights"
-        description="Latest insights, technical guides, and industry news on AI automation from XAIVON."
-        url="https://xaivon.com/blog"
-      />
+      <PageMeta />
       {/* Hero */}
       <section className="blog-hero" id="blog-hero">
         <div className="scroll-fade-in">

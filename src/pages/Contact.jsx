@@ -134,11 +134,7 @@ export default function Contact() {
 
   return (
     <div className="contact-page">
-      <PageMeta
-        title="Contact XAIVON — Schedule Strategy Call"
-        description="Book a free discovery call or send us a message. Our team will review and follow up."
-        url="https://xaivon.com/contact"
-      />
+      <PageMeta />
       {/* Hero */}
       <section className="contact-hero" id="contact-hero">
         <span className="badge">GET IN TOUCH</span>

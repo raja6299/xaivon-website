@@ -7,11 +7,7 @@ export default function Products() {
 
   return (
     <div className="products-page">
-      <PageMeta 
-        title="Products & Roadmap - XAIVON"
-        description="Explore XAIVON's current AI products and our future roadmap for industry SaaS platforms."
-        url="https://xaivon.com/products"
-      />
+      <PageMeta />
       <section className="page-hero">
         <div className="container">
           <div className="eyebrow">Product Layer</div>

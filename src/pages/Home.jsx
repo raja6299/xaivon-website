@@ -46,11 +46,7 @@ export default function Home() {
 
   return (
     <>
-      <PageMeta 
-        title="XAIVON — AI Automation for Business Operations"
-        description="XAIVON builds AI-powered automation systems that handle repetitive work, connect disconnected tools, and keep humans in control of what matters."
-        url="https://xaivon.com"
-      />
+      <PageMeta />
       
       <Hero />
 

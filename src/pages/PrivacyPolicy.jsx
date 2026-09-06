@@ -8,11 +8,7 @@ export default function PrivacyPolicy() {
 
   return (
     <>
-      <PageMeta 
-        title="Privacy Policy — XAIVON"
-        description="Our privacy policy details how XAIVON collects, uses, and protects your data. Read our commitment to your privacy."
-        url="https://xaivon.com/privacy-policy"
-      />
+      <PageMeta />
       <div className="legal-page">
         <div className="container">
           <div className="legal-header">
@@ -93,7 +89,7 @@ export default function PrivacyPolicy() {
               <h2>8. Cookies and Tracking Technologies</h2>
               <p>We may use cookies and similar tracking technologies (like web beacons and pixels) to access or store information. Specific information about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Notice. We use third-party Service Providers to monitor and analyze the use of our Service, such as Google Analytics 4. These services collect and analyze usage data to help us understand user behavior and improve our platform.</p>
             </section>
-            
+
             <section>
               <h2>9. Changes to Our Privacy Policy</h2>
               <p>It is our policy to post any changes we make to our privacy policy on this page. If we make material changes to how we treat our users' personal information, we will notify you through a notice on the Website home page. The date the privacy policy was last revised is identified at the top of the page. You are responsible for ensuring we have an up-to-date active and deliverable email address for you, and for periodically visiting our Website and this privacy policy to check for any changes.</p>

@@ -46,11 +46,7 @@ export default function Resources() {
 
   return (
     <div className="resources-page" style={{ paddingTop: '10rem', minHeight: '100vh' }}>
-      <PageMeta 
-        title="Resources — AI Automation Guides & Tools"
-        description="Guides, case studies, and tools for implementing AI automation in your enterprise."
-        url="https://xaivon.com/resources"
-      />
+      <PageMeta />
       <div className="container">
         <div ref={headerRef} className={`section-header text-center reveal-scale ${headerVisible ? 'visible' : ''}`}>
           <span className="badge">KNOWLEDGE BASE</span>

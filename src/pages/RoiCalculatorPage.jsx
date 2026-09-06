@@ -9,11 +9,7 @@ export default function RoiCalculatorPage() {
 
   return (
     <div className="roi-page">
-      <PageMeta
-        title="AI Automation ROI Calculator — XAIVON"
-        description="Estimate the potential time and cost savings of replacing manual workflows with XAIVON autonomous AI infrastructure."
-        url="https://xaivon.com/roi-calculator"
-      />
+      <PageMeta />
 
       <section className="roi-page-hero" id="roi-page-hero">
         <div

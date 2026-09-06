@@ -342,11 +342,7 @@ export default function Services() {
 
   return (
     <>
-      <PageMeta 
-        title="Services — AI Automation, Logistics, Chatbots"
-        description="Comprehensive AI solutions to scale your enterprise operations."
-        url="https://xaivon.com/services"
-      />
+      <PageMeta />
       <div className="services-page">
       {/* â”€â”€â”€ Hero â”€â”€â”€ */}
       <section className="svc-hero" id="services-hero">

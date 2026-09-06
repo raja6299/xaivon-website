@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './ExitIntentPopup.css';
 
 export default function ExitIntentPopup() {
   const [isVisible, setIsVisible] = useState(false);
   const [hasTriggered, setHasTriggered] = useState(false);
+  const previousFocusRef = React.useRef(null);
 
   useEffect(() => {
     // Check if user has already dismissed or converted
@@ -25,11 +26,11 @@ export default function ExitIntentPopup() {
       if (hasTriggered) return;
       const currentScrollY = window.scrollY;
       const docHeight = document.body.scrollHeight;
-      
+
       if (currentScrollY > peakScrollY) {
         peakScrollY = currentScrollY;
       }
-      
+
       if (peakScrollY > docHeight * 0.6 && currentScrollY < peakScrollY - 150) {
         setIsVisible(true);
         setHasTriggered(true);
@@ -37,12 +38,12 @@ export default function ExitIntentPopup() {
     };
 
     document.addEventListener('mouseleave', handleMouseLeave);
-    
+
     const isTouchDevice = navigator.maxTouchPoints > 0;
     if (isTouchDevice) {
       window.addEventListener('scroll', handleScroll, { passive: true });
     }
-    
+
     return () => {
       document.removeEventListener('mouseleave', handleMouseLeave);
       if (isTouchDevice) {
@@ -51,18 +52,43 @@ export default function ExitIntentPopup() {
     };
   }, [hasTriggered]);
 
-  const handleClose = () => {
+  function handleClose() {
     setIsVisible(false);
     localStorage.setItem('xaivon_exit_intent_dismissed', 'true');
-  };
+    if (previousFocusRef.current) {
+      previousFocusRef.current.focus();
+    }
+  }
+
+  useEffect(() => {
+    if (isVisible) {
+      previousFocusRef.current = document.activeElement;
+
+      const handleKeyDown = (e) => {
+        if (e.key === 'Escape') {
+          handleClose();
+        }
+      };
+
+      document.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.removeEventListener('keydown', handleKeyDown);
+      };
+    }
+  }, [isVisible]);
 
   if (!isVisible) return null;
 
   return (
     <div className="exit-popup-overlay">
-      <div className="exit-popup-card glass-card">
-        <button 
-          className="exit-popup-close" 
+      <div
+        className="exit-popup-card glass-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="exit-popup-title"
+      >
+        <button
+          className="exit-popup-close"
           onClick={handleClose}
           aria-label="Close dialog"
         >
@@ -71,19 +97,19 @@ export default function ExitIntentPopup() {
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
         </button>
-        
+
         <div className="exit-popup-content">
           <span className="badge badge-gold">
             <span className="badge-dot"></span>
             Wait! Before You Go
           </span>
-          <h3>Get Your Free <span className="text-gradient-gold">AI Audit</span></h3>
+          <h3 id="exit-popup-title">Get Your Free <span className="text-gradient-gold">AI Audit</span></h3>
           <p>Find out exactly how much time and money AI could save your business. No commitment, completely free analysis.</p>
-          
+
           <div className="exit-popup-actions">
-            <Link 
-              to="/contact" 
-              className="btn btn-gold btn-lg" 
+            <Link
+              to="/contact"
+              className="btn btn-gold btn-lg"
               onClick={handleClose}
             >
               Claim My Free Audit →

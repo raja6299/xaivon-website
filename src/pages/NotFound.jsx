@@ -1,19 +1,21 @@
 import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import PageMeta from '../components/PageMeta';
 
 export default function NotFound() {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <div className="not-found-page" style={{ 
-      minHeight: '80vh', 
-      display: 'flex', 
-      flexDirection: 'column', 
-      alignItems: 'center', 
+    <div className="not-found-page" style={{
+      minHeight: '80vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
       justifyContent: 'center',
       textAlign: 'center',
       padding: 'var(--section-px)'
     }}>
+      <PageMeta noindex={true} title="Page Not Found — XAIVON" />
       <div ref={ref} className={`reveal-scale ${isVisible ? 'visible' : ''}`} style={{ maxWidth: '600px' }}>
         <span className="badge" style={{ marginBottom: '1.5rem' }}>
           <span className="badge-dot" />
@@ -28,7 +30,7 @@ export default function NotFound() {
         <p style={{ color: 'var(--text-secondary)', marginBottom: '3rem', fontSize: '1.1rem', lineHeight: 1.6 }}>
           The requested infrastructure endpoint does not exist. It may have been moved, deleted, or you might have mistyped the URL.
         </p>
-        
+
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
           <Link to="/" className="btn btn-primary">
             Return to Dashboard

@@ -7,11 +7,7 @@ export default function Industries() {
 
   return (
     <div className="industries-page">
-      <PageMeta 
-        title="Industries - XAIVON"
-        description="XAIVON builds automation for Logistics, Real Estate, Healthcare, Finance, and more."
-        url="https://xaivon.com/industries"
-      />
+      <PageMeta />
       <section className="page-hero">
         <div className="container">
           <div className="eyebrow">Applications</div>

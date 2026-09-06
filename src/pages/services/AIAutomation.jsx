@@ -81,11 +81,7 @@ export default function AIAutomation() {
   const [faqOpenIndex, setFaqOpenIndex] = useState(null);
 return (
     <div className="ai-automation-page">
-      <PageMeta
-        title="AI Automation — Intelligent Business Process Automation | XAIVON"
-        description="Eliminate manual data entry and connect siloed systems with custom AI-powered automation workflows."
-        url="https://xaivon.com/ai-automation"
-      />
+      <PageMeta />
 
       {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
           HERO

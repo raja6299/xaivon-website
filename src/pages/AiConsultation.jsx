@@ -10,11 +10,7 @@ export default function AiConsultation() {
 
   return (
     <div className="ac-page">
-      <PageMeta
-        title="Assessment Received — XAIVON"
-        description="Your request has been received. Our team will review the information and follow up."
-        url="https://xaivon.com/ai-consultation"
-      />
+      <PageMeta />
 
       <div className="ac-inner">
 

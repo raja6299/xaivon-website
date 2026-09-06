@@ -7,11 +7,7 @@ export default function Solutions() {
 
   return (
     <div className="solutions-page">
-      <PageMeta 
-        title="Solutions - XAIVON AI Capabilities"
-        description="Explore XAIVON's AI workflow automation, lead generation, CRM automation, and AI agents."
-        url="https://xaivon.com/solutions"
-      />
+      <PageMeta />
       <section className="page-hero">
         <div className="container">
           <div className="eyebrow">Capabilities</div>

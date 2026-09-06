@@ -4,11 +4,7 @@ import PageMeta from '../components/PageMeta';
 export default function About() {
   return (
     <div className="about-page">
-      <PageMeta 
-        title="About XAIVON - AI Infrastructure & Business Automation"
-        description="We build AI systems around the way businesses actually work."
-        url="https://xaivon.com/about"
-      />
+      <PageMeta />
 
       <section className="page-hero">
         <div className="container">
