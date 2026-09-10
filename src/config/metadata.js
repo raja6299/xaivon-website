@@ -71,7 +71,12 @@ export const pageMetadata = {
   },
   '/cookie-policy': {
     title: 'Cookie Policy — XAIVON',
-    description: 'Information about how XAIVON uses cookies and analytics.',
+    description: 'How XAIVON uses cookies and consent-gated Google Analytics 4 on xaivon.com.',
+    image: 'https://xaivon.com/og-image.png'
+  },
+  '/refund-policy': {
+    title: 'Refund & Cancellation Policy — XAIVON',
+    description: 'How XAIVON handles refund and cancellation requests for AI infrastructure, automation, and professional services engagements.',
     image: 'https://xaivon.com/og-image.png'
   },
   '/ai-consultation': {

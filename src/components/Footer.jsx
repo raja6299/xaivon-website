@@ -26,8 +26,10 @@ export default function Footer() {
           </div>
           <div>
             <h3>Legal</h3>
-            <Link to="/privacy-policy">Privacy</Link>
-            <Link to="/terms">Terms</Link>
+            <Link to="/privacy-policy">Privacy Policy</Link>
+            <Link to="/terms">Terms of Service</Link>
+            <Link to="/cookie-policy">Cookie Policy</Link>
+            <Link to="/refund-policy">Refund &amp; Cancellation</Link>
           </div>
         </div>
         <div className="footer-bottom">

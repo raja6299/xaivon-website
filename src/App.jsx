@@ -23,6 +23,7 @@ const SeoLandingPage = lazy(() => import('./pages/SeoLandingPage'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const Terms = lazy(() => import('./pages/Terms'));
 const CookiePolicy = lazy(() => import('./pages/CookiePolicy'));
+const RefundPolicy = lazy(() => import('./pages/RefundPolicy'));
 const Solutions = lazy(() => import('./pages/Solutions'));
 const Products = lazy(() => import('./pages/Products'));
 const Industries = lazy(() => import('./pages/Industries'));
@@ -75,6 +76,7 @@ function App() {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/cookie-policy" element={<CookiePolicy />} />
+            <Route path="/refund-policy" element={<RefundPolicy />} />
             <Route path="/roi-calculator" element={<RoiCalculatorPage />} />
 
             {/* 404 Page — must be last */}

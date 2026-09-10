@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import PageMeta from '../components/PageMeta';
 import './LegalPage.css';
@@ -87,7 +87,7 @@ export default function PrivacyPolicy() {
 
             <section>
               <h2>8. Cookies and Tracking Technologies</h2>
-              <p>We may use cookies and similar tracking technologies (like web beacons and pixels) to access or store information. Specific information about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Notice. We use third-party Service Providers to monitor and analyze the use of our Service, such as Google Analytics 4. These services collect and analyze usage data to help us understand user behavior and improve our platform.</p>
+              <p>We may use cookies and similar tracking technologies to access or store information. Specific information about how we use such technologies and how you can manage your cookie preferences is set out in our <Link to="/cookie-policy">Cookie Policy</Link>. We use Google Analytics 4, a third-party service, to monitor and analyse the use of our Website. Analytics tracking is only activated after appropriate consent has been given through our cookie consent banner.</p>
             </section>
 
             <section>
