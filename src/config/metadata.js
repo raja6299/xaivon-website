@@ -61,22 +61,22 @@ export const pageMetadata = {
   },
   '/privacy-policy': {
     title: 'Privacy Policy — XAIVON',
-    description: 'Learn how XAIVON protects your data and privacy.',
+    description: 'How XAIVON collects, uses, protects, and manages personal information when you use our website and services.',
     image: 'https://xaivon.com/og-image.png'
   },
   '/terms': {
     title: 'Terms of Service — XAIVON',
-    description: 'Terms and conditions for using XAIVON’s website and services.',
+    description: 'Terms governing your use of the XAIVON website, assessments, services, and related digital offerings.',
     image: 'https://xaivon.com/og-image.png'
   },
   '/cookie-policy': {
     title: 'Cookie Policy — XAIVON',
-    description: 'How XAIVON uses cookies and consent-gated Google Analytics 4 on xaivon.com.',
+    description: 'How XAIVON uses consent-gated analytics and local storage preferences on xaivon.com.',
     image: 'https://xaivon.com/og-image.png'
   },
   '/refund-policy': {
     title: 'Refund & Cancellation Policy — XAIVON',
-    description: 'How XAIVON handles refund and cancellation requests for AI infrastructure, automation, and professional services engagements.',
+    description: 'How XAIVON reviews cancellation and refund requests for professional AI, automation, and digital service engagements.',
     image: 'https://xaivon.com/og-image.png'
   },
   '/ai-consultation': {

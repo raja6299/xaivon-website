@@ -1,5 +1,5 @@
 .legal-page {
-  padding-top: var(--section-py);
+  padding-top: clamp(120px, 12vw, 160px);
   padding-bottom: var(--section-py);
   min-height: 100vh;
 }
