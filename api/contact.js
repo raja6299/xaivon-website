@@ -1,21 +1,10 @@
 import { checkRateLimit } from '../src/lib/ratelimit.js';
 import { setCorsHeaders, handleCorsOptions } from './_cors.js';
+import { escapeHtml } from './_utils.js';
 import { Resend } from 'resend';
 import crypto from 'crypto';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-
-function escapeHtml(str) {
-  if (typeof str !== 'string') return '';
-  const map = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#039;'
-  };
-  return str.replace(/[&<>"']/g, function(m) { return map[m]; });
-}
 
 export default async function handler(req, res) {
   setCorsHeaders(req, res);
@@ -46,40 +35,47 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Invalid field types' });
     }
 
+    // Raw input normalization & validation (before HTML escaping)
+    const rawName = body.name.trim();
     const rawEmail = body.email.trim();
-    const cleanName = escapeHtml(body.name.trim());
-    const cleanEmail = escapeHtml(rawEmail);
-    const cleanCompany = escapeHtml((body.company || '').trim());
-    const cleanMessage = escapeHtml(body.message.trim());
+    const rawCompany = (body.company || '').trim();
+    const rawMessage = body.message.trim();
+
+    if (
+      rawName.length > 100 ||
+      rawEmail.length > 100 ||
+      rawCompany.length > 100 ||
+      rawMessage.length > 2000
+    ) {
+      return res.status(400).json({ error: 'Input length exceeded' });
+    }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(rawEmail)) {
       return res.status(400).json({ error: 'Invalid email format' });
     }
 
-    if (
-      cleanName.length > 100 ||
-      cleanEmail.length > 100 ||
-      cleanCompany.length > 100 ||
-      cleanMessage.length > 2000
-    ) {
-      return res.status(400).json({ error: 'Input length exceeded' });
-    }
-
     const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown';
-    const { success, remaining, error: ratelimitError } = await checkRateLimit(`${ip}_${cleanEmail}`);
+    const { success, remaining, error: ratelimitError } = await checkRateLimit(`${ip}_${rawEmail.toLowerCase()}`);
 
     if (ratelimitError) {
       return res.status(503).json({ error: 'Service temporarily unavailable. Please try again later.' });
     }
 
     if (!success) {
-      return res.status(200).json({
+      return res.status(429).json({
         success: false,
         rateLimited: true,
-        message: 'We have received your multiple requests. Our team is already reviewing your case. For urgent support, please contact us via WhatsApp.'
+        message: 'We have received your multiple requests. Our team is already reviewing your case. For urgent support, please contact us via WhatsApp.',
+        remaining
       });
     }
+
+    // HTML-escaped values constructed strictly for HTML email output
+    const cleanName = escapeHtml(rawName);
+    const cleanEmail = escapeHtml(rawEmail);
+    const cleanCompany = escapeHtml(rawCompany);
+    const cleanMessage = escapeHtml(rawMessage);
 
     if (!process.env.RESEND_FROM_EMAIL || !process.env.RESEND_CONTACT_EMAIL_TO) {
       console.error('Missing Resend environment configuration');

@@ -1,21 +1,10 @@
 import { checkRateLimit } from '../src/lib/ratelimit.js';
 import { setCorsHeaders, handleCorsOptions } from './_cors.js';
+import { escapeHtml } from './_utils.js';
 import { Resend } from 'resend';
 import crypto from 'crypto';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-
-function escapeHtml(str) {
-  if (typeof str !== 'string') return '';
-  const map = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#039;'
-  };
-  return str.replace(/[&<>"']/g, function(m) { return map[m]; });
-}
 
 export default async function handler(req, res) {
   setCorsHeaders(req, res);
@@ -61,27 +50,34 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Invalid field types' });
     }
 
+    // Raw input normalization & validation (before HTML escaping)
+    const rawName = body.name.trim();
     const rawEmail = body.email.trim();
-    const cleanName = escapeHtml(body.name.trim());
-    const cleanEmail = escapeHtml(rawEmail);
-    const cleanCompany = escapeHtml(body.company.trim());
-    const cleanIndustry = escapeHtml(body.industry.trim());
-    const cleanChallenge = escapeHtml(body.challenge.trim());
+    const rawCompany = body.company.trim();
+    const rawIndustry = body.industry.trim();
+    const rawChallenge = body.challenge.trim();
+
+    if (
+      rawName.length > 100 ||
+      rawEmail.length > 100 ||
+      rawCompany.length > 100 ||
+      rawIndustry.length > 100 ||
+      rawChallenge.length > 2000
+    ) {
+      return res.status(400).json({ error: 'Input length exceeded' });
+    }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(rawEmail)) {
       return res.status(400).json({ error: 'Invalid email format' });
     }
 
-    if (
-      cleanName.length > 100 ||
-      cleanEmail.length > 100 ||
-      cleanCompany.length > 100 ||
-      cleanIndustry.length > 100 ||
-      cleanChallenge.length > 2000
-    ) {
-      return res.status(400).json({ error: 'Input length exceeded' });
-    }
+    // HTML-escaped values constructed strictly for HTML email output
+    const cleanName = escapeHtml(rawName);
+    const cleanEmail = escapeHtml(rawEmail);
+    const cleanCompany = escapeHtml(rawCompany);
+    const cleanIndustry = escapeHtml(rawIndustry);
+    const cleanChallenge = escapeHtml(rawChallenge);
 
     if (!process.env.RESEND_FROM_EMAIL || !process.env.RESEND_CONTACT_EMAIL_TO) {
       console.error('Missing Resend environment configuration');

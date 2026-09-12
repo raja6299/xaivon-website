@@ -7,9 +7,11 @@ XAIVON is a Vite React SPA deployed on Vercel with serverless API functions.
 - **Frontend:** React 19, Vite 8, react-router-dom 7
 - **Styling:** Vanilla CSS with CSS Custom Properties (warm copper, burnt orange, warm neutrals)
 - **Fonts:** Sora (headings), Inter (body) via Google Fonts
+- **Navigation:** `PremiumNav.jsx` with mobile drawer and quick actions
+- **Resilience:** React `ErrorBoundary.jsx` wrapping SPA route views
 - **API:** Vercel Serverless Functions (`/api/`)
 - **Hosting:** Vercel with automatic GitHub deployments
-- **Scheduling:** Calendly (PopupWidget — lazy loaded)
+- **Scheduling:** Calendly (`InlineWidget` on `/contact`)
 
 ## Security Architecture
 
@@ -17,29 +19,40 @@ XAIVON is a Vite React SPA deployed on Vercel with serverless API functions.
 | Layer | Implementation | Status |
 |-------|---------------|--------|
 | Honeypot | Hidden form field (`website`) | ✅ Active |
-| Input Escaping | Context-appropriate HTML entity encoding (`escapeHtml`) | ✅ Active |
-| Input Validation | Email regex, length constraints, required fields, type checks | ✅ Active |
-| Rate Limiting | Upstash Redis sliding window (IP + email composite key) | ✅ Active |
+| Input Escaping | Context-appropriate HTML entity encoding (`escapeHtml` via `api/_utils.js`) | ✅ Active |
+| Input Validation | Raw input validation before escaping (type checks, raw length constraints, email regex) | ✅ Active |
+| Rate Limiting | Upstash Redis sliding window (IP+email for Contact, IP for Audit; HTTP 429 semantics) | ✅ Active |
 | CORS | Vercel headers via `_cors.js` | ✅ Active |
 | CSP | `Content-Security-Policy-Report-Only` in `vercel.json` | ✅ Report-Only (not enforcing) |
 | Security Headers | HSTS, X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy | ✅ Active |
 
 ### Rate Limiting Architecture
-Implemented via `@upstash/ratelimit` and `@upstash/redis` in `src/lib/ratelimit.js`. Uses a sliding window (3 requests per 6 hours) with composite `IP_email` identifiers. Fails closed if Redis is unreachable — returns a safe denial rather than allowing unprotected submissions.
+Implemented via `@upstash/ratelimit` and `@upstash/redis` in `src/lib/ratelimit.js`. Uses a sliding window (3 requests per 6 hours):
+- **`/api/contact`:** Uses composite `IP_email` identifiers to allow distinct users on shared networks (corporate offices, co-working spaces) to submit genuine inquiries without blocking colleagues, while preventing repeated spam from a single user. Returns HTTP 429 when rate-limited.
+- **`/api/audit`:** Uses IP-only identifiers to strictly limit resource-intensive infrastructure assessment requests from any single network. Returns HTTP 429 when rate-limited.
+- **Frontend Handling:** `Contact.jsx` explicitly recognizes HTTP 429 and preserves the friendly WhatsApp support guidance without throwing client errors.
+- **Fail-Safe:** Fails safely (503 Service Unavailable) if Redis is unreachable.
 
 **Env Vars Required:**
 - `UPSTASH_REDIS_REST_URL`
 - `UPSTASH_REDIS_REST_TOKEN`
 
 ### CSP Status
-The Content-Security-Policy is **Report-Only** — it logs violations but does not block resources. The policy covers Google Analytics/GTM, Google Fonts, Vercel Analytics, and Calendly. It has **not** been browser-tested in enforcing mode yet. No active CSP reporting endpoint is configured.
+The Content-Security-Policy is maintained in **Report-Only** mode (`Content-Security-Policy-Report-Only` in `vercel.json`) to monitor violations without breaking production dependencies. Audited integrations and origins:
+- Google Analytics / GTM (`https://www.googletagmanager.com`, `https://www.google-analytics.com`, `https://analytics.google.com`)
+- Vercel Analytics & Speed Insights (`https://va.vercel-scripts.com`, `https://vitals.vercel-insights.com`)
+- Google Fonts (`https://fonts.googleapis.com`, `https://fonts.gstatic.com`)
+- Calendly (`https://calendly.com`)
+- AI Assistant Embed (`VITE_AI_ASSISTANT_URL` origin; requires frame and microphone permissions when active)
+
+Enforcement will only be activated after exhaustive browser verification confirms no functional regressions across all third-party integrations.
 
 ## API Endpoints
 
 | Endpoint | Method | Purpose | Security |
 |----------|--------|---------|----------|
-| `/api/contact` | POST | Contact form → email to team via Resend | Honeypot, validation, HTML escaping, IP+email rate limiting, Resend idempotency key |
-| `/api/audit` | POST | AI audit form → email to team via Resend | Honeypot, validation, HTML escaping, IP+email rate limiting, Resend idempotency key |
+| `/api/contact` | POST | Contact form → email to team via Resend | Honeypot, raw validation, HTML escaping via `_utils.js`, IP+email rate limiting (HTTP 429), Resend idempotency key |
+| `/api/audit` | POST | AI audit form → email to team via Resend | Honeypot, raw validation, HTML escaping via `_utils.js`, IP rate limiting (HTTP 429), Resend idempotency key |
 
 **Removed endpoints:**
 - `/api/lead` — deleted (no persistent CRM storage exists; LeadMagnet links to `/contact`)

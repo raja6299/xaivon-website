@@ -96,18 +96,17 @@ export default function Contact() {
 
       const data = await response.json();
 
-      // â”€â”€â”€ Server Error (4xx/5xx) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to send message.');
-      }
-
-      // â”€â”€â”€ Rate-Limited: show soft WhatsApp notification â”€â”€â”€â”€â”€â”€
-      // API returns 200 + rateLimited:true so we handle it
-      // gracefully without throwing an error.
-      if (data.rateLimited) {
-        setError('We have received your multiple requests. Our team is already reviewing your case. For urgent support, please contact us via WhatsApp.');
+      // ─── Rate-Limited: show soft WhatsApp notification ──────
+      // Explicitly handle HTTP 429 and rateLimited flag to preserve friendly UX
+      if (response.status === 429 || data.rateLimited) {
+        setError(data.message || 'We have received your multiple requests. Our team is already reviewing your case. For urgent support, please contact us via WhatsApp.');
         setCooldown(60);
         return;
+      }
+
+      // ─── Server Error (4xx/5xx) ─────────────────────────────
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message.');
       }
 
       // â”€â”€â”€ Success: email delivered â†’ redirect to consultation â”€

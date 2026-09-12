@@ -44,7 +44,7 @@ export default defineConfig([
   },
   // Disable set-state-in-effect rule for specific components
   {
-    files: ['src/components/Navbar.jsx', 'src/hooks/useCountUp.js'],
+    files: ['src/hooks/useCountUp.js'],
     rules: {
       'react-hooks/set-state-in-effect': 'off',
     },

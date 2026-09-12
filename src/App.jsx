@@ -9,6 +9,7 @@ import LoadingScreen from './components/LoadingScreen';
 import StickyCallToAction from './components/StickyCallToAction';
 import ExitIntentPopup from './components/ExitIntentPopup';
 import { ChatEmbed } from './components/ChatEmbed';
+import ErrorBoundary from './components/ErrorBoundary';
 import './App.css';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -48,41 +49,43 @@ function App() {
       <Analytics />
       <PremiumNav />
       <main id="main-content" className="main-content">
-        <Suspense fallback={<div style={{ display: 'grid', placeItems: 'center', minHeight: '100svh', color: 'var(--muted)', fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 820 }}>System Initialization</div>}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/solutions" element={<Solutions />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/industries" element={<Industries />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/logistics-solutions" element={<LogisticsSolutions />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:id" element={<BlogPost />} />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/s/:slug" element={<SeoLandingPage />} />
+        <ErrorBoundary>
+          <Suspense fallback={<div style={{ display: 'grid', placeItems: 'center', minHeight: '100svh', color: 'var(--muted)', fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 820 }}>System Initialization</div>}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/solutions" element={<Solutions />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/industries" element={<Industries />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/logistics-solutions" element={<LogisticsSolutions />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:id" element={<BlogPost />} />
+              <Route path="/pricing" element={<Pricing />} />
+              <Route path="/s/:slug" element={<SeoLandingPage />} />
 
-            {/* Dedicated Service Pages */}
-            <Route path="/quoteflow-ai" element={<QuoteFlowAI />} />
-            <Route path="/ai-agents" element={<AIAgents />} />
-            <Route path="/ai-automation" element={<AIAutomation />} />
-            <Route path="/ai-chatbots" element={<AIChatbots />} />
+              {/* Dedicated Service Pages */}
+              <Route path="/quoteflow-ai" element={<QuoteFlowAI />} />
+              <Route path="/ai-agents" element={<AIAgents />} />
+              <Route path="/ai-automation" element={<AIAutomation />} />
+              <Route path="/ai-chatbots" element={<AIChatbots />} />
 
-            <Route path="/resources" element={<Resources />} />
-            <Route path="/ai-consultation" element={<AiConsultation />} />
+              <Route path="/resources" element={<Resources />} />
+              <Route path="/ai-consultation" element={<AiConsultation />} />
 
-            {/* Legal Pages */}
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/cookie-policy" element={<CookiePolicy />} />
-            <Route path="/refund-policy" element={<RefundPolicy />} />
-            <Route path="/roi-calculator" element={<RoiCalculatorPage />} />
+              {/* Legal Pages */}
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/cookie-policy" element={<CookiePolicy />} />
+              <Route path="/refund-policy" element={<RefundPolicy />} />
+              <Route path="/roi-calculator" element={<RoiCalculatorPage />} />
 
-            {/* 404 Page — must be last */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
+              {/* 404 Page — must be last */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </ErrorBoundary>
       </main>
       <Footer />
         <CookieConsent />
