@@ -141,6 +141,13 @@ export default function Contact() {
         <p className="contact-hero-desc">
           Book a free discovery call or send us a message. Our team will review and follow up.
         </p>
+        <div style={{ marginTop: '1.5rem', display: 'inline-flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '0.5rem 1rem', padding: '0.6rem 1.25rem', background: 'var(--surface)', border: '1px solid var(--line)', borderRadius: '100px', fontSize: '0.85rem', color: 'var(--muted)' }}>
+          <span style={{ fontWeight: 600, color: '#ffffff' }}>XAIVON</span>
+          <span style={{ opacity: 0.4 }} aria-hidden="true">•</span>
+          <span>Business name: XAIVON</span>
+          <span style={{ opacity: 0.4 }} aria-hidden="true">•</span>
+          <span>Business enquiries: <a href="mailto:raja@xaivon.com" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>raja@xaivon.com</a></span>
+        </div>
       </section>
 
       {/* Two-Column Layout */}

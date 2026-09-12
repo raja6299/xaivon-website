@@ -19,7 +19,7 @@ export default function Terms() {
           <div className={`legal-content reveal ${contentVisible ? 'in' : ''}`} ref={contentRef}>
             <section>
               <h2>1. About These Terms</h2>
-              <p>These Terms of Service govern your access to and use of the xaivon.com website and any information, content, or materials provided herein. By accessing or using our website, you agree to comply with these terms. If you do not agree with these terms, please do not use our website.</p>
+              <p>These Terms of Service govern your access to and use of the xaivon.com website and any information, content, or materials provided herein, operated by XAIVON (Business name: XAIVON). By accessing or using our website, you agree to comply with these terms. If you do not agree with these terms, please do not use our website.</p>
             </section>
 
             <section>
@@ -86,7 +86,7 @@ export default function Terms() {
             <section>
               <h2>14. Contact</h2>
               <p>If you have any questions or concerns regarding these Terms of Service, please contact us at:</p>
-              <p><a href="mailto:raja@xaivon.com">raja@xaivon.com</a></p>
+              <p>XAIVON (Business name: XAIVON)<br /><a href="mailto:raja@xaivon.com">raja@xaivon.com</a></p>
               <p>For more information about how we handle your data, please see our <Link to="/privacy-policy">Privacy Policy</Link>.</p>
             </section>
           </div>

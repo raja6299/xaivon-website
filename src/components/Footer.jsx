@@ -43,7 +43,8 @@ export default function Footer() {
         <div className="footer-grid">
           <div>
             <div className="footer-brand">XAIVON</div>
-            <p>AI automation systems built around real business operations.</p>
+            <p>Global AI Infrastructure &amp; Business Automation</p>
+            <p style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '8px' }}>Business name: XAIVON</p>
           </div>
           <div>
             <h3>Company</h3>

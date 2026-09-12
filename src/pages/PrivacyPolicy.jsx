@@ -19,7 +19,7 @@ export default function PrivacyPolicy() {
           <div className={`legal-content reveal ${contentVisible ? 'in' : ''}`} ref={contentRef}>
             <section>
               <h2>1. Overview</h2>
-              <p>XAIVON respects the privacy of people who visit our website and communicate with us. This policy explains the types of information we may receive through our website, how we use that information, the service providers that may process it on our behalf, and the choices available to you.</p>
+              <p>XAIVON (Business name: XAIVON) respects the privacy of people who visit our website and communicate with us. This policy explains the types of information we may receive through our website, how we use that information, the service providers that may process it on our behalf, and the choices available to you.</p>
             </section>
 
             <section>
@@ -81,7 +81,7 @@ export default function PrivacyPolicy() {
             <section>
               <h2>10. Contact</h2>
               <p>If you have any questions or requests regarding this Privacy Policy or your information, please contact us at:</p>
-              <p><a href="mailto:raja@xaivon.com">raja@xaivon.com</a></p>
+              <p>XAIVON (Business name: XAIVON)<br /><a href="mailto:raja@xaivon.com">raja@xaivon.com</a></p>
               <p>For more information on how you can get in touch with us, please visit our <Link to="/contact">Contact page</Link>. To review or change your cookie preferences, please see our <Link to="/cookie-policy">Cookie Policy</Link>.</p>
             </section>
           </div>

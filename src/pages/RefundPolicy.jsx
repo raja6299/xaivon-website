@@ -20,7 +20,7 @@ export default function RefundPolicy() {
 
             <section>
               <h2>1. Scope</h2>
-              <p>This Refund & Cancellation Policy outlines the general approach XAIVON takes regarding cancellations and refunds for our AI, automation, and digital service engagements.</p>
+              <p>This Refund & Cancellation Policy outlines the general approach XAIVON (Business name: XAIVON) takes regarding cancellations and refunds for our AI, automation, and digital service engagements.</p>
             </section>
 
             <section>
@@ -61,7 +61,7 @@ export default function RefundPolicy() {
             <section>
               <h2>9. Contact</h2>
               <p>To submit a cancellation or refund request, or if you have any questions regarding this policy, please contact us at:</p>
-              <p><a href="mailto:raja@xaivon.com">raja@xaivon.com</a></p>
+              <p>XAIVON (Business name: XAIVON)<br /><a href="mailto:raja@xaivon.com">raja@xaivon.com</a></p>
               <p>For more details, you can also review our <Link to="/terms">Terms of Service</Link> or <Link to="/privacy-policy">Privacy Policy</Link>.</p>
             </section>
 
