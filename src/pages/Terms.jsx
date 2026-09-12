@@ -86,7 +86,7 @@ export default function Terms() {
             <section>
               <h2>14. Contact</h2>
               <p>If you have any questions or concerns regarding these Terms of Service, please contact us at:</p>
-              <p>XAIVON (Business name: XAIVON)<br /><a href="mailto:raja@xaivon.com">raja@xaivon.com</a></p>
+              <p>XAIVON (Business name: XAIVON)<br /><a href="mailto:raja@xaivon.com">raja@xaivon.com</a><br /><a href="tel:+19175340270">+1 (917) 534-0270</a></p>
               <p>For more information about how we handle your data, please see our <Link to="/privacy-policy">Privacy Policy</Link>.</p>
             </section>
           </div>

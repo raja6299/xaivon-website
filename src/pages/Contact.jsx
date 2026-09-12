@@ -147,6 +147,8 @@ export default function Contact() {
           <span>Business name: XAIVON</span>
           <span style={{ opacity: 0.4 }} aria-hidden="true">•</span>
           <span>Business enquiries: <a href="mailto:raja@xaivon.com" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>raja@xaivon.com</a></span>
+          <span style={{ opacity: 0.4 }} aria-hidden="true">•</span>
+          <a href="tel:+19175340270" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>+1 (917) 534-0270</a>
         </div>
       </section>
 

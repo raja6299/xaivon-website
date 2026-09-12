@@ -45,6 +45,33 @@ export default function Footer() {
             <div className="footer-brand">XAIVON</div>
             <p>Global AI Infrastructure &amp; Business Automation</p>
             <p style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '8px' }}>Business name: XAIVON</p>
+            <div style={{ marginTop: '10px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <a href="mailto:raja@xaivon.com" style={{ margin: 0, display: 'inline' }}>raja@xaivon.com</a>
+                <button
+                  type="button"
+                  onClick={handleCopyEmail}
+                  aria-label="Copy email address"
+                  style={{
+                    background: 'none',
+                    border: '1px solid var(--line)',
+                    borderRadius: '6px',
+                    padding: '2px 6px',
+                    fontSize: '11px',
+                    color: 'var(--muted)',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  {copied ? 'Copied' : 'Copy'}
+                </button>
+              </div>
+              <div>
+                <a href="tel:+19175340270" style={{ margin: 0, display: 'inline' }}>+1 (917) 534-0270</a>
+              </div>
+            </div>
           </div>
           <div>
             <h3>Company</h3>
@@ -52,27 +79,6 @@ export default function Footer() {
             <Link to="/pricing">Pricing</Link>
             <Link to="/contact">Contact</Link>
             <Link to="/about#future">Roadmap</Link>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '8px' }}>
-              <a href="mailto:raja@xaivon.com" style={{ margin: 0, display: 'inline' }}>raja@xaivon.com</a>
-              <button
-                onClick={handleCopyEmail}
-                aria-label="Copy email address"
-                style={{
-                  background: 'none',
-                  border: '1px solid var(--line)',
-                  borderRadius: '6px',
-                  padding: '2px 6px',
-                  fontSize: '11px',
-                  color: 'var(--muted)',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}
-              >
-                {copied ? 'Copied' : 'Copy'}
-              </button>
-            </div>
           </div>
           <div>
             <h3>Explore</h3>

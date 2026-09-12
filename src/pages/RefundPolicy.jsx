@@ -61,7 +61,7 @@ export default function RefundPolicy() {
             <section>
               <h2>9. Contact</h2>
               <p>To submit a cancellation or refund request, or if you have any questions regarding this policy, please contact us at:</p>
-              <p>XAIVON (Business name: XAIVON)<br /><a href="mailto:raja@xaivon.com">raja@xaivon.com</a></p>
+              <p>XAIVON (Business name: XAIVON)<br /><a href="mailto:raja@xaivon.com">raja@xaivon.com</a><br /><a href="tel:+19175340270">+1 (917) 534-0270</a></p>
               <p>For more details, you can also review our <Link to="/terms">Terms of Service</Link> or <Link to="/privacy-policy">Privacy Policy</Link>.</p>
             </section>
 

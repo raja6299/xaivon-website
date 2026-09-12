@@ -81,7 +81,7 @@ export default function PrivacyPolicy() {
             <section>
               <h2>10. Contact</h2>
               <p>If you have any questions or requests regarding this Privacy Policy or your information, please contact us at:</p>
-              <p>XAIVON (Business name: XAIVON)<br /><a href="mailto:raja@xaivon.com">raja@xaivon.com</a></p>
+              <p>XAIVON (Business name: XAIVON)<br /><a href="mailto:raja@xaivon.com">raja@xaivon.com</a><br /><a href="tel:+19175340270">+1 (917) 534-0270</a></p>
               <p>For more information on how you can get in touch with us, please visit our <Link to="/contact">Contact page</Link>. To review or change your cookie preferences, please see our <Link to="/cookie-policy">Cookie Policy</Link>.</p>
             </section>
           </div>
