@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 function getStoredConsent() {
   try {
@@ -42,6 +42,16 @@ export default function CookieConsent() {
 
   const handleReopen = useCallback(() => {
     setIsVisible(true);
+  }, []);
+
+  useEffect(() => {
+    const handleOpenSettings = () => {
+      setIsVisible(true);
+    };
+    window.addEventListener('open-cookie-settings', handleOpenSettings);
+    return () => {
+      window.removeEventListener('open-cookie-settings', handleOpenSettings);
+    };
   }, []);
 
   return (

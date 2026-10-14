@@ -1,4 +1,16 @@
 export const XAIVON_DATA = {
+  identity: {
+    brand: 'XAIVON',
+    legalName: 'ADABHRA GROUP',
+    entityType: 'Sole Proprietorship',
+    legalNotice: 'XAIVON is a business brand operated by ADABHRA GROUP (Sole Proprietorship), India.',
+    proprietor: 'Raja Babu',
+    registeredLocation: 'West Champaran, Bihar, India',
+    publicEmail: 'raja@xaivon.com',
+    legalEmail: 'raja969384bth@gmail.com',
+    publicPhone: '+91 95211 90205',
+    publicPhoneTel: 'tel:+919521190205'
+  },
   navigation: {
     primary: [
       { name: 'Home', path: '/' },
@@ -10,10 +22,13 @@ export const XAIVON_DATA = {
             {
               label: 'Capabilities',
               links: [
-                { name: 'AI Workflow Automation', path: '/solutions#workflow' },
-                { name: 'Lead & Email Automation', path: '/solutions#lead' },
-                { name: 'CRM Automation', path: '/solutions#crm' },
-                { name: 'AI Agents', path: '/solutions#agents' },
+                { name: 'Workflow Automation', path: '/solutions#workflow' },
+                { name: 'Lead & Email Operations', path: '/solutions#lead' },
+                { name: 'CRM & Data Connections', path: '/solutions#crm' },
+                { name: 'AI Agents & Assistance', path: '/solutions#agents' },
+                { name: 'Voice Systems', path: '/solutions#voice' },
+                { name: 'Customer Support', path: '/solutions#support' },
+                { name: 'Document Workflows', path: '/solutions#documents' },
                 { name: 'Custom Integrations', path: '/solutions#integrations' }
               ]
             },
@@ -22,9 +37,9 @@ export const XAIVON_DATA = {
               links: [
                 { name: 'Logistics & Freight', path: '/industries#logistics' },
                 { name: 'Real Estate', path: '/industries#real-estate' },
-                { name: 'Healthcare', path: '/industries#healthcare' },
-                { name: 'Finance', path: '/industries#finance' },
-                { name: 'More industries', path: '/industries#more' }
+                { name: 'Customer Operations', path: '/industries#services' },
+                { name: 'Commerce & Operations', path: '/industries#commerce' },
+                { name: 'Other Industries', path: '/industries#more' }
               ]
             }
           ]
@@ -36,19 +51,19 @@ export const XAIVON_DATA = {
         dropdown: {
           groups: [
             {
-              label: 'AI products',
+              label: 'Implementation Capabilities',
               links: [
-                { name: 'AI Chatbot', path: '/products#chatbot' },
-                { name: 'AI Agent', path: '/products#agent' },
-                { name: 'Voice AI', path: '/products#voice' }
+                { name: 'Chat & Support Systems', path: '/products#chatbot' },
+                { name: 'Operational Agents', path: '/products#agent' },
+                { name: 'Voice Operations', path: '/products#voice' }
               ]
             },
             {
-              label: 'Roadmap',
+              label: 'Planned Roadmap',
               links: [
-                { name: 'Logistics SaaS Platform', path: '/products#logistics-saas' },
-                { name: 'Industry-specific SaaS', path: '/products#industry-saas' },
-                { name: 'Platform roadmap', path: '/about#future' }
+                { name: 'Logistics Workflow Modules', path: '/products#logistics-saas' },
+                { name: 'Industry-Specific Suites', path: '/products#industry-saas' },
+                { name: 'Connected Operations Layer', path: '/products#roadmap' }
               ]
             }
           ]
@@ -60,13 +75,13 @@ export const XAIVON_DATA = {
         dropdown: {
           groups: [
             {
-              label: 'Current + future',
+              label: 'Industries & Focus',
               links: [
-                { name: 'Logistics', path: '/industries#logistics' },
+                { name: 'Logistics & Freight (Current focus)', path: '/industries#logistics' },
                 { name: 'Real Estate', path: '/industries#real-estate' },
-                { name: 'Healthcare', path: '/industries#healthcare' },
-                { name: 'Finance', path: '/industries#finance' },
-                { name: 'Other industries', path: '/industries#more' }
+                { name: 'Professional Services', path: '/industries#services' },
+                { name: 'Commerce & Operations', path: '/industries#commerce' },
+                { name: 'Other Environments', path: '/industries#more' }
               ]
             }
           ]
@@ -78,20 +93,24 @@ export const XAIVON_DATA = {
         dropdown: {
           groups: [
             {
-              label: 'Company',
+              label: 'Company & Approach',
               links: [
-                { name: 'Who We Are', path: '/about#who' },
+                { name: 'What We Do', path: '/about#who' },
                 { name: 'How We Work', path: '/about#how' },
-                { name: 'Our Principles', path: '/about#principles' },
-                { name: 'Future', path: '/about#future' },
-                { name: 'Founder', path: '/about#founder' }
+                { name: 'What Guides Us', path: '/about#principles' },
+                { name: 'Current & Future', path: '/about#future' },
+                { name: 'Founder Note', path: '/about#founder' }
               ]
             }
           ]
         }
       },
       { name: 'Pricing', path: '/pricing' }
-    ]
+    ],
+    cta: {
+      name: 'Book an Assessment ↗',
+      path: '/contact'
+    }
   },
   pricing: {
     categories: [
@@ -384,15 +403,23 @@ export const XAIVON_DATA = {
   faq: [
     {
       q: 'Does XAIVON only work with logistics companies?',
-      a: "No. XAIVON's core capability is business automation. Logistics is the current first-market focus documented in the company plan; other industries are planned expansion areas."
+      a: 'No. Logistics and freight are an important current focus, but the work we build is not limited to one industry. We first look at your actual process and the systems involved.'
     },
     {
-      q: 'Are the future SaaS products already live?',
-      a: 'No. The documented roadmap describes them as planned products derived from validated service workflows.'
+      q: 'Do we need to replace our current software?',
+      a: 'Usually, we begin by reviewing what you already use. Where the tools have suitable integrations and permissions, we aim to build around them. If a connection is not possible, we will explain the trade-off before recommending a change.'
     },
     {
-      q: 'Is the ROI calculator a guarantee?',
-      a: 'No. It is a user-input planning model. Verified customer outcomes should be presented separately with their methodology and source.'
+      q: 'Do we need an AI agent for every process?',
+      a: 'No. Some problems need only clear rules and a reliable workflow. We recommend AI when it adds useful judgment or flexibility—not simply because it is available.'
+    },
+    {
+      q: 'Can you guarantee savings or a launch date?',
+      a: 'No two workflows are identical. We assess scope, access, complexity and testing requirements before proposing timelines or potential savings. Any estimate is explained with its assumptions.'
+    },
+    {
+      q: 'How is a project priced?',
+      a: 'We publish starting prices for common implementation levels. Your proposal sets out the actual scope, deliverables, support and any separate third-party usage costs.'
     }
   ]
 };

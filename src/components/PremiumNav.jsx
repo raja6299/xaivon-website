@@ -6,9 +6,30 @@ import './PremiumNav.css';
 export default function PremiumNav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
+  const [theme, setTheme] = useState(() => {
+    try {
+      return localStorage.getItem('xaivon-theme') || 
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    } catch {
+      return 'light';
+    }
+  });
   const location = useLocation();
   const navRef = useRef(null);
   const closeTimerRef = useRef(null);
+
+  useEffect(() => {
+    try {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('xaivon-theme', theme);
+    } catch {
+      // Ignore localStorage access failures in restricted environments
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   const closeMenu = useCallback(() => {
     setMobileMenuOpen(false);
@@ -165,10 +186,37 @@ export default function PremiumNav() {
           ))}
         </div>
 
-        {/* Desktop CTA */}
-        <Link className="premium-nav-cta" to="/contact" onClick={closeMenu}>
-          Book an Assessment <span className="cta-arrow">↗</span>
-        </Link>
+        {/* Theme Toggle & Desktop CTA */}
+        <div className="premium-nav-actions">
+          <button
+            className="theme-toggle-btn"
+            type="button"
+            onClick={toggleTheme}
+            aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+            title={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+          >
+            {theme === 'dark' ? (
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+            ) : (
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            )}
+          </button>
+          <Link className="premium-nav-cta" to="/contact" onClick={closeMenu}>
+            Book an Assessment <span className="cta-arrow">↗</span>
+          </Link>
+        </div>
 
         {/* Mobile Hamburger */}
         <button
@@ -189,6 +237,17 @@ export default function PremiumNav() {
       {/* Mobile Panel */}
       <div className={`premium-mobile-panel ${mobileMenuOpen ? 'open' : ''}`}>
         <div className="premium-mobile-inner">
+          <div className="mobile-theme-bar">
+            <span className="mobile-theme-label">Visual Theme</span>
+            <button
+              className="theme-toggle-btn mobile-theme-btn"
+              type="button"
+              onClick={toggleTheme}
+              aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+            >
+              {theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode'}
+            </button>
+          </div>
           {navItems.map((item, i) => (
             <div key={i} className="mobile-nav-item">
               {item.dropdown ? (

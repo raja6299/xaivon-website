@@ -1,65 +1,90 @@
 import { Link } from 'react-router-dom';
-import { useScrollReveal } from '../hooks/useScrollReveal';
 import PageMeta from '../components/PageMeta';
 import './LegalPage.css';
 
 export default function CookiePolicy() {
-  const [contentRef, contentVisible] = useScrollReveal({ threshold: 0.05 });
+  const handleOpenCookieSettings = () => {
+    window.dispatchEvent(new CustomEvent('open-cookie-settings'));
+  };
 
   return (
     <>
       <PageMeta />
       <div className="legal-page">
-        <div className="container">
-          <div className="legal-header">
-            <h1>Cookie Policy</h1>
-            <p className="legal-updated">Last Updated: September 2026</p>
+        <div className="container" style={{ maxWidth: '840px', padding: '60px 20px' }}>
+          <div className="legal-header" style={{ marginBottom: '40px' }}>
+            <span className="eyebrow">LEGAL</span>
+            <h1 style={{ fontSize: 'clamp(2.2rem, 4vw, 3.2rem)', margin: '8px 0 12px' }}>Cookie Policy</h1>
+            <p className="legal-updated" style={{ color: 'var(--muted)', fontSize: '14px' }}>
+              Last updated: October 14, 2026
+            </p>
           </div>
 
-          <div className={`legal-content reveal ${contentVisible ? 'in' : ''}`} ref={contentRef}>
-
+          <div className="legal-content" style={{ display: 'flex', flexDirection: 'column', gap: '32px', lineHeight: 1.7, color: 'var(--ink)' }}>
             <section>
-              <h2>1. What Cookies Are</h2>
-              <p>Cookies are small text files placed on your device by websites you visit. They are widely used to ensure websites function correctly and to provide information to website owners about how visitors interact with the site.</p>
+              <h2 style={{ fontSize: '18px', marginBottom: '10px' }}>1. What this policy covers</h2>
+              <p>
+                Cookies and similar browser storage can help a website remember choices or understand how it is used. This page explains the browser storage and optional analytics used by xaivon.com, as verified in our live implementation.
+              </p>
             </section>
 
             <section>
-              <h2>2. What XAIVON Uses</h2>
-              <p>Our website uses essential local storage to remember your cookie consent preferences, ensuring we do not repeatedly prompt you. We also use analytics cookies, which are strictly consent-gated. We do not use advertising pixels, retargeting systems, social tracking, or marketing cookies.</p>
+              <h2 style={{ fontSize: '18px', marginBottom: '10px' }}>2. Preferences needed to run the website</h2>
+              <p>
+                The website may store a small preference to remember the colour theme you selected and whether you accepted or declined optional analytics. These functional preferences do not require a marketing profile.
+              </p>
             </section>
 
             <section>
-              <h2>3. Consent Preferences</h2>
-              <p>When you visit xaivon.com, we store your consent preference (accepted or declined) locally on your device. This allows us to respect your choice on subsequent visits. Essential website functionality is not affected by your consent decision.</p>
+              <h2 style={{ fontSize: '18px', marginBottom: '10px' }}>3. Optional website analytics</h2>
+              <p>
+                If analytics tools are enabled, we use them to review overall website usage and improve navigation and content. Where consent is required, optional analytics should remain disabled until you choose to allow them. A rejected choice must be respected until you change it.
+              </p>
             </section>
 
             <section>
-              <h2>4. Google Analytics 4</h2>
-              <p>We use Google Analytics 4 to understand how users engage with our website. Analytics cookies are only deployed after you have provided explicit consent. If you decline, no analytics tracking is initialized and no data is collected by Google Analytics during your visit.</p>
+              <h2 style={{ fontSize: '18px', marginBottom: '10px' }}>4. Third-party tools</h2>
+              <p>
+                If you choose to use an embedded scheduling or chat service, that provider may set cookies or process information under its own notice. We identify providers that are actually in use and provide relevant links where possible.
+              </p>
             </section>
 
             <section>
-              <h2>5. Managing Preferences</h2>
-              <p>You can update or withdraw your consent at any time. To modify your choices regarding our consent-gated analytics, please interact with our <a href="#settings" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new Event('open-cookie-settings')); }}>Cookie Settings</a>.</p>
+              <h2 style={{ fontSize: '18px', marginBottom: '10px' }}>5. Your choice</h2>
+              <p>
+                You can accept or reject optional analytics without losing access to the website. You can reopen Cookie Settings at any time to change or withdraw your preference. You may also delete browser cookies and site data through your browser settings.
+              </p>
+              <div style={{ marginTop: '16px' }}>
+                <button
+                  type="button"
+                  onClick={handleOpenCookieSettings}
+                  className="btn btn-primary btn-sm"
+                >
+                  Manage Cookie Settings ↗
+                </button>
+              </div>
             </section>
 
             <section>
-              <h2>6. Browser Controls</h2>
-              <p>In addition to our on-site controls, you can manage cookies at the browser level. Most web browsers allow you to view, block, or delete cookies through their settings. Please note that blocking all cookies, including essential ones, may affect the ability of websites to save your preferences.</p>
+              <h2 style={{ fontSize: '18px', marginBottom: '10px' }}>6. How long settings last</h2>
+              <p>
+                We save your preference in browser storage so the same question is not repeated on every visit. If the storage is cleared, the website may ask again.
+              </p>
             </section>
 
             <section>
-              <h2>7. Changes</h2>
-              <p>We may update this Cookie Policy occasionally to reflect changes in our technical practices or legal requirements. The "Last Updated" date at the top of the policy indicates when revisions were made.</p>
+              <h2 style={{ fontSize: '18px', marginBottom: '10px' }}>7. Changes</h2>
+              <p>
+                We update this page when our use of cookies or analytics changes. The date at the top reflects the reviewed version.
+              </p>
             </section>
 
             <section>
-              <h2>8. Contact</h2>
-              <p>If you have any questions regarding our use of cookies, please contact us at:</p>
-              <p><a href="mailto:raja@xaivon.com">raja@xaivon.com</a></p>
-              <p>For more information on how we handle personal data, please read our <Link to="/privacy-policy">Privacy Policy</Link>.</p>
+              <h2 style={{ fontSize: '18px', marginBottom: '10px' }}>8. Contact</h2>
+              <p>
+                For questions about cookies or website privacy, contact <a href="mailto:raja@xaivon.com" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>raja@xaivon.com</a>. Also see our <Link to="/privacy-policy" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>Privacy Policy</Link>.
+              </p>
             </section>
-
           </div>
         </div>
       </div>
