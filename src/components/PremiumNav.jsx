@@ -8,7 +8,7 @@ export default function PremiumNav() {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [theme, setTheme] = useState(() => {
     try {
-      return localStorage.getItem('xaivon-theme') || 
+      return localStorage.getItem('xaivon-theme') ||
         (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     } catch {
       return 'light';

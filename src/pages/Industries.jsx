@@ -38,7 +38,7 @@ export default function Industries() {
   return (
     <div className="industries-page">
       <PageMeta />
-      
+
       {/* Hero */}
       <section className="page-hero" style={{ padding: '80px 0 40px' }}>
         <div className="container">

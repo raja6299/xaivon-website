@@ -47,7 +47,7 @@ export default function Products() {
   return (
     <div className="products-page">
       <PageMeta />
-      
+
       {/* Hero */}
       <section className="page-hero" style={{ padding: '80px 0 40px' }}>
         <div className="container">

@@ -48,7 +48,7 @@ export default function Solutions() {
   return (
     <div className="solutions-page">
       <PageMeta />
-      
+
       {/* Header */}
       <section className="page-hero" style={{ padding: '80px 0 40px' }}>
         <div className="container">
