@@ -43,10 +43,10 @@ export default function Industries() {
       <section className="page-hero" style={{ padding: '80px 0 40px' }}>
         <div className="container">
           <div className="eyebrow">INDUSTRIES</div>
-          <h1 style={{ marginTop: '12px', fontSize: 'clamp(2.4rem, 4.5vw, 3.8rem)', lineHeight: 1.1 }}>
+          <h1 style={{ marginTop: '12px', fontSize: 'clamp(2.25rem, 3.2vw, 3rem)', lineHeight: 1.15 }}>
             The work changes. The need for clear systems doesn&apos;t.
           </h1>
-          <p style={{ marginTop: '18px', maxWidth: '72ch', color: 'var(--muted)', fontSize: '18px', lineHeight: 1.6 }}>
+          <p style={{ marginTop: '18px', maxWidth: '72ch', color: 'var(--muted)', fontSize: 'clamp(16px, 1.25vw, 17.5px)', lineHeight: 1.65 }}>
             Businesses run on different rules, teams and tools. We adapt the workflow to those details instead of promising that one ready-made agent works everywhere.
           </p>
         </div>

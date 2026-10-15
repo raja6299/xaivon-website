@@ -27,10 +27,10 @@ export default function About() {
       <section className="page-hero" style={{ padding: '80px 0 40px' }}>
         <div className="container">
           <div className="eyebrow">ABOUT XAIVON</div>
-          <h1 style={{ marginTop: '12px', fontSize: 'clamp(2.4rem, 4.5vw, 3.8rem)', lineHeight: 1.1, maxWidth: '820px' }}>
+          <h1 style={{ marginTop: '12px', fontSize: 'clamp(2.25rem, 3.2vw, 3rem)', lineHeight: 1.15, maxWidth: '820px' }}>
             We build systems around the way businesses actually work.
           </h1>
-          <p style={{ marginTop: '18px', maxWidth: '72ch', color: 'var(--muted)', fontSize: '18px', lineHeight: 1.6 }}>
+          <p style={{ marginTop: '18px', maxWidth: '72ch', color: 'var(--muted)', fontSize: 'clamp(16px, 1.25vw, 17.5px)', lineHeight: 1.65 }}>
             XAIVON helps businesses turn repetitive work, disconnected tools and manual handoffs into manageable workflows and connected operations.
           </p>
         </div>

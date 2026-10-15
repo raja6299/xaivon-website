@@ -10,7 +10,7 @@ export default function Terms() {
         <div className="container" style={{ maxWidth: '840px', padding: '60px 20px' }}>
           <div className="legal-header" style={{ marginBottom: '40px' }}>
             <span className="eyebrow">LEGAL</span>
-            <h1 style={{ fontSize: 'clamp(2.2rem, 4vw, 3.2rem)', margin: '8px 0 6px' }}>Terms of Service</h1>
+            <h1 style={{ fontSize: 'clamp(2rem, 3vw, 2.6rem)', margin: '8px 0 6px' }}>Terms of Service</h1>
             <p style={{ fontSize: '16px', color: 'var(--muted)', margin: '0 0 12px' }}>
               Terms for use of this website and general enquiries
             </p>

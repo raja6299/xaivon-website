@@ -104,13 +104,13 @@ export default function ROICalculator() {
         <div className={`section-header reveal ${isVisible ? 'visible' : ''}`}>
           <span className="badge">
             <span className="badge-dot"></span>
-            ROI Calculator
+            Planning Estimator
           </span>
           <h2>
-            Calculate Your <span className="text-gradient-premium">AI Savings</span>
+            Estimate Potential <span className="text-gradient-premium">Operational Savings</span>
           </h2>
           <p>
-            Estimate how much time and cost your operations could potentially recover
+            An illustrative tool to model potential time and cost recovery based on your own team parameters.
           </p>
         </div>
 
@@ -124,19 +124,19 @@ export default function ROICalculator() {
               </svg>
               Your Operational Data
             </h3>
-            
+
             {/* Slider 1: Manual Hours */}
             <div className="roi-input-group">
               <div className="roi-input-header">
                 <label>Manual Hours Spent per Week</label>
                 <span className="roi-value-display">{manualHours}h</span>
               </div>
-              <input 
-                type="range" 
-                min="10" 
-                max="500" 
+              <input
+                type="range"
+                min="10"
+                max="500"
                 step="5"
-                value={manualHours} 
+                value={manualHours}
                 onChange={(e) => setManualHours(Number(e.target.value))}
                 className="roi-slider"
                 style={{ '--slider-percent': `${getSliderPercent(manualHours, 10, 500)}%` }}
@@ -154,12 +154,12 @@ export default function ROICalculator() {
                 <label>Average Hourly Rate ($)</label>
                 <span className="roi-value-display">${hourlyRate}</span>
               </div>
-              <input 
-                type="range" 
-                min="15" 
-                max="150" 
+              <input
+                type="range"
+                min="15"
+                max="150"
                 step="5"
-                value={hourlyRate} 
+                value={hourlyRate}
                 onChange={(e) => setHourlyRate(Number(e.target.value))}
                 className="roi-slider"
                 style={{ '--slider-percent': `${getSliderPercent(hourlyRate, 15, 150)}%` }}
@@ -177,12 +177,12 @@ export default function ROICalculator() {
                 <label>Team Size</label>
                 <span className="roi-value-display">{teamSize} people</span>
               </div>
-              <input 
-                type="range" 
-                min="1" 
-                max="50" 
+              <input
+                type="range"
+                min="1"
+                max="50"
                 step="1"
-                value={teamSize} 
+                value={teamSize}
                 onChange={(e) => setTeamSize(Number(e.target.value))}
                 className="roi-slider"
                 style={{ '--slider-percent': `${getSliderPercent(teamSize, 1, 50)}%` }}
@@ -200,12 +200,12 @@ export default function ROICalculator() {
                 <label>Automation Rate</label>
                 <span className="roi-value-display">{Math.round(automationRate * 100)}%</span>
               </div>
-              <input 
-                type="range" 
-                min="0.20" 
-                max="0.80" 
+              <input
+                type="range"
+                min="0.20"
+                max="0.80"
                 step="0.05"
-                value={automationRate} 
+                value={automationRate}
                 onChange={(e) => setAutomationRate(Number(e.target.value))}
                 className="roi-slider"
                 style={{ '--slider-percent': `${getSliderPercent(automationRate, 0.20, 0.80)}%` }}
@@ -228,6 +228,9 @@ export default function ROICalculator() {
 
           {/* ─── Results Panel ──────────────────────────────────────── */}
           <div className="roi-results">
+            <div style={{ gridColumn: '1 / -1', padding: '8px 14px', borderRadius: '8px', background: 'var(--surface-raised, rgba(255,255,255,0.06))', border: '1px solid var(--card-border, rgba(255,255,255,0.1))', fontSize: '12px', color: 'var(--muted, #aaa)', textAlign: 'center' }}>
+              <strong>Illustrative planning projection</strong> — enter your team parameters on the left to customize.
+            </div>
             {/* Current Yearly Cost */}
             <div className="roi-result-card glass-card">
               <div className="roi-result-icon">📊</div>
@@ -235,7 +238,7 @@ export default function ROICalculator() {
               <div className="roi-result-value roi-cost-before">{formatCurrency(animatedCurrentCost)}</div>
               <div className="roi-result-desc">What you spend annually on manual operations</div>
             </div>
-            
+
             {/* Projected Cost with XAIVON */}
             <div className="roi-result-card glass-card">
               <div className="roi-result-icon">🤖</div>
@@ -251,7 +254,7 @@ export default function ROICalculator() {
               <div className="roi-result-value">{animatedHours.toLocaleString()}h</div>
               <div className="roi-result-desc">Time recovered for strategic work</div>
             </div>
-            
+
             {/* Total Yearly Savings - Hero Card */}
             <div className="roi-result-card glass-card highlight-card">
               <div className="roi-highlight-glow"></div>
@@ -270,8 +273,8 @@ export default function ROICalculator() {
 
         {/* ─── CTA ─────────────────────────────────────────────────── */}
         <div className={`roi-cta-wrap reveal ${isVisible ? 'visible' : ''} delay-3`}>
-          <Link 
-            to="/contact" 
+          <Link
+            to="/contact"
             className="btn btn-primary btn-lg roi-cta-btn"
             onClick={handleCtaClick}
           >
@@ -280,7 +283,7 @@ export default function ROICalculator() {
             </svg>
             Explore These Estimates — Book an Assessment
           </Link>
-          
+
           <div className="trust-indicators-row">
             <span>✓ Free Strategy Call</span>
             <span>✓ Custom ROI Projection</span>

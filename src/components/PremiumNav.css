@@ -83,13 +83,6 @@
   right: 6px;
 }
 
-.premium-brand-text {
-  font-weight: 850;
-  font-size: 16px;
-  letter-spacing: 0.15em;
-  color: #171713;
-}
-
 /* --- Desktop Nav Links --- */
 .premium-nav-links {
   display: flex;
@@ -266,7 +259,7 @@
   font-weight: 850;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #8b847a;
+  color: var(--muted);
 }
 
 .mega-links {
@@ -281,15 +274,15 @@
   border-radius: 10px;
   font-size: 13px;
   font-weight: 550;
-  color: #3f3a34;
+  color: var(--ink);
   text-decoration: none;
   transition: background 0.12s ease, color 0.12s ease;
 }
 
 .mega-link:hover,
 .mega-link:focus-visible {
-  background: rgba(179, 87, 52, 0.06);
-  color: #171713;
+  background: var(--accent-soft, rgba(179, 87, 52, 0.08));
+  color: var(--accent);
   outline: none;
 }
 
@@ -301,7 +294,7 @@
   display: none;
   background: none;
   border: none;
-  color: #171713;
+  color: var(--ink);
   padding: 8px;
   cursor: pointer;
   margin-left: auto;
@@ -456,19 +449,19 @@
     background: transparent;
     font-size: 16px;
     font-weight: 650;
-    color: #171713;
+    color: var(--ink);
     cursor: pointer;
     text-align: left;
   }
 
   .mobile-accordion-trigger:hover {
-    color: #B35734;
+    color: var(--accent);
   }
 
   .mobile-chevron {
     transition: transform 0.25s ease;
     flex-shrink: 0;
-    color: #8b847a;
+    color: var(--muted);
   }
 
   .mobile-accordion-trigger.is-expanded .mobile-chevron {
@@ -495,7 +488,7 @@
     font-weight: 850;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #8b847a;
+    color: var(--muted);
   }
 
   .mobile-group-links {
@@ -513,15 +506,17 @@
     padding: 10px 12px;
     border-radius: 8px;
     font-size: 14px;
-    font-weight: 500;
-    color: #4a4540;
+    font-weight: 550;
+    color: var(--ink);
+    opacity: 0.88;
     text-decoration: none;
-    transition: background 0.12s ease;
+    transition: background 0.12s ease, opacity 0.12s ease;
   }
 
   .mobile-link:hover {
-    background: rgba(179, 87, 52, 0.06);
-    color: #171713;
+    background: var(--accent-soft, rgba(179, 87, 52, 0.08));
+    color: var(--accent);
+    opacity: 1;
   }
 
   /* --- Mobile CTA --- */

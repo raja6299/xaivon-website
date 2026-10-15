@@ -37,6 +37,7 @@ export default function Contact() {
   const [cooldown, setCooldown] = useState(0);
   const [error, setError] = useState('');
   const [copied, setCopied] = useState(false);
+  const [copyFailed, setCopyFailed] = useState(false);
   const formRef = useRef(null);
 
   useEffect(() => {
@@ -56,11 +57,15 @@ export default function Contact() {
     if (navigator.clipboard && window.isSecureContext) {
       navigator.clipboard.writeText('raja@xaivon.com').then(() => {
         setCopied(true);
+        setCopyFailed(false);
         setTimeout(() => setCopied(false), 2000);
       }).catch(() => {
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+        setCopyFailed(true);
+        setTimeout(() => setCopyFailed(false), 2500);
       });
+    } else {
+      setCopyFailed(true);
+      setTimeout(() => setCopyFailed(false), 2500);
     }
   };
 
@@ -157,10 +162,10 @@ export default function Contact() {
       <section className="contact-hero" id="contact-hero" style={{ padding: '80px 0 36px' }}>
         <div className="container" style={{ textAlign: 'center' }}>
           <span className="eyebrow" style={{ justifyContent: 'center' }}>CONTACT XAIVON</span>
-          <h1 style={{ marginTop: '14px', fontSize: 'clamp(2.3rem, 4.2vw, 3.6rem)', lineHeight: 1.15 }}>
+          <h1 style={{ marginTop: '14px', fontSize: 'clamp(2.25rem, 3.2vw, 3rem)', lineHeight: 1.15 }}>
             Let&apos;s look at the work you&apos;re trying to improve.
           </h1>
-          <p style={{ marginTop: '16px', maxWidth: '68ch', marginInline: 'auto', color: 'var(--muted)', fontSize: '17px', lineHeight: 1.6 }}>
+          <p style={{ marginTop: '16px', maxWidth: '68ch', marginInline: 'auto', color: 'var(--muted)', fontSize: 'clamp(16px, 1.25vw, 17.5px)', lineHeight: 1.65 }}>
             Tell us what your team handles today, where the work gets stuck and which tools are involved. We&apos;ll review the request and discuss whether automation is a practical fit.
           </p>
         </div>
@@ -181,6 +186,7 @@ export default function Contact() {
                 <button
                   type="button"
                   onClick={handleCopyEmail}
+                  aria-label="Copy email address"
                   style={{
                     background: 'var(--bg-soft)',
                     border: '1px solid var(--line)',
@@ -188,10 +194,10 @@ export default function Contact() {
                     padding: '3px 8px',
                     fontSize: '11px',
                     cursor: 'pointer',
-                    color: 'var(--muted)'
+                    color: copyFailed ? 'var(--danger)' : 'var(--muted)'
                   }}
                 >
-                  {copied ? 'Copied' : 'Copy'}
+                  {copied ? 'Copied' : copyFailed ? 'Failed' : 'Copy'}
                 </button>
               </div>
               <span style={{ color: 'var(--line)' }}>|</span>

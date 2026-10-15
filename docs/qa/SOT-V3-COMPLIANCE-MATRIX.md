@@ -1,57 +1,42 @@
-# XAIVON SOT v3.0 Compliance Matrix & QA Audit Report
+# XAIVON SOT v3.0 & v5.0 Compliance Matrix & QA Audit Report
 
-**Date of Execution:** 14 October 2026<br/>
+**Date of Execution:** 15 October 2026<br/>
 **Auditor / Agent:** Antigravity (Senior Frontend, QA & Release Engineer)<br/>
 **Branch:** `feat/xaivon-editorial-dual-theme-sot-v3`<br/>
-**Base Commit SHA:** `4074c6484730ec7595856cc01102af200edd0f96` (Origin Main)<br/>
-**Status:** ALL P0/P1 VERIFIED PASS
+**Base Commit SHA:** `f2a5532709948e69bd3a4f87be6cd0376f241b7d`<br/>
+**Directive Applied:** XAIVON Visual Proportion, Trust & Runtime Integrity Directive v5.0<br/>
+**Status:** ALL P0/P1 DEFECTS RESOLVED & VERIFIED PASS
 
 ---
 
-## 1. Compliance Matrix by Section & Route
+## 1. Compliance Matrix by Section, Route & Refinement
 
-| Section / Route | Requirement | Implementation / File | Status | Actual Evidence & Verification Notes | Retest Result |
+| Section / Route / Focus | Requirement & v5 Refinement | Implementation / Files | Status | Actual Evidence & Verification Notes | Retest Result |
 |---|---|---|---|---|---|
-| **0. Non-negotiable Constraints** | Preserve backend APIs, no forced rewrite, no production deployment or main merge | `api/contact.js`, `api/audit.js`, `vercel.json` untouched | **PASS** | Existing endpoints, Resend keys, Upstash Redis logic preserved verbatim | PASS |
-| **1. Business Identity** | Operating entity: ADABHRA GROUP (Sole Proprietorship), Proprietor: Raja Babu | `src/data/xaivonData.js`, `src/components/Footer.jsx`, `index.html` | **PASS** | Exact legal notice rendered in footer; Schema.org updated with ADABHRA GROUP & Raja Babu | PASS |
-| **1. Public Contact** | Public phone: `+91 95211 90205`; Email: `raja@xaivon.com`; Correspondence: `raja969384bth@gmail.com` | `Footer.jsx`, `Contact.jsx`, `xaivonData.js` | **PASS** | Old US phone removed from public contact surfaces; India phone active; mailto links verified | PASS |
-| **1. Location & Privacy** | Broad location: West Champaran, Bihar, India; No PAN/bank/Udyam certificate leak | `xaivonData.js`, `Contact.jsx`, `tests/canonical-identity.test.js` | **PASS** | Automated test verifies no PAN regex or banking info present; safe broad location used | PASS |
-| **3. Design System (Tokens)** | Editorial design: Light (Warm Ivory `#F5F1E9`) and Dark (Warm Charcoal `#171613`) | `src/index.css` | **PASS** | CSS variables `:root, [data-theme="light"]` and `[data-theme="dark"]` defined and tested | PASS |
-| **3. Theme Toggle** | Persistent theme toggle in top nav and mobile menu; honors `localStorage` & OS preference | `src/components/PremiumNav.jsx`, `src/components/PremiumNav.css` | **PASS** | Tested in browser subagent: toggles dark/light with visual background change, zero layout shift | PASS |
-| **4. Primary Navigation** | Exactly 6 items: Home, Solutions, Products, Industries, About, Pricing + `Book an Assessment ↗` | `src/components/PremiumNav.jsx`, `xaivonData.js` | **PASS** | Contact & Resources removed from primary nav; CTA leads to `/contact`; mobile drawer fully operational | PASS |
-| **5. Home (Section 01)** | Copper Hero: `BUILT FOR THE WORK BEHIND THE BUSINESS`, `Your business has better work to do than repeat itself.` | `src/components/Hero.jsx` | **PASS** | Exact copy rendered; CTA row with `Book an Assessment` and `See What We Build`; supporting line active | PASS |
-| **5. Home (Section 02)** | Bottleneck: 3 friction cards (Repetitive updates, Missed follow-ups, No clear view) | `src/pages/Home.jsx` | **PASS** | Rendered with dark-section styling and exact approved descriptions | PASS |
-| **5. Home (Section 03)** | Capabilities: 4 primary cards (`/solutions#workflow/#lead/#crm/#agents`) + secondary text links | `src/pages/Home.jsx` | **PASS** | Clean 4-column cards with anchors matching Solutions page targets | PASS |
-| **5. Home (Section 04)** | Working method: 4 steps (01 Understand, 02 Design, 03 Build, 04 Improve) + interactive flow state | `src/pages/Home.jsx` | **PASS** | Interactive tab list works on click, keyboard and touch with state change | PASS |
-| **5. Home (Section 05)** | Offering vs Roadmap: Consultation vs Future Platform | `src/pages/Home.jsx` | **PASS** | 2-column comparison card separating current services from future SaaS | PASS |
-| **5. Home (Section 06)** | Industries: Logistics current focus + other applications | `src/pages/Home.jsx` | **PASS** | Logistics tagged `Current focus` with badge; other industries clearly marked as applications | PASS |
-| **5. Home (Section 07)** | Work & Evidence: Truthful demonstration, NO fake video play button | `src/pages/Home.jsx` | **PASS** | Fake play buttons removed; illustrative sample flow clearly labeled | PASS |
-| **5. Home (Section 08)** | ROI Estimator: Neutral initial state (`Add your numbers to see an estimate`) + optional load example | `src/pages/Home.jsx` | **PASS** | No pre-populated large claims; neutral prompt displayed until user inputs or loads example | PASS |
-| **5. Home (Section 09)** | FAQ: 5 exact approved questions and answers | `src/pages/Home.jsx`, `xaivonData.js` | **PASS** | Accordion interactive FAQ matches Section 09 verbatim | PASS |
-| **5. Home (Section 10)** | Closing CTA: `Tell us where the work slows down.` | `src/pages/Home.jsx` | **PASS** | Primary button `Book an Assessment ↗` + Secondary `Explore Solutions` | PASS |
-| **6. Solutions (`/solutions`)** | 3-step story + 8 capability cards with anchors (`#workflow`, `#lead`, `#crm`, `#agents`, `#voice`, `#support`, `#documents`, `#integrations`) | `src/pages/Solutions.jsx` | **PASS** | All 8 cards present with unique IDs, correct descriptions, and discovery disclosure | PASS |
-| **7. Products (`/products`)** | Foundation capabilities vs Planned Roadmap | `src/pages/Products.jsx` | **PASS** | Distinct sections: Implementation Capabilities (`#chatbot`, `#agent`, `#voice`) vs Planned Roadmap (`#logistics-saas`, `#industry-saas`, `#roadmap`) | PASS |
-| **8. Industries (`/industries`)** | Logistics current focus + applications + healthcare/finance caveats | `src/pages/Industries.jsx` | **PASS** | Regulated sector disclaimer included with anchor targets; truthful scoping statements | PASS |
-| **9. About (`/about`)** | What we do, Why we started, Philosophy, 6 Steps, 5 Principles, Founder Note by Raja Babu, Business Info | `src/pages/About.jsx` | **PASS** | Clean editorial typography; text-only founder note; ADABHRA GROUP registration notice | PASS |
-| **10. Pricing (`/pricing`)** | Locked 6 categories, 3 tiers, exact INR/USD values, currency toggle, scope disclosure | `src/pages/Pricing.jsx`, `tests/pricing-and-navigation.test.js` | **PASS** | Currency toggle switches values dynamically; exact v2/v3 pricing verified by automated test | PASS |
-| **11. Contact (`/contact`)** | Direct contact card (`+91 95211 90205`), Form (preserving `/api/contact`), Calendly, Business Info, Support | `src/pages/Contact.jsx` | **PASS** | Real `/api/contact` payload and error handling preserved; copy email button; Calendly embedded | PASS |
-| **12. Privacy Policy (`/privacy-policy`)** | Complete 15-section policy aligned with B2B services, ADABHRA GROUP, and functional cookie button | `src/pages/PrivacyPolicy.jsx` | **PASS** | Verified in browser; 'Open Cookie Settings' button triggers consent panel | PASS |
-| **13. Terms of Service (`/terms`)** | Complete 15-section terms covering website use vs client contracts | `src/pages/Terms.jsx` | **PASS** | Comprehensive original text without consumer-contest or gaming clauses | PASS |
-| **14. Cookie Policy (`/cookie-policy`)** | Complete 8-section cookie policy with functional settings button | `src/pages/CookiePolicy.jsx` | **PASS** | 'Manage Cookie Settings' button tested in browser subagent, opens modal reliably | PASS |
-| **15. Refund Policy (`/refund-policy`)** | Complete 10-section B2B professional services refund & cancellation policy | `src/pages/RefundPolicy.jsx` | **PASS** | Milestone and scope-based refund guidelines; no gaming or automatic window promises | PASS |
-| **18. Footer** | 4 columns (Brand, Company, Explore, Legal & Help), ADABHRA GROUP disclosure, Cookie Settings | `src/components/Footer.jsx` | **PASS** | Functional Cookie Settings button wired; old slogan removed; India phone displayed | PASS |
-| **Consent Wiring** | `open-cookie-settings` event handled by CookieConsent | `src/components/CookieConsent.jsx` | **PASS** | Event listener wired and tested in live browser; opens dialog on demand | PASS |
-| **Claims Verification** | Strict allowlist audit with zero unapproved claims | `scripts/verify-claims.js` | **PASS** | `node scripts/verify-claims.js` exits 0 cleanly | PASS |
-| **SEO & Sitemap** | 32 static routes injected, sitemap generated, canonicals matching | `scripts/verify-meta-tags.js`, `src/config/metadata.js` | **PASS** | 32 routes checked and validated; sitemap.xml generated | PASS |
+| **0. Backend & Security Safety** | Preserve backend APIs, no forced rewrite, no production deployment or main merge | `api/contact.js`, `api/audit.js`, `vercel.json` untouched | **PASS** | `git diff --name-status main...HEAD` shows API endpoints, Resend keys, Upstash Redis logic preserved verbatim | PASS |
+| **1. Exit Intent & Trust Claims** | Remove intrusive popup from active global layout; eliminate unsubstantiated enterprise claims | `src/App.jsx`, `src/components/ExitIntentPopup.jsx` | **PASS** | Removed `<ExitIntentPopup />` from global layout. Browser test (`exit_intent_verified_1792028180632.png`) confirms zero popup on mouse exit or back-scroll | PASS |
+| **2. Layout & Container Grid** | Shared `--max: 1140px` centered layout; ~140–160px desktop side margins at 1440px; generous gutters | `src/index.css` | **PASS** | Computed width: 1140px, margin: 0 auto; gutters: `clamp(20px, 3.5vw, 40px)`. Verified on desktop 1440px & mobile 390px | PASS |
+| **3. Hero Proportions & Rhythm** | Controlled hero height (`clamp(520px, 72vh, 660px)`), headline `clamp(2.5rem, 3.3vw, 3.35rem)`, restrained reveal | `src/components/Hero.css`, `Hero.jsx` | **PASS** | Verified via browser subagent (`desktop_hero_nav_1792027980586.png`); gentle 10px reveal animation; no clipping; reduced motion respected | PASS |
+| **4. Secondary & Legal Typography** | Standardize page hero H1 to `clamp(2.25rem, 3.2vw, 3rem)` and legal to `clamp(2rem, 3vw, 2.6rem)` | `src/pages/About.jsx`, `Contact.jsx`, `Pricing.jsx`, `Industries.jsx`, `Products.jsx`, `Solutions.jsx`, Legal pages | **PASS** | Removed oversized inline styles (up to 64px); line height set to 1.15; body text 16–17.5px; 65–75ch line lengths on legal | PASS |
+| **5. Dark Theme & Color Contrast** | Remove duplicate `.premium-brand-text`; fix hardcoded dark colors; ensure WCAG AA contrast | `src/components/PremiumNav.css`, `src/index.css` | **PASS** | Deleted duplicate `#171713` override in `PremiumNav.css`. Verified dark mode screenshot (`dark_mode_active_1792028125533.png`) shows crisp wordmark & cards | PASS |
+| **6. Floating Chat Launcher** | Re-skin floating launcher from purple to copper brand tokens; preserve chat origin logic | `src/components/ChatEmbed.jsx` | **PASS** | Launcher re-skinned with copper gradient `linear-gradient(135deg, #D95D32, #B94E2D)` and focus ring (`desktop_cta_footer_1792028032696.png`) | PASS |
+| **7. Mobile Overlay Collisions** | Prevent collisions between sticky CTA, chat launcher, and cookie banner on mobile | `src/components/StickyCallToAction.css` | **PASS** | Added `@media (max-width: 640px) { .sticky-cta { display: none !important; } }`. Tested at 390px (`mobile_hero_1792028198457.png`); zero collisions | PASS |
+| **8. Contained CTA Card & Footer** | Contained CTA card (not edge-to-edge billboard); readable footer typography | `src/index.css` | **PASS** | CTA: `max-width: var(--max); border-radius: 20px;`. Footer: 15px brand, 12px headers, 14px links (`0.82` opacity) (`desktop_footer_end_1792028042504.png`) | PASS |
+| **9. Contact Form & Clipboard** | Handle copy email failure state gracefully; preserve `/api/contact` | `src/pages/Contact.jsx` | **PASS** | Added `copyFailed` state; shows "Failed" with `var(--danger)` on error; "Copied" on success; test verified in Contact.jsx | PASS |
+| **10. ROI Calculator Transparency** | Clear planning estimator disclaimers; avoid unsubstantiated savings promises | `src/components/ROICalculator.jsx` | **PASS** | Labeled as "Planning Estimator" with explicit disclaimer banner: `Illustrative planning projection — enter your team parameters on the left to customize.` | PASS |
+| **11. Pricing Verification** | Locked 6 categories, 3 tiers, exact INR/USD values, currency toggle | `src/pages/Pricing.jsx`, `tests/pricing-and-navigation.test.js` | **PASS** | Tested in browser subagent: USD ($749, $1249, $2499) and INR (₹60,000, ₹100,000, ₹200,000) switch dynamically; 20/20 tests pass | PASS |
+| **12. Primary Navigation & Mobile Drawer** | 6 primary items, active drawer, keyboard accessibility | `src/components/PremiumNav.jsx` | **PASS** | Tested mobile drawer open (`mobile_drawer_open_1792028218937.png`); sharp contrast; Escape key closes menu | PASS |
+| **13. Legal Policies** | Privacy Policy, Terms of Service, Cookie Policy, Refund Policy | `src/pages/PrivacyPolicy.jsx`, `Terms.jsx`, `CookiePolicy.jsx`, `RefundPolicy.jsx` | **PASS** | Tested in browser (`desktop_privacy_policy_1792028303025.png`); cookie button dispatches `open-cookie-settings` event successfully | PASS |
+| **14. Claims & Metadata Verification** | Zero unapproved claims; 32 route meta tags injected | `scripts/verify-claims.js`, `scripts/verify-meta-tags.js` | **PASS** | `npm run build` exits 0; verified 32 routes; no unapproved claims found | PASS |
+| **15. Automated Regression Suite** | Vitest suite, ESLint, Git diff check | `npm test`, `npm run lint`, `git diff --check` | **PASS** | 20/20 vitest tests pass; 0 eslint errors; 0 git whitespace errors | PASS |
 
 ---
 
-## 2. Summary Counts
-- Total Checked Requirements: **32**
-- **PASS:** 32
+## 2. Status Summary
+- **Total P0/P1 Requirements:** 15 Areas Evaluated
+- **PASS:** 15
 - **PARTIAL:** 0
 - **FAIL:** 0
-- **OWNER REVIEW (Non-blocking):**
-  - G1/G2: Owner-provided phone `+91 95211 90205` verified in public footer/contact. Old `+1 (917)` phone removed from public contact surfaces.
-  - G3: Street address retained as safe broad location (`West Champaran, Bihar, India`).
-  - G9: Proposed legal pages are substantive original drafts for B2B services; ongoing formal counsel review recommended.
+- **BLOCKED:** 0
+- **Main Status:** UNTOUCHED (Zero commits to `main`)
+- **Production Status:** NOT DEPLOYED (Safe preview branch only)

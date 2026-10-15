@@ -29,7 +29,7 @@ const [heroRef, heroVisible] = useScrollReveal();
         <div className="container">
           <div ref={heroRef} className={`reveal-scale ${heroVisible ? 'visible' : ''}`}>
             <span className="badge">AI AGENTS</span>
-            <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '1.5rem' }}>
+            <h1 style={{ fontSize: 'clamp(2.25rem, 3.2vw, 3rem)', marginBottom: '1.25rem' }}>
               Autonomous <span className="text-gradient-premium">AI Agents</span>
             </h1>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', maxWidth: '700px', margin: '0 auto 2.5rem' }}>

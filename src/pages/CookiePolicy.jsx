@@ -14,7 +14,7 @@ export default function CookiePolicy() {
         <div className="container" style={{ maxWidth: '840px', padding: '60px 20px' }}>
           <div className="legal-header" style={{ marginBottom: '40px' }}>
             <span className="eyebrow">LEGAL</span>
-            <h1 style={{ fontSize: 'clamp(2.2rem, 4vw, 3.2rem)', margin: '8px 0 12px' }}>Cookie Policy</h1>
+            <h1 style={{ fontSize: 'clamp(2rem, 3vw, 2.6rem)', margin: '8px 0 12px' }}>Cookie Policy</h1>
             <p className="legal-updated" style={{ color: 'var(--muted)', fontSize: '14px' }}>
               Last updated: October 14, 2026
             </p>

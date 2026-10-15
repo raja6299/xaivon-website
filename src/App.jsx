@@ -7,7 +7,6 @@ import CookieConsent from './components/CookieConsent';
 import Analytics from './components/Analytics';
 import LoadingScreen from './components/LoadingScreen';
 import StickyCallToAction from './components/StickyCallToAction';
-import ExitIntentPopup from './components/ExitIntentPopup';
 import { ChatEmbed } from './components/ChatEmbed';
 import ErrorBoundary from './components/ErrorBoundary';
 import './App.css';
@@ -88,9 +87,8 @@ function App() {
         </ErrorBoundary>
       </main>
       <Footer />
-        <CookieConsent />
+      <CookieConsent />
       <StickyCallToAction />
-      <ExitIntentPopup />
       <ChatEmbed />
     </>
   );

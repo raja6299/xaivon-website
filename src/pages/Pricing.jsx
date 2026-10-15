@@ -37,10 +37,10 @@ export default function Pricing() {
       <section className="page-hero" style={{ padding: '80px 0 40px' }}>
         <div className="container">
           <div className="eyebrow">PRICING</div>
-          <h1 style={{ marginTop: '12px', fontSize: 'clamp(2.4rem, 4.5vw, 3.8rem)', lineHeight: 1.1 }}>
+          <h1 style={{ marginTop: '12px', fontSize: 'clamp(2.25rem, 3.2vw, 3rem)', lineHeight: 1.15 }}>
             Choose the level of automation you need.
           </h1>
-          <p style={{ marginTop: '18px', maxWidth: '72ch', color: 'var(--muted)', fontSize: '18px', lineHeight: 1.6 }}>
+          <p style={{ marginTop: '18px', maxWidth: '72ch', color: 'var(--muted)', fontSize: 'clamp(16px, 1.25vw, 17.5px)', lineHeight: 1.65 }}>
             Start with one focused workflow, connect several systems, or scope a more involved operation. The right level depends on the work—not a checklist of buzzwords.
           </p>
         </div>
