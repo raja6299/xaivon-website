@@ -1,11 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
-import { Suspense, lazy, useState } from 'react';
+import { Suspense, lazy } from 'react';
 import ScrollToTop from './hooks/ScrollToTop';
 import PremiumNav from './components/PremiumNav';
 import Footer from './components/Footer';
 import CookieConsent from './components/CookieConsent';
 import Analytics from './components/Analytics';
-import LoadingScreen from './components/LoadingScreen';
 import StickyCallToAction from './components/StickyCallToAction';
 import { ChatEmbed } from './components/ChatEmbed';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -39,11 +38,8 @@ const RoiCalculatorPage = lazy(() => import('./pages/RoiCalculatorPage'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-
   return (
     <>
-      {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
       <ScrollToTop />
       <Analytics />
       <PremiumNav />

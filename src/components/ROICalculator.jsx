@@ -107,10 +107,10 @@ export default function ROICalculator() {
             Planning Estimator
           </span>
           <h2>
-            Estimate Potential <span className="text-gradient-premium">Operational Savings</span>
+            Estimate the time tied up in repetitive work.
           </h2>
           <p>
-            An illustrative tool to model potential time and cost recovery based on your own team parameters.
+            Adjust the assumptions to explore a planning estimate. Actual results depend on the workflow, data and implementation.
           </p>
         </div>
 
@@ -285,9 +285,9 @@ export default function ROICalculator() {
           </Link>
 
           <div className="trust-indicators-row">
-            <span>✓ Free Strategy Call</span>
-            <span>✓ Custom ROI Projection</span>
-            <span>✓ No Obligation</span>
+            <span>✓ Initial workflow discovery</span>
+            <span>✓ Scope &amp; feasibility review</span>
+            <span>✓ Direct team communication</span>
           </div>
         </div>
 

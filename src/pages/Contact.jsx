@@ -215,8 +215,8 @@ export default function Contact() {
       </section>
 
       {/* Two-Column Layout: Form + Scheduling */}
-      <section className="contact-columns" id="contact-form-section" ref={formRef}>
-        <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '28px', maxWidth: '1140px' }}>
+      <section className="contact-section-wrap" id="contact-form-section" ref={formRef}>
+        <div className="contact-columns">
           {/* Contact Form */}
           <div className="surface card contact-form-card" style={{ padding: '36px', position: 'relative' }}>
             {!submitted ? (
@@ -343,6 +343,10 @@ export default function Contact() {
                   hideGdprBanner: true,
                 }}
               />
+            </div>
+            <div style={{ marginTop: '12px', fontSize: '12px', color: 'var(--muted)', textAlign: 'center' }}>
+              If the booking calendar does not load in your browser, email us directly at{' '}
+              <a href="mailto:raja@xaivon.com" style={{ color: 'var(--accent)', fontWeight: 600 }}>raja@xaivon.com</a>.
             </div>
           </div>
         </div>

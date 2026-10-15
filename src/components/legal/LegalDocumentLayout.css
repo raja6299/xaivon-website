@@ -1,0 +1,326 @@
+/* ============================================
+   Legal Document Layout — XAIVON Editorial Design System
+   Dual-Theme Compatible (Light & Dark)
+   ============================================ */
+
+.legal-doc-page {
+  padding-top: var(--nav-offset, 88px);
+  padding-bottom: clamp(64px, 8vw, 96px);
+  background: var(--bg);
+  min-height: 100vh;
+  color: var(--ink);
+}
+
+/* ─── Hero Header ──────────────────────────────────────────────────── */
+
+.legal-doc-header {
+  padding: clamp(48px, 6vw, 64px) var(--gutter, 24px) clamp(28px, 4vw, 40px);
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.legal-doc-header-inner {
+  max-width: var(--max, 1140px);
+  margin: 0 auto;
+}
+
+.legal-doc-kicker {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.legal-doc-title {
+  margin: 0 0 12px;
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.legal-doc-purpose {
+  font-size: clamp(15.5px, 1.25vw, 17px);
+  line-height: 1.65;
+  color: var(--muted);
+  max-width: 72ch;
+  margin: 0 0 20px;
+}
+
+.legal-doc-meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.legal-operator-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink);
+  font-weight: 650;
+}
+
+.legal-doc-updated {
+  color: var(--muted-2);
+}
+
+/* ─── Two-Column Document Grid ─────────────────────────────────────── */
+
+.legal-doc-container {
+  max-width: var(--max, 1140px);
+  margin: 0 auto;
+  padding: clamp(36px, 5vw, 56px) var(--gutter, 24px) 0;
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+
+/* ─── Sticky Sidebar TOC (Desktop) ─────────────────────────────────── */
+
+.legal-doc-sidebar {
+  position: sticky;
+  top: 104px;
+  display: block;
+}
+
+.legal-toc-card {
+  padding: 20px;
+  border-radius: 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+
+.legal-toc-title {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+
+.legal-toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: calc(100vh - 220px);
+  overflow-y: auto;
+}
+
+.legal-toc-link {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+  text-decoration: none;
+  display: block;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.legal-toc-link:hover {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* Mobile TOC Accordion */
+.legal-toc-mobile {
+  display: none;
+  margin-bottom: 24px;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.legal-toc-mobile summary {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+  outline: none;
+}
+
+.legal-toc-mobile[open] .legal-toc-list {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+/* ─── Main Content Column ──────────────────────────────────────────── */
+
+.legal-doc-content {
+  max-width: 74ch;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.legal-doc-section {
+  scroll-margin-top: 110px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.legal-doc-section:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.legal-doc-section h2 {
+  font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+  line-height: 1.3;
+  margin: 0 0 12px;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+.legal-doc-section p {
+  font-size: clamp(14.5px, 1.1vw, 15.5px);
+  line-height: 1.72;
+  color: var(--ink);
+  margin: 0 0 14px;
+}
+
+.legal-doc-section p:last-child {
+  margin-bottom: 0;
+}
+
+.legal-doc-section ul,
+.legal-doc-section ol {
+  margin: 0 0 16px;
+  padding-left: 1.5rem;
+  color: var(--ink);
+}
+
+.legal-doc-section li {
+  font-size: 15px;
+  line-height: 1.68;
+  margin-bottom: 8px;
+}
+
+.legal-doc-section a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.legal-doc-section a:hover {
+  color: var(--accent-hover);
+}
+
+/* Action slot */
+.legal-doc-action {
+  margin-top: 16px;
+}
+
+/* ─── Questions / Support Box ──────────────────────────────────────── */
+
+.legal-doc-support {
+  margin-top: 44px;
+  padding: 28px;
+  border-radius: 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+
+.legal-doc-support h3 {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+
+.legal-doc-support p {
+  margin: 0 0 16px;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.legal-doc-support-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ─── Responsive ───────────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .legal-doc-container {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .legal-doc-sidebar {
+    display: none;
+  }
+
+  .legal-toc-mobile {
+    display: block;
+  }
+
+  .legal-doc-content {
+    max-width: 100%;
+  }
+}
+
+/* ─── Print Stylesheet ─────────────────────────────────────────────── */
+
+@media print {
+  .legal-doc-page {
+    padding: 0;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .legal-doc-header {
+    background: transparent !important;
+    border-bottom: 2px solid #000000 !important;
+    padding: 20px 0 !important;
+  }
+
+  .legal-doc-sidebar,
+  .legal-toc-mobile,
+  .legal-doc-action,
+  .nav-header,
+  .footer,
+  .sticky-cta,
+  .chat-widget-launcher {
+    display: none !important;
+  }
+
+  .legal-doc-container {
+    display: block !important;
+    padding: 20px 0 !important;
+    max-width: 100% !important;
+  }
+
+  .legal-doc-content {
+    max-width: 100% !important;
+  }
+
+  .legal-doc-section {
+    page-break-inside: avoid;
+    border-bottom: 1px solid #cccccc !important;
+  }
+
+  .legal-doc-support {
+    background: transparent !important;
+    border: 1px solid #000000 !important;
+  }
+}

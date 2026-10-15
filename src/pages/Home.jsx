@@ -283,9 +283,9 @@ export default function Home() {
           <div className="section-head">
             <div>
               <div className="eyebrow">SHOW THE WORK</div>
-              <h2>See what a working system actually does.</h2>
+              <h2>See how a connected workflow could work.</h2>
             </div>
-            <p>A useful demonstration should explain the problem, the decisions made and how the workflow behaves—including what happens when something goes wrong.</p>
+            <p>This is an illustrative process—not a recording of a client system. A real implementation would be designed around your tools and approvals.</p>
           </div>
           <div className="evidence-grid">
             <article className="surface evidence-card">
@@ -319,7 +319,7 @@ export default function Home() {
                 <h3>Truthful Documentation</h3>
                 <p>We do not fabricate client logos, synthetic testimonials, or arbitrary outcome percentages.</p>
                 <div style={{ marginTop: '20px' }}>
-                  <span className="data-badge">Verified Standards</span>
+                  <span className="data-badge">Editorial Standard</span>
                 </div>
               </article>
             </div>

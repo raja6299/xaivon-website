@@ -1,93 +1,105 @@
-import { Link } from 'react-router-dom';
-import PageMeta from '../components/PageMeta';
-import './LegalPage.css';
+import LegalDocumentLayout from '../components/legal/LegalDocumentLayout';
 
 export default function CookiePolicy() {
   const handleOpenCookieSettings = () => {
     window.dispatchEvent(new CustomEvent('open-cookie-settings'));
   };
 
+  const toc = [
+    { id: 'covers', title: '1. What this policy covers' },
+    { id: 'cookies', title: '2. What storage items are' },
+    { id: 'how', title: '3. How we use storage' },
+    { id: 'firstparty', title: '4. First-party preferences' },
+    { id: 'analytics', title: '5. Optional measurement' },
+    { id: 'control', title: '6. Managing your preferences' },
+    { id: 'thirdparty', title: '7. Third-party embeds' },
+    { id: 'contact', title: '8. Updates and contact' },
+  ];
+
   return (
-    <>
-      <PageMeta />
-      <div className="legal-page">
-        <div className="container" style={{ maxWidth: '840px', padding: '60px 20px' }}>
-          <div className="legal-header" style={{ marginBottom: '40px' }}>
-            <span className="eyebrow">LEGAL</span>
-            <h1 style={{ fontSize: 'clamp(2rem, 3vw, 2.6rem)', margin: '8px 0 12px' }}>Cookie Policy</h1>
-            <p className="legal-updated" style={{ color: 'var(--muted)', fontSize: '14px' }}>
-              Last updated: October 14, 2026
-            </p>
-          </div>
+    <LegalDocumentLayout
+      title="Cookie Policy"
+      purpose="The site remembers a small number of preferences. Optional analytics, where enabled, help us understand how the website is used. You can review your choice at any time."
+      lastUpdated="October 15, 2026"
+      toc={toc}
+      actionSlot={
+        <button
+          type="button"
+          onClick={handleOpenCookieSettings}
+          className="btn btn-secondary btn-sm"
+        >
+          Manage Cookie Settings ↗
+        </button>
+      }
+    >
+      <section id="covers" className="legal-doc-section">
+        <h2>1. What this policy covers</h2>
+        <p>
+          This policy explains how xaivon.com uses browser storage technologies, including cookies and HTML5 local storage, to maintain interface settings and respect your privacy choices.
+        </p>
+      </section>
 
-          <div className="legal-content" style={{ display: 'flex', flexDirection: 'column', gap: '32px', lineHeight: 1.7, color: 'var(--ink)' }}>
-            <section>
-              <h2 style={{ fontSize: '18px', marginBottom: '10px' }}>1. What this policy covers</h2>
-              <p>
-                Cookies and similar browser storage can help a website remember choices or understand how it is used. This page explains the browser storage and optional analytics used by xaivon.com, as verified in our live implementation.
-              </p>
-            </section>
+      <section id="cookies" className="legal-doc-section">
+        <h2>2. What storage items are</h2>
+        <p>
+          Cookies are small text records stored by your browser when navigating websites. Local storage functions similarly by retaining key-value state locally on your device without transmitting data in standard HTTP request headers.
+        </p>
+      </section>
 
-            <section>
-              <h2 style={{ fontSize: '18px', marginBottom: '10px' }}>2. Preferences needed to run the website</h2>
-              <p>
-                The website may store a small preference to remember the colour theme you selected and whether you accepted or declined optional analytics. These functional preferences do not require a marketing profile.
-              </p>
-            </section>
+      <section id="how" className="legal-doc-section">
+        <h2>3. How we use storage</h2>
+        <p>
+          XAIVON maintains a strictly conservative storage footprint. We use local storage solely for essential user experience preferences (such as light or dark theme) and to remember whether you have accepted or declined optional analytics cookies.
+        </p>
+      </section>
 
-            <section>
-              <h2 style={{ fontSize: '18px', marginBottom: '10px' }}>3. Optional website analytics</h2>
-              <p>
-                If analytics tools are enabled, we use them to review overall website usage and improve navigation and content. Where consent is required, optional analytics should remain disabled until you choose to allow them. A rejected choice must be respected until you change it.
-              </p>
-            </section>
+      <section id="firstparty" className="legal-doc-section">
+        <h2>4. First-party essential preferences</h2>
+        <p>
+          These items are strictly necessary for core interface operation and do not track your browsing behavior across other websites:
+        </p>
+        <ul>
+          <li><strong>xaivon-theme:</strong> Remembers your chosen colour theme (&lsquo;light&rsquo; or &lsquo;dark&rsquo;) across page reloads.</li>
+          <li><strong>xaivon-consent:</strong> Stores your cookie consent decision (&lsquo;accepted&rsquo; or &lsquo;rejected&rsquo;) so you are not prompted on every page load.</li>
+        </ul>
+      </section>
 
-            <section>
-              <h2 style={{ fontSize: '18px', marginBottom: '10px' }}>4. Third-party tools</h2>
-              <p>
-                If you choose to use an embedded scheduling or chat service, that provider may set cookies or process information under its own notice. We identify providers that are actually in use and provide relevant links where possible.
-              </p>
-            </section>
+      <section id="analytics" className="legal-doc-section">
+        <h2>5. Optional measurement &amp; analytics</h2>
+        <p>
+          Where configured, optional analytics (such as Google Analytics 4 via Google Tag Manager) are used to measure aggregate site performance, page traffic, and usability bottlenecks. Nonessential analytics storage is strictly gated by default and activated only if you provide affirmative consent.
+        </p>
+      </section>
 
-            <section>
-              <h2 style={{ fontSize: '18px', marginBottom: '10px' }}>5. Your choice</h2>
-              <p>
-                You can accept or reject optional analytics without losing access to the website. You can reopen Cookie Settings at any time to change or withdraw your preference. You may also delete browser cookies and site data through your browser settings.
-              </p>
-              <div style={{ marginTop: '16px' }}>
-                <button
-                  type="button"
-                  onClick={handleOpenCookieSettings}
-                  className="btn btn-primary btn-sm"
-                >
-                  Manage Cookie Settings ↗
-                </button>
-              </div>
-            </section>
-
-            <section>
-              <h2 style={{ fontSize: '18px', marginBottom: '10px' }}>6. How long settings last</h2>
-              <p>
-                We save your preference in browser storage so the same question is not repeated on every visit. If the storage is cleared, the website may ask again.
-              </p>
-            </section>
-
-            <section>
-              <h2 style={{ fontSize: '18px', marginBottom: '10px' }}>7. Changes</h2>
-              <p>
-                We update this page when our use of cookies or analytics changes. The date at the top reflects the reviewed version.
-              </p>
-            </section>
-
-            <section>
-              <h2 style={{ fontSize: '18px', marginBottom: '10px' }}>8. Contact</h2>
-              <p>
-                For questions about cookies or website privacy, contact <a href="mailto:raja@xaivon.com" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>raja@xaivon.com</a>. Also see our <Link to="/privacy-policy" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>Privacy Policy</Link>.
-              </p>
-            </section>
-          </div>
+      <section id="control" className="legal-doc-section">
+        <h2>6. Managing your preferences</h2>
+        <p>
+          You can inspect, modify, or revoke your consent at any time by clicking the Cookie Settings control found in our footer and below. You may also clear stored preferences directly via your browser settings.
+        </p>
+        <div style={{ marginTop: '12px' }}>
+          <button
+            type="button"
+            onClick={handleOpenCookieSettings}
+            className="btn btn-secondary btn-sm"
+          >
+            Open Cookie Settings Modal ↗
+          </button>
         </div>
-      </div>
-    </>
+      </section>
+
+      <section id="thirdparty" className="legal-doc-section">
+        <h2>7. Third-party embeds</h2>
+        <p>
+          Our contact page provides an optional meeting scheduling widget powered by Calendly. When interacting directly with the embedded widget, Calendly may set its own functional cookies necessary to coordinate scheduling.
+        </p>
+      </section>
+
+      <section id="contact" className="legal-doc-section">
+        <h2>8. Updates and contact</h2>
+        <p>
+          If you have questions regarding our cookie practices, please contact <a href="mailto:raja@xaivon.com">raja@xaivon.com</a>. Operator: ADABHRA GROUP, West Champaran, Bihar, India.
+        </p>
+      </section>
+    </LegalDocumentLayout>
   );
 }
