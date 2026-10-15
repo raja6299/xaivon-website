@@ -27,15 +27,44 @@ export default function CookieConsent() {
   const [hasConsented, setHasConsented] = useState(!!storedConsent);
 
   const handleAccept = useCallback(() => {
-    localStorage.setItem('xaivon_cookie_consent', 'granted');
+    try {
+      localStorage.setItem('xaivon_cookie_consent', 'granted');
+    } catch {
+      // Ignore storage errors in restricted contexts
+    }
     updateGtagConsent('granted');
+    if (typeof document !== 'undefined' && !document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) {
+      const s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-FKYVMSFM5B';
+      document.head.appendChild(s);
+      window.gtag?.('js', new Date());
+      window.gtag?.('config', 'G-FKYVMSFM5B', { send_page_view: true });
+    }
     setIsVisible(false);
     setHasConsented(true);
   }, []);
 
   const handleReject = useCallback(() => {
-    localStorage.setItem('xaivon_cookie_consent', 'denied');
+    try {
+      localStorage.setItem('xaivon_cookie_consent', 'denied');
+    } catch {
+      // Ignore storage errors in restricted contexts
+    }
     updateGtagConsent('denied');
+    if (typeof document !== 'undefined') {
+      try {
+        document.cookie.split(';').forEach(c => {
+          const name = c.split('=')[0].trim();
+          if (name.startsWith('_ga')) {
+            document.cookie = `${name}=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+            document.cookie = `${name}=; Path=/; Domain=.xaivon.com; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+          }
+        });
+      } catch {
+        // Ignore cookie write errors
+      }
+    }
     setIsVisible(false);
     setHasConsented(true);
   }, []);

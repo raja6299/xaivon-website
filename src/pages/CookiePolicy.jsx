@@ -60,14 +60,14 @@ export default function CookiePolicy() {
         </p>
         <ul>
           <li><strong>xaivon-theme:</strong> Remembers your chosen colour theme (&lsquo;light&rsquo; or &lsquo;dark&rsquo;) across page reloads.</li>
-          <li><strong>xaivon-consent:</strong> Stores your cookie consent decision (&lsquo;accepted&rsquo; or &lsquo;rejected&rsquo;) so you are not prompted on every page load.</li>
+          <li><strong>xaivon_cookie_consent:</strong> Stores your cookie consent decision (&lsquo;granted&rsquo; or &lsquo;denied&rsquo;) so you are not prompted on every page load.</li>
         </ul>
       </section>
 
       <section id="analytics" className="legal-doc-section">
         <h2>5. Optional measurement &amp; analytics</h2>
         <p>
-          Where configured, optional analytics (such as Google Analytics 4 via Google Tag Manager) are used to measure aggregate site performance, page traffic, and usability bottlenecks. Nonessential analytics storage is strictly gated by default and activated only if you provide affirmative consent.
+          Optional measurement (Google Analytics 4, Measurement ID <code>G-FKYVMSFM5B</code>) is strictly opt-in. The analytics script is not downloaded or executed by your browser until you explicitly click &lsquo;Accept&rsquo; on our cookie banner. If you choose &lsquo;Reject&rsquo;, the script is never injected, no tracking cookies are set, and no analytics network traffic is generated.
         </p>
       </section>
 

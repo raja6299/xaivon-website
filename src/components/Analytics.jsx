@@ -5,7 +5,14 @@ export default function Analytics() {
   const location = useLocation();
 
   useEffect(() => {
-    if (window.gtag) {
+    let hasConsent = false;
+    try {
+      hasConsent = localStorage.getItem('xaivon_cookie_consent') === 'granted';
+    } catch {
+      // Ignore storage errors in restricted contexts
+    }
+
+    if (hasConsent && typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'page_view', {
         page_path: location.pathname + location.search,
         send_to: 'G-FKYVMSFM5B',
@@ -20,7 +27,14 @@ export default function Analytics() {
 
       if (e.data?.event && e.data.event.indexOf('calendly') === 0) {
         if (e.data.event === 'calendly.event_scheduled') {
-          if (window.gtag) {
+          let hasConsent = false;
+          try {
+            hasConsent = localStorage.getItem('xaivon_cookie_consent') === 'granted';
+          } catch {
+            // Ignore storage errors in restricted contexts
+          }
+
+          if (hasConsent && typeof window !== 'undefined' && window.gtag) {
             window.gtag('event', 'calendly_booking', {
               'event_category': 'Booking',
               'event_label': 'Strategy Call Success'

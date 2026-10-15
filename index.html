@@ -96,17 +96,13 @@
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
-    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- Theme Color -->
     <meta name="theme-color" content="#0A0A0A" />
     <meta name="msapplication-TileColor" content="#0A0A0A" />
 
-    <!-- Google Analytics 4 Consent Setup -->
+    <!-- Google Analytics 4 Consent Architecture (Strict Opt-In) -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -116,10 +112,21 @@
         'ad_user_data': 'denied',
         'ad_personalization': 'denied'
       });
-      gtag('js', new Date());
-      gtag('config', 'G-FKYVMSFM5B', { send_page_view: false });
+      (function() {
+        try {
+          var consent = localStorage.getItem('xaivon_cookie_consent');
+          if (consent === 'granted') {
+            gtag('consent', 'update', { 'analytics_storage': 'granted' });
+            var s = document.createElement('script');
+            s.async = true;
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-FKYVMSFM5B';
+            document.head.appendChild(s);
+            gtag('js', new Date());
+            gtag('config', 'G-FKYVMSFM5B', { send_page_view: false });
+          }
+        } catch (e) {}
+      })();
     </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FKYVMSFM5B"></script>
   </head>
   <body>
     <div id="root"></div>

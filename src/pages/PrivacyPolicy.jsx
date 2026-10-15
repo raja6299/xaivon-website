@@ -70,7 +70,7 @@ export default function PrivacyPolicy() {
       <section id="analytics" className="legal-doc-section">
         <h2>5. Analytics and your choice</h2>
         <p>
-          Optional analytics assist us in understanding page navigation and identifying technical barriers. You have the right to accept or decline nonessential measurement through our cookie preferences modal at any time. Our Cookie Policy provides detailed information on storage keys and tracking mechanics.
+          Optional measurement assists us in understanding page navigation and identifying technical barriers. Optional analytics (Google Analytics 4) are strictly opt-in: the measurement script is not loaded into your browser unless you click &lsquo;Accept&rsquo; on our cookie banner. If you choose &lsquo;Reject&rsquo;, no analytics scripts are executed and no tracking cookies are created. You have the right to modify your preferences at any time.
         </p>
         <div style={{ marginTop: '12px' }}>
           <button
@@ -121,7 +121,7 @@ export default function PrivacyPolicy() {
       <section id="rights" className="legal-doc-section">
         <h2>10. Your requests and choices</h2>
         <p>
-          Depending on your jurisdiction and applicable data protection legislation, you may have the right to request access to, correction of, or deletion of your submitted personal details. To exercise these rights, submit a written request with sufficient context to verify your identity.
+          Depending on your jurisdiction and applicable data protection legislation—including India&rsquo;s Digital Personal Data Protection Act, 2023 (DPDP Act) and the notified Digital Personal Data Protection Rules, 2025, operating under their phased commencement provisions—you may have specific statutory rights as a Data Principal. These include the right to access a summary of personal data processed, request correction or erasure of incomplete or inaccurate data, access grievance redressal, and designate a nominee. To exercise any of these rights, submit a written request with verifying context to <a href="mailto:raja@xaivon.com">raja@xaivon.com</a>.
         </p>
       </section>
 
