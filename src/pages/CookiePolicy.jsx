@@ -56,25 +56,37 @@ export default function CookiePolicy() {
       <section id="firstparty" className="legal-doc-section">
         <h2>4. First-party essential preferences</h2>
         <p>
-          These items are strictly necessary for core interface operation and do not track your browsing behavior across other websites:
+          These browser storage items are strictly functional for interface state and do not track browsing behavior across third-party websites:
         </p>
         <ul>
-          <li><strong>xaivon-theme:</strong> Remembers your chosen colour theme (&lsquo;light&rsquo; or &lsquo;dark&rsquo;) across page reloads.</li>
-          <li><strong>xaivon_cookie_consent:</strong> Stores your cookie consent decision (&lsquo;granted&rsquo; or &lsquo;denied&rsquo;) so you are not prompted on every page load.</li>
+          <li><strong>xaivon-theme:</strong> Retains your chosen colour mode (&lsquo;light&rsquo; or &lsquo;dark&rsquo;) across page reloads.</li>
+          <li><strong>xaivon_cookie_consent:</strong> Stores your cookie preference decision (&lsquo;granted&rsquo; or &lsquo;denied&rsquo;) so you are not prompted repeatedly.</li>
+          <li><strong>xaivon-pricing-currency:</strong> Remembers your preferred pricing display currency (&lsquo;USD&rsquo; or &lsquo;INR&rsquo;).</li>
         </ul>
       </section>
 
       <section id="analytics" className="legal-doc-section">
-        <h2>5. Optional measurement &amp; analytics</h2>
+        <h2>5. Optional measurement &amp; telemetry architecture</h2>
         <p>
-          Optional measurement (Google Analytics 4, Measurement ID <code>G-FKYVMSFM5B</code>) is strictly opt-in. The analytics script is not downloaded or executed by your browser until you explicitly click &lsquo;Accept&rsquo; on our cookie banner. If you choose &lsquo;Reject&rsquo;, the script is never injected, no tracking cookies are set, and no analytics network traffic is generated.
+          We maintain a strictly tiered and transparent approach to site telemetry and analytics:
         </p>
+        <ul>
+          <li>
+            <strong>Google Analytics 4 (Measurement ID: <code>G-FKYVMSFM5B</code>):</strong> Third-party visitor analytics. Gated strictly behind affirmative consent. The Google Tag Manager script is not downloaded or executed in your browser unless you click &lsquo;Accept&rsquo;. If you choose &lsquo;Reject&rsquo;, the script is never injected, no <code>_ga</code> cookies are set, and no tracking requests occur. If you previously accepted and subsequently revoke consent, persistent cookies are deleted, an official <code>ga-disable</code> flag is set, and the page refreshes to clear in-memory script state.
+          </li>
+          <li>
+            <strong>Vercel Web Analytics:</strong> First-party aggregate page-view measurement. Strictly opt-in; events are automatically discarded before dispatch if consent has not been granted.
+          </li>
+          <li>
+            <strong>Vercel Speed Insights:</strong> First-party technical telemetry monitoring Core Web Vitals (such as load latency and layout stability). Operates anonymously without cookies or personal identifiers to preserve site performance and reliability.
+          </li>
+        </ul>
       </section>
 
       <section id="control" className="legal-doc-section">
         <h2>6. Managing your preferences</h2>
         <p>
-          You can inspect, modify, or revoke your consent at any time by clicking the Cookie Settings control found in our footer and below. You may also clear stored preferences directly via your browser settings.
+          You can inspect, modify, or revoke your consent at any time by clicking the Cookie Settings button in the website footer or using the control below. Clearing browser cookies and storage will reset preferences to the initial default state.
         </p>
         <div style={{ marginTop: '12px' }}>
           <button
@@ -88,9 +100,9 @@ export default function CookiePolicy() {
       </section>
 
       <section id="thirdparty" className="legal-doc-section">
-        <h2>7. Third-party embeds</h2>
+        <h2>7. Third-party embeds &amp; scheduling</h2>
         <p>
-          Our contact page provides an optional meeting scheduling widget powered by Calendly. When interacting directly with the embedded widget, Calendly may set its own functional cookies necessary to coordinate scheduling.
+          Our contact page incorporates an optional meeting scheduling interface powered by Calendly. When you interact with the embedded booking widget, Calendly may set its own essential cookies necessary to manage session state and coordinate scheduling. You may also schedule discussions directly via email without using the embed.
         </p>
       </section>
 

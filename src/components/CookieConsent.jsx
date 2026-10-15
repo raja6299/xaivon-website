@@ -33,6 +33,10 @@ export default function CookieConsent() {
       // Ignore storage errors in restricted contexts
     }
     updateGtagConsent('granted');
+    if (typeof window !== 'undefined') {
+      window['ga-disable-G-FKYVMSFM5B'] = false;
+      window.dispatchEvent(new CustomEvent('xaivon-consent-change'));
+    }
     if (typeof document !== 'undefined' && !document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) {
       const s = document.createElement('script');
       s.async = true;
@@ -46,14 +50,25 @@ export default function CookieConsent() {
   }, []);
 
   const handleReject = useCallback(() => {
+    const wasGranted = getStoredConsent() === 'granted';
+    const hadScript = typeof document !== 'undefined' && !!document.querySelector('script[src*="googletagmanager.com/gtag/js"]');
+
     try {
       localStorage.setItem('xaivon_cookie_consent', 'denied');
     } catch {
       // Ignore storage errors in restricted contexts
     }
     updateGtagConsent('denied');
+
+    if (typeof window !== 'undefined') {
+      // Google Analytics official client-side opt-out disable flag
+      window['ga-disable-G-FKYVMSFM5B'] = true;
+      window.dispatchEvent(new CustomEvent('xaivon-consent-change'));
+    }
+
     if (typeof document !== 'undefined') {
       try {
+        // Purge Google Analytics cookies across root and domain
         document.cookie.split(';').forEach(c => {
           const name = c.split('=')[0].trim();
           if (name.startsWith('_ga')) {
@@ -64,9 +79,18 @@ export default function CookieConsent() {
       } catch {
         // Ignore cookie write errors
       }
+
+      // Remove any injected script elements from DOM
+      document.querySelectorAll('script[src*="googletagmanager.com"]').forEach(el => el.remove());
     }
+
     setIsVisible(false);
     setHasConsented(true);
+
+    // If revoking an already-active runtime tag, reload the page to ensure complete in-memory reset
+    if ((wasGranted || hadScript) && typeof window !== 'undefined') {
+      window.location.reload();
+    }
   }, []);
 
   const handleReopen = useCallback(() => {

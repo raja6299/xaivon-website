@@ -70,7 +70,7 @@ export default function PrivacyPolicy() {
       <section id="analytics" className="legal-doc-section">
         <h2>5. Analytics and your choice</h2>
         <p>
-          Optional measurement assists us in understanding page navigation and identifying technical barriers. Optional analytics (Google Analytics 4) are strictly opt-in: the measurement script is not loaded into your browser unless you click &lsquo;Accept&rsquo; on our cookie banner. If you choose &lsquo;Reject&rsquo;, no analytics scripts are executed and no tracking cookies are created. You have the right to modify your preferences at any time.
+          We employ a strictly tiered measurement architecture. Optional visitor analytics—including Google Analytics 4 (<code>G-FKYVMSFM5B</code>) and Vercel Web Analytics—are strictly opt-in and gated behind explicit consent. If you choose &lsquo;Reject&rsquo;, tracking scripts are not executed, no analytics cookies are set, and analytics event payloads are discarded. If consent is granted and later revoked, persistent cookies are deleted, an official <code>ga-disable</code> flag is set, and the page refreshes to clear in-memory scripts. First-party technical performance telemetry (Vercel Speed Insights) monitors Core Web Vitals anonymously without tracking cookies.
         </p>
         <div style={{ marginTop: '12px' }}>
           <button

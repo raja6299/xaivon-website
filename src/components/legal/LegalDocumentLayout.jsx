@@ -58,7 +58,7 @@ export default function LegalDocumentLayout({
           )}
 
           {/* Main Reading Column */}
-          <main className="legal-doc-content" id="legal-content">
+          <article className="legal-doc-content" id="legal-content">
             {/* Mobile TOC Accordion */}
             {toc.length > 0 && (
               <details className="legal-toc-mobile">
@@ -102,7 +102,7 @@ export default function LegalDocumentLayout({
                 </Link>
               </div>
             </div>
-          </main>
+          </article>
         </div>
       </div>
     </>
