@@ -123,7 +123,10 @@ export default function AIAudit() {
       setCooldown(60);
       trackEvent('audit_form_submit', { industry: formData.industry, company: formData.company });
     } catch (err) {
-      setErrors({ form: err.message || 'Something went wrong. Please try again later.' });
+      const msg = err.message || 'Something went wrong.';
+      setErrors({
+        form: `${msg} You can also email us directly at raja@xaivon.com.`
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -171,7 +174,7 @@ export default function AIAudit() {
               ))}
             </ul>
             <p className="ai-audit-trust-text">
-              ✦ No obligation. 100% free. Fast turnaround.
+              ✦ No-obligation initial assessment. Reviewed case-by-case.
             </p>
           </div>
 
@@ -299,10 +302,10 @@ export default function AIAudit() {
                 </button>
 
                 <div className="ai-audit-trust-indicators" style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', color: 'var(--text-muted)', fontSize: '0.85rem', textAlign: 'center' }}>
-                  <span>✓ Secure & Encrypted</span>
-                  <span>✓ Dedicated Support</span>
-                  <span>✓ Built For Long-Term Growth</span>
-                  <span style={{ marginTop: '0.5rem', fontSize: '0.75rem' }}>Your information is encrypted and never shared with third parties.</span>
+                  <span>✓ Encrypted Transit</span>
+                  <span>✓ Scoped Project Evaluation</span>
+                  <span>✓ Built For Practical Operations</span>
+                  <span style={{ marginTop: '0.5rem', fontSize: '0.75rem' }}>Your details are transmitted securely and used solely to review your request.</span>
                 </div>
               </form>
             )}

@@ -73,6 +73,9 @@ function injectMetaTagsForRoute(route, metadata) {
   }
 
   fs.writeFileSync(outputIndexPath, html, 'utf-8');
+  if (route === '/404') {
+    fs.writeFileSync(path.join(DIST_DIR, '404.html'), html, 'utf-8');
+  }
 }
 
 Object.keys(pageMetadata).forEach((route) => {

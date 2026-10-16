@@ -2,39 +2,8 @@ import { useParams, Navigate, Link } from 'react-router-dom';
 import { useStaggerAnimation } from '../hooks/useScrollAnimation';
 import PricingSection from '../components/PricingSection';
 import AIAudit from '../components/AIAudit';
-
-const SEO_CONTENT = {
-  'ai-automation': {
-    title: 'Enterprise AI Automation Solutions',
-    description: 'Replace manual back-office work with autonomous AI infrastructure. Scale your capacity without scaling headcount.',
-    badge: 'AI AUTOMATION'
-  },
-  'logistics-automation': {
-    title: 'Logistics & Freight Automation Systems',
-    description: 'Automate quoting, dispatching, and carrier communications with AI systems built specifically for 3PLs and freight brokers.',
-    badge: 'LOGISTICS AUTOMATION'
-  },
-  'freight-automation': {
-    title: 'Freight Brokerage Automation',
-    description: 'Transform your freight brokerage with QuoteFlow AI. Process rates instantly and increase your win rate without adding operational overhead.',
-    badge: 'FREIGHT AUTOMATION'
-  },
-  'ai-chatbots': {
-    title: 'AI Chatbots & Voice Agents',
-    description: 'Provide instant, always-on responses to your customers and carriers. Capture leads and handle customer support autonomously.',
-    badge: 'AI CHATBOTS'
-  },
-  'workflow-automation': {
-    title: 'Intelligent Workflow Automation',
-    description: 'Connect siloed systems. Extract, classify, and sync data across your CRM, TMS, and accounting software automatically.',
-    badge: 'WORKFLOW AUTOMATION'
-  },
-  'crm-automation': {
-    title: 'CRM Data Automation',
-    description: 'Eliminate manual CRM data entry. Our AI systems automatically parse incoming emails and update your CRM records in real-time.',
-    badge: 'CRM AUTOMATION'
-  }
-};
+import PageMeta from '../components/PageMeta';
+import { SEO_CONTENT } from '../data/seoContent';
 
 export default function SeoLandingPage() {
   const { slug } = useParams();
@@ -48,6 +17,11 @@ export default function SeoLandingPage() {
 
   return (
     <div className="seo-page" ref={ref} style={{ paddingTop: 'var(--nav-height)' }}>
+      <PageMeta
+        title={`${content.title} — XAIVON`}
+        description={content.description}
+        url={`https://xaivon.com/s/${slug}`}
+      />
       {/* Dynamic Hero */}
       <section className="seo-hero section" style={{ textAlign: 'center', padding: '6rem 1rem 4rem' }}>
         <div className="container scroll-fade-in">
@@ -61,7 +35,7 @@ export default function SeoLandingPage() {
           <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '700px', margin: '0 auto 2.5rem', lineHeight: '1.6' }}>
             {content.description}
           </p>
-          
+
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/contact" className="btn btn-primary btn-lg">
               Schedule a Strategy Call
@@ -71,9 +45,9 @@ export default function SeoLandingPage() {
             </Link>
           </div>
           <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1.5rem', justifyContent: 'center', color: 'var(--text-muted)', fontSize: '0.85rem', flexWrap: 'wrap' }}>
-            <span>✓ Secure & Encrypted</span>
-            <span>✓ Dedicated Support</span>
-            <span>✓ Built For Long-Term Growth</span>
+            <span>✓ Encrypted Transit</span>
+            <span>✓ Scoped Implementations</span>
+            <span>✓ Built For Practical Operations</span>
           </div>
         </div>
       </section>
@@ -84,6 +58,3 @@ export default function SeoLandingPage() {
     </div>
   );
 }
-
-
-

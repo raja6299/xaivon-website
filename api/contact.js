@@ -66,7 +66,7 @@ export default async function handler(req, res) {
       return res.status(429).json({
         success: false,
         rateLimited: true,
-        message: 'We have received your multiple requests. Our team is already reviewing your case. For urgent support, please contact us via WhatsApp.',
+        message: 'Too many requests. Our team is reviewing recent submissions. For urgent support, email raja@xaivon.com or reach out via WhatsApp / phone at +91 95211 90205.',
         remaining
       });
     }

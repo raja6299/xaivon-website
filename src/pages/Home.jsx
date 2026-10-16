@@ -449,11 +449,11 @@ export default function Home() {
               </div>
               <div className="calc-result">
                 <div>
-                  <div className="calc-kicker">Planning estimate</div>
+                  <div className="calc-kicker">Planning estimate (Net Benefit Model)</div>
                   {hasCalculated && current > 0 ? (
                     <>
                       <div className="calc-value">{currency.format(net)}</div>
-                      <p className="note">Estimated net annual benefit based on your inputs. Not a measured saving or promised return.</p>
+                      <p className="note">Estimated net annual benefit after deducting implementation and ongoing costs. Not a measured saving or promised return.</p>
                     </>
                   ) : (
                     <>
