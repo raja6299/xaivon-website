@@ -31,14 +31,14 @@ export default function RefundPolicy() {
       <section id="consulting" className="legal-doc-section">
         <h2>2. Consulting &amp; discovery phases</h2>
         <p>
-          Initial discovery assessments, architectural audits, and workflow mapping engagements involve dedicated engineering hours. Fees allocated to completed discovery phases are non-refundable once the assessment session has been conducted or the technical audit deliverable has been delivered.
+          Initial discovery assessments, architectural audits, and workflow mapping engagements involve dedicated engineering hours. Unless otherwise stipulated in the governing Statement of Work (SOW), fees for completed assessment sessions or delivered technical audit documentation are deemed fully earned and non-refundable.
         </p>
       </section>
 
       <section id="custom" className="legal-doc-section">
         <h2>3. Custom implementation milestones</h2>
         <p>
-          Multi-phase engineering projects are structured around defined milestones (e.g., Architecture Design, Integration Build, User Acceptance Testing, and Deployment). Upon formal client sign-off of a milestone, the associated milestone fee is deemed earned and is non-refundable. If a project is cancelled mid-milestone, fees are prorated based on verifiable engineering hours completed up to the date of cancellation notice.
+          Multi-phase engineering projects are structured around defined milestones set forth in the applicable Statement of Work. Upon formal client acceptance or milestone sign-off, the associated fee is deemed earned. Cancellation mid-milestone is governed by the termination provisions of the executed agreement, typically accounting for completed deliverables, committed resources, and work in progress.
         </p>
       </section>
 
@@ -52,7 +52,7 @@ export default function RefundPolicy() {
       <section id="cancellation" className="legal-doc-section">
         <h2>5. Project cancellation procedure</h2>
         <p>
-          Either party may terminate an active professional services agreement by providing written notice as stipulated in the executed project contract (typically 14 to 30 days). Upon termination, work ceases, and an itemized reconciliation invoice is issued reflecting completed deliverables and unbilled work in progress.
+          Either party may terminate an active professional services agreement in accordance with the notice period specified in the executed project agreement. Upon effective termination, active engineering ceases, and an itemized reconciliation invoice is issued reflecting completed deliverables and work performed up to the effective termination date.
         </p>
       </section>
 
@@ -66,7 +66,7 @@ export default function RefundPolicy() {
       <section id="disputes" className="legal-doc-section">
         <h2>7. Good-faith resolution &amp; disputes</h2>
         <p>
-          If a client believes a deliverable does not satisfy the technical specifications detailed in the agreed Statement of Work, we provide an agreed remediation window (typically 14 business days) to review and correct the deliverable in good faith before any formal claim is lodged.
+          If a client identifies that a deliverable does not satisfy the agreed technical specifications in the applicable Statement of Work, the parties will adhere to the review and remediation procedure agreed in the contract, engaging in good-faith technical review before escalating formal dispute proceedings.
         </p>
       </section>
 
@@ -80,7 +80,7 @@ export default function RefundPolicy() {
       <section id="request" className="legal-doc-section">
         <h2>9. Submitting a request</h2>
         <p>
-          To submit a formal cancellation notice or discuss milestone reconciliation, email <a href="mailto:raja@xaivon.com">raja@xaivon.com</a> with your project reference, organisation name, and reason for the request. We review and respond to formal requests within five business days.
+          To submit a formal cancellation notice or discuss milestone reconciliation, email <a href="mailto:raja@xaivon.com">raja@xaivon.com</a> with your project reference, organisation name, and details of the request. We endeavor to review and respond to formal correspondence within five business days.
         </p>
       </section>
 
