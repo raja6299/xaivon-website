@@ -14,22 +14,12 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown';
-  const { success, remaining, error: ratelimitError } = await checkRateLimit(ip);
-
-  if (ratelimitError) {
-    return res.status(503).json({ error: 'Service temporarily unavailable. Please try again later.' });
-  }
-
-  if (!success) {
-    return res.status(429).json({
-      error: 'Too many requests. Please try again later.',
-      remaining
-    });
-  }
-
   try {
     const body = req.body;
+
+    if (!body || typeof body !== 'object') {
+      return res.status(400).json({ error: 'Invalid request body' });
+    }
 
     if (body.website) {
       return res.status(400).json({ error: 'Invalid request' });
@@ -70,6 +60,20 @@ export default async function handler(req, res) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(rawEmail)) {
       return res.status(400).json({ error: 'Invalid email format' });
+    }
+
+    const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown';
+    const { success, remaining, error: ratelimitError } = await checkRateLimit(ip);
+
+    if (ratelimitError) {
+      return res.status(503).json({ error: 'Service temporarily unavailable. Please try again later or email us at raja@xaivon.com.' });
+    }
+
+    if (!success) {
+      return res.status(429).json({
+        error: 'Too many requests. Please try again later or email us at raja@xaivon.com.',
+        remaining
+      });
     }
 
     // HTML-escaped values constructed strictly for HTML email output

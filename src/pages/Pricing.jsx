@@ -63,8 +63,8 @@ export default function Pricing() {
                     padding: '8px 14px',
                     borderRadius: '8px',
                     border: '1px solid var(--line)',
-                    background: activeCategory === cat ? 'var(--accent)' : 'var(--surface)',
-                    color: activeCategory === cat ? '#fff' : 'var(--ink)',
+                    background: activeCategory === cat ? 'var(--tab-copper-active-bg)' : 'var(--surface)',
+                    color: activeCategory === cat ? 'var(--tab-copper-active-text)' : 'var(--ink)',
                     fontSize: '13px',
                     fontWeight: 600,
                     cursor: 'pointer'
@@ -90,8 +90,8 @@ export default function Pricing() {
                     fontWeight: 700,
                     borderRadius: '8px',
                     border: '1px solid var(--line)',
-                    background: currency === curr ? 'var(--ink)' : 'var(--surface)',
-                    color: currency === curr ? 'var(--white)' : 'var(--ink)',
+                    background: currency === curr ? 'var(--btn-toggle-active-bg)' : 'var(--surface)',
+                    color: currency === curr ? 'var(--btn-toggle-active-text)' : 'var(--ink)',
                     cursor: 'pointer'
                   }}
                   onClick={() => handleCurrencyChange(curr)}

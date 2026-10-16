@@ -10,7 +10,7 @@ test('contact-rate-limit: rate-limited response schema returns HTTP 429 and rate
         json: {
           success: false,
           rateLimited: true,
-          message: 'We have received your multiple requests. Our team is already reviewing your case. For urgent support, please contact us via WhatsApp.',
+          message: 'Too many requests. Please try again later or email raja@xaivon.com directly for immediate assistance.',
           remaining
         }
       };
@@ -22,7 +22,7 @@ test('contact-rate-limit: rate-limited response schema returns HTTP 429 and rate
   assert.strictEqual(res.status, 429, 'Rate-limited response must return HTTP 429');
   assert.strictEqual(res.json.rateLimited, true);
   assert.strictEqual(res.json.success, false);
-  assert.match(res.json.message, /WhatsApp/);
+  assert.match(res.json.message, /raja@xaivon\.com/);
 });
 
 test('contact-rate-limit: frontend handles HTTP 429 gracefully without throwing error', () => {
@@ -35,7 +35,7 @@ test('contact-rate-limit: frontend handles HTTP 429 gracefully without throwing 
     try {
       // Logic from Contact.jsx
       if (responseStatus === 429 || responseData.rateLimited) {
-        errorDisplayed = responseData.message || 'We have received your multiple requests...';
+        errorDisplayed = responseData.message || 'Too many requests. Please try again later or email raja@xaivon.com directly for immediate assistance.';
         cooldownSet = 60;
         return { handled: true, errorDisplayed, cooldownSet, exceptionThrown };
       }
@@ -55,11 +55,11 @@ test('contact-rate-limit: frontend handles HTTP 429 gracefully without throwing 
   const result = simulateContactSubmitHandler(429, {
     success: false,
     rateLimited: true,
-    message: 'We have received your multiple requests. Our team is already reviewing your case. For urgent support, please contact us via WhatsApp.',
+    message: 'Too many requests. Please try again later or email raja@xaivon.com directly for immediate assistance.',
     remaining: 0
   });
 
   assert.strictEqual(result.exceptionThrown, false, 'Should not throw an uncaught exception on 429');
   assert.strictEqual(result.cooldownSet, 60, 'Should set cooldown to 60s');
-  assert.match(result.errorDisplayed, /WhatsApp/, 'Friendly WhatsApp guidance must be preserved');
+  assert.match(result.errorDisplayed, /raja@xaivon\.com/, 'Direct email fallback guidance must be provided');
 });

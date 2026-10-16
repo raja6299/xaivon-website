@@ -25,9 +25,9 @@ export default defineConfig([
       'react-hooks/set-state-in-effect': 'error',
     },
   },
-  // Node / server-side files (API routes, scripts)
+  // Node / server-side files (API routes, scripts, tests)
   {
-    files: ['api/**/*.js', 'scripts/**/*.js'],
+    files: ['api/**/*.js', 'scripts/**/*.js', 'tests/**/*.js'],
     languageOptions: {
       globals: globals.node,
     },

@@ -1,4 +1,5 @@
 import { BLOG_POSTS } from '../data/blogData.js';
+import { SEO_CONTENT } from '../data/seoContent.js';
 
 export const defaultMetadata = {
   title: 'XAIVON | Business Automation & AI Infrastructure',
@@ -96,24 +97,30 @@ export const pageMetadata = {
     image: 'https://xaivon.com/og-image.png'
   },
   '/quoteflow-ai': {
-    title: 'QuoteFlow AI — Automated Freight Quoting',
-    description: 'Process RFQs instantly. QuoteFlow AI reads emails, calculates margins, and responds to shippers autonomously.',
+    title: 'QuoteFlow AI — Structured Freight Workflow Integration',
+    description: 'Explore custom quote processing and operational workflows designed to assist freight teams with repetitive data tasks.',
     image: 'https://xaivon.com/og-image.png'
   },
   '/ai-agents': {
-    title: 'AI Agents — XAIVON',
-    description: 'Deploy autonomous AI agents that act as independent digital workers for dispatching, quoting, and data entry.',
+    title: 'AI Agents — Scoped Digital Workers',
+    description: 'Deploy scoped AI agents for dispatch assistance, quote parsing, and back-office data entry with human oversight.',
     image: 'https://xaivon.com/og-image.png'
   },
   '/ai-automation': {
     title: 'AI Automation — XAIVON',
-    description: 'Transform manual cost centers into efficient, automated workflows with enterprise-grade AI infrastructure.',
+    description: 'Transform manual cost centers into efficient, automated workflows with enterprise-grade system integrations.',
     image: 'https://xaivon.com/og-image.png'
   },
   '/ai-chatbots': {
-    title: 'AI Chatbots — XAIVON',
-    description: 'Provide instant, 24/7 intelligent customer support and lead capture with conversational AI systems.',
+    title: 'Conversational Support & AI Chatbots — XAIVON',
+    description: 'Provide reliable, automated customer support intake and structured lead routing with conversational AI systems.',
     image: 'https://xaivon.com/og-image.png'
+  },
+  '/404': {
+    title: 'Page Not Found — XAIVON',
+    description: 'The requested system path or infrastructure page could not be found.',
+    image: 'https://xaivon.com/og-image.png',
+    noindex: true
   }
 };
 
@@ -125,15 +132,6 @@ Object.keys(BLOG_POSTS).forEach(id => {
   };
 });
 
-const SEO_CONTENT = {
-  'ai-automation': { title: 'Enterprise AI Automation Solutions', description: 'Replace manual back-office work with autonomous AI infrastructure. Scale your capacity without scaling headcount.' },
-  'logistics-automation': { title: 'Logistics & Freight Automation Systems', description: 'Automate quoting, dispatching, and carrier communications with AI systems built specifically for 3PLs and freight brokers.' },
-  'freight-automation': { title: 'Freight Brokerage Automation', description: 'Transform your freight brokerage with QuoteFlow AI. Process rates instantly and increase your win rate without adding operational overhead.' },
-  'ai-chatbots': { title: 'AI Chatbots & Voice Agents', description: 'Provide instant, 24/7 responses to your customers and carriers. Capture leads and handle customer support autonomously.' },
-  'workflow-automation': { title: 'Intelligent Workflow Automation', description: 'Connect siloed systems. Extract, classify, and sync data across your CRM, TMS, and accounting software automatically.' },
-  'crm-automation': { title: 'CRM Data Automation', description: 'Eliminate manual CRM data entry. Our AI systems automatically parse incoming emails and update your CRM records in real-time.' }
-};
-
 Object.keys(SEO_CONTENT).forEach(slug => {
   pageMetadata['/s/' + slug] = {
     title: SEO_CONTENT[slug].title + ' — XAIVON',
@@ -141,4 +139,3 @@ Object.keys(SEO_CONTENT).forEach(slug => {
     image: 'https://xaivon.com/og-image.png'
   };
 });
-
