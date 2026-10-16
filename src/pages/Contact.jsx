@@ -121,7 +121,7 @@ export default function Contact() {
       const data = await response.json();
 
       if (response.status === 429 || data.rateLimited) {
-        setError(data.message || 'We have received your multiple requests. Our team is already reviewing your case. For urgent support, please contact us via WhatsApp.');
+        setError(data.message || 'Too many requests. Please try again later or email raja@xaivon.com directly for immediate assistance.');
         setCooldown(60);
         return;
       }

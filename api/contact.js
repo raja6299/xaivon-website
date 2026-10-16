@@ -66,7 +66,7 @@ export default async function handler(req, res) {
       return res.status(429).json({
         success: false,
         rateLimited: true,
-        message: 'Too many requests. Our team is reviewing recent submissions. For urgent support, email raja@xaivon.com or reach out via WhatsApp / phone at +91 95211 90205.',
+        message: 'Too many requests. Please try again later or email raja@xaivon.com directly for immediate assistance.',
         remaining
       });
     }
@@ -144,8 +144,7 @@ export default async function handler(req, res) {
     return res.status(200).json({
       success: true,
       rateLimited: false,
-      message: 'Message received securely.',
-      redirect: '/ai-consultation'
+      message: 'Message received securely.'
     });
   } catch (error) {
     console.error('API Error:', error.message);

@@ -5,8 +5,7 @@ import './AiConsultation.css';
 
 export default function AiConsultation() {
   const location = useLocation();
-  const searchParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
-  const isSubmission = location.state?.submitted === true || searchParams?.get('submitted') === 'true';
+  const isSubmission = location.state?.submitted === true;
 
   useEffect(() => {
     window.scrollTo(0, 0);
