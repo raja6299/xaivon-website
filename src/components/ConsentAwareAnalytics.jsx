@@ -4,7 +4,7 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 
 /**
  * ConsentAwareAnalytics
- * 
+ *
  * - SpeedInsights: First-party Core Web Vitals telemetry (no cookies, anonymous performance metrics)
  * - Analytics: Strictly gated behind user consent ('xaivon_cookie_consent' === 'granted')
  */

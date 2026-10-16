@@ -1,10 +1,10 @@
 # XAIVON — Pre-Release Baseline & Rollback Record
 
-**Date:** October 15, 2026  
-**Document ID:** `docs/release/PRE_RELEASE_BASELINE.md`  
-**Target Repository:** `raja6299/xaivon-website`  
-**Production Domain:** `https://xaivon.com`  
-**PR:** [#3](https://github.com/raja6299/xaivon-website/pull/3)  
+**Date:** October 16, 2026
+**Document ID:** `docs/release/PRE_RELEASE_BASELINE.md`
+**Target Repository:** `raja6299/xaivon-website`
+**Production Domain:** `https://xaivon.com`
+**PR:** [#3](https://github.com/raja6299/xaivon-website/pull/3)
 
 ---
 

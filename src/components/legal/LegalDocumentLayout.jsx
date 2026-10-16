@@ -21,7 +21,7 @@ export default function LegalDocumentLayout({
             <span className="legal-doc-kicker">{kicker}</span>
             <h1 className="legal-doc-title">{title}</h1>
             {purpose && <p className="legal-doc-purpose">{purpose}</p>}
-            
+
             <div className="legal-doc-meta-bar">
               <div className="legal-operator-badge">
                 <span>Operated by</span>

@@ -102,7 +102,7 @@ export default function CookiePolicy() {
       <section id="thirdparty" className="legal-doc-section">
         <h2>7. Third-party embeds &amp; scheduling</h2>
         <p>
-          Our contact page incorporates an optional meeting scheduling interface powered by Calendly. When you interact with the embedded booking widget, Calendly may set its own essential cookies necessary to manage session state and coordinate scheduling. You may also schedule discussions directly via email without using the embed.
+          Our contact page incorporates an optional meeting scheduling interface powered by Calendly. Navigating to the contact page renders the embedded scheduling interface, which may set functional third-party cookies necessary for Calendly to manage session state and coordinate scheduling. You may also schedule discussions directly via email without loading or interacting with the embed.
         </p>
       </section>
 

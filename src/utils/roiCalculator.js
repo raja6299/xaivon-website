@@ -1,6 +1,6 @@
 /**
  * ROI Planning Calculation Utilities
- * 
+ *
  * Accurately models estimated labor hours and planning time values.
  * Does not represent guaranteed cash savings or binding commercial terms.
  */
