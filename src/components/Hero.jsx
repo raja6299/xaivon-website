@@ -22,16 +22,16 @@ export default function Hero() {
         {/* Left Column */}
         <div className="hero-copy-column">
           <div className="hero-overline hero-fade hero-fade-1">
-            <span>START WITH THE WORKFLOW</span>
+            <span>BUILT FOR THE WORK BEHIND THE BUSINESS</span>
             <div className="overline-line"></div>
           </div>
 
           <h1 className="hero-headline hero-fade hero-fade-2">
-            We automate the operational work your team shouldn&apos;t do twice.
+            Your business has better work to do than repeat itself.
           </h1>
 
           <p className="hero-subheadline hero-fade hero-fade-3">
-            XAIVON connects your systems, applies business rules, and handles the repetitive handoffs — so your team works on decisions, not data entry.
+            We build the systems that keep everyday work moving—connecting your tools, handling routine tasks and keeping people involved when judgment matters.
           </p>
 
           <div className="hero-cta-row hero-fade hero-fade-4">
@@ -39,8 +39,12 @@ export default function Hero() {
               Book an Assessment <span className="btn-arrow">↗</span>
             </Link>
             <Link to="/solutions" className="hero-btn hero-btn-secondary">
-              See how it works
+              See What We Build
             </Link>
+          </div>
+
+          <div className="hero-supporting-line hero-fade hero-fade-4" style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.7)', marginTop: '14px', letterSpacing: '0.02em' }}>
+            Workflow automation · Connected business systems · Practical AI agents
           </div>
         </div>
 

@@ -1,97 +1,135 @@
-import { Link } from 'react-router-dom';
-import { useScrollReveal } from '../hooks/useScrollReveal';
-import PageMeta from '../components/PageMeta';
-import './LegalPage.css';
+import LegalDocumentLayout from '../components/legal/LegalDocumentLayout';
 
 export default function Terms() {
-  const [contentRef, contentVisible] = useScrollReveal({ threshold: 0.05 });
+  const toc = [
+    { id: 'about', title: '1. About XAIVON' },
+    { id: 'scope', title: '2. Scope of website terms' },
+    { id: 'enquiries', title: '3. Enquiries and assessments' },
+    { id: 'accuracy', title: '4. Website information' },
+    { id: 'use', title: '5. Acceptable use' },
+    { id: 'ip', title: '6. Intellectual property' },
+    { id: 'confidentiality', title: '7. Confidentiality of submissions' },
+    { id: 'thirdparty', title: '8. Third-party services' },
+    { id: 'availability', title: '9. Website availability' },
+    { id: 'liability', title: '10. Limitation of liability' },
+    { id: 'clientterms', title: '11. Engagement terms' },
+    { id: 'indemnity', title: '12. Indemnity' },
+    { id: 'termination', title: '13. Suspension and termination' },
+    { id: 'governing', title: '14. Governing law and dispute resolution' },
+    { id: 'contact', title: '15. Contact and business enquiries' },
+  ];
 
   return (
-    <>
-      <PageMeta />
-      <div className="legal-page">
-        <div className="container">
-          <div className="legal-header">
-            <h1>Terms of Service</h1>
-            <p className="legal-updated">Last Updated: September 2026</p>
-          </div>
+    <LegalDocumentLayout
+      title="Terms of Service"
+      purpose="These terms explain how the XAIVON website and enquiry features may be used. Paid project terms are agreed separately in writing."
+      lastUpdated="October 15, 2026"
+      toc={toc}
+    >
+      <section id="about" className="legal-doc-section">
+        <h2>1. About XAIVON</h2>
+        <p>
+          XAIVON is a business brand operated by ADABHRA GROUP, a registered sole proprietorship in India, with Raja Babu as its proprietor. These terms govern public access to xaivon.com, informational resources, and related communication channels.
+        </p>
+      </section>
 
-          <div className={`legal-content reveal ${contentVisible ? 'in' : ''}`} ref={contentRef}>
-            <section>
-              <h2>1. About These Terms</h2>
-              <p>These Terms of Service govern your access to and use of the xaivon.com website and any information, content, or materials provided herein, operated by XAIVON (Business name: XAIVON). By accessing or using our website, you agree to comply with these terms. If you do not agree with these terms, please do not use our website.</p>
-            </section>
+      <section id="scope" className="legal-doc-section">
+        <h2>2. Scope of website terms</h2>
+        <p>
+          These terms govern website browsing, discovery forms, and general correspondence. They do not constitute a software-as-a-service subscription or a Master Services Agreement (MSA). Paid implementations, custom engineering, service levels, and deliverables are defined exclusively through separate, executed written proposals or Statements of Work (SOW).
+        </p>
+      </section>
 
-            <section>
-              <h2>2. Using the Website</h2>
-              <p>You may use our website only for lawful purposes and in accordance with these terms. You agree not to use the website in any way that violates any applicable law, to engage in unauthorized data scraping or extraction, to interfere with the proper working of the site, or to attempt to gain unauthorized access to any part of the site or its related systems.</p>
-            </section>
+      <section id="enquiries" className="legal-doc-section">
+        <h2>3. Enquiries and assessments</h2>
+        <p>
+          Submitting a project enquiry or booking an exploratory strategy call does not bind either party to an engagement, nor does it guarantee acceptance of a project. Project fit, timeline, and commercial terms are confirmed only after detailed discovery and written agreement.
+        </p>
+      </section>
 
-            <section>
-              <h2>3. XAIVON Services</h2>
-              <p>XAIVON provides business automation, AI systems, integrations, consulting, and related digital and technical services. The information provided on this website is for general informational purposes and does not constitute a binding offer to provide services under any specific terms.</p>
-            </section>
+      <section id="accuracy" className="legal-doc-section">
+        <h2>4. Website information</h2>
+        <p>
+          The content on this website—including capability descriptions, illustrative workflow diagrams, planning calculators, and pricing tiers—is provided for informational planning purposes. While we endeavor to keep all information current, website overviews do not constitute formal architectural specifications or binding technical warranties.
+        </p>
+      </section>
 
-            <section>
-              <h2>4. Assessments and Proposals</h2>
-              <p>Any assessments, audits, proposals, or estimates provided through the website or subsequent communications are preliminary and subject to mutually agreed final terms. They do not constitute a final binding commitment until a formal agreement is executed.</p>
-            </section>
+      <section id="use" className="legal-doc-section">
+        <h2>5. Acceptable use</h2>
+        <p>
+          Visitors agree not to misuse this website, disrupt server operations, submit malicious payloads through contact forms, attempt unauthorized system penetration, or deploy scraping mechanisms that overburden our infrastructure.
+        </p>
+      </section>
 
-            <section>
-              <h2>5. Client Responsibilities</h2>
-              <p>If you engage with XAIVON for services, you are responsible for providing accurate information, timely feedback, and any necessary access to your systems or data required to deliver the services, as will be detailed in the specific engagement agreement.</p>
-            </section>
+      <section id="ip" className="legal-doc-section">
+        <h2>6. Intellectual property</h2>
+        <p>
+          All brand assets, text copy, graphic arrangements, layout architectures, and proprietary software representations on xaivon.com are the intellectual property of ADABHRA GROUP or its licensors and are protected under applicable copyright and intellectual property laws.
+        </p>
+      </section>
 
-            <section>
-              <h2>6. Intellectual Property</h2>
-              <p>The website and its original content, features, and functionality are owned by XAIVON and are protected by applicable intellectual property or proprietary rights laws. You may not reproduce, distribute, modify, or create derivative works of any material from our website without our prior written consent.</p>
-            </section>
+      <section id="confidentiality" className="legal-doc-section">
+        <h2>7. Confidentiality of submissions</h2>
+        <p>
+          General website form submissions are handled in accordance with our Privacy Policy. Do not send trade secrets, regulated technical schemas, proprietary source code, or confidential customer databases through initial public web forms before executing a formal Non-Disclosure Agreement (NDA).
+        </p>
+      </section>
 
-            <section>
-              <h2>7. Third-Party Services and Integrations</h2>
-              <p>Our website or services may reference or interact with third-party platforms, APIs, or tools. We do not control these third-party services and are not responsible for their content, privacy policies, or practices. Your use of third-party services is subject to their respective terms.</p>
-            </section>
+      <section id="thirdparty" className="legal-doc-section">
+        <h2>8. Third-party services</h2>
+        <p>
+          Our site incorporates integrations and links to external platforms, such as Calendly. XAIVON is not liable for third-party platform availability, API deprecations, or policy modifications enacted by independent service providers.
+        </p>
+      </section>
 
-            <section>
-              <h2>8. Confidentiality and Information</h2>
-              <p>We respect the confidentiality of the business information you share with us during assessments or service delivery. The specific confidentiality obligations governing an engagement will be set out in a Mutual Non-Disclosure Agreement or the applicable engagement-specific agreement.</p>
-            </section>
+      <section id="availability" className="legal-doc-section">
+        <h2>9. Website availability</h2>
+        <p>
+          We aim to maintain continuous site uptime but make no absolute warranty of uninterrupted access. Periodic maintenance, hosting updates, or network issues may result in temporary unavailability without prior notice.
+        </p>
+      </section>
 
-            <section>
-              <h2>9. Fees, Billing, Cancellation and Refunds</h2>
-              <p>The specific scope, deliverables, pricing, timelines, assumptions, and commercial commitments for a client engagement are determined by the applicable proposal, order form, statement of work, Master Services Agreement (MSA), subscription terms, or other written agreement.</p>
-              <p>Where such an agreement conflicts with general website terms, the engagement-specific agreement governs to the extent stated in that agreement. For general information regarding cancellations and refunds, please review our <Link to="/refund-policy">Refund & Cancellation Policy</Link>.</p>
-            </section>
+      <section id="liability" className="legal-doc-section">
+        <h2>10. Limitation of liability</h2>
+        <p>
+          To the maximum extent permitted by applicable law, ADABHRA GROUP and its proprietor shall not be held liable for indirect, incidental, consequential, or punitive damages arising out of your access to or inability to use this informational website.
+        </p>
+      </section>
 
-            <section>
-              <h2>10. Disclaimers</h2>
-              <p>The website and its content are provided on an "as is" and "as available" basis without any warranties of any kind, either express or implied. XAIVON does not warrant that the website will be uninterrupted, error-free, or free of viruses or other harmful components.</p>
-            </section>
+      <section id="clientterms" className="legal-doc-section">
+        <h2>11. Engagement terms</h2>
+        <p>
+          Client relationships, automation workflows, system integrations, payment schedules, and IP transfer terms are governed exclusively by executed client contracts, which supersede any conflicting statements on this informational website.
+        </p>
+      </section>
 
-            <section>
-              <h2>11. Limitation of Liability</h2>
-              <p>To the fullest extent provided by law, in no event will XAIVON, its affiliates, or their licensors, service providers, employees, agents, officers, or directors be liable for damages of any kind arising out of or in connection with your use, or inability to use, the website or any content on the website.</p>
-            </section>
+      <section id="indemnity" className="legal-doc-section">
+        <h2>12. Indemnity</h2>
+        <p>
+          You agree to defend, indemnify, and hold harmless ADABHRA GROUP, its proprietor, and associates against claims, losses, or expenses resulting from your violation of these website terms or improper usage of site features.
+        </p>
+      </section>
 
-            <section>
-              <h2>12. Suspension or Termination</h2>
-              <p>We reserve the right to suspend or terminate your access to the website at our sole discretion, without notice, for any reason, including but not limited to a violation of these Terms of Service.</p>
-            </section>
+      <section id="termination" className="legal-doc-section">
+        <h2>13. Suspension and termination</h2>
+        <p>
+          We reserve the right to restrict access, reject form submissions, or block IP addresses that exhibit malicious behavior, abuse rate limits, or engage in unauthorized exploitation of site infrastructure.
+        </p>
+      </section>
 
-            <section>
-              <h2>13. Changes to These Terms</h2>
-              <p>We may revise and update these Terms of Service from time to time in our sole discretion. All changes are effective immediately when we post them. Your continued use of the website following the posting of revised Terms of Service means that you accept and agree to the changes.</p>
-            </section>
+      <section id="governing" className="legal-doc-section">
+        <h2>14. Governing law and dispute resolution</h2>
+        <p>
+          These terms of service and any disputes arising out of the use of this website shall be governed by and construed in accordance with the laws of India. Competent courts in Bihar, India shall have exclusive jurisdiction over legal matters arising under these website terms.
+        </p>
+      </section>
 
-            <section>
-              <h2>14. Contact</h2>
-              <p>If you have any questions or concerns regarding these Terms of Service, please contact us at:</p>
-              <p>XAIVON (Business name: XAIVON)<br /><a href="mailto:raja@xaivon.com">raja@xaivon.com</a><br /><a href="tel:+19175340270">+1 (917) 534-0270</a></p>
-              <p>For more information about how we handle your data, please see our <Link to="/privacy-policy">Privacy Policy</Link>.</p>
-            </section>
-          </div>
-        </div>
-      </div>
-    </>
+      <section id="contact" className="legal-doc-section">
+        <h2>15. Contact and business enquiries</h2>
+        <p>
+          For questions regarding these terms, contact us at <a href="mailto:raja@xaivon.com">raja@xaivon.com</a>. Official registration correspondence may also be directed to <a href="mailto:raja969384bth@gmail.com">raja969384bth@gmail.com</a>. Registered location: West Champaran, Bihar, India.
+        </p>
+      </section>
+    </LegalDocumentLayout>
   );
 }

@@ -1,11 +1,11 @@
 import { BLOG_POSTS } from '../data/blogData.js';
 
 export const defaultMetadata = {
-  title: 'XAIVON — Global AI Infrastructure & Business Automation',
-  description: 'Replace manual operational work with autonomous AI infrastructure. Scale your capacity and increase efficiency with intelligent workflow systems.',
+  title: 'XAIVON | Business Automation & AI Infrastructure',
+  description: 'Make everyday work easier to run. XAIVON designs automation, connected systems and practical AI assistance around real business operations.',
   url: 'https://xaivon.com',
   image: 'https://xaivon.com/og-image.png',
-  keywords: 'AI Automation, Workflow Automation, AI Agents, Business Systems'
+  keywords: 'Business Automation, Workflow Automation, AI Agents, Connected Systems'
 };
 
 export const pageMetadata = {
@@ -15,23 +15,23 @@ export const pageMetadata = {
     image: defaultMetadata.image
   },
   '/about': {
-    title: 'About XAIVON - AI Infrastructure & Business Automation',
-    description: 'Learn about XAIVON’s mission to build autonomous infrastructure for modern businesses and freight operations.',
+    title: 'About XAIVON | Our Approach to Business Systems',
+    description: 'Learn why XAIVON exists, how we design practical automation and who operates the business.',
     image: 'https://xaivon.com/og-image.png'
   },
   '/solutions': {
-    title: 'Solutions - XAIVON AI Capabilities',
-    description: 'Explore our AI solutions: workflow automation, voice agents, data syncing, and freight quoting infrastructure.',
+    title: 'Business Automation Solutions | XAIVON',
+    description: 'Explore workflow automation, CRM connections, lead and email operations, document processing and scoped AI agents for business teams.',
     image: 'https://xaivon.com/og-image.png'
   },
   '/products': {
-    title: 'Products & Roadmap - XAIVON',
-    description: 'Discover XAIVON’s live products like QuoteFlow AI and view our upcoming platform roadmap.',
+    title: 'Products & Roadmap | XAIVON',
+    description: "See XAIVON's implementation capabilities and planned reusable business software. Current work and future plans are clearly distinguished.",
     image: 'https://xaivon.com/og-image.png'
   },
   '/industries': {
-    title: 'Industries - XAIVON',
-    description: 'See how XAIVON’s AI infrastructure powers logistics, freight, and future enterprise sectors.',
+    title: 'Industries & Use Cases | XAIVON',
+    description: 'Explore how workflow design and connected systems can support logistics and other business operations, with scope assessed case by case.',
     image: 'https://xaivon.com/og-image.png'
   },
   '/services': {
@@ -40,13 +40,13 @@ export const pageMetadata = {
     image: 'https://xaivon.com/og-image.png'
   },
   '/pricing': {
-    title: 'Pricing — AI Automation Solutions',
-    description: 'Transparent starting prices for AI Agents, Voice AI, CRM Automation, and Business Process Automation systems.',
+    title: 'Automation Services Pricing | XAIVON',
+    description: 'Review starting prices for workflow automation, AI agents, voice, support, CRM and document automation. Final quotes reflect your scope.',
     image: 'https://xaivon.com/og-image.png'
   },
   '/contact': {
-    title: 'Contact XAIVON — Book an Assessment',
-    description: 'Schedule a technical assessment to discover the highest ROI automation opportunities in your business operations.',
+    title: 'Contact XAIVON | Discuss Your Business Workflow',
+    description: 'Speak with XAIVON about repetitive work, disconnected tools and potential automation. Send an enquiry or request an assessment.',
     image: 'https://xaivon.com/og-image.png'
   },
   '/blog': {
@@ -60,23 +60,23 @@ export const pageMetadata = {
     image: 'https://xaivon.com/og-image.png'
   },
   '/privacy-policy': {
-    title: 'Privacy Policy — XAIVON',
-    description: 'How XAIVON collects, uses, protects, and manages personal information when you use our website and services.',
+    title: 'Privacy Policy | XAIVON',
+    description: 'How XAIVON handles information provided through this website and its contact and assessment features.',
     image: 'https://xaivon.com/og-image.png'
   },
   '/terms': {
-    title: 'Terms of Service — XAIVON',
-    description: 'Terms governing your use of the XAIVON website, assessments, services, and related digital offerings.',
+    title: 'Terms of Service | XAIVON',
+    description: 'Terms for use of the XAIVON website, enquiries and general service information.',
     image: 'https://xaivon.com/og-image.png'
   },
   '/cookie-policy': {
-    title: 'Cookie Policy — XAIVON',
-    description: 'How XAIVON uses consent-gated analytics and local storage preferences on xaivon.com.',
+    title: 'Cookie Policy | XAIVON',
+    description: 'Review website cookie preferences and information about optional analytics and browser storage.',
     image: 'https://xaivon.com/og-image.png'
   },
   '/refund-policy': {
-    title: 'Refund & Cancellation Policy — XAIVON',
-    description: 'How XAIVON reviews cancellation and refund requests for professional AI, automation, and digital service engagements.',
+    title: 'Refund & Cancellation Policy | XAIVON',
+    description: "General cancellation and refund information for XAIVON's scoped professional services.",
     image: 'https://xaivon.com/og-image.png'
   },
   '/ai-consultation': {

@@ -34,7 +34,7 @@ const [heroRef, heroVisible] = useScrollReveal();
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
               <span className="badge badge-gold" style={{ margin: 0 }}><span className="badge-dot"></span>FLAGSHIP PRODUCT</span>
             </div>
-            <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '1.5rem' }}>
+            <h1 style={{ fontSize: 'clamp(2.25rem, 3.2vw, 3rem)', marginBottom: '1.25rem' }}>
               QuoteFlow <span className="text-gradient">AI</span>
             </h1>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', maxWidth: '700px', margin: '0 auto 2.5rem' }}>

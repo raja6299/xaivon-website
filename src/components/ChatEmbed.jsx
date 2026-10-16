@@ -101,11 +101,11 @@ export function ChatEmbed() {
           width: '56px',
           height: '56px',
           borderRadius: '50%',
-          backgroundColor: isOpen ? '#334155' : '#8b5cf6',
-          backgroundImage: isOpen ? 'none' : 'linear-gradient(to bottom right, #8b5cf6, #9333ea)',
-          color: 'white',
-          border: '1px solid rgba(255,255,255,0.1)',
-          boxShadow: '0 10px 25px -5px rgba(139, 92, 246, 0.3)',
+          backgroundColor: isOpen ? '#211F1B' : '#D95D32',
+          backgroundImage: isOpen ? 'none' : 'linear-gradient(135deg, #D95D32, #B94E2D)',
+          color: '#ffffff',
+          border: '1px solid rgba(255,255,255,0.2)',
+          boxShadow: '0 8px 24px rgba(217, 93, 50, 0.35)',
           cursor: 'pointer',
           display: 'flex',
           alignItems: 'center',
@@ -114,6 +114,8 @@ export function ChatEmbed() {
           transform: 'scale(1)',
           outline: 'none',
         }}
+        onFocus={(e) => { e.currentTarget.style.boxShadow = '0 0 0 3px rgba(217, 93, 50, 0.4), 0 8px 24px rgba(217, 93, 50, 0.35)'; }}
+        onBlur={(e) => { e.currentTarget.style.boxShadow = '0 8px 24px rgba(217, 93, 50, 0.35)'; }}
         onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.05)'; }}
         onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
       >

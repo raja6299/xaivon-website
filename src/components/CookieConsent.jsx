@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 function getStoredConsent() {
   try {
@@ -27,21 +27,84 @@ export default function CookieConsent() {
   const [hasConsented, setHasConsented] = useState(!!storedConsent);
 
   const handleAccept = useCallback(() => {
-    localStorage.setItem('xaivon_cookie_consent', 'granted');
+    try {
+      localStorage.setItem('xaivon_cookie_consent', 'granted');
+    } catch {
+      // Ignore storage errors in restricted contexts
+    }
     updateGtagConsent('granted');
+    if (typeof window !== 'undefined') {
+      window['ga-disable-G-FKYVMSFM5B'] = false;
+      window.dispatchEvent(new CustomEvent('xaivon-consent-change'));
+    }
+    if (typeof document !== 'undefined' && !document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) {
+      const s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-FKYVMSFM5B';
+      document.head.appendChild(s);
+      window.gtag?.('js', new Date());
+      window.gtag?.('config', 'G-FKYVMSFM5B', { send_page_view: true });
+    }
     setIsVisible(false);
     setHasConsented(true);
   }, []);
 
   const handleReject = useCallback(() => {
-    localStorage.setItem('xaivon_cookie_consent', 'denied');
+    const wasGranted = getStoredConsent() === 'granted';
+    const hadScript = typeof document !== 'undefined' && !!document.querySelector('script[src*="googletagmanager.com/gtag/js"]');
+
+    try {
+      localStorage.setItem('xaivon_cookie_consent', 'denied');
+    } catch {
+      // Ignore storage errors in restricted contexts
+    }
     updateGtagConsent('denied');
+
+    if (typeof window !== 'undefined') {
+      // Google Analytics official client-side opt-out disable flag
+      window['ga-disable-G-FKYVMSFM5B'] = true;
+      window.dispatchEvent(new CustomEvent('xaivon-consent-change'));
+    }
+
+    if (typeof document !== 'undefined') {
+      try {
+        // Purge Google Analytics cookies across root and domain
+        document.cookie.split(';').forEach(c => {
+          const name = c.split('=')[0].trim();
+          if (name.startsWith('_ga')) {
+            document.cookie = `${name}=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+            document.cookie = `${name}=; Path=/; Domain=.xaivon.com; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+          }
+        });
+      } catch {
+        // Ignore cookie write errors
+      }
+
+      // Remove any injected script elements from DOM
+      document.querySelectorAll('script[src*="googletagmanager.com"]').forEach(el => el.remove());
+    }
+
     setIsVisible(false);
     setHasConsented(true);
+
+    // If revoking an already-active runtime tag, reload the page to ensure complete in-memory reset
+    if ((wasGranted || hadScript) && typeof window !== 'undefined') {
+      window.location.reload();
+    }
   }, []);
 
   const handleReopen = useCallback(() => {
     setIsVisible(true);
+  }, []);
+
+  useEffect(() => {
+    const handleOpenSettings = () => {
+      setIsVisible(true);
+    };
+    window.addEventListener('open-cookie-settings', handleOpenSettings);
+    return () => {
+      window.removeEventListener('open-cookie-settings', handleOpenSettings);
+    };
   }, []);
 
   return (

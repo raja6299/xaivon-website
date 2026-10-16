@@ -1,73 +1,95 @@
-import { Link } from 'react-router-dom';
-import { useScrollReveal } from '../hooks/useScrollReveal';
-import PageMeta from '../components/PageMeta';
-import './LegalPage.css';
+import LegalDocumentLayout from '../components/legal/LegalDocumentLayout';
 
 export default function RefundPolicy() {
-  const [contentRef, contentVisible] = useScrollReveal({ threshold: 0.05 });
+  const toc = [
+    { id: 'purpose', title: '1. Purpose and scope' },
+    { id: 'consulting', title: '2. Consulting & discovery' },
+    { id: 'custom', title: '3. Custom milestones' },
+    { id: 'thirdparty', title: '4. Third-party expenses' },
+    { id: 'cancellation', title: '5. Cancellation procedure' },
+    { id: 'retainer', title: '6. Support & retainers' },
+    { id: 'disputes', title: '7. Good-faith resolution' },
+    { id: 'statutory', title: '8. Statutory rights' },
+    { id: 'request', title: '9. Submitting a request' },
+    { id: 'contact', title: '10. Entity contact details' },
+  ];
 
   return (
-    <>
-      <PageMeta />
-      <div className="legal-page">
-        <div className="container">
-          <div className="legal-header">
-            <h1>Refund &amp; Cancellation Policy</h1>
-            <p className="legal-updated">Last Updated: September 2026</p>
-          </div>
+    <LegalDocumentLayout
+      title="Refund & Cancellation Policy"
+      purpose="Cancellation and refund requests are reviewed against the agreed project scope, work completed, third-party commitments and applicable law."
+      lastUpdated="October 15, 2026"
+      toc={toc}
+    >
+      <section id="purpose" className="legal-doc-section">
+        <h2>1. Purpose and scope</h2>
+        <p>
+          XAIVON provides tailored technology consulting, software integrations, and custom workflow automation for businesses. This policy governs how cancellation and refund requests are handled across our professional services. It operates alongside the formal Statement of Work (SOW) or services agreement executed for each engagement.
+        </p>
+      </section>
 
-          <div className={`legal-content reveal ${contentVisible ? 'in' : ''}`} ref={contentRef}>
+      <section id="consulting" className="legal-doc-section">
+        <h2>2. Consulting &amp; discovery phases</h2>
+        <p>
+          Initial discovery assessments, architectural audits, and workflow mapping engagements involve dedicated engineering hours. Unless otherwise stipulated in the governing Statement of Work (SOW), fees for completed assessment sessions or delivered technical audit documentation are deemed fully earned and non-refundable.
+        </p>
+      </section>
 
-            <section>
-              <h2>1. Scope</h2>
-              <p>This Refund & Cancellation Policy outlines the general approach XAIVON (Business name: XAIVON) takes regarding cancellations and refunds for our AI, automation, and digital service engagements.</p>
-            </section>
+      <section id="custom" className="legal-doc-section">
+        <h2>3. Custom implementation milestones</h2>
+        <p>
+          Multi-phase engineering projects are structured around defined milestones set forth in the applicable Statement of Work. Upon formal client acceptance or milestone sign-off, the associated fee is deemed earned. Cancellation mid-milestone is governed by the termination provisions of the executed agreement, typically accounting for completed deliverables, committed resources, and work in progress.
+        </p>
+      </section>
 
-            <section>
-              <h2>2. Engagement-Specific Terms</h2>
-              <p>Refund and cancellation rights may vary by service, subscription, proposal, order form, statement of work, Master Services Agreement, or other applicable written terms. Where engagement-specific terms exist, those terms govern the applicable commercial relationship.</p>
-            </section>
+      <section id="thirdparty" className="legal-doc-section">
+        <h2>4. Third-party infrastructure and software costs</h2>
+        <p>
+          Expenses incurred on behalf of a client for third-party software licenses, API subscriptions (such as OpenAI, Anthropic, Twilio, or cloud hosting), specialized connectors, or compute resources are non-refundable once provisioned or committed.
+        </p>
+      </section>
 
-            <section>
-              <h2>3. Cancellation Requests</h2>
-              <p>Clients wishing to cancel an ongoing service or engagement should submit a request directly to us. We will process cancellation requests in accordance with the specific terms of the active agreement.</p>
-            </section>
+      <section id="cancellation" className="legal-doc-section">
+        <h2>5. Project cancellation procedure</h2>
+        <p>
+          Either party may terminate an active professional services agreement in accordance with the notice period specified in the executed project agreement. Upon effective termination, active engineering ceases, and an itemized reconciliation invoice is issued reflecting completed deliverables and work performed up to the effective termination date.
+        </p>
+      </section>
 
-            <section>
-              <h2>4. Refund Review</h2>
-              <p>All refund requests are reviewed on a case-by-case basis. Because our engagements involve professional time and technical configuration, any appropriate refund or credit will be determined based on the stage of the project, the work already performed, and the applicable service terms.</p>
-            </section>
+      <section id="retainer" className="legal-doc-section">
+        <h2>6. Ongoing support &amp; retainers</h2>
+        <p>
+          Monthly workflow maintenance and optimization retainers are billed in advance for each billing cycle. A retainer may be cancelled prior to the renewal date of the next billing cycle. Retainer fees for the currently active cycle are non-refundable once the cycle has commenced.
+        </p>
+      </section>
 
-            <section>
-              <h2>5. Subscriptions and Recurring Services</h2>
-              <p>Customers should submit cancellation requests before the next billing cycle whenever possible. Cancellation does not by itself create a right to reimbursement of charges already incurred, except where required by applicable law or the applicable agreement.</p>
-            </section>
+      <section id="disputes" className="legal-doc-section">
+        <h2>7. Good-faith resolution &amp; disputes</h2>
+        <p>
+          If a client identifies that a deliverable does not satisfy the agreed technical specifications in the applicable Statement of Work, the parties will adhere to the review and remediation procedure agreed in the contract, engaging in good-faith technical review before escalating formal dispute proceedings.
+        </p>
+      </section>
 
-            <section>
-              <h2>6. Digital and Professional Services</h2>
-              <p>Our offerings consist of professional technical consulting, software implementation, and digital automation services. Due to the immediate delivery of expertise and proprietary system access, refunds for completed professional services are generally not provided unless explicitly stated in the governing agreement.</p>
-            </section>
+      <section id="statutory" className="legal-doc-section">
+        <h2>8. Statutory rights</h2>
+        <p>
+          Nothing in this policy limits or excludes non-waivable statutory consumer protections or rights that may apply under governing jurisdiction laws.
+        </p>
+      </section>
 
-            <section>
-              <h2>7. Non-Physical Nature of Current Offerings</h2>
-              <p>XAIVON's current website offerings are digital, professional, and technical services. XAIVON does not currently ship physical goods through this website. Therefore, policies related to physical product returns do not apply.</p>
-            </section>
+      <section id="request" className="legal-doc-section">
+        <h2>9. Submitting a request</h2>
+        <p>
+          To submit a formal cancellation notice or discuss milestone reconciliation, email <a href="mailto:raja@xaivon.com">raja@xaivon.com</a> with your project reference, organisation name, and details of the request. We endeavor to review and respond to formal correspondence within five business days.
+        </p>
+      </section>
 
-            <section>
-              <h2>8. Applicable Law</h2>
-              <p>Nothing in this policy limits any statutory rights you may have under the law applicable to your jurisdiction. Where statutory rights mandate specific cancellation or refund remedies, those rights are fully respected.</p>
-            </section>
-
-            <section>
-              <h2>9. Contact</h2>
-              <p>To submit a cancellation or refund request, or if you have any questions regarding this policy, please contact us at:</p>
-              <p>XAIVON (Business name: XAIVON)<br /><a href="mailto:raja@xaivon.com">raja@xaivon.com</a><br /><a href="tel:+19175340270">+1 (917) 534-0270</a></p>
-              <p>For more details, you can also review our <Link to="/terms">Terms of Service</Link> or <Link to="/privacy-policy">Privacy Policy</Link>.</p>
-            </section>
-
-          </div>
-        </div>
-      </div>
-    </>
+      <section id="contact" className="legal-doc-section">
+        <h2>10. Entity contact details</h2>
+        <p>
+          XAIVON is operated by ADABHRA GROUP (Sole Proprietorship), India. Commercial enquiries: <a href="mailto:raja@xaivon.com">raja@xaivon.com</a>. Registration correspondence: <a href="mailto:raja969384bth@gmail.com">raja969384bth@gmail.com</a>. Registered location: West Champaran, Bihar, India.
+        </p>
+      </section>
+    </LegalDocumentLayout>
   );
 }

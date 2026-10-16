@@ -21,12 +21,12 @@ export default function RoiCalculatorPage() {
             Estimation Tool
           </span>
 
-          <h1 className="text-gradient">
-            Discover Your True Automation Potential
+          <h1 style={{ fontSize: 'clamp(2.25rem, 3.2vw, 3rem)', lineHeight: 1.15, marginTop: '12px' }}>
+            Estimate the time tied up in repetitive work.
           </h1>
 
           <p className="roi-page-hero-subtitle">
-            Estimate the opportunity from the inputs you provide.
+            Adjust the assumptions to explore a planning estimate. Actual results depend on the workflow, data and implementation.
           </p>
 
           <div className="roi-page-hero-stats">

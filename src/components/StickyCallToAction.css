@@ -105,16 +105,10 @@
   }
 }
 
-@media (max-width: 480px) {
-  /* On very small screens, collapse to icon-only to avoid overlap */
+@media (max-width: 640px) {
+  /* On mobile, hide floating sticky CTA to prevent overlay collisions with CookieConsent and Chat */
   .sticky-cta {
-    right: 84px;
-    bottom: 20px;
-    padding: 12px;
-  }
-
-  .sticky-cta-label {
-    display: none;
+    display: none !important;
   }
 }
 

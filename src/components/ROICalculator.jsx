@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { trackEvent } from '../utils/tracking';
+import { calculateRoi } from '../utils/roiCalculator';
 import './ROICalculator.css';
 
 // ─── Animated Counter Hook ──────────────────────────────────────────
@@ -55,23 +56,28 @@ export default function ROICalculator() {
   const [sectionRef, isVisible] = useScrollReveal({ threshold: 0.1 });
 
   // ─── Slider States ────────────────────────────────────────────────
-  const [manualHours, setManualHours] = useState(80);
+  const [manualHoursPerPerson, setManualHoursPerPerson] = useState(15);
   const [hourlyRate, setHourlyRate] = useState(45);
   const [teamSize, setTeamSize] = useState(5);
   const [automationRate, setAutomationRate] = useState(0.50);
 
   // ─── Derived Calculations ─────────────────────────────────────────
-  const WEEKS_PER_YEAR = 52;
-
-  const currentYearlyCost = manualHours * hourlyRate * teamSize * WEEKS_PER_YEAR;
-  const projectedCost = currentYearlyCost * (1 - automationRate);
-  const totalYearlySavings = currentYearlyCost - projectedCost;
-  const hoursSavedPerYear = Math.round(manualHours * teamSize * WEEKS_PER_YEAR * automationRate);
+  const {
+    currentYearlyCost,
+    remainingLaborCost,
+    hoursSavedPerYear,
+    timeValueRecovered
+  } = calculateRoi({
+    manualHoursPerPerson,
+    hourlyRate,
+    teamSize,
+    automationRate
+  });
 
   // ─── Animated Display Values ──────────────────────────────────────
   const animatedCurrentCost = useAnimatedValue(currentYearlyCost);
-  const animatedProjected = useAnimatedValue(projectedCost);
-  const animatedSavings = useAnimatedValue(totalYearlySavings);
+  const animatedProjected = useAnimatedValue(remainingLaborCost);
+  const animatedSavings = useAnimatedValue(timeValueRecovered);
   const animatedHours = useAnimatedValue(hoursSavedPerYear);
 
   // ─── Currency Formatter ───────────────────────────────────────────
@@ -89,12 +95,12 @@ export default function ROICalculator() {
   // ─── CTA Click Handler with GA4 Tracking ──────────────────────────
   const handleCtaClick = useCallback(() => {
     trackEvent('roi_calculator_cta_clicked', {
-      savings_calculated: totalYearlySavings,
-      manual_hours: manualHours,
+      savings_calculated: timeValueRecovered,
+      manual_hours_per_person: manualHoursPerPerson,
       hourly_rate: hourlyRate,
       team_size: teamSize,
     });
-  }, [totalYearlySavings, manualHours, hourlyRate, teamSize]);
+  }, [timeValueRecovered, manualHoursPerPerson, hourlyRate, teamSize]);
 
   return (
     <section className="roi-calculator-section section" id="roi-calculator" ref={sectionRef}>
@@ -104,13 +110,13 @@ export default function ROICalculator() {
         <div className={`section-header reveal ${isVisible ? 'visible' : ''}`}>
           <span className="badge">
             <span className="badge-dot"></span>
-            ROI Calculator
+            Planning Estimator
           </span>
           <h2>
-            Calculate Your <span className="text-gradient-premium">AI Savings</span>
+            Estimate the time tied up in repetitive work.
           </h2>
           <p>
-            Estimate how much time and cost your operations could potentially recover
+            Adjust the assumptions to explore a planning estimate. Actual results depend on the workflow, data and implementation.
           </p>
         </div>
 
@@ -124,27 +130,27 @@ export default function ROICalculator() {
               </svg>
               Your Operational Data
             </h3>
-            
-            {/* Slider 1: Manual Hours */}
+
+            {/* Slider 1: Manual Hours per Person */}
             <div className="roi-input-group">
               <div className="roi-input-header">
-                <label>Manual Hours Spent per Week</label>
-                <span className="roi-value-display">{manualHours}h</span>
+                <label>Manual Hours per Person / Week</label>
+                <span className="roi-value-display">{manualHoursPerPerson}h / person</span>
               </div>
-              <input 
-                type="range" 
-                min="10" 
-                max="500" 
-                step="5"
-                value={manualHours} 
-                onChange={(e) => setManualHours(Number(e.target.value))}
+              <input
+                type="range"
+                min="2"
+                max="35"
+                step="1"
+                value={manualHoursPerPerson}
+                onChange={(e) => setManualHoursPerPerson(Number(e.target.value))}
                 className="roi-slider"
-                style={{ '--slider-percent': `${getSliderPercent(manualHours, 10, 500)}%` }}
-                aria-label="Manual hours spent per week"
+                style={{ '--slider-percent': `${getSliderPercent(manualHoursPerPerson, 2, 35)}%` }}
+                aria-label="Average manual hours spent per team member per week"
               />
               <div className="roi-slider-labels">
-                <span>10h</span>
-                <span>500h</span>
+                <span>2h</span>
+                <span>35h</span>
               </div>
             </div>
 
@@ -154,12 +160,12 @@ export default function ROICalculator() {
                 <label>Average Hourly Rate ($)</label>
                 <span className="roi-value-display">${hourlyRate}</span>
               </div>
-              <input 
-                type="range" 
-                min="15" 
-                max="150" 
+              <input
+                type="range"
+                min="15"
+                max="150"
                 step="5"
-                value={hourlyRate} 
+                value={hourlyRate}
                 onChange={(e) => setHourlyRate(Number(e.target.value))}
                 className="roi-slider"
                 style={{ '--slider-percent': `${getSliderPercent(hourlyRate, 15, 150)}%` }}
@@ -175,14 +181,14 @@ export default function ROICalculator() {
             <div className="roi-input-group">
               <div className="roi-input-header">
                 <label>Team Size</label>
-                <span className="roi-value-display">{teamSize} people</span>
+                <span className="roi-value-display">{teamSize} {teamSize === 1 ? 'person' : 'people'}</span>
               </div>
-              <input 
-                type="range" 
-                min="1" 
-                max="50" 
+              <input
+                type="range"
+                min="1"
+                max="50"
                 step="1"
-                value={teamSize} 
+                value={teamSize}
                 onChange={(e) => setTeamSize(Number(e.target.value))}
                 className="roi-slider"
                 style={{ '--slider-percent': `${getSliderPercent(teamSize, 1, 50)}%` }}
@@ -197,19 +203,19 @@ export default function ROICalculator() {
             {/* Slider 4: Automation Rate */}
             <div className="roi-input-group">
               <div className="roi-input-header">
-                <label>Automation Rate</label>
+                <label>Assumed Automation Rate</label>
                 <span className="roi-value-display">{Math.round(automationRate * 100)}%</span>
               </div>
-              <input 
-                type="range" 
-                min="0.20" 
-                max="0.80" 
+              <input
+                type="range"
+                min="0.20"
+                max="0.80"
                 step="0.05"
-                value={automationRate} 
+                value={automationRate}
                 onChange={(e) => setAutomationRate(Number(e.target.value))}
                 className="roi-slider"
                 style={{ '--slider-percent': `${getSliderPercent(automationRate, 0.20, 0.80)}%` }}
-                aria-label="Automation rate"
+                aria-label="Automation rate percentage"
               />
               <div className="roi-slider-labels">
                 <span>20%</span>
@@ -228,50 +234,53 @@ export default function ROICalculator() {
 
           {/* ─── Results Panel ──────────────────────────────────────── */}
           <div className="roi-results">
+            <div style={{ gridColumn: '1 / -1', padding: '8px 14px', borderRadius: '8px', background: 'var(--surface-raised, rgba(255,255,255,0.06))', border: '1px solid var(--card-border, rgba(255,255,255,0.1))', fontSize: '12px', color: 'var(--muted, #aaa)', textAlign: 'center' }}>
+              <strong>Illustrative planning projection</strong> — enter your team parameters on the left to customize.
+            </div>
             {/* Current Yearly Cost */}
             <div className="roi-result-card glass-card">
               <div className="roi-result-icon">📊</div>
-              <div className="roi-result-label">Current Yearly Cost</div>
+              <div className="roi-result-label">Current Manual Labor Cost</div>
               <div className="roi-result-value roi-cost-before">{formatCurrency(animatedCurrentCost)}</div>
-              <div className="roi-result-desc">What you spend annually on manual operations</div>
+              <div className="roi-result-desc">Annual manual cost across {teamSize} team {teamSize === 1 ? 'member' : 'members'}</div>
             </div>
-            
-            {/* Projected Cost with XAIVON */}
+
+            {/* Projected Unautomated Cost */}
             <div className="roi-result-card glass-card">
               <div className="roi-result-icon">🤖</div>
-              <div className="roi-result-label">Projected Cost with XAIVON AI</div>
+              <div className="roi-result-label">Estimated Unautomated Cost</div>
               <div className="roi-result-value roi-cost-after">{formatCurrency(animatedProjected)}</div>
-              <div className="roi-result-desc">Based on your assumed automation rate</div>
+              <div className="roi-result-desc">Remaining manual labor at {Math.round(automationRate * 100)}% automation</div>
             </div>
 
             {/* Hours Saved */}
             <div className="roi-result-card glass-card">
               <div className="roi-result-icon">⏱️</div>
-              <div className="roi-result-label">Hours Saved Per Year</div>
+              <div className="roi-result-label">Hours Recovered Per Year</div>
               <div className="roi-result-value">{animatedHours.toLocaleString()}h</div>
-              <div className="roi-result-desc">Time recovered for strategic work</div>
+              <div className="roi-result-desc">Estimated team hours freed up for higher-value work</div>
             </div>
-            
+
             {/* Total Yearly Savings - Hero Card */}
             <div className="roi-result-card glass-card highlight-card">
               <div className="roi-highlight-glow"></div>
-              <div className="roi-result-label">Total Yearly Savings</div>
+              <div className="roi-result-label">Estimated Value of Time Recovered</div>
               <div className="roi-result-value text-gradient-premium roi-savings-hero">
                 {formatCurrency(animatedSavings)}
               </div>
-              <div className="roi-result-desc">Capital unlocked for strategic growth</div>
+              <div className="roi-result-desc">Theoretical value of hours recovered (not an assurance of cash savings)</div>
             </div>
           </div>
         </div>
 
-        <p className="roi-disclaimer" style={{ fontWeight: 'bold', fontSize: '1.1rem', color: 'var(--accent-platinum)', textAlign: 'center', marginTop: '1.5rem' }}>
-          Estimates are illustrative. Actual results depend on workflow complexity and implementation scope.
+        <p className="roi-disclaimer" style={{ fontWeight: '500', fontSize: '0.95rem', color: 'var(--muted)', textAlign: 'center', marginTop: '1.5rem', maxWidth: '80ch', marginInline: 'auto', lineHeight: 1.6 }}>
+          Estimates represent the theoretical value of hours recovered across your team based on inputs provided. They do not constitute an assurance of savings or a binding quote. Actual net impact depends on implementation scope, software costs, and ongoing human oversight.
         </p>
 
         {/* ─── CTA ─────────────────────────────────────────────────── */}
         <div className={`roi-cta-wrap reveal ${isVisible ? 'visible' : ''} delay-3`}>
-          <Link 
-            to="/contact" 
+          <Link
+            to="/contact"
             className="btn btn-primary btn-lg roi-cta-btn"
             onClick={handleCtaClick}
           >
@@ -280,11 +289,11 @@ export default function ROICalculator() {
             </svg>
             Explore These Estimates — Book an Assessment
           </Link>
-          
+
           <div className="trust-indicators-row">
-            <span>✓ Free Strategy Call</span>
-            <span>✓ Custom ROI Projection</span>
-            <span>✓ No Obligation</span>
+            <span>✓ Initial workflow discovery</span>
+            <span>✓ Scope &amp; feasibility review</span>
+            <span>✓ Direct team communication</span>
           </div>
         </div>
 

@@ -27,22 +27,34 @@
     <meta name="twitter:description" content="AI systems, automations, and business infrastructure for modern companies. Scale without complexity." />
     <meta name="twitter:image" content="https://xaivon.com/og-image.png" />
 
+    <!-- Theme Early Boot Script (Prevents Theme Flash) -->
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('xaivon-theme');
+          var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "XAIVON",
-      "legalName": "XAIVON",
+      "legalName": "ADABHRA GROUP",
       "url": "https://xaivon.com",
       "logo": "https://xaivon.com/logo.png",
-      "description": "AI-Powered Business Infrastructure Company specializing in AI automation, AI agents, voice AI, and logistics automation.",
+      "description": "XAIVON is a business brand operated by ADABHRA GROUP (Sole Proprietorship), India, designing workflow automation, connected systems, and practical AI assistance.",
       "foundingDate": "2026",
       "founder": {
         "@type": "Person",
-        "name": "Raja"
+        "name": "Raja Babu"
       },
       "areaServed": [
+        { "@type": "Country", "name": "India" },
         { "@type": "Country", "name": "United States" },
         { "@type": "Country", "name": "Canada" },
         { "@type": "Country", "name": "United Kingdom" },
@@ -52,7 +64,7 @@
         "@type": "ContactPoint",
         "contactType": "sales",
         "email": "raja@xaivon.com",
-        "telephone": "+1-917-534-0270",
+        "telephone": "+91-95211-90205",
         "availableLanguage": "English"
       },
       "hasOfferCatalog": {
@@ -84,17 +96,13 @@
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
-    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- Theme Color -->
     <meta name="theme-color" content="#0A0A0A" />
     <meta name="msapplication-TileColor" content="#0A0A0A" />
 
-    <!-- Google Analytics 4 Consent Setup -->
+    <!-- Google Analytics 4 Consent Architecture (Strict Opt-In) -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -104,10 +112,21 @@
         'ad_user_data': 'denied',
         'ad_personalization': 'denied'
       });
-      gtag('js', new Date());
-      gtag('config', 'G-FKYVMSFM5B', { send_page_view: false });
+      (function() {
+        try {
+          var consent = localStorage.getItem('xaivon_cookie_consent');
+          if (consent === 'granted') {
+            gtag('consent', 'update', { 'analytics_storage': 'granted' });
+            var s = document.createElement('script');
+            s.async = true;
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-FKYVMSFM5B';
+            document.head.appendChild(s);
+            gtag('js', new Date());
+            gtag('config', 'G-FKYVMSFM5B', { send_page_view: false });
+          }
+        } catch (e) {}
+      })();
     </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FKYVMSFM5B"></script>
   </head>
   <body>
     <div id="root"></div>

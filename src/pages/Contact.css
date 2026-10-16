@@ -3,12 +3,12 @@
    ============================================ */
 
 .contact-page {
-  padding-top: 72px;
+  padding-top: var(--nav-offset, 88px);
 }
 
 /* --- Hero --- */
 .contact-hero {
-  padding: clamp(48px, 6vw, 80px) var(--gutter) clamp(32px, 4vw, 56px);
+  padding: clamp(48px, 6vw, 72px) var(--gutter, 24px) clamp(24px, 3vw, 40px);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -53,13 +53,24 @@
 }
 
 /* --- Two-Column Layout --- */
-.contact-columns {
-  padding: 0 var(--gutter);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2.5rem;
-  max-width: var(--max);
+.contact-section-wrap {
+  padding: 0 var(--gutter, 24px);
+  max-width: var(--max, 1140px);
   margin: 0 auto;
+}
+
+.contact-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 28px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .contact-columns {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
 }
 
 /* Form card */

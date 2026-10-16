@@ -37,17 +37,20 @@ export default function Footer() {
     }
   };
 
+  const handleOpenCookieSettings = () => {
+    window.dispatchEvent(new CustomEvent('open-cookie-settings'));
+  };
+
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer-grid">
           <div>
             <div className="footer-brand">XAIVON</div>
-            <p>Global AI Infrastructure &amp; Business Automation</p>
-            <p style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '8px' }}>Business name: XAIVON</p>
-            <div style={{ marginTop: '10px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+            <p>Business automation and connected systems.</p>
+            <div style={{ marginTop: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <a href="mailto:raja@xaivon.com" style={{ margin: 0, display: 'inline' }}>raja@xaivon.com</a>
+                <a href="mailto:raja@xaivon.com" style={{ margin: 0, display: 'inline', fontWeight: 600 }}>raja@xaivon.com</a>
                 <button
                   type="button"
                   onClick={handleCopyEmail}
@@ -56,7 +59,7 @@ export default function Footer() {
                     background: 'none',
                     border: '1px solid var(--line)',
                     borderRadius: '6px',
-                    padding: '2px 6px',
+                    padding: '2px 8px',
                     fontSize: '11px',
                     color: 'var(--muted)',
                     cursor: 'pointer',
@@ -69,34 +72,54 @@ export default function Footer() {
                 </button>
               </div>
               <div>
-                <a href="tel:+19175340270" style={{ margin: 0, display: 'inline' }}>+1 (917) 534-0270</a>
+                <a href="tel:+919521190205" style={{ margin: 0, display: 'inline' }}>+91 95211 90205</a>
               </div>
             </div>
           </div>
           <div>
             <h3>Company</h3>
             <Link to="/about#who">About</Link>
+            <Link to="/about#how">How We Work</Link>
             <Link to="/pricing">Pricing</Link>
             <Link to="/contact">Contact</Link>
-            <Link to="/about#future">Roadmap</Link>
+            <Link to="/about#future">Future Direction</Link>
           </div>
           <div>
             <h3>Explore</h3>
             <Link to="/solutions">Solutions</Link>
             <Link to="/products">Products</Link>
             <Link to="/industries">Industries</Link>
+            <Link to="/roi-calculator">ROI Estimator</Link>
           </div>
           <div>
-            <h3>Legal</h3>
+            <h3>Legal &amp; Help</h3>
             <Link to="/privacy-policy">Privacy Policy</Link>
             <Link to="/terms">Terms of Service</Link>
             <Link to="/cookie-policy">Cookie Policy</Link>
             <Link to="/refund-policy">Refund &amp; Cancellation</Link>
+            <Link to="/contact#support">Support &amp; Contact</Link>
           </div>
         </div>
         <div className="footer-bottom">
-          <div>© {year} XAIVON</div>
-          <div>No fabricated evidence</div>
+          <div>© {year} XAIVON. All rights reserved.</div>
+          <div style={{ textAlign: 'center' }}>XAIVON is a business brand operated by ADABHRA GROUP (Sole Proprietorship), India.</div>
+          <div>
+            <button
+              type="button"
+              onClick={handleOpenCookieSettings}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                color: 'var(--muted)',
+                fontSize: '13px',
+                cursor: 'pointer',
+                padding: '4px 8px',
+                textDecoration: 'underline'
+              }}
+            >
+              Cookie Settings
+            </button>
+          </div>
         </div>
       </div>
     </footer>
