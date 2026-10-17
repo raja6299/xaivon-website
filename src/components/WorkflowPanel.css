@@ -1,347 +1,684 @@
-/* ============================================
-   WorkflowPanel — Premium Animated System Board
-   ============================================ */
+/* ==========================================================================
+   XAIVON — Premium Enterprise Workflow Orchestration Console
+   Permanent collision-free architecture with intrinsic CSS Grid & SVG Anchors
+   ========================================================================== */
 
-.workflow-panel-container {
+/* --- Console Root Shell --- */
+.wf-console-root {
   position: relative;
   width: 100%;
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 28px;
+  max-width: 580px;
+  margin: 0 auto;
+  border-radius: 20px;
+  background: rgba(24, 20, 16, 0.58);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   box-shadow:
-    0 24px 64px rgba(0, 0, 0, 0.18),
-    0 8px 24px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  overflow: visible;
+    0 24px 64px rgba(0, 0, 0, 0.32),
+    0 6px 20px rgba(0, 0, 0, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  overflow: hidden;
+  container-type: inline-size;
+  container-name: wfconsole;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* --- Header --- */
-.workflow-panel-header {
+/* Screen reader only utility */
+.wf-sr-only {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ==========================================================================
+   Top Navigation & Control Bar
+   ========================================================================== */
+.wf-console-topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 24px;
+  padding: 12px 18px;
+  background: rgba(0, 0, 0, 0.16);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.wf-header-label {
+.wf-console-identity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
   font-size: 10px;
-  font-weight: 750;
-  letter-spacing: 0.14em;
-  color: rgba(255, 255, 255, 0.5);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.85);
 }
 
-.wf-header-status {
+.wf-brand-tag {
+  color: #F9A875;
+}
+
+.wf-slash-divider {
+  opacity: 0.4;
+}
+
+.wf-console-title {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.wf-console-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Demo Badge */
+.wf-badge-demo {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-family: ui-monospace, SFMono-Regular, monospace;
   font-size: 9px;
   font-weight: 750;
-  letter-spacing: 0.12em;
-  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.wf-live-dot {
-  width: 6px;
-  height: 6px;
+.wf-badge-dot {
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
-  background: #4ade80;
-  box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.15);
+  background: #F59E0B;
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
 }
 
-/* --- Footer --- */
-.workflow-panel-footer {
-  display: flex;
-  justify-content: space-between;
-  padding: 12px 24px 16px;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: rgba(255, 255, 255, 0.35);
+/* Accessible Pause / Play Button */
+.wf-btn-playpause {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 9.5px;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-/* --- Desktop Layout --- */
-.workflow-desktop {
+.wf-btn-playpause:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.wf-btn-playpause:focus-visible {
+  outline: 2px solid #D95D32;
+  outline-offset: 2px;
+}
+
+.wf-btn-icon {
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+}
+
+.wf-btn-label {
+  line-height: 1;
+}
+
+/* ==========================================================================
+   Canvas & SVG Connectors Layer
+   ========================================================================== */
+.wf-console-canvas {
   position: relative;
   width: 100%;
-  aspect-ratio: 1000 / 700;
-  display: block;
 }
 
-.workflow-svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-/* --- Connector path states --- */
-.wf-connector {
-  transition: stroke 0.4s ease, opacity 0.4s ease;
-}
-
-.wf-connector.transmitting {
-  stroke: url(#line-grad-active);
-  stroke-dasharray: 8 4;
-}
-
-.wf-connector.completed {
-  stroke: rgba(74, 222, 128, 0.3);
-  stroke-dasharray: none;
-}
-
-/* --- Signal dot --- */
-.signal-group {
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.signal-group.visible {
-  opacity: 1;
-}
-
-/* --- Desktop Nodes Layer --- */
-.workflow-nodes-layer {
+.wf-console-svg {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
+  z-index: 1;
 }
 
-/* --- Node Base --- */
-.wf-node {
-  background: rgba(253, 250, 247, 0.97);
-  border-radius: 14px;
-  padding: 16px 18px;
+.wf-path {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.16);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+  transition: stroke 0.3s ease, stroke-width 0.3s ease;
+}
+
+.wf-path-branch {
+  stroke: rgba(255, 255, 255, 0.14);
+}
+
+.wf-path-active {
+  stroke: url(#wf-grad-active);
+  stroke-width: 2.25;
+  stroke-dasharray: none;
+}
+
+.wf-path-done {
+  stroke: rgba(61, 168, 123, 0.45);
+  stroke-width: 1.5;
+  stroke-dasharray: none;
+}
+
+.wf-path-mobile {
+  stroke: rgba(255, 255, 255, 0.2);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+}
+
+/* Signal Packet */
+.wf-signal-packet {
+  pointer-events: none;
+  transition: transform 0.05s linear;
+}
+
+/* ==========================================================================
+   Intrinsic Layout & Grid Structure (Deterministic Non-Overlap Architecture)
+   ========================================================================== */
+.wf-layout-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 18px 16px 16px;
+}
+
+.wf-tier {
+  width: 100%;
+}
+
+/* Tier 1: Intake (3 cards across) */
+.wf-tier-intake {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+/* Tier 2: Routing Branches (2 cards side by side) */
+.wf-tier-routing {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.wf-branch-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  width: 100%;
+  max-width: 480px;
+}
+
+/* Tier 3: Outcome (Centered single card) */
+.wf-tier-outcome {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.wf-card-outcome {
+  width: 100%;
+  max-width: 480px;
+}
+
+/* ==========================================================================
+   Node Card Styling (Light Mode & Dark Mode)
+   ========================================================================== */
+.wf-card {
+  position: relative;
+  background: rgba(255, 252, 247, 0.96);
+  border: 1px solid rgba(217, 208, 196, 0.85);
+  border-radius: 12px;
+  padding: 10px 12px;
   box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 1);
-  border: 1px solid #e2d9cf;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  pointer-events: auto;
+    0 4px 14px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease, background 0.25s ease;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-/* Desktop node positioning — corrected geometry */
-.workflow-desktop .wf-node {
-  position: absolute;
-  width: 24%;
+/* Dark Theme Overrides */
+[data-theme="dark"] .wf-card {
+  background: rgba(30, 27, 23, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-.wf-node-1 { top: 42%; left: 5%; }
-.wf-node-2 { top: 14%; left: 37%; }
-.wf-node-3 { top: 42%; left: 68%; }
-.wf-node-4 { top: 70%; left: 68%; }
-
-.wf-node small {
-  display: block;
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  color: #8f8578;
+/* Card Header */
+.wf-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 6px;
 }
 
-.wf-node strong {
-  display: block;
-  font-size: 15px;
-  color: #1a1815;
-  margin-bottom: 10px;
-  line-height: 1.25;
+.wf-step-num {
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #8C8275;
 }
 
-.wf-state {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  font-weight: 650;
-  color: #7d756a;
+[data-theme="dark"] .wf-step-num {
+  color: #A89E90;
 }
 
-.wf-state-text {
-  text-transform: lowercase;
-}
-
-.wf-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #ccc4ba;
-  transition: all 0.3s ease;
+.wf-card-icon {
+  width: 14px;
+  height: 14px;
+  color: #8C8275;
   flex-shrink: 0;
 }
 
-/* ============================================
-   Node States
-   ============================================ */
-
-/* Idle */
-.wf-node.idle {
-  opacity: 0.7;
-  transform: scale(0.97);
-  border-color: #e2d9cf;
+[data-theme="dark"] .wf-card-icon {
+  color: #A89E90;
 }
 
-.wf-node.idle .wf-dot {
-  background: #ccc4ba;
+/* Card Body */
+.wf-card-body {
+  margin-bottom: 8px;
 }
 
-/* Active / Processing */
-.wf-node.active {
-  opacity: 1;
-  transform: scale(1.03);
-  border-color: #B35734;
-  box-shadow:
-    0 12px 36px rgba(179, 87, 52, 0.15),
-    0 4px 12px rgba(179, 87, 52, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 1);
+.wf-card-label {
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 8px;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8C8275;
+  margin-bottom: 2px;
 }
 
-.wf-node.active .wf-state {
-  color: #B35734;
+[data-theme="dark"] .wf-card-label {
+  color: #A89E90;
 }
 
-.wf-node.active .wf-dot {
-  background: #B35734;
-  box-shadow: 0 0 0 4px rgba(179, 87, 52, 0.12);
-  animation: dotPulse 1s ease-in-out infinite;
+.wf-card-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: #1C1A17;
+  margin: 0 0 3px 0;
 }
 
-@keyframes dotPulse {
-  0%, 100% { box-shadow: 0 0 0 4px rgba(179, 87, 52, 0.12); }
-  50% { box-shadow: 0 0 0 6px rgba(179, 87, 52, 0.06); }
+[data-theme="dark"] .wf-card-title {
+  color: #F0E9DF;
 }
 
-/* Completed */
-.wf-node.completed {
-  opacity: 0.85;
-  transform: scale(1);
-  border-color: rgba(45, 116, 86, 0.3);
+.wf-card-desc {
+  font-size: 10px;
+  line-height: 1.35;
+  color: #625D55;
+  margin: 0;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.wf-node.completed .wf-state {
-  color: #2d7456;
+[data-theme="dark"] .wf-card-desc {
+  color: #B5AB9D;
 }
 
-.wf-node.completed .wf-dot {
-  background: #2d7456;
-  box-shadow: none;
-  animation: none;
-}
-
-/* ============================================
-   Mobile View
-   ============================================ */
-.workflow-mobile {
-  display: none;
-  position: relative;
-  padding: 56px 20px 16px;
-}
-
-.workflow-mobile-svg {
-  position: absolute;
-  top: 56px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: calc(100% - 72px);
-  z-index: 0;
-}
-
-.workflow-mobile-nodes {
-  position: relative;
-  z-index: 1;
+/* Outcome card layout enhancement */
+.wf-outcome-body {
   display: flex;
   flex-direction: column;
+  gap: 2px;
+}
+
+/* Card Footer / Status Pill */
+.wf-card-footer {
+  display: flex;
   align-items: center;
 }
 
-.wf-mobile-spacer {
-  height: 32px;
+.wf-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(28, 26, 23, 0.05);
+  color: #625D55;
+  border: 1px solid rgba(28, 26, 23, 0.08);
 }
 
-.wf-mobile-node {
-  position: relative;
-  width: 100%;
-  max-width: 300px;
+[data-theme="dark"] .wf-status-pill {
+  background: rgba(255, 255, 255, 0.06);
+  color: #A89E90;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.mobile-signal {
-  opacity: 0;
+.wf-pill-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #C4B9AA;
 }
 
-.mobile-signal.visible {
+[data-theme="dark"] .wf-pill-dot {
+  background: #736B5E;
+}
+
+/* ==========================================================================
+   State Variations (Idle / Active / Completed)
+   Zero collision shift: NO transform: scale()
+   ========================================================================== */
+
+/* 1. IDLE */
+.wf-card.idle {
+  opacity: 0.76;
+}
+
+/* 2. ACTIVE */
+.wf-card.active {
   opacity: 1;
+  background: #FFF9F5;
+  border-color: #D95D32;
+  box-shadow:
+    0 8px 24px rgba(217, 93, 50, 0.18),
+    0 2px 6px rgba(217, 93, 50, 0.1),
+    inset 0 0 0 1px #D95D32;
 }
 
-@media (max-width: 768px) {
-  .workflow-desktop {
+[data-theme="dark"] .wf-card.active {
+  background: rgba(45, 32, 26, 0.96);
+  border-color: #E77649;
+  box-shadow:
+    0 8px 26px rgba(231, 118, 73, 0.22),
+    0 2px 6px rgba(231, 118, 73, 0.12),
+    inset 0 0 0 1px #E77649;
+}
+
+.wf-card.active .wf-card-icon {
+  color: #D95D32;
+}
+
+[data-theme="dark"] .wf-card.active .wf-card-icon {
+  color: #F08B61;
+}
+
+.wf-card.active .wf-step-num {
+  color: #D95D32;
+}
+
+[data-theme="dark"] .wf-card.active .wf-step-num {
+  color: #F08B61;
+}
+
+.wf-card.active .wf-status-pill {
+  background: rgba(217, 93, 50, 0.1);
+  color: #B94E2D;
+  border-color: rgba(217, 93, 50, 0.25);
+}
+
+[data-theme="dark"] .wf-card.active .wf-status-pill {
+  background: rgba(231, 118, 73, 0.16);
+  color: #F08B61;
+  border-color: rgba(231, 118, 73, 0.35);
+}
+
+.wf-card.active .wf-pill-dot {
+  background: #D95D32;
+  box-shadow: 0 0 0 3px rgba(217, 93, 50, 0.2);
+  animation: wfDotPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes wfDotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+/* 3. COMPLETED */
+.wf-card.completed {
+  opacity: 0.94;
+  border-color: rgba(45, 116, 86, 0.35);
+}
+
+[data-theme="dark"] .wf-card.completed {
+  border-color: rgba(61, 168, 123, 0.35);
+}
+
+.wf-card.completed .wf-status-pill {
+  background: rgba(45, 116, 86, 0.08);
+  color: #2D7456;
+  border-color: rgba(45, 116, 86, 0.2);
+}
+
+[data-theme="dark"] .wf-card.completed .wf-status-pill {
+  background: rgba(61, 168, 123, 0.12);
+  color: #3DA87B;
+  border-color: rgba(61, 168, 123, 0.25);
+}
+
+.wf-card.completed .wf-pill-dot {
+  background: #2D7456;
+}
+
+[data-theme="dark"] .wf-card.completed .wf-pill-dot {
+  background: #3DA87B;
+}
+
+/* ==========================================================================
+   Bottom Status & Event Strip
+   ========================================================================== */
+.wf-console-bottomstrip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px 11px;
+  background: rgba(0, 0, 0, 0.22);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.wf-status-live-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
+}
+
+.wf-status-indicator-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4ADE80;
+  box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.2);
+  flex-shrink: 0;
+}
+
+.wf-status-message {
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 10px;
+  font-weight: 650;
+  color: rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.02em;
+}
+
+.wf-watermark {
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Responsive Adaptations (Container Queries + Media Queries)
+   ========================================================================== */
+
+/* When container width is under 480px, gracefully adjust typography & card padding */
+@container wfconsole (max-width: 480px) {
+  .wf-layout-container {
+    padding: 14px 12px 12px;
+    gap: 12px;
+  }
+
+  .wf-tier-intake {
+    gap: 8px;
+  }
+
+  .wf-branch-wrapper {
+    gap: 10px;
+  }
+
+  .wf-card {
+    padding: 8px 10px;
+  }
+
+  .wf-card-title {
+    font-size: 11.5px;
+  }
+
+  .wf-card-desc {
+    font-size: 9.5px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Fallback / Viewport-level adaptation for small mobile devices */
+@media (max-width: 640px) {
+  .wf-console-root {
+    border-radius: 16px;
+  }
+
+  .wf-console-topbar {
+    padding: 10px 14px;
+  }
+
+  .wf-console-identity {
+    font-size: 9px;
+  }
+
+  .wf-layout-container {
+    padding: 12px 10px 10px;
+    gap: 10px;
+  }
+
+  .wf-tier-intake {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .wf-branch-wrapper {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .wf-card {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+  }
+
+  .wf-card-header {
+    margin-bottom: 0;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .wf-card-body {
+    margin-bottom: 0;
+  }
+
+  .wf-card-desc {
     display: none;
   }
 
-  .workflow-mobile {
-    display: block;
+  .wf-outcome-body {
+    flex-direction: row;
+    align-items: center;
   }
 
-  .workflow-panel-container {
-    border-radius: 20px;
+  .wf-console-bottomstrip {
+    padding: 8px 12px 9px;
   }
 
-  .wf-node {
-    padding: 14px 16px;
-    border-radius: 12px;
-  }
-
-  .wf-node strong {
-    font-size: 14px;
+  .wf-watermark {
+    display: none;
   }
 }
 
-/* ============================================
-   Reduced motion
-   ============================================ */
+/* ==========================================================================
+   Reduced Motion
+   Completely zero motion, no pulsing, no drift, quiet static diagram
+   ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
-  .wf-node {
-    transition: none;
-  }
-
-  .wf-connector {
-    transition: none;
-  }
-
-  .signal-group,
-  .mobile-signal {
-    display: none;
-  }
-
-  /* All nodes show completed state statically */
-  .wf-node.idle,
-  .wf-node.active,
-  .wf-node.completed {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  .wf-dot {
+  .wf-console-root {
     animation: none !important;
   }
 
-  /* Subtle border pulse instead of signal animation */
-  .workflow-panel-container {
-    animation: subtlePulse 4s ease-in-out infinite alternate;
+  .wf-card {
+    transition: none !important;
   }
 
-  @keyframes subtlePulse {
-    0% { border-color: rgba(255, 255, 255, 0.15); }
-    100% { border-color: rgba(255, 255, 255, 0.35); }
+  .wf-path {
+    transition: none !important;
+  }
+
+  .wf-signal-packet {
+    display: none !important;
+  }
+
+  .wf-pill-dot {
+    animation: none !important;
+  }
+
+  .wf-status-indicator-dot {
+    animation: none !important;
+  }
+
+  /* All nodes settle into crisp completed/ready state statically */
+  .wf-card.idle,
+  .wf-card.active,
+  .wf-card.completed {
+    opacity: 1 !important;
   }
 }
