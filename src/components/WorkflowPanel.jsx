@@ -63,7 +63,8 @@ const Icons = {
 
 export default function WorkflowPanel() {
   const {
-    containerRef,
+    rootRef,
+    canvasRef,
     registerNode,
     currentPhase,
     isPlaying,
@@ -104,7 +105,7 @@ export default function WorkflowPanel() {
   return (
     <aside
       className="wf-console-root"
-      ref={containerRef}
+      ref={rootRef}
       role="region"
       aria-label="Interactive workflow orchestration demonstration"
     >
@@ -146,7 +147,7 @@ export default function WorkflowPanel() {
       </div>
 
       {/* Canvas Area with Connectors and Structured Grid */}
-      <div className="wf-console-canvas">
+      <div className="wf-console-canvas" ref={canvasRef}>
         {/* Dynamic SVG Connectors Layer */}
         <svg className="wf-console-svg" aria-hidden="true">
           <defs>

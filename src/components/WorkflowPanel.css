@@ -546,11 +546,12 @@
 }
 
 /* ==========================================================================
-   Responsive Adaptations (Container Queries + Media Queries)
+   Responsive Adaptations (Unified Container-Based Contract)
+   Threshold: container-width <= 500px stacks into single-column layout
    ========================================================================== */
 
-/* When container width is under 480px, gracefully adjust typography & card padding */
-@container wfconsole (max-width: 480px) {
+/* Compact adjustment for medium-narrow widths (501px - 540px) */
+@container wfconsole (max-width: 540px) {
   .wf-layout-container {
     padding: 14px 12px 12px;
     gap: 12px;
@@ -581,8 +582,8 @@
   }
 }
 
-/* Fallback / Viewport-level adaptation for small mobile devices */
-@media (max-width: 640px) {
+/* Stacked Mobile Layout: Activated when container width is 500px or below */
+@container wfconsole (max-width: 500px) {
   .wf-console-root {
     border-radius: 16px;
   }

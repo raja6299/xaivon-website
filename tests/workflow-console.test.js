@@ -38,6 +38,9 @@ test('workflow-console: component source integrity & structure', () => {
   assert.ok(panelContent.includes('wf-sr-only'), 'Must include screen reader summary');
   assert.ok(panelContent.includes('wf-console-bottomstrip'), 'Must include bottom status strip');
   assert.ok(panelContent.includes('Illustrative workflow'), 'Must clearly state illustrative nature');
+
+  // Verify canvas ref is bound to .wf-console-canvas
+  assert.ok(panelContent.includes('ref={canvasRef}'), 'Must bind canvasRef to canvas element for 1:1 SVG coordinate space');
 });
 
 test('workflow-console: animation hook phases & cycle contract', async () => {
@@ -53,12 +56,20 @@ test('workflow-console: animation hook phases & cycle contract', async () => {
   assert.ok(hookContent.includes('EXECUTION'), 'Phase 4 must be EXECUTION');
   assert.ok(hookContent.includes('RESET_PAUSE'), 'Phase 5 must be RESET_PAUSE');
 
+  // Verify Phase 4 execution mapping has no phantom path-5
+  assert.ok(!hookContent.includes("activePath: 'path-5'"), 'Must not reference non-existent path-5');
+
   // Verify dynamic port anchor computation & observers
   assert.ok(hookContent.includes('getBoundingClientRect'), 'Must compute card bounding rects dynamically');
+  assert.ok(hookContent.includes('cRect = canvas.getBoundingClientRect()'), 'Must measure relative to canvas bounding box');
   assert.ok(hookContent.includes('ResizeObserver'), 'Must use ResizeObserver for reflow/resize tracking');
   assert.ok(hookContent.includes('IntersectionObserver'), 'Must pause when scrolled offscreen');
   assert.ok(hookContent.includes('visibilitychange'), 'Must pause when tab hidden');
   assert.ok(hookContent.includes('prefers-reduced-motion'), 'Must support prefers-reduced-motion');
+
+  // Verify elapsed time preservation accumulator
+  assert.ok(hookContent.includes('elapsedRef'), 'Must use elapsedRef to accumulate animation time without jumping');
+  assert.ok(hookContent.includes('lastTimestampRef'), 'Must track lastTimestampRef for accurate frame deltas');
 });
 
 test('workflow-console: CSS layout architecture eliminates collision risk', () => {
@@ -71,6 +82,10 @@ test('workflow-console: CSS layout architecture eliminates collision risk', () =
   assert.ok(cssContent.includes('display: grid'), 'Must use CSS Grid for card alignment');
   assert.ok(cssContent.includes('grid-template-columns: repeat(3'), 'Tier 1 must use 3-column grid');
   assert.ok(cssContent.includes('grid-template-columns: repeat(2'), 'Tier 2 must use 2-column grid for branches');
+
+  // Verify unified container-query breakpoint contract
+  assert.ok(cssContent.includes('@container wfconsole (max-width: 500px)'), 'Must declare unified container query breakpoint');
+  assert.ok(!cssContent.includes('@media (max-width: 640px)'), 'Must not have conflicting 640px media query override');
 
   // Verify NO absolute percentage placement for cards
   assert.ok(!cssContent.includes('top: 42%'), 'Must NOT use old top: 42% card placement');

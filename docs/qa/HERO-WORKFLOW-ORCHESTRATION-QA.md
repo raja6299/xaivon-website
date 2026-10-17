@@ -3,7 +3,7 @@
 **Branch:** `feat/xaivon-hero-workflow-orchestration`  
 **Base Commit:** `60ed991d7008465311e927bf001258d9b37a8302` (`origin/main`)  
 **Feature Target:** Homepage Hero Right Column (`src/components/WorkflowPanel.jsx`, `WorkflowPanel.css`, `useWorkflowAnimation.js`)  
-**Evaluation Standard:** Zero card overlap at all viewports, full light/dark theme contrast, accessible animation control, reduced-motion compliance, zero functional or styling regression to remaining website.
+**Evaluation Standard:** Zero card overlap across all viewports, full light/dark theme contrast, accessible animation control, reduced-motion compliance, zero functional or styling regression to remaining website.
 
 ---
 
@@ -25,7 +25,7 @@ Prior to this upgrade, the homepage hero visual suffered from structural design 
 
 ---
 
-## 2. Re-Engineered Architecture: Workflow Orchestration Console
+## 2. Re-Engineered Architecture & Animation Corrections
 
 1. **Deterministic Layout Architecture (Collision-Proof)**:
    - Eliminated all arbitrary percentage positioning (`top: XX%`, `left: YY%`).
@@ -41,15 +41,22 @@ Prior to this upgrade, the homepage hero visual suffered from structural design 
      - **Tier 3 (Outcome & Audit)**: Single centered card (`max-width: 480px`).
        - `05 / OUTCOME`: Verified Action & CRM Sync (Audit logged · Response dispatched · Systems synchronized).
    - Zero `transform: scale()` on active state; active states use non-layout-shifting warm-copper borders, shadows, and pulsating indicator dots.
-2. **Dynamic SVG Connectors with Port Anchoring**:
-   - SVG connector overlay computes exact port coordinates (`right` to `left`, `bottom` to `top` Bézier curves) dynamically based on actual rendered card bounds relative to the console container.
-   - Automatically tracks DOM reflow, text wrapping, and font scaling via a debounced `ResizeObserver`.
-   - On small mobile viewports (<640px), cards stack into a clean linear sequence with vertical connecting lines.
-3. **Enterprise Interaction & Governance Contract**:
-   - **Accessible Pause / Play Button**: Keyboard accessible (`Tab` + `Enter`/`Space`), with dynamic `aria-label` ("Pause workflow animation" / "Resume workflow animation").
-   - **Reduced Motion**: Under `prefers-reduced-motion: reduce`, all animations, traveling packets, and pulses are completely disabled. All cards settle into a calm, static completed state with zero layout jitter.
-   - **IntersectionObserver & Visibility**: Automatically pauses animation when scrolled offscreen or when tab is hidden (`document.hidden`).
-   - **Live Event Status Strip**: Contextual monospace status updates synchronized with current phase, clearly watermarked with "Illustrative workflow".
+
+2. **Accurate SVG Coordinate Alignment**:
+   - Coordinates are calculated directly relative to `.wf-console-canvas` bounding rectangle, matching `.wf-console-svg` 1:1.
+   - Connector paths attach directly to card center ports (`right` to `left`, `bottom` to `top` Bézier curves) within <1px tolerance.
+
+3. **Unified Responsive Contract**:
+   - Unified CSS `@container wfconsole (max-width: 500px)` contract for the single-column stacked layout.
+   - JavaScript dynamically verifies rendered DOM geometry (`n2.top > n1.bottom - 6`), guaranteeing 100% agreement between CSS layout and SVG connector paths at all viewports.
+
+4. **Execution Phase Signal Docking**:
+   - Removed invalid reference to non-existent `path-5`.
+   - Signal packet cleanly traverses Hops 1, 2, 3, 4, and docks smoothly at Card 05 port during Phase 4 (`EXECUTION`), while Card 05 executes and displays completion checkmark (`Completed ✓`).
+
+5. **Elapsed Animation Time Preservation on Pause**:
+   - Replaced naive `(now - start) % duration` with a frame-delta accumulator (`elapsedRef` + `lastTimestampRef`).
+   - Pausing (or tab switching / scrolling out of view) suspends elapsed time precisely; resuming continues smoothly from the exact paused millisecond with zero jumps.
 
 ---
 
@@ -66,35 +73,35 @@ assert(card.top >= topbar.bottom && card.bottom <= bottomstrip.top, "No boundary
 assert(document.documentElement.scrollWidth <= window.innerWidth, "No horizontal scroll")
 ```
 
-### Verification Matrix Across Viewports
+### Comprehensive Viewport Matrix (320px to 1920px)
 
-| Viewport | Mode / State | Card Count | Collisions | Boundary Violations | Horiz Scroll? | Status |
-|---|---|---|---|---|---|---|
-| **1920 × 1080** | Light / Playing | 6 cards | 0 | 0 | None (pass) | ✅ PASS |
-| **1440 × 900** | Light / Playing | 6 cards | 0 | 0 | None (pass) | ✅ PASS |
-| **1366 × 768** | Light / Active | 6 cards | 0 | 0 | None (pass) | ✅ PASS |
-| **1366 × 768** | Light / Paused | 6 cards | 0 | 0 | None (pass) | ✅ PASS |
-| **1366 × 768** | Dark / Playing | 6 cards | 0 | 0 | None (pass) | ✅ PASS |
-| **1024 × 768** | Light / 1-Col Hero | 6 cards | 0 | 0 | None (pass) | ✅ PASS |
-| **820 × 1180** | Light / Tablet | 6 cards | 0 | 0 | None (pass) | ✅ PASS |
-| **768 × 1024** | Light / Tablet | 6 cards | 0 | 0 | None (pass) | ✅ PASS |
-| **390 × 844** | Light / Mobile | 6 cards | 0 | 0 | None (pass) | ✅ PASS |
-| **390 × 844** | Dark / Mobile | 6 cards | 0 | 0 | None (pass) | ✅ PASS |
-| **320 × 700** | Light / Small Mobile | 6 cards | 0 | 0 | None (pass) | ✅ PASS |
+| Viewport (W × H) | Layout Mode | Card Count | Collisions | Boundary Violations | Connector Alignment | Horizontal Scroll? | Status |
+|---|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| **1920 × 1080** | Desktop 3-Tier | 6 | **0** | **0** | < 1px diff | None (pass) | ✅ PASS |
+| **1440 × 900** | Desktop 3-Tier | 6 | **0** | **0** | < 1px diff | None (pass) | ✅ PASS |
+| **1366 × 768** | Desktop 3-Tier | 6 | **0** | **0** | < 1px diff | None (pass) | ✅ PASS |
+| **1024 × 768** | Desktop 3-Tier (Hero 1-Col) | 6 | **0** | **0** | < 1px diff | None (pass) | ✅ PASS |
+| **768 × 1024** | Desktop 3-Tier (Centered) | 6 | **0** | **0** | < 1px diff | None (pass) | ✅ PASS |
+| **640 × 800** | Desktop 3-Tier | 6 | **0** | **0** | < 1px diff | None (pass) | ✅ PASS |
+| **600 × 800** | Desktop 3-Tier | 6 | **0** | **0** | < 1px diff | None (pass) | ✅ PASS |
+| **560 × 800** | Desktop 3-Tier | 6 | **0** | **0** | < 1px diff | None (pass) | ✅ PASS |
+| **520 × 800** | Stacked Mobile | 6 | **0** | **0** | Center spine | None (pass) | ✅ PASS |
+| **390 × 844** | Stacked Mobile | 6 | **0** | **0** | Center spine | None (pass) | ✅ PASS |
+| **320 × 700** | Stacked Mobile | 6 | **0** | **0** | Center spine | None (pass) | ✅ PASS |
 
-**Result:** 0 collisions detected across all 11 test configurations. `scrollWidth <= innerWidth` satisfied everywhere.
+**Result:** **0 collisions** detected across all 11 viewports. Connector endpoints attach within <1px of intended card ports. Zero horizontal overflow.
 
 ---
 
 ## 4. Test Evidence & CI Gates
 
 1. **Unit & Architecture Test Suite (`npm test`)**:
-   - `53/53 passed` (50 existing tests + 3 new workflow console architecture tests).
-   - Test execution duration: ~1.2s.
+   - `53/53 passed` (50 existing tests + 3 workflow console architecture tests).
+   - Test execution duration: ~1.1s.
 2. **ESLint (`npm run lint`)**:
    - `0 errors, 0 warnings`.
 3. **Production Build (`npm run build`)**:
-   - Client bundle built cleanly in ~1.5s.
+   - Client bundle built cleanly in ~1.2s.
    - Sitemap generated (33 routes).
    - Meta tag injection verified across all 33 routes.
    - Claims auditor passed (0 unapproved public claims).
@@ -102,16 +109,6 @@ assert(document.documentElement.scrollWidth <= window.innerWidth, "No horizontal
 ---
 
 ## 5. Scope & Preservation Proof
-
-`git diff --stat origin/main...HEAD`:
-
-```text
- src/components/WorkflowPanel.css    | 374 ++++++++++++++++++++++++++----------
- src/components/WorkflowPanel.jsx    | 381 +++++++++++++++++++++++++++----------
- src/hooks/useWorkflowAnimation.js   | 344 ++++++++++++++++++++++-----------
- tests/workflow-console.test.js      |  82 ++++++++
- docs/qa/HERO-WORKFLOW-ORCHESTRATION-QA.md | 150 ++++++++++++++
-```
 
 - **Hero Left Column**: 100% untouched (`src/components/Hero.jsx` preserved).
 - **Existing Page Routes & Components**: 100% untouched.

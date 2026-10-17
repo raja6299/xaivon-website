@@ -53,7 +53,7 @@ export const WORKFLOW_PHASES = [
     detail: 'Signed-off action executed, audit trail logged',
     statusText: 'Completed',
     activeNodeId: 'node-action',
-    activePath: 'path-5',
+    activePath: null, // Destination reached: signal docks cleanly at Card 05
     tickerMessage: '05 / DISPATCH: Verified action executed & immutable audit log written',
   },
   {
@@ -73,10 +73,14 @@ const PHASE_DURATIONS = [2000, 2000, 2000, 2400, 2000, 1200];
 const TOTAL_CYCLE_DURATION = PHASE_DURATIONS.reduce((a, b) => a + b, 0); // 11,600ms (~11.6s)
 
 export function useWorkflowAnimation() {
-  const containerRef = useRef(null);
+  const rootRef = useRef(null);
+  const canvasRef = useRef(null);
   const nodeRefs = useRef({});
   const animFrameRef = useRef(null);
-  const startTimeRef = useRef(null);
+
+  // Time-accumulation refs to preserve exact animation position on pause/resume
+  const elapsedRef = useRef(0);
+  const lastTimestampRef = useRef(null);
 
   const [isReducedMotion, setIsReducedMotion] = useState(() => {
     if (typeof window !== 'undefined' && window.matchMedia) {
@@ -97,6 +101,8 @@ export function useWorkflowAnimation() {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isUserPaused, setIsUserPaused] = useState(false);
   const [isInView, setIsInView] = useState(true);
+  const [isMobileMode, setIsMobileMode] = useState(false);
+
   const [paths, setPaths] = useState({
     path1: '',
     path2: '',
@@ -106,6 +112,7 @@ export function useWorkflowAnimation() {
     path4Human: '',
     mobilePath: '',
   });
+
   const [signalPos, setSignalPos] = useState({ x: -100, y: -100, visible: false });
 
   // Node registration callback
@@ -117,12 +124,13 @@ export function useWorkflowAnimation() {
     }
   }, []);
 
-  // Compute anchor coordinates dynamically based on actual rendered card rects
+  // Compute anchor coordinates dynamically relative to the SVG canvas bounding rect
   const updateConnectorPaths = useCallback(() => {
-    const container = containerRef.current;
-    if (!container) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    const cRect = container.getBoundingClientRect();
+    // Use the actual canvas bounding rectangle so (x, y) coordinates align 1:1 with the SVG
+    const cRect = canvas.getBoundingClientRect();
     if (cRect.width === 0 || cRect.height === 0) return;
 
     const getCenterPort = (el) => {
@@ -134,12 +142,6 @@ export function useWorkflowAnimation() {
         left: { x: r.left - cRect.left, y: r.top + r.height / 2 - cRect.top },
         right: { x: r.right - cRect.left, y: r.top + r.height / 2 - cRect.top },
         center: { x: r.left + r.width / 2 - cRect.left, y: r.top + r.height / 2 - cRect.top },
-        rect: {
-          x: r.left - cRect.left,
-          y: r.top - cRect.top,
-          width: r.width,
-          height: r.height,
-        },
       };
     };
 
@@ -150,21 +152,20 @@ export function useWorkflowAnimation() {
     const n4Human = getCenterPort(nodeRefs.current['node-human']);
     const n5 = getCenterPort(nodeRefs.current['node-action']);
 
-    // Check if layout is mobile/vertical (container width < 520)
-    const isMobileLayout = cRect.width < 520;
+    // Determine layout mode directly from actual rendered DOM node geometry
+    // If node 2 is rendered below node 1 vertically, the cards are stacked!
+    const isStackedLayout = Boolean(n1 && n2 && (n2.top.y > n1.bottom.y - 6));
+    setIsMobileMode(isStackedLayout);
 
-    if (isMobileLayout) {
-      // Clean vertical spine connecting stacked cards
+    if (isStackedLayout) {
+      // Clean vertical spine connecting stacked cards sequentially
+      // Ingestion -> Understand -> Rules -> Routine & Human Review -> Execution
       let mobileD = '';
-      const order = [n1, n2, n3, n4Routine, n4Human, n5].filter(Boolean);
+      const order = [n1, n2, n3, n4Human, n5].filter(Boolean);
       for (let i = 0; i < order.length - 1; i++) {
         const from = order[i].bottom;
         const to = order[i + 1].top;
-        if (i === 0) {
-          mobileD += `M ${from.x.toFixed(1)} ${from.y.toFixed(1)} L ${to.x.toFixed(1)} ${to.y.toFixed(1)} `;
-        } else {
-          mobileD += `M ${from.x.toFixed(1)} ${from.y.toFixed(1)} L ${to.x.toFixed(1)} ${to.y.toFixed(1)} `;
-        }
+        mobileD += `M ${from.x.toFixed(1)} ${from.y.toFixed(1)} L ${to.x.toFixed(1)} ${to.y.toFixed(1)} `;
       }
       setPaths({
         path1: '',
@@ -180,18 +181,18 @@ export function useWorkflowAnimation() {
 
     if (!n1 || !n2 || !n3 || !n4Routine || !n4Human || !n5) return;
 
-    // Desktop paths:
+    // Desktop 3-tier paths (coordinates relative to canvas bounding box):
     // Path 1: horizontal between n1.right and n2.left
     const p1 = `M ${n1.right.x.toFixed(1)} ${n1.right.y.toFixed(1)} L ${n2.left.x.toFixed(1)} ${n2.left.y.toFixed(1)}`;
 
     // Path 2: horizontal between n2.right and n3.left
     const p2 = `M ${n2.right.x.toFixed(1)} ${n2.right.y.toFixed(1)} L ${n3.left.x.toFixed(1)} ${n3.left.y.toFixed(1)}`;
 
-    // Path 3 Routine: branch from n3.bottom (or n3 center-bottom) to n4Routine.top
+    // Path 3 Routine: branch curve from n3.bottom to n4Routine.top
     const p3MidY = (n3.bottom.y + n4Routine.top.y) / 2;
     const p3R = `M ${n3.bottom.x.toFixed(1)} ${n3.bottom.y.toFixed(1)} C ${n3.bottom.x.toFixed(1)} ${p3MidY.toFixed(1)}, ${n4Routine.top.x.toFixed(1)} ${p3MidY.toFixed(1)}, ${n4Routine.top.x.toFixed(1)} ${n4Routine.top.y.toFixed(1)}`;
 
-    // Path 3 Human: branch from n3.bottom to n4Human.top
+    // Path 3 Human: branch curve from n3.bottom to n4Human.top
     const p3H = `M ${n3.bottom.x.toFixed(1)} ${n3.bottom.y.toFixed(1)} C ${n3.bottom.x.toFixed(1)} ${p3MidY.toFixed(1)}, ${n4Human.top.x.toFixed(1)} ${p3MidY.toFixed(1)}, ${n4Human.top.x.toFixed(1)} ${n4Human.top.y.toFixed(1)}`;
 
     // Path 4 Routine: from n4Routine.bottom to n5.top
@@ -232,10 +233,10 @@ export function useWorkflowAnimation() {
     }
   }, []);
 
-  // Pause when offscreen via IntersectionObserver
+  // Pause when offscreen via IntersectionObserver on root container
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container || typeof IntersectionObserver === 'undefined') return;
+    const root = rootRef.current;
+    if (!root || typeof IntersectionObserver === 'undefined') return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -246,11 +247,11 @@ export function useWorkflowAnimation() {
       { threshold: 0.15 }
     );
 
-    observer.observe(container);
+    observer.observe(root);
     return () => observer.disconnect();
   }, []);
 
-  // Pause when tab is hidden
+  // Pause when document tab is hidden
   useEffect(() => {
     const handleVisibility = () => {
       if (document.hidden) {
@@ -266,8 +267,8 @@ export function useWorkflowAnimation() {
 
   // ResizeObserver to recompute paths cleanly on container/viewport change
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container || typeof ResizeObserver === 'undefined') return;
+    const canvas = canvasRef.current;
+    if (!canvas || typeof ResizeObserver === 'undefined') return;
 
     let resizeTimer;
     const ro = new ResizeObserver(() => {
@@ -275,9 +276,9 @@ export function useWorkflowAnimation() {
       resizeTimer = requestAnimationFrame(updateConnectorPaths);
     });
 
-    ro.observe(container);
-    // Also recompute after fonts load or slight delay
-    const initialTimer = setTimeout(updateConnectorPaths, 100);
+    ro.observe(canvas);
+    // Also recompute after initial render and font settling
+    const initialTimer = setTimeout(updateConnectorPaths, 80);
 
     return () => {
       ro.disconnect();
@@ -286,7 +287,7 @@ export function useWorkflowAnimation() {
     };
   }, [updateConnectorPaths]);
 
-  // Main deterministic animation controller
+  // Main deterministic animation controller with exact elapsed time preservation
   useEffect(() => {
     if (isReducedMotion) {
       return;
@@ -294,25 +295,27 @@ export function useWorkflowAnimation() {
 
     const shouldAnimate = isPlaying && !isUserPaused && isInView && !document.hidden;
     if (!shouldAnimate) {
+      // When stopping/pausing, reset lastTimestampRef so elapsedRef doesn't jump forward on resume
+      lastTimestampRef.current = null;
       if (animFrameRef.current) {
         cancelAnimationFrame(animFrameRef.current);
       }
       return;
     }
 
-    let localStartTime = null;
-
     const step = (timestamp) => {
-      if (!startTimeRef.current) {
-        startTimeRef.current = timestamp;
-      }
-      if (!localStartTime) {
-        localStartTime = timestamp;
+      if (lastTimestampRef.current === null) {
+        lastTimestampRef.current = timestamp;
       }
 
-      const elapsed = (timestamp - startTimeRef.current) % TOTAL_CYCLE_DURATION;
+      const delta = timestamp - lastTimestampRef.current;
+      lastTimestampRef.current = timestamp;
 
-      // Determine current phase from elapsed time
+      // Accumulate elapsed time smoothly
+      elapsedRef.current = (elapsedRef.current + delta) % TOTAL_CYCLE_DURATION;
+      const elapsed = elapsedRef.current;
+
+      // Determine current phase from accumulated elapsed time
       let accumulated = 0;
       let phaseIndex = 0;
       let phaseElapsed = 0;
@@ -329,32 +332,73 @@ export function useWorkflowAnimation() {
 
       setCurrentPhase(phaseIndex);
 
-      // Calculate signal position along the active path for this phase
       const phaseDuration = PHASE_DURATIONS[phaseIndex];
       const progress = Math.min(1, Math.max(0, phaseElapsed / phaseDuration));
 
-      // Find active SVG path element in container
-      const container = containerRef.current;
-      if (container && phaseIndex < 5) {
-        const activePathId = WORKFLOW_PHASES[phaseIndex]?.activePath;
-        const pathEl = activePathId ? container.querySelector(`[data-path-id="${activePathId}"]`) : null;
-        if (pathEl && typeof pathEl.getTotalLength === 'function') {
-          try {
-            const length = pathEl.getTotalLength();
-            if (length > 0) {
-              const pt = pathEl.getPointAtLength(length * progress);
-              setSignalPos({ x: pt.x, y: pt.y, visible: true });
+      const canvas = canvasRef.current;
+      if (canvas) {
+        // Mobile layout: progress travels along the single mobile vertical spine
+        if (isMobileMode) {
+          const mobilePathEl = canvas.querySelector('[data-path-id="path-mobile"]');
+          if (mobilePathEl && typeof mobilePathEl.getTotalLength === 'function') {
+            try {
+              const totalLength = mobilePathEl.getTotalLength();
+              if (totalLength > 0) {
+                if (phaseIndex < 4) {
+                  // Across 4 segments: phase 0 (0-25%), 1 (25-50%), 2 (50-75%), 3 (75-100%)
+                  const segmentLen = totalLength / 4;
+                  const travel = phaseIndex * segmentLen + progress * segmentLen;
+                  const pt = mobilePathEl.getPointAtLength(Math.min(travel, totalLength));
+                  setSignalPos({ x: pt.x, y: pt.y, visible: true });
+                } else if (phaseIndex === 4) {
+                  // Phase 4: docked at the destination (100% of path)
+                  const pt = mobilePathEl.getPointAtLength(totalLength);
+                  setSignalPos({ x: pt.x, y: pt.y, visible: true });
+                } else {
+                  setSignalPos((prev) => ({ ...prev, visible: false }));
+                }
+              }
+            } catch {
+              setSignalPos((prev) => ({ ...prev, visible: false }));
+            }
+          }
+        } else {
+          // Desktop 3-tier layout:
+          if (phaseIndex < 4) {
+            const activePathId = WORKFLOW_PHASES[phaseIndex]?.activePath;
+            const pathEl = activePathId ? canvas.querySelector(`[data-path-id="${activePathId}"]`) : null;
+            if (pathEl && typeof pathEl.getTotalLength === 'function') {
+              try {
+                const length = pathEl.getTotalLength();
+                if (length > 0) {
+                  const pt = pathEl.getPointAtLength(length * progress);
+                  setSignalPos({ x: pt.x, y: pt.y, visible: true });
+                } else {
+                  setSignalPos((prev) => ({ ...prev, visible: false }));
+                }
+              } catch {
+                setSignalPos((prev) => ({ ...prev, visible: false }));
+              }
             } else {
               setSignalPos((prev) => ({ ...prev, visible: false }));
             }
-          } catch {
+          } else if (phaseIndex === 4) {
+            // Phase 4: Execution phase. Destination reached! Dock cleanly at Card 05 port
+            const n5El = nodeRefs.current['node-action'];
+            if (n5El && canvas) {
+              const r = n5El.getBoundingClientRect();
+              const cRect = canvas.getBoundingClientRect();
+              const dockX = r.left + r.width / 2 - cRect.left;
+              const dockY = r.top - cRect.top;
+              setSignalPos({ x: dockX, y: dockY, visible: true });
+            } else {
+              setSignalPos((prev) => ({ ...prev, visible: false }));
+            }
+          } else {
+            // Phase 5: Reset pause
             setSignalPos((prev) => ({ ...prev, visible: false }));
           }
-        } else {
-          setSignalPos((prev) => ({ ...prev, visible: false }));
         }
-      } else {
-        setSignalPos((prev) => ({ ...prev, visible: false }));
       }
 
       animFrameRef.current = requestAnimationFrame(step);
@@ -363,11 +407,12 @@ export function useWorkflowAnimation() {
     animFrameRef.current = requestAnimationFrame(step);
 
     return () => {
+      lastTimestampRef.current = null;
       if (animFrameRef.current) {
         cancelAnimationFrame(animFrameRef.current);
       }
     };
-  }, [isPlaying, isUserPaused, isInView, isReducedMotion]);
+  }, [isPlaying, isUserPaused, isInView, isReducedMotion, isMobileMode]);
 
   // User toggle Pause/Play
   const togglePlayPause = useCallback(() => {
@@ -379,12 +424,14 @@ export function useWorkflowAnimation() {
   }, []);
 
   return {
-    containerRef,
+    rootRef,
+    canvasRef,
     registerNode,
     currentPhase,
     isPlaying: isPlaying && !isUserPaused,
     isUserPaused,
     isReducedMotion,
+    isMobileMode,
     togglePlayPause,
     paths,
     signalPos,
