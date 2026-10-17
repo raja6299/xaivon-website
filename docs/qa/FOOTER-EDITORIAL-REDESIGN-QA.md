@@ -2,7 +2,10 @@
 
 **Branch:** `feat/xaivon-premium-editorial-footer`  
 **Base Commit (origin/main):** `01c07bfc88071e6010b281c9ea954605dc421cfb`  
-**Target Pull Request:** Against `main`  
+**Feature Commit SHA:** `a0df983`  
+**Pull Request:** [#6](https://github.com/raja6299/xaivon-website/pull/6)  
+**Vercel Deployment ID:** `4rBUGB6PAgMSHa5mBgToe7fp6wxo`  
+**Vercel Preview URL:** [xaivon-website-git-feat-xaivon-premium-editoria-6084a1-raja6200.vercel.app](https://xaivon-website-git-feat-xaivon-premium-editoria-6084a1-raja6200.vercel.app)  
 **Status:** VALIDATED — READY FOR OWNER REVIEW  
 **Scope:** Strictly limited to `src/components/Footer.jsx`, `src/components/Footer.css`, obsolete footer rules in `src/index.css`, collision coordination in `src/components/StickyCallToAction.jsx`, and test suite additions. Zero changes to Hero Workflow Console, APIs, pricing, routing, or legal content.
 
