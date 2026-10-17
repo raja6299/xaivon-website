@@ -88,9 +88,21 @@ The modernized footer follows the **"XAIVON / Architectural Editorial Footer"** 
 
 ## 5. Floating UI Collision & Focus Testing
 
-- **Sticky Assessment CTA Collision:**
-  - Before: Floating CTA remained visible at bottom-right, partially obstructing footer elements.
-  - After: `StickyCallToAction` observes the footer with an `IntersectionObserver`. When the footer scrolls into view, the floating CTA smoothly fades out / translates away. When scrolling back up, it reappears. Verified PASS.
+- **Sticky Assessment CTA Collision & Accessibility (Check 1):**
+  - **Collision Prevention:** `StickyCallToAction` coordinates with the footer via `IntersectionObserver`. When the footer scrolls into view, the duplicate floating CTA smoothly transitions away. When scrolling back up, it smoothly reappears.
+  - **A11y & Focus Removal (Verified):**
+    - Active State (Y=1200, footer out of view): `tabIndex: 0`, `aria-hidden: "false"`, `computed visibility: "visible"`, `opacity: 1`.
+    - Inactive State (footer in view): `tabIndex: -1`, `aria-hidden: "true"`, `computed visibility: "hidden"`, `opacity: 0`.
+    - Keyboard Tab navigation skips the element completely while hidden.
+    - Smooth 0.3s CSS opacity, transform, and visibility transitions preserved.
+    - Mobile layout (<=640px): `display: none !important` via media query.
+- **Footer Section Anchor Navigation (Check 2):**
+  - Minimal enhancement to `src/hooks/ScrollToTop.jsx` with bounded polling retry (`20 x 50ms = 1s max`) for lazy-loaded route components, preserving `window.scrollTo(0, 0)` when no hash is present.
+  - Verified across pages:
+    - `/about#who`: Navigates to `/about` and smoothly scrolls to `#who` (`top: ~100px` respecting `scroll-padding-top`).
+    - `/about#how`: Scrolls to `#how` (`top: ~100px`).
+    - `/about#future`: Scrolls to `#future` (`top: ~100px`).
+    - `/contact#support`: Navigates from `/pricing` to `/contact` and smoothly scrolls to `#support` (`top: ~100px`).
 - **Cookie Consent Floating Pill:**
   - After consent decision, the floating pill sits at `bottom: 20px, left: 20px`.
   - The footer has `padding-bottom: clamp(64px, 8vw, 96px);` ensuring all text and interactive links in the rail have full clearance. Zero overlap detected.
@@ -115,7 +127,7 @@ Tested viewports: `320px`, `360px`, `390px`, `430px`, `600px`, `768px`, `820px`,
 ## 7. Test, Lint, and Build Results
 
 - **Node Test Runner:** `npm test -- --run`
-  - Total Tests: **61/61 PASS** (100% clean, 0 failures, 0 regressions).
+  - Total Tests: **62/62 PASS** (100% clean, 0 failures, 0 regressions).
 - **ESLint:** `npm run lint`
   - Result: **0 errors, 0 warnings**.
 - **Production Build:** `npm run build`
@@ -140,9 +152,11 @@ If already deployed, Vercel provides instant one-click rollback to deployment `0
 
 | Gate | Status | Notes |
 |------|--------|-------|
-| Scope Isolation | PASS | Only footer and necessary coordination touched |
+| Scope Isolation | PASS | Only footer, sticky CTA a11y, and ScrollToTop hash navigation touched |
 | Design & Aesthetics | PASS | Editorial architectural finish, warm copper identity |
 | Link Integrity | PASS | All 14 destinations, mailto, tel, copy, cookie active |
+| Anchor Navigation (Check 2) | PASS | `/about#who`, `/about#how`, `/about#future`, `/contact#support` verified |
+| Floating CTA A11y (Check 1) | PASS | `tabIndex: -1`, `aria-hidden: true`, `visibility: hidden` when inactive |
 | Collision Prevention | PASS | Sticky CTA fades when footer in view; zero overlap |
-| Local Tests & Lint | PASS | 61/61 tests pass, 0 lint errors, clean build |
-| Owner Authorization | **PENDING** | STOPPING for explicit owner review and approval |
+| Local Tests & Lint | PASS | 62/62 tests pass, 0 lint errors, clean build |
+| Owner Authorization | **CONDITIONAL APPROVAL** | Owner authorized merge upon successful completion of both checks |

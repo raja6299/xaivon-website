@@ -104,9 +104,26 @@ test('footer-editorial: Cookie Settings button dispatches open-cookie-settings e
   assert.match(footerJsx, /id=["']footer-cookie-settings-btn["']/, 'Button must have stable testable ID');
 });
 
-test('footer-editorial: StickyCallToAction suppresses floating CTA when footer is visible to prevent collision', () => {
+test('footer-editorial: StickyCallToAction suppresses floating CTA when footer is visible and removes it from focus and a11y tree', () => {
   const stickyCta = fs.readFileSync(STICKY_CTA_PATH, 'utf8');
   assert.match(stickyCta, /IntersectionObserver/, 'StickyCallToAction must coordinate using IntersectionObserver');
   assert.match(stickyCta, /footerInView/, 'StickyCallToAction must track footerInView state');
   assert.match(stickyCta, /visible\s*&&\s*!footerInView/, 'StickyCallToAction must hide when footer is in view');
+  assert.match(stickyCta, /tabIndex=\{isActuallyVisible\s*\?\s*0\s*:\s*-1\}/, 'StickyCallToAction must set tabIndex -1 when hidden');
+  assert.match(stickyCta, /aria-hidden=\{!isActuallyVisible\}/, 'StickyCallToAction must set aria-hidden true when hidden');
+
+  const stickyCssPath = path.join(ROOT, 'src', 'components', 'StickyCallToAction.css');
+  const stickyCss = fs.readFileSync(stickyCssPath, 'utf8');
+  assert.match(stickyCss, /visibility:\s*hidden;/, 'StickyCallToAction.css must declare visibility: hidden by default');
+  assert.match(stickyCss, /visibility:\s*visible;/, 'StickyCallToAction.css must declare visibility: visible when active');
+  assert.match(stickyCss, /visibility\s+0\.3s/, 'StickyCallToAction.css must transition visibility');
+});
+
+test('footer-editorial: ScrollToTop supports reliable hash anchor navigation across lazy-loaded routes', () => {
+  const scrollToTopPath = path.join(ROOT, 'src', 'hooks', 'ScrollToTop.jsx');
+  const scrollToTopJsx = fs.readFileSync(scrollToTopPath, 'utf8');
+  assert.match(scrollToTopJsx, /const\s*\{\s*pathname,\s*hash\s*\}\s*=\s*useLocation\(\)/, 'ScrollToTop must observe both pathname and hash');
+  assert.match(scrollToTopJsx, /scrollIntoView/, 'ScrollToTop must invoke scrollIntoView for targeted hash');
+  assert.match(scrollToTopJsx, /setInterval/, 'ScrollToTop must support polling retry for lazy-loaded route components');
+  assert.match(scrollToTopJsx, /window\.scrollTo\(0,\s*0\)/, 'ScrollToTop must preserve window.scrollTo(0, 0) when no hash is present');
 });

@@ -38,6 +38,8 @@ export default function StickyCallToAction() {
       className={`sticky-cta ${isActuallyVisible ? 'sticky-cta-visible' : ''}`}
       id="sticky-cta-btn"
       aria-label="Book an Assessment"
+      tabIndex={isActuallyVisible ? 0 : -1}
+      aria-hidden={!isActuallyVisible}
     >
       <span className="sticky-cta-icon" aria-hidden="true">
         <svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
