@@ -4,6 +4,7 @@ import './StickyCallToAction.css';
 
 export default function StickyCallToAction() {
   const [visible, setVisible] = useState(false);
+  const [footerInView, setFooterInView] = useState(false);
 
   useEffect(() => {
     function handleScroll() {
@@ -14,12 +15,31 @@ export default function StickyCallToAction() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const footer = document.querySelector('footer.footer') || document.querySelector('.site-footer');
+    if (!footer || typeof IntersectionObserver === 'undefined') return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setFooterInView(entry.isIntersecting);
+      },
+      { threshold: 0.05 }
+    );
+
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
+
+  const isActuallyVisible = visible && !footerInView;
+
   return (
     <Link
       to="/contact"
-      className={`sticky-cta ${visible ? 'sticky-cta-visible' : ''}`}
+      className={`sticky-cta ${isActuallyVisible ? 'sticky-cta-visible' : ''}`}
       id="sticky-cta-btn"
       aria-label="Book an Assessment"
+      tabIndex={isActuallyVisible ? 0 : -1}
+      aria-hidden={!isActuallyVisible}
     >
       <span className="sticky-cta-icon" aria-hidden="true">
         <svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
