@@ -14,6 +14,12 @@ export const trackEvent = (eventName, eventParams = {}) => {
   }
 
   if (hasConsent && typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', eventName, eventParams);
+    // Sanitize event parameters to prevent accidental PII leakage into analytics
+    const sanitizedParams = { ...eventParams };
+    const piiKeys = ['name', 'email', 'phone', 'telephone', 'company', 'message', 'website'];
+    for (const key of piiKeys) {
+      delete sanitizedParams[key];
+    }
+    window.gtag('event', eventName, sanitizedParams);
   }
 };

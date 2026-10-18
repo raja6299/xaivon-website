@@ -171,10 +171,10 @@ const SERVICES = [
     id: 'ai-chatbots',
     number: '02',
     title: 'AI Chatbots',
-    overview: 'Deploy AI-powered chatbots that engage visitors, qualify leads, book appointments, and provide instant customer support across all channels.',
+    overview: 'Deploy conversational assistants that engage visitors, qualify leads, schedule consultations, and handle Tier 1 customer inquiries across digital channels.',
     benefits: [
-      'Instant response times',
-      'always-on availability',
+      'Rapid response handling',
+      'Automated inquiry triage',
       'Higher conversion rates',
       'Reduced support costs',
     ],

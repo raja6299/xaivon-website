@@ -30,6 +30,7 @@
   --nav-link: #3F3A34;
   --nav-link-hover: #1C1A17;
   --dropdown-bg: rgba(255, 252, 247, 0.98);
+  --nav-inset: rgba(255, 255, 255, 0.6);
   --card-bg: #FFFCF7;
   --card-border: #D9D0C4;
   --text-primary: var(--ink);
@@ -92,6 +93,7 @@
   --nav-link: #D8D0C3;
   --nav-link-hover: #F0E9DF;
   --dropdown-bg: rgba(34, 32, 28, 0.98);
+  --nav-inset: rgba(255, 255, 255, 0.05);
   --card-bg: #22201C;
   --card-border: #403A32;
   --text-primary: var(--ink);

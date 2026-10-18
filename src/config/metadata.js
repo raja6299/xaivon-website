@@ -37,7 +37,7 @@ export const pageMetadata = {
   },
   '/services': {
     title: 'Services — AI Automation, Voice Agents, Chatbots',
-    description: 'Implementation and infrastructure services for autonomous AI agents, automated quoting, and CRM data automation.',
+    description: 'Implementation and infrastructure services for enterprise AI assistance, automated quoting, and CRM data automation.',
     image: 'https://xaivon.com/og-image.png'
   },
   '/pricing': {
@@ -56,8 +56,8 @@ export const pageMetadata = {
     image: 'https://xaivon.com/og-image.png'
   },
   '/resources': {
-    title: 'Resources — AI Automation Guides',
-    description: 'In-depth case studies, workflow examples, and implementation guides for autonomous business systems.',
+    title: 'Resources — Automation Architecture Topics',
+    description: 'Technical topic briefs, workflow diagrams, and consultation discussion guides for modern enterprise automation.',
     image: 'https://xaivon.com/og-image.png'
   },
   '/privacy-policy': {
@@ -88,12 +88,12 @@ export const pageMetadata = {
   },
   '/roi-calculator': {
     title: 'AI Automation ROI Calculator — XAIVON',
-    description: 'Estimate the potential time and cost savings of replacing manual workflows with XAIVON autonomous AI infrastructure.',
+    description: 'Estimate potential operational time and cost savings from modernizing manual workflows with tailored software automation.',
     image: 'https://xaivon.com/og-image.png'
   },
   '/logistics-solutions': {
     title: 'Logistics Solutions — XAIVON',
-    description: 'Purpose-built AI automation for 3PLs and freight brokers. Scale your capacity and win more freight.',
+    description: 'Workflow software and automation architecture for 3PLs and freight teams to streamline quote handling and load coordination.',
     image: 'https://xaivon.com/og-image.png'
   },
   '/quoteflow-ai': {

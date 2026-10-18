@@ -121,7 +121,7 @@ export default function AIAudit() {
 
       setSubmitted(true);
       setCooldown(60);
-      trackEvent('audit_form_submit', { industry: formData.industry, company: formData.company });
+      trackEvent('audit_form_submit', { industry: formData.industry });
     } catch (err) {
       const msg = err.message || 'Something went wrong.';
       setErrors({

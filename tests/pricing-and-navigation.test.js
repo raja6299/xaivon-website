@@ -64,3 +64,22 @@ test('pricing: all 6 categories match locked v2/v3 starting prices', () => {
     });
   });
 });
+
+test('navigation: desktop mega-menu and mobile panel use theme-aware tokens for WCAG AA contrast', async () => {
+  const fs = await import('node:fs');
+  const path = await import('node:path');
+  const navCss = fs.readFileSync(path.resolve('src/components/PremiumNav.css'), 'utf8');
+  const indexCss = fs.readFileSync(path.resolve('src/index.css'), 'utf8');
+
+  // Verify .mega-menu does not use hardcoded cream background
+  assert.match(navCss, /\.mega-menu\s*\{[^}]*background:\s*var\(--dropdown-bg/s, 'Mega-menu must use var(--dropdown-bg)');
+  assert.doesNotMatch(navCss, /\.mega-menu\s*\{[^}]*background:\s*rgba\(255,\s*253,\s*249/s, 'Mega-menu must not have hardcoded light background');
+
+  // Verify .premium-mobile-panel does not use hardcoded cream background
+  assert.match(navCss, /\.premium-mobile-panel\s*\{[^}]*background:\s*var\(--dropdown-bg/s, 'Mobile panel must use var(--dropdown-bg)');
+  assert.doesNotMatch(navCss, /\.premium-mobile-panel\s*\{[^}]*background:\s*rgba\(255,\s*253,\s*249/s, 'Mobile panel must not have hardcoded light background');
+
+  // Verify index.css defines --dropdown-bg in both light and dark themes
+  assert.match(indexCss, /\[data-theme="light"\].*?--dropdown-bg:\s*rgba\(255,\s*252,\s*247/s, 'Light theme defines light dropdown background');
+  assert.match(indexCss, /\[data-theme="dark"\].*?--dropdown-bg:\s*rgba\(34,\s*32,\s*28/s, 'Dark theme defines dark dropdown background');
+});

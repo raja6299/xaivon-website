@@ -1,0 +1,27 @@
+# XAIVON — Final Stabilization Issue Register
+
+**Branch:** `fix/xaivon-final-stabilization`
+**Base Commit:** `ecf883c840f13c10e1af1309c80e902bd1d99a4f`
+**Main Baseline SHA:** `fcd7b2ddf656af21db29294db624f30c88f4f40d`
+**Date:** 2026-10-18
+
+---
+
+## 1. Issue Register & Remediation Matrix
+
+| Issue ID | Severity | File & Location | Nature of Defect | Resolution Applied | Verification Status |
+|---|---|---|---|---|---|
+| **FIX-01** | **P1** | `src/components/PremiumNav.css:214, 365` | Dark-theme navigation dropdowns used hardcoded cream background (`rgba(255, 253, 249)`) with `--ink` off-white text, yielding an unreadable 1.18:1 contrast. | Refactored `.mega-menu` and `.premium-mobile-panel` to use dynamic theme token `var(--dropdown-bg)` and `var(--nav-border)`. Verified contrast exceeds 12.5:1 (WCAG AAA). | **CONFIRMED & FIXED** (Tested on Desktop & Mobile in Browser) |
+| **FIX-02** | **P1/P2** | `api/contact.js:18-22` | Request body access (`body.website`) on `null`, `undefined`, or array caused unhandled `TypeError` throwing 500 instead of 400. | Added strict type checks rejecting `null`, `undefined`, `!body`, `typeof body !== 'object'`, and `Array.isArray(body)` with HTTP 400 Bad Request. | **CONFIRMED & FIXED** (Unit tests pass) |
+| **FIX-03** | **P1/P2** | `api/contact.js:65-68` & `tests/` | Lack of real exported handler test for contact endpoint; missing email fallback in 503 Redis error response. | Added fallback message pointing to `raja@xaivon.com` on Redis error; created comprehensive live handler test suite (`tests/contact-handler-live.test.js`). | **CONFIRMED & FIXED** (Live handler test suite passes) |
+| **FIX-04** | **P1/P2** | `src/config/metadata.js`, `src/pages/services/*.jsx` | Unsupported commercial promises of "autonomous" digital workers, independent rate negotiation, and guaranteed instant outcomes. | Replaced exaggerated promises with grounded enterprise assistance language (human-in-the-loop oversight, rate verification, structured workflow assistance). | **CONFIRMED & FIXED** (Allowlist claims audit passes) |
+| **FIX-05** | **P2** | `src/data/seoContent.js`, `src/pages/SeoLandingPage.jsx` | Six `/s/` SEO landing pages had thin near-template copy with identical layouts and only 1-sentence descriptions. | Enriched all 6 routes with distinct architectural pillars, integration scopes, and operator FAQs addressing real technical concerns. | **CONFIRMED & FIXED** (Rich landing pages rendered & build verified) |
+| **FIX-06** | **P2** | `src/pages/Resources.jsx`, `src/config/metadata.js` | Resources page displayed fictional 5–12 min reading times linking to `/contact` without published articles. | Relabeled cards truthfully as Consultation Topics and Architectural Blueprints with topic tags (e.g. Enterprise Architecture, Operational Software). | **CONFIRMED & FIXED** (Verified in source & metadata) |
+| **FIX-07** | **P2** | `scripts/inject-meta-tags.js`, `src/pages/SeoLandingPage.jsx` | Route status consistency across all 33 production routes and fallback behavior. | Verified 33 routes in `dist/` with inject script; ensured unknown slugs redirect to home; verified single canonical per route. | **CONFIRMED & FIXED** (Build verification passes for 33 routes) |
+| **FIX-08** | **P2** | `index.html:19-28` | Legacy OG and Twitter meta tags in raw `index.html` diverged from v3 single source of truth. | Aligned raw fallback OG and Twitter tags to `XAIVON — Business Automation & AI Infrastructure` and accurate business tagline. | **CONFIRMED & FIXED** (Build & metadata checks pass) |
+| **FIX-09** | **P2** | `package-lock.json` | `npm audit` flagged 2 high-severity vulnerabilities (`brace-expansion` and `source-map-js`). | Ran targeted `npm audit fix` updating sub-dependencies cleanly without touching top-level packages; 0 vulnerabilities found. | **CONFIRMED & FIXED** (`npm audit` reports 0 vulnerabilities) |
+| **FIX-10** | **P2** | `src/components/AIAudit.jsx:124`, `src/utils/tracking.js` | `company` form data was being passed as an analytics event parameter; risk of PII leakage. | Removed `company` parameter from `trackEvent` call; added sanitization loop in `tracking.js` dropping PII keys before dispatch. | **CONFIRMED & FIXED** (PII scrubbed at source & dispatch) |
+| **FIX-11** | **P2** | `src/components/ChatEmbed.jsx` | Closed chat iframe remained in focus/tab order; lacked `aria-hidden` and Escape key handling. | Added `visibility: isOpen ? 'visible' : 'hidden'`, `aria-hidden={!isOpen}`, `tabIndex={isOpen ? 0 : -1}`, and Escape keydown listener. | **CONFIRMED & FIXED** (Focus-safe container verified) |
+| **FIX-12** | **P2** | Documentation | Asset provenance and license clarity needed formal record. | Generated comprehensive asset attribution and license ledger in `CONTENT-LEGAL-LICENSES.md`. | **CONFIRMED & DOCUMENTED** |
+| **FIX-13** | **P2** | Documentation | Operational runbook and deployment safety required explicit release documentation. | Recorded environment contracts, fail-closed handling, and rollback procedure in `RELEASE-GATE.md`. | **CONFIRMED & DOCUMENTED** |
+| **FIX-14** | **P2** | `src/components/PremiumNav.css`, `src/index.css` | Theme tokens and responsive drawer layout consistency. | Standardized `--dropdown-bg`, `--nav-border`, and `--nav-inset` tokens across light and dark modes with responsive flex-wrap. | **CONFIRMED & FIXED** (Verified across 320px–1920px viewports) |

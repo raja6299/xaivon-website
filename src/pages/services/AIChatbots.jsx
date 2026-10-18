@@ -33,7 +33,7 @@ const [heroRef, heroVisible] = useScrollReveal();
               Omnichannel <span className="text-gradient-premium">AI Assistants</span>
             </h1>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', maxWidth: '700px', margin: '0 auto 2.5rem' }}>
-              Deploy intelligent chatbots and voice agents that provide always-on customer support, capture leads, and resolve issues autonomously.
+              Deploy intelligent chatbots and conversational interfaces that provide reliable customer assistance, capture inbound inquiries, and route complex requests to your team.
             </p>
             <Link to="/contact" className="btn btn-primary btn-lg">Schedule a Strategy Call</Link>
           </div>
@@ -46,13 +46,13 @@ const [heroRef, heroVisible] = useScrollReveal();
             <div ref={problemRef} className={`glass-card reveal-left ${problemVisible ? 'visible' : ''}`}>
               <h3 style={{ color: '#ff4d4f', marginBottom: '1rem' }}>The Problem</h3>
               <p style={{ color: 'var(--text-secondary)' }}>
-                Providing always-on customer support requires immense headcount and operational overhead. Missed calls or delayed email responses outside of business hours directly result in lost revenue and dissatisfied customers.
+                Providing responsive customer support requires significant staffing and coordination. Missed inquiries or delayed responses outside core operating windows can slow sales cycles and frustrate customers.
               </p>
             </div>
             <div ref={solutionRef} className={`glass-card reveal-right ${solutionVisible ? 'visible' : ''}`} style={{ borderColor: 'var(--border-accent)' }}>
               <h3 style={{ color: 'var(--color-secondary)', marginBottom: '1rem' }}>The XAIVON Solution</h3>
               <p style={{ color: 'var(--text-secondary)' }}>
-                We deploy AI agents trained exclusively on your knowledge base. They engage customers on your website, via SMS, or over the phone, instantly answering FAQs, capturing leads, and booking appointments always-on.
+                We deploy conversational assistants trained exclusively on your business documentation. They engage customers on your website or messaging channels, answering FAQs, capturing lead details, and routing complex cases to your staff.
               </p>
             </div>
           </div>

@@ -7,36 +7,36 @@ import './Resources.css';
 
 const resourcesData = [
   {
-    category: 'Guide',
-    title: 'The Ultimate Guide to Logistics Automation in 2026',
-    description: 'A comprehensive technical breakdown of how leading brokerages are using AI to decouple headcount from revenue.',
+    category: 'Architecture Brief',
+    title: 'Logistics Workflow Automation Architecture',
+    description: 'A technical breakdown of how freight brokerages and logistics operators decouple headcount from transaction volume.',
     link: '/contact',
     linkText: 'Discuss This Approach',
-    readTime: '12 min read'
+    topicTag: 'Enterprise Architecture'
   },
   {
-    category: 'Workflow Example',
-    title: 'How AI Quoting Can Reduce Response Times',
-    description: 'An illustrative example of how AI-assisted quoting helps brokerages handle volume spikes.',
+    category: 'Workflow Teardown',
+    title: 'AI Quoting & Rate Processing Pipelines',
+    description: 'An architectural pattern for handling quote ingestion, rating validation, and dispatch notifications under volume spikes.',
     link: '/contact',
     linkText: 'Discuss This Approach',
-    readTime: '5 min read'
+    topicTag: 'Operational Software'
   },
   {
-    category: 'Playbook',
-    title: 'Implementing AI Agents in Customer Support',
-    description: 'Step-by-step instructions on deploying LLM-based autonomous agents to handle common Tier 1 support tickets.',
+    category: 'Implementation Blueprint',
+    title: 'Customer Operations & Support Routing',
+    description: 'Technical considerations for deploying scoped assistive agents to automate Tier 1 ticketing with human-in-the-loop escalation.',
     link: '/contact',
     linkText: 'Discuss This Approach',
-    readTime: '8 min read'
+    topicTag: 'Assisted Automation'
   },
   {
-    category: 'Industry Insight',
-    title: 'The Hidden Costs of Manual Data Entry in CRMs',
-    description: 'Why your sales team is spending significant time on repetitive tasks, and how to build automated pipelines using webhooks and Python.',
+    category: 'Integration Strategy',
+    title: 'Automated CRM & Operations Data Pipelines',
+    description: 'Strategies for eliminating manual re-keying between sales, dispatch, and accounting systems using webhooks and microservices.',
     link: '/contact',
     linkText: 'Discuss This Approach',
-    readTime: '6 min read'
+    topicTag: 'Systems Integration'
   }
 ];
 
@@ -49,9 +49,9 @@ export default function Resources() {
       <PageMeta />
       <div className="container">
         <div ref={headerRef} className={`section-header text-center reveal-scale ${headerVisible ? 'visible' : ''}`}>
-          <span className="badge">KNOWLEDGE BASE</span>
+          <span className="badge">CONSULTATION TOPICS</span>
           <h1 className="text-gradient">Resources & Playbooks</h1>
-          <p className="large-text">Technical guides, workflow diagrams, and illustrative implementation strategies.</p>
+          <p className="large-text">Technical topic briefs, workflow patterns, and illustrative implementation strategies.</p>
         </div>
 
         <div ref={gridRef} className="resources-grid mt-4">
@@ -63,7 +63,7 @@ export default function Resources() {
             >
               <div className="resource-meta">
                 <span className="resource-category">{res.category}</span>
-                <span className="resource-time">{res.readTime}</span>
+                <span className="resource-time">{res.topicTag}</span>
               </div>
               <h3>{res.title}</h3>
               <p>{res.description}</p>

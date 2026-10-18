@@ -44,6 +44,17 @@ export function ChatEmbed() {
     return () => window.removeEventListener('message', handleMessage);
   }, []);
 
+  useEffect(() => {
+    if (!embedSrc || !trustedOrigin) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && isOpen) {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen]);
+
   // If chat is not configured, render nothing — never crash
   if (!embedSrc || !trustedOrigin) {
     return null;
@@ -62,6 +73,7 @@ export function ChatEmbed() {
     <div style={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: 9999 }}>
       {/* Iframe Container */}
       <div
+        aria-hidden={!isOpen}
         style={{
           position: 'absolute',
           bottom: '80px',
@@ -74,10 +86,11 @@ export function ChatEmbed() {
           borderRadius: '16px',
           boxShadow: isOpen ? '0 12px 40px -12px rgba(0,0,0,0.5)' : 'none',
           opacity: isOpen ? 1 : 0,
+          visibility: isOpen ? 'visible' : 'hidden',
           pointerEvents: isOpen ? 'auto' : 'none',
           transform: isOpen ? 'scale(1) translateY(0)' : 'scale(0.92) translateY(16px)',
           transformOrigin: 'bottom right',
-          transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+          transition: 'opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), visibility 0.3s ease',
           overflow: 'hidden',
           display: hasOpened ? 'block' : 'none'
         }}
@@ -86,6 +99,7 @@ export function ChatEmbed() {
           <iframe
             ref={iframeRef}
             src={embedSrc}
+            tabIndex={isOpen ? 0 : -1}
             style={{ width: '100%', height: '100%', border: 'none', background: 'transparent' }}
             title="XAIVON AI Chat"
             allow="microphone"
