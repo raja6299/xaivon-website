@@ -17,6 +17,10 @@ export default async function handler(req, res) {
   try {
     const body = req.body;
 
+    if (!body || typeof body !== 'object' || Array.isArray(body)) {
+      return res.status(400).json({ error: 'Invalid or missing request body' });
+    }
+
     if (body.website) {
       return res.status(400).json({ error: 'Invalid request' });
     }
@@ -59,7 +63,11 @@ export default async function handler(req, res) {
     const { success, remaining, error: ratelimitError } = await checkRateLimit(`${ip}_${rawEmail.toLowerCase()}`);
 
     if (ratelimitError) {
-      return res.status(503).json({ error: 'Service temporarily unavailable. Please try again later.' });
+      return res.status(503).json({
+        error: 'Service temporarily unavailable. Please try again later or email raja@xaivon.com directly for immediate assistance.',
+        success: false,
+        message: 'Service temporarily unavailable. Please try again later or email raja@xaivon.com directly for immediate assistance.'
+      });
     }
 
     if (!success) {

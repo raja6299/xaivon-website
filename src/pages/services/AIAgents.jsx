@@ -6,11 +6,11 @@ import PricingSection from '../../components/PricingSection';
 const faqData = [
   {
     q: 'What is an AI Agent?',
-    a: 'An AI Agent is an autonomous software program that uses LLMs to understand complex goals, plan a sequence of actions, and execute them using external tools like email, CRMs, or databases.'
+    a: 'An AI Agent is a goal-directed software system that uses LLMs to interpret structured requests, plan sequential actions, and execute tasks using tools like email, CRMs, or databases within defined policy guardrails.'
   },
   {
     q: 'How are agents different from standard automations?',
-    a: 'Standard automation (like Zapier) relies on strict "if-this-then-that" rules. If an edge case occurs, it breaks. AI Agents can reason, adapt to unexpected inputs, and handle complex edge cases without human intervention.'
+    a: 'Standard automation (like basic webhooks) relies on strict "if-this-then-that" rules. AI Agents can interpret unstructured inputs, draft structured responses, and process complex workflow steps while respecting validation rules.'
   },
   {
     q: 'Are the agents secure?',
@@ -30,10 +30,10 @@ const [heroRef, heroVisible] = useScrollReveal();
           <div ref={heroRef} className={`reveal-scale ${heroVisible ? 'visible' : ''}`}>
             <span className="badge">AI AGENTS</span>
             <h1 style={{ fontSize: 'clamp(2.25rem, 3.2vw, 3rem)', marginBottom: '1.25rem' }}>
-              Autonomous <span className="text-gradient-premium">AI Agents</span>
+              Intelligent <span className="text-gradient-premium">AI Agents</span>
             </h1>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', maxWidth: '700px', margin: '0 auto 2.5rem' }}>
-              Deploy intelligent digital workers capable of executing complex, multi-step business objectives across your existing software stack.
+              Deploy structured digital workers capable of assisting with multi-step business tasks across your existing software stack.
             </p>
             <Link to="/contact" className="btn btn-primary btn-lg">Schedule a Strategy Call</Link>
           </div>
@@ -52,7 +52,7 @@ const [heroRef, heroVisible] = useScrollReveal();
             <div ref={solutionRef} className={`glass-card reveal-right ${solutionVisible ? 'visible' : ''}`} style={{ borderColor: 'var(--border-accent)' }}>
               <h3 style={{ color: 'var(--color-secondary)', marginBottom: '1rem' }}>The XAIVON Solution</h3>
               <p style={{ color: 'var(--text-secondary)' }}>
-                We build autonomous agents that act as digital employees. They can research, draft emails, negotiate rates, update CRMs, and solve problems independently, escalating to humans only when defined thresholds are crossed.
+                We build custom agents that assist your team with repetitive digital workflows. They can parse documents, draft messages, check rate tables, update CRMs, and organize tasks, escalating to human operators whenever exceptions or approval thresholds are reached.
               </p>
             </div>
           </div>

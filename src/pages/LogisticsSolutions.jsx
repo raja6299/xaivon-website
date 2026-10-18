@@ -6,7 +6,7 @@ import './LogisticsSolutions.css';
 const SOLUTIONS = [
   {
     title: 'Freight Broker Automation',
-    desc: 'Automate the entire freight brokerage workflow — from quote requests to carrier matching, rate negotiation, and load booking.',
+    desc: 'Streamline freight brokerage workflows — from quote requests to carrier lookup, rate verification, and load status coordination.',
     features: ['Quote Processing', 'Carrier Matching', 'Rate Optimization', 'Load Booking'],
   },
   {

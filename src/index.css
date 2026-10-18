@@ -30,6 +30,7 @@
   --nav-link: #3F3A34;
   --nav-link-hover: #1C1A17;
   --dropdown-bg: rgba(255, 252, 247, 0.98);
+  --nav-inset: rgba(255, 255, 255, 0.6);
   --card-bg: #FFFCF7;
   --card-border: #D9D0C4;
   --text-primary: var(--ink);
@@ -49,6 +50,12 @@
   --tab-copper-active-bg: #B94E2D;
   --tab-copper-active-text: #FFFFFF;
   --nav-offset: 88px;
+  --nav-height: 80px;
+  --section-padding: clamp(48px, 6vw, 72px) 0;
+  --bg-secondary: var(--surface);
+  --accent-platinum: var(--ink);
+  --accent-navy-light: var(--accent);
+  --transition-fast: 0.15s ease;
   --section-py: clamp(48px, 6vw, 72px);
   --max: 1140px;
   --gutter: clamp(20px, 3.5vw, 40px);
@@ -92,6 +99,7 @@
   --nav-link: #D8D0C3;
   --nav-link-hover: #F0E9DF;
   --dropdown-bg: rgba(34, 32, 28, 0.98);
+  --nav-inset: rgba(255, 255, 255, 0.05);
   --card-bg: #22201C;
   --card-border: #403A32;
   --text-primary: var(--ink);
@@ -111,6 +119,12 @@
   --tab-copper-active-bg: var(--accent);
   --tab-copper-active-text: #171613;
   --nav-offset: 88px;
+  --nav-height: 80px;
+  --section-padding: clamp(48px, 6vw, 72px) 0;
+  --bg-secondary: var(--surface);
+  --accent-platinum: var(--ink);
+  --accent-navy-light: var(--accent);
+  --transition-fast: 0.15s ease;
   --section-py: clamp(48px, 6vw, 72px);
   --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.25);
   --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.35);

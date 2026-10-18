@@ -127,3 +127,49 @@ test('footer-editorial: ScrollToTop supports reliable hash anchor navigation acr
   assert.match(scrollToTopJsx, /setInterval/, 'ScrollToTop must support polling retry for lazy-loaded route components');
   assert.match(scrollToTopJsx, /window\.scrollTo\(0,\s*0\)/, 'ScrollToTop must preserve window.scrollTo(0, 0) when no hash is present');
 });
+
+test('footer-editorial: founder social profiles are present with exact URLs, sequence, security attributes and accessibility', () => {
+  const footerJsx = fs.readFileSync(FOOTER_JSX_PATH, 'utf8');
+
+  // Verify section heading correctly identifies founder connection (not corporate)
+  assert.match(footerJsx, /Connect with the Founder/, 'Footer must label module accurately as Connect with the Founder');
+  assert.doesNotMatch(footerJsx, /Official XAIVON\s+(Social|Twitter|LinkedIn|GitHub)/i, 'Must not claim corporate official verification');
+
+  // Verify exact destination URLs
+  const xUrl = 'https://x.com/Raja_9693';
+  const linkedinUrl = 'https://www.linkedin.com/in/raja9693/';
+  const githubUrl = 'https://github.com/raja9693bth';
+
+  assert.ok(footerJsx.includes(xUrl), `Must link to exact X profile: ${xUrl}`);
+  assert.ok(footerJsx.includes(linkedinUrl), `Must link to exact LinkedIn profile: ${linkedinUrl}`);
+  assert.ok(footerJsx.includes(githubUrl), `Must link to exact GitHub profile: ${githubUrl}`);
+
+  // Verify sequence: X, LinkedIn, GitHub
+  const posX = footerJsx.indexOf(xUrl);
+  const posLinkedin = footerJsx.indexOf(linkedinUrl);
+  const posGithub = footerJsx.indexOf(githubUrl);
+  assert.ok(posX < posLinkedin && posLinkedin < posGithub, 'Social links must appear in exact sequence: X, LinkedIn, GitHub');
+
+  // Verify security and accessibility attributes
+  assert.match(footerJsx, /href=["']https:\/\/x\.com\/Raja_9693["'][^>]*target=["']_blank["'][^>]*rel=["']noopener noreferrer["']/, 'X link must have target="_blank" and rel="noopener noreferrer"');
+  assert.match(footerJsx, /href=["']https:\/\/www\.linkedin\.com\/in\/raja9693\/["'][^>]*target=["']_blank["'][^>]*rel=["']noopener noreferrer["']/, 'LinkedIn link must have target="_blank" and rel="noopener noreferrer"');
+  assert.match(footerJsx, /href=["']https:\/\/github\.com\/raja9693bth["'][^>]*target=["']_blank["'][^>]*rel=["']noopener noreferrer["']/, 'GitHub link must have target="_blank" and rel="noopener noreferrer"');
+
+  // Verify descriptive aria-labels
+  assert.match(footerJsx, /aria-label=["'][^"']*X[^"']*new tab["']/, 'X link must state destination and new tab');
+  assert.match(footerJsx, /aria-label=["'][^"']*LinkedIn[^"']*new tab["']/, 'LinkedIn link must state destination and new tab');
+  assert.match(footerJsx, /aria-label=["'][^"']*GitHub[^"']*new tab["']/, 'GitHub link must state destination and new tab');
+
+  // Verify SVGs are decorative
+  assert.match(footerJsx, /className=["']site-footer__social-icon["'][^>]*aria-hidden=["']true["']/, 'Social SVGs must have aria-hidden="true"');
+});
+
+test('footer-editorial: scoped CSS styles for founder social module are defined in Footer.css', () => {
+  const footerCss = fs.readFileSync(FOOTER_CSS_PATH, 'utf8');
+  assert.match(footerCss, /\.site-footer__social-module/, 'Footer.css must define .site-footer__social-module');
+  assert.match(footerCss, /\.site-footer__social-heading/, 'Footer.css must define .site-footer__social-heading');
+  assert.match(footerCss, /\.site-footer__social-links/, 'Footer.css must define .site-footer__social-links');
+  assert.match(footerCss, /\.site-footer__social-link/, 'Footer.css must define .site-footer__social-link');
+  assert.match(footerCss, /\.site-footer__social-link:hover/, 'Footer.css must define hover states for social links');
+  assert.match(footerCss, /\.site-footer__social-link:focus-visible/, 'Footer.css must define focus-visible outline for social links');
+});
