@@ -216,6 +216,91 @@
 }
 
 /* --------------------------------------------------------------------------
+   Founder Social Connection Module
+   -------------------------------------------------------------------------- */
+.site-footer__social-module {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 380px;
+}
+
+.site-footer__social-heading {
+  font-size: 10.5px;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.site-footer__social-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.site-footer__social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  min-height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
+  line-height: 1;
+  transition: border-color 0.16s ease, color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.site-footer__social-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1.5px);
+  box-shadow: 0 3px 8px rgba(179, 87, 52, 0.12);
+}
+
+.site-footer__social-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.site-footer__social-icon {
+  flex-shrink: 0;
+  color: var(--muted);
+  transition: color 0.16s ease;
+}
+
+.site-footer__social-link:hover .site-footer__social-icon {
+  color: var(--accent);
+}
+
+.site-footer__social-text {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: inherit;
+}
+
+.site-footer__social-arrow {
+  flex-shrink: 0;
+  color: var(--muted);
+  opacity: 0.6;
+  transition: opacity 0.16s ease, transform 0.16s ease, color 0.16s ease;
+}
+
+.site-footer__social-link:hover .site-footer__social-arrow {
+  opacity: 1;
+  color: var(--accent);
+  transform: translate(1px, -1px);
+}
+
+/* --------------------------------------------------------------------------
    Layer B: Navigation Columns
    -------------------------------------------------------------------------- */
 .site-footer__nav-group {
@@ -422,7 +507,8 @@
     font-size: 13px;
   }
 
-  .site-footer__contact-card {
+  .site-footer__contact-card,
+  .site-footer__social-module {
     width: 100%;
     max-width: 100%;
   }
@@ -457,6 +543,9 @@
   .site-footer__contact-card,
   .site-footer__contact-link,
   .site-footer__copy-btn,
+  .site-footer__social-link,
+  .site-footer__social-icon,
+  .site-footer__social-arrow,
   .site-footer__link-list a,
   .site-footer__cookie-btn {
     transition: none !important;
